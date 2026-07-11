@@ -1,0 +1,8 @@
+.work-hero {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-xl);
+}
+
+.work-hero h1 {
+  max-width: 20ch;
+}

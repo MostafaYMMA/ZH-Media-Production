@@ -1,0 +1,82 @@
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.project-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+}
+
+.project-card__poster,
+.project-card__teaser {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+/* Current phase: posters are placeholder images shown dimmed, and simply
+   brighten on hover. When real teaser clips exist in assets/video/previews/,
+   restore the poster->teaser cross-fade (swap the rules below for the poster
+   fading to opacity:0 and the teaser fading to opacity:1 on hover). */
+.project-card__poster {
+  opacity: 0.62;
+}
+
+.project-card__teaser {
+  opacity: 0;
+}
+
+.project-card__media:hover .project-card__poster {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.project-card__play {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(11, 11, 13, 0.55);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(245, 245, 242, 0.25);
+}
+
+.project-card__play::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent var(--color-text);
+}
+
+.project-card__info {
+  padding-top: var(--space-sm);
+}
+
+.project-card__category {
+  font-size: var(--fs-small);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.project-card__title {
+  margin-top: var(--space-2xs);
+  font-size: 1.15rem;
+}

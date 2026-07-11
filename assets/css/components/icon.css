@@ -1,0 +1,15 @@
+.icon-interactive {
+  display: inline-flex;
+  transition: transform var(--duration-fast) var(--ease-out);
+  transform-origin: center;
+}
+
+.icon-interactive:hover,
+.icon-interactive:focus-visible {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.icon-interactive svg {
+  width: 100%;
+  height: 100%;
+}

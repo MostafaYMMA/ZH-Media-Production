@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — ZH Media Production</title>
+  <meta name="description" content="A selection of brand films, documentaries, and social content produced by ZH Media Production" />
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/pages/work.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="navbar__logo">ZH&nbsp;Media&nbsp;Production</a>
+    <nav class="navbar__links">
+      <a href="index.html" class="navbar__link">Home</a>
+      <a href="work.html" class="navbar__link" aria-current="page">Work</a>
+      <a href="services.html" class="navbar__link">Services</a>
+      <a href="about.html" class="navbar__link">About</a>
+      <a href="contact.html" class="navbar__link btn btn--outline">Contact</a>
+      <span class="navbar__indicator" aria-hidden="true"></span>
+    </nav>
+    <button class="navbar__toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="work-hero container">
+      <span class="eyebrow" data-reveal>Our Work</span>
+      <h1 data-reveal>Stories we've helped brands tell.</h1>
+      <p data-reveal>Hover a project to preview it, click to watch the full piece.</p>
+    </section>
+
+    <section class="section container">
+      <div class="project-grid" data-project-grid="all" data-reveal-group></div>
+    </section>
+
+    <section class="cta-band">
+      <span class="eyebrow" data-reveal>Let's Work Together</span>
+      <h2 data-reveal>Got a project brewing? We'd love to hear about it.</h2>
+      <a href="contact.html" class="btn btn--primary" data-reveal>Get in touch</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__cta">
+        <h2>Let's create something worth watching.</h2>
+        <a href="contact.html" class="btn btn--primary">Start a project</a>
+      </div>
+      <div class="footer__brand">
+        <span class="footer__brand-mark" aria-hidden="true">ZH</span>
+        <span class="footer__brand-name">ZH Media Production</span>
+        <span class="footer__brand-tag">Content Creation &amp; Media Production</span>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__column">
+          <h4>Contact</h4>
+          <a href="mailto:hello@zhmediaproduction.com">hello@zhmediaproduction.com</a>
+          <p class="footer__location text-muted">Cairo, Egypt &mdash; remote &amp; on-location</p>
+          <div class="footer__socials">
+            <a href="#" class="icon-interactive" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4.5" />
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="#" class="icon-interactive" aria-label="Vimeo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 7.5c-.9 6-4.4 11.6-8 14.5-3.4-1-5-6.4-6-11-.7-3-1.3-3.7-3-2.5l-.7-1c1.9-1.7 5-4.6 6.7-4.8 1.8-.2 2.7 1 3.2 3.5.5 2.6 1 6.7 2 6.7 1 0 2.7-3.8 2.8-5.3.1-1.9-1.1-2-2.7-1.2 1-3.2 3-4.7 5.5-4.6 2 .1 2.7 1.6 2.2 5.7z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; <span data-current-year></span> ZH Media Production. All rights reserved.</span>
+      <span>Made with care, one frame at a time.</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/data/projects.js"></script>
+  <script src="assets/js/modules/videoModal.js"></script>
+  <script src="assets/js/modules/videoPreview.js"></script>
+  <script src="assets/js/modules/navbar.js"></script>
+  <script src="assets/js/modules/navIndicator.js"></script>
+  <script src="assets/js/modules/scrollReveal.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
