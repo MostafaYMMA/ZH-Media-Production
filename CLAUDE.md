@@ -101,7 +101,8 @@ condensed poster typography.
   Recording · Reels & Shorts · Editing · Personal Branding` in Anton. The track is
   duplicated and loops at `translateX(-50%)`; pauses under reduced-motion.
 - **"Why you'd want us"** section — the core pitch (coaches don't have time to market
-  themselves) as a two-column statement + a bordered list of benefits.
+  themselves) as a centered headline + intro, followed by three prominent numbered
+  benefit cards (01/02/03) with a volt top-bar that fills in on hover.
 - **Numbered workflow cards** (01/02/03) with oversized bled-in step numbers.
 
 If you change the accent or fonts, update the token table above so this file stays true.
