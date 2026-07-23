@@ -13,6 +13,14 @@ people who came up in the gym, not a generic agency."
 Core landing-page message: **you're a coach, not an editor — you don't have time to market
 your own brand, so we do it for you (done-for-you).**
 
+**Packages** (currently two, sold by monthly reel output — both fully done-for-you,
+scripting + shooting + editing all included):
+- **12 Reels / month** (Starter) — steady, ~3 reels a week.
+- **24 Reels / month** (Scale, featured) — double the output for coaches going all-in.
+
+Prices are intentionally not shown on the site yet — the CTA everywhere is **"Book a call."**
+Don't invent price figures.
+
 This is a **static, hand-built site** — plain HTML + CSS + vanilla JS. No framework, no
 build step, no `package.json`. It's meant to be opened directly (`file://`) or served as
 static files. Live site link is in `README.md`.
@@ -107,17 +115,30 @@ condensed poster typography.
 
 If you change the accent or fonts, update the token table above so this file stays true.
 
+## Page status
+
+All five pages are now on the fitness-coach brand:
+- **index.html** — landing page (split hero, ticker, "Why you'd want us", workflow, CTA).
+- **services.html** — 3-step pipeline (Script → Shoot → Edit) + the **12 / 24 Reels**
+  package cards (big Anton reel count, volt hover bar, featured 24-reel card).
+- **about.html** — founder's 5+ yrs in fitness angle, a stat band, three "why coaches
+  trust us" value cards. (The old fictional team section was removed.)
+- **work.html** — reels grid, data-driven from `projects.js`.
+- **contact.html** — booking form; note the **package `<select>`** (12 / 24 / not sure)
+  and the custom CSS arrow for it in `contact.css`.
+
 ## Known TODOs / placeholders
 
-- **Portfolio data** (`assets/js/data/projects.js`) still holds generic media-production
-  samples (skincare films, docuseries). Swap for real **fitness-coach** case studies +
-  stills in `assets/images/projects/` and clips in `assets/video/previews/`.
+- **Portfolio data** (`assets/js/data/projects.js`) now uses fitness-coach reel entries,
+  but they're still **placeholders** (fictional coach names, `picsum.photos` thumbnails,
+  a shared placeholder `vimeoId`, and `teaserSrc` clips that don't exist yet in
+  `assets/video/previews/`). Swap for real coach content + stills in
+  `assets/images/projects/`.
 - Hero and card images point at `picsum.photos` placeholders — replace with real coach
   photography.
 - Contact form has **no backend** — it only prevents the default submit (see `main.js`).
-- `about.html`, `services.html`, `work.html` copy is inherited from the older
-  media-production framing; retune toward fitness-coach branding when touched.
-- `vimeoId`s in project data are placeholders.
+  When wiring it up, the fields are name / email / handle / package / message.
+- Package **prices** are deliberately absent — keep it "Book a call" until told otherwise.
 
 ## House rules
 
