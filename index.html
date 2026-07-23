@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZH Media Production — Content Creation & Media Production</title>
-  <meta name="description" content="ZH Media Production is a media production studio crafting brand films, documentaries, and social content that moves people." />
+  <title>ZH Media Production — Personal Branding for Fitness Coaches</title>
+  <meta name="description" content="ZH Media Production builds the personal brand of fitness coaches — script writing, video recording, and short-form editing (reels & shorts) run by a team that came up in the gym." />
   <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/pages/home.css" />
 </head>
@@ -27,41 +30,103 @@
   </header>
 
   <main>
-    <section class="hero container">
-      <div class="hero__content">
-        <span class="eyebrow" data-reveal>Content Creation &amp; Media Production</span>
-        <h1 class="hero__title" data-reveal>We turn ideas into stories worth watching.</h1>
-        <p class="hero__subtitle" data-reveal>
-          ZH Media Production is a full-service creative studio — brand films, documentaries,
-          social content, and everything in between. From concept to final cut, we make
-          work that looks as good as it performs.
-        </p>
-        <div class="hero__actions" data-reveal>
-          <a href="work.html" class="btn btn--primary">See our work</a>
-          <a href="contact.html" class="btn btn--outline">Start a project</a>
-        </div>
-        <div class="hero__stats" data-reveal>
-          <div>
-            <div class="hero__stat-value">20+</div>
-            <div class="hero__stat-label">Clients served</div>
+    <section class="hero">
+      <div class="hero__inner container">
+        <div class="hero__content">
+          <span class="eyebrow" data-reveal>Personal branding for fitness coaches</span>
+          <h1 class="hero__title" data-reveal>
+            You built the coach.<br />
+            <span class="hero__title-accent">We build the brand.</span>
+          </h1>
+          <p class="hero__subtitle" data-reveal>
+            Scripts, filming, and short-form editing — reels, shorts, the whole feed —
+            handled end to end. Run by people who came up in the gym, so your content
+            actually sounds like a coach, not an agency.
+          </p>
+          <div class="hero__actions" data-reveal>
+            <a href="contact.html" class="btn btn--primary">Book a call</a>
+            <a href="work.html" class="btn btn--outline">See the work</a>
           </div>
-          <div>
-            <div class="hero__stat-value">1</div>
-            <div class="hero__stat-label">Year in business</div>
+          <div class="hero__stats" data-reveal>
+            <div class="hero__stat">
+              <div class="hero__stat-value" data-count-to="5" data-count-suffix="+">0</div>
+              <div class="hero__stat-label">Years in the fitness world</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value" data-count-to="20" data-count-suffix="+">0</div>
+              <div class="hero__stat-label">Coaches we've filmed</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value" data-count-to="100" data-count-suffix="%">0</div>
+              <div class="hero__stat-label">Done-for-you</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="hero__media" data-reveal>
-        <!-- Placeholder hero image (faded until hover). Swap for a real still/frame. -->
-        <img class="media-fade" src="https://picsum.photos/seed/zhhero/900/1100" alt="" />
+        <!-- Placeholder hero image locked to the right half. Swap for a real coach still. -->
+        <img class="hero__image" src="https://picsum.photos/seed/zhcoach/1000/1400" alt="A fitness coach mid-session" />
+        <div class="hero__media-glow" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Service ticker: an athletic scoreboard-style scroll of what we do -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+        <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+        <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+        <span>Editing</span><span class="ticker__dot">&bull;</span>
+        <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
+        <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+        <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+        <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+        <span>Editing</span><span class="ticker__dot">&bull;</span>
+        <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
+      </div>
+    </div>
+
+    <!-- Why you'd want us -->
+    <section class="section container why">
+      <div class="why__head">
+        <span class="eyebrow" data-reveal>Why you'd want us</span>
+        <h2 class="why__headline" data-reveal>
+          You didn't get into coaching to sit in the edit bay.
+        </h2>
+      </div>
+      <div class="why__body">
+        <p class="why__lead" data-reveal>
+          Between programming, check-ins, and actually training clients, marketing is the
+          thing that quietly slips. So the reels never get posted, the good ideas die in
+          your notes app, and the coaches with worse advice keep out-posting you.
+        </p>
+        <p class="why__lead" data-reveal>
+          That's the whole job we take off your plate. You show up and coach on camera —
+          we handle the script, the shoot, and the edit, and hand you content that's ready
+          to post.
+        </p>
+        <ul class="why__list" data-reveal-group>
+          <li class="why__item" data-reveal>
+            <span class="why__item-tag">Your time back</span>
+            No scripting at midnight, no fighting the editing timeline.
+          </li>
+          <li class="why__item" data-reveal>
+            <span class="why__item-tag">Coach's voice</span>
+            We speak fitness, so nothing sounds like a generic ad.
+          </li>
+          <li class="why__item" data-reveal>
+            <span class="why__item-tag">Consistency</span>
+            A steady feed instead of a burst every few months.
+          </li>
+        </ul>
       </div>
     </section>
 
     <section class="section container">
       <div class="section__head">
         <div>
-          <span class="eyebrow" data-reveal>Selected Work</span>
-          <h2 data-reveal>Recent projects</h2>
+          <span class="eyebrow" data-reveal>Selected work</span>
+          <h2 data-reveal>Coaches we've filmed</h2>
         </div>
         <a href="work.html" class="btn btn--outline" data-reveal>View all work</a>
       </div>
@@ -71,23 +136,25 @@
     <section class="section container">
       <div class="section__head">
         <div>
-          <span class="eyebrow" data-reveal>What We Do</span>
-          <h2 data-reveal>From first draft to final cut</h2>
+          <span class="eyebrow" data-reveal>What we do</span>
+          <h2 data-reveal>From first idea to posted reel</h2>
         </div>
         <a href="services.html" class="btn btn--outline" data-reveal>See all services</a>
       </div>
       <div class="workflow-grid" data-reveal-group>
         <div class="workflow-item" data-reveal>
+          <span class="workflow-item__num" aria-hidden="true">01</span>
           <span class="workflow-item__icon icon-interactive" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 20h4l10.5-10.5a2.121 2.121 0 0 0-3-3L5 17v3z" />
               <path d="M13.5 6.5l3 3" />
             </svg>
           </span>
-          <h3>Content Writing</h3>
-          <p>Scripts, captions, and copy that set the story up before a camera ever rolls.</p>
+          <h3>Script Writing</h3>
+          <p>Hooks and scripts built around your coaching, so every video has a point before the camera rolls.</p>
         </div>
         <div class="workflow-item" data-reveal>
+          <span class="workflow-item__num" aria-hidden="true">02</span>
           <span class="workflow-item__icon icon-interactive" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M23 7l-7 5 7 5V7z" />
@@ -95,9 +162,10 @@
             </svg>
           </span>
           <h3>Video Recording</h3>
-          <p>On-location and studio shoots, captured with the gear and crew a story deserves.</p>
+          <p>Sessions filmed in the gym with the gear and direction to make you look like the expert you are.</p>
         </div>
         <div class="workflow-item" data-reveal>
+          <span class="workflow-item__num" aria-hidden="true">03</span>
           <span class="workflow-item__icon icon-interactive" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M2 8l2-4h4l-2 4" />
@@ -106,16 +174,16 @@
               <rect x="2" y="8" width="20" height="12" rx="1" />
             </svg>
           </span>
-          <h3>Montage &amp; Editing</h3>
-          <p>The edit, color, and sound pass that ties every piece together into a final cut.</p>
+          <h3>Reels &amp; Editing</h3>
+          <p>Short-form edits cut for the feed — captions, pacing, and sound tuned for reels and shorts.</p>
         </div>
       </div>
     </section>
 
     <section class="cta-band">
-      <span class="eyebrow" data-reveal>Let's Work Together</span>
-      <h2 data-reveal>Have a project in mind? Let's make it unforgettable.</h2>
-      <a href="contact.html" class="btn btn--primary" data-reveal>Get in touch</a>
+      <span class="eyebrow" data-reveal>Let's build your brand</span>
+      <h2 data-reveal>Keep coaching. We'll handle the content.</h2>
+      <a href="contact.html" class="btn btn--primary" data-reveal>Book a call</a>
     </section>
   </main>
 
@@ -164,6 +232,7 @@
   <script src="assets/js/modules/navbar.js"></script>
   <script src="assets/js/modules/navIndicator.js"></script>
   <script src="assets/js/modules/scrollReveal.js"></script>
+  <script src="assets/js/modules/counter.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Reveal must run after any grid above has been rendered into the DOM
   window.ZH.initScrollReveal();
 
+  if (window.ZH.initCounters) window.ZH.initCounters();
+
   const yearEl = document.querySelector("[data-current-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 

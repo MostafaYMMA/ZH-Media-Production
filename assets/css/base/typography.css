@@ -9,9 +9,10 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-weight: 400; /* Anton is a single heavy weight — no synthetic bolding */
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -24,6 +25,7 @@ h2 {
 
 h3 {
   font-size: var(--fs-h3);
+  letter-spacing: 0.02em;
 }
 
 p {
@@ -33,13 +35,27 @@ p {
 
 .eyebrow {
   display: inline-block;
-  font-family: var(--font-body);
+  font-family: var(--font-data);
   font-size: var(--fs-small);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: var(--space-sm);
+  position: relative;
+  padding-left: 2.4rem;
+}
+
+/* Eyebrow gets a short volt tick — a stopwatch/lane marker cue */
+.eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1.8rem;
+  height: 2px;
+  transform: translateY(-50%);
+  background: var(--color-accent);
 }
 
 .text-muted {

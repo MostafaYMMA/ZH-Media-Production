@@ -37,7 +37,7 @@
   height: 64px;
   border-radius: var(--radius-md);
   background: var(--color-accent);
-  color: #0b0b0d;
+  color: var(--color-accent-ink);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.5rem;

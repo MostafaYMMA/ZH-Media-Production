@@ -2,15 +2,18 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 0.9rem 1.75rem;
+  padding: 0.95rem 1.9rem;
+  font-family: var(--font-data);
   font-size: var(--fs-small);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   border-radius: 999px;
   cursor: pointer;
   transition: transform var(--duration-fast) var(--ease-out),
     background var(--duration-fast) var(--ease-out),
     color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
     border-color var(--duration-fast) var(--ease-out);
 }
 
@@ -20,11 +23,13 @@
 
 .btn--primary {
   background: var(--color-accent);
-  color: #0b0b0d;
+  color: var(--color-accent-ink);
 }
 
 .btn--primary:hover {
   background: var(--color-accent-hover);
+  box-shadow: 0 0 0 1px var(--color-accent),
+    0 12px 30px -8px rgba(var(--color-accent-rgb), 0.55);
 }
 
 .btn--outline {

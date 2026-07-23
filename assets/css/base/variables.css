@@ -1,22 +1,25 @@
 :root {
-  /* Colors */
-  --color-bg: #0b0b0d;
-  --color-bg-alt: #141417;
-  --color-surface: #1c1c20;
-  --color-text: #f5f5f2;
-  --color-text-muted: #a3a3ab;
-  --color-accent: #ff4d2e;
-  --color-accent-hover: #ff6b4a;
-  --color-border: #2a2a2f;
+  /* Colors — deep navy base with an electric volt-lime accent (athletic energy) */
+  --color-bg: #0C1E38;
+  --color-bg-alt: #0A1A30;
+  --color-surface: #122B4C;
+  --color-text: #EAF2FF;
+  --color-text-muted: #90A6C6;
+  --color-accent: #C6FF3A;
+  --color-accent-hover: #D8FF6E;
+  --color-accent-ink: #0A1A30; /* text/icons sitting on top of the accent */
+  --color-accent-rgb: 198, 255, 58; /* for translucent accent tints */
+  --color-border: #1E3859;
 
-  /* Typography */
-  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  /* Typography — Anton (condensed poster display) + Barlow (athletic body) */
+  --font-display: "Anton", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --font-data: "Barlow Semi Condensed", "Barlow", sans-serif;
 
-  --fs-hero: clamp(2.75rem, 6vw, 6rem);
-  --fs-h1: clamp(2.25rem, 4vw, 3.5rem);
-  --fs-h2: clamp(1.75rem, 3vw, 2.5rem);
-  --fs-h3: 1.25rem;
+  --fs-hero: clamp(3rem, 6.5vw, 6.5rem);
+  --fs-h1: clamp(2.5rem, 4.5vw, 4rem);
+  --fs-h2: clamp(2rem, 3.4vw, 3rem);
+  --fs-h3: 1.35rem;
   --fs-body: 1rem;
   --fs-small: 0.875rem;
 
