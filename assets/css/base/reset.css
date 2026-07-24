@@ -44,6 +44,14 @@ ol {
   list-style: none;
 }
 
+/* Consistent, on-brand keyboard focus. Mouse clicks stay clean (:focus-visible),
+   keyboard users get a clear volt ring on every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -30,10 +30,16 @@
   </header>
 
   <main>
-    <section class="contact-hero container">
-      <span class="eyebrow" data-reveal>Book a call</span>
-      <h1 data-reveal>Let's get your content handled.</h1>
-      <p data-reveal>Tell us about your coaching and where you want to take it — we typically reply within one business day.</p>
+    <section class="contact-hero page-hero container">
+      <div class="page-hero__grid">
+        <div class="page-hero__head">
+          <span class="eyebrow" data-reveal>Book a call</span>
+          <h1 data-reveal>Let's get your content handled.</h1>
+        </div>
+        <div class="page-hero__lead" data-reveal>
+          <p>Tell us about your coaching and where you want to take it — we typically reply within one business day.</p>
+        </div>
+      </div>
     </section>
 
     <section class="section container contact-layout">
@@ -75,6 +81,14 @@
       </form>
 
       <aside class="contact-info" data-reveal>
+        <div class="contact-info__block contact-next">
+          <h4>What happens next</h4>
+          <ol class="contact-steps">
+            <li><span aria-hidden="true">1</span> We reply within one business day.</li>
+            <li><span aria-hidden="true">2</span> A quick call to map out your content and goals.</li>
+            <li><span aria-hidden="true">3</span> We plan your first shoot — often the same week.</li>
+          </ol>
+        </div>
         <div class="contact-info__block">
           <h4>Email</h4>
           <p><a href="mailto:hello@zhmediaproduction.com">hello@zhmediaproduction.com</a></p>
@@ -136,6 +150,7 @@
   <script src="assets/js/modules/navbar.js"></script>
   <script src="assets/js/modules/navIndicator.js"></script>
   <script src="assets/js/modules/scrollReveal.js"></script>
+  <script src="assets/js/modules/pointer.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

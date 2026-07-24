@@ -1,8 +1,9 @@
+/* Balanced hero (see .page-hero in main.css). Pull the grid up close to the
+   headline so the portfolio doesn't open on a big empty gap. */
 .work-hero {
-  padding-top: var(--space-3xl);
-  padding-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
 }
 
-.work-hero h1 {
-  max-width: 20ch;
+.work-grid {
+  padding-top: var(--space-lg);
 }

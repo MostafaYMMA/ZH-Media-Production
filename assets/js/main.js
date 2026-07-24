@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (window.ZH.initCounters) window.ZH.initCounters();
 
+  if (window.ZH.initPointerFX) window.ZH.initPointerFX();
+
   const yearEl = document.querySelector("[data-current-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 

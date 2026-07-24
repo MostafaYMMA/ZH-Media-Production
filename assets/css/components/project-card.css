@@ -1,13 +1,31 @@
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Portrait reels stay phone-sized in a dense wall rather than ballooning to
+     full column width (a 9:16 card at 400px+ wide is absurdly tall). */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+/* Home's featured strip: three phone-sized reels, centred so the row stays
+   balanced instead of drifting left with an empty right. */
+.project-grid[data-project-grid="featured"] {
+  grid-template-columns: repeat(3, minmax(0, 300px));
+  justify-content: center;
   gap: var(--space-lg);
 }
 
+@media (max-width: 680px) {
+  .project-grid[data-project-grid="featured"] {
+    grid-template-columns: repeat(2, minmax(0, 300px));
+  }
+}
+
+/* Reels are vertical — frame the media 9:16 so the portfolio looks like the
+   short-form it actually is (and so real phone-shot stills drop straight in). */
 .project-card__media {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 9 / 16;
   border-radius: var(--radius-md);
   overflow: hidden;
   cursor: pointer;

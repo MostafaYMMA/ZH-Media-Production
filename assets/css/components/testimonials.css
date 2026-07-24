@@ -1,0 +1,92 @@
+/* ==========================================================================
+   TESTIMONIALS — social proof cards. Each leads with a hard result (the number
+   a coach cares about), then the quote, then who said it. The avatar is an
+   initials monogram so no photograph is required to ship.
+   ========================================================================== */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.testimonial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.testimonial:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Headline result — the growth number, in the poster face. */
+.testimonial__result {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.testimonial__result span {
+  display: block;
+  margin-top: var(--space-2xs);
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.testimonial blockquote {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+.testimonial figcaption {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: auto; /* pin attribution to the bottom so cards line up */
+}
+
+.testimonial__avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(var(--color-accent-rgb), 0.14);
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.testimonial__who {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.testimonial__who strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.testimonial__who span {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}

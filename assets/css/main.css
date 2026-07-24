@@ -7,6 +7,7 @@
 @import url("components/project-card.css");
 @import url("components/modal.css");
 @import url("components/icon.css");
+@import url("components/testimonials.css");
 
 .container {
   max-width: var(--max-width);
@@ -19,6 +20,52 @@
      content lines up with the page heroes, nav, and footer. */
   padding-top: var(--space-2xl);
   padding-bottom: var(--space-2xl);
+}
+
+/* Balanced inner-page hero — headline on the left, a supporting lead on the
+   right — so the top of About / Services / Contact fills the width instead of
+   trailing off into an empty right half. Collapses to a single column on mobile. */
+.page-hero {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-xl);
+}
+
+.page-hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-xl);
+  align-items: end;
+}
+
+.page-hero__head h1 {
+  max-width: 16ch;
+}
+
+.page-hero__lead {
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.page-hero__lead p {
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.page-hero__lead p + p {
+  margin-top: var(--space-sm);
+}
+
+@media (max-width: 860px) {
+  .page-hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    align-items: start;
+  }
+
+  .page-hero__lead {
+    border-top: none;
+    padding-top: 0;
+  }
 }
 
 /* Standalone centered call-to-action band (shared by Home, Work, About) */
@@ -52,6 +99,37 @@
 .media-fade:hover {
   opacity: 1;
   filter: none;
+}
+
+/* Cursor-tracked glow for cards. pointer.js writes --mx / --my (percentages)
+   as the pointer moves over any [data-glow] element; the highlight is painted
+   with `screen` blend so it only ever lightens the navy and never washes text.
+   Static fallback (no JS / no hover) simply stays invisible — cards keep their
+   own borders and shadows, so nothing depends on this. */
+[data-glow] {
+  position: relative;
+  isolation: isolate;
+}
+
+[data-glow]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    14rem 14rem at var(--mx, 50%) var(--my, 0%),
+    rgba(var(--color-accent-rgb), 0.16),
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-glow]:hover::after {
+  opacity: 1;
 }
 
 /* Scroll-reveal base state, toggled by scrollReveal.js.

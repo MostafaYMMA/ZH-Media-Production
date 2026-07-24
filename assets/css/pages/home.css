@@ -7,6 +7,47 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  background-color: var(--color-bg-deep);
+  /* Ambient volt mesh rising from the lower-left, layered over the deep base so
+     the hero reads as lit space rather than a flat navy fill. */
+  background-image:
+    radial-gradient(120% 90% at 8% 108%, rgba(var(--color-accent-rgb), 0.12), transparent 46%),
+    radial-gradient(90% 80% at 82% -10%, rgba(46, 82, 140, 0.5), transparent 55%);
+}
+
+/* Faint blueprint grid — texture you feel more than see, a nod to a training plan. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(120% 100% at 30% 40%, #000 30%, transparent 78%);
+  mask-image: radial-gradient(120% 100% at 30% 40%, #000 30%, transparent 78%);
+  pointer-events: none;
+}
+
+/* Cursor-tracked volt spotlight — position driven by pointer.js via --mx / --my.
+   Idles centred; reduced-motion users just get the static idle glow. */
+.hero__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    22rem 22rem at var(--mx, 28%) var(--my, 42%),
+    rgba(var(--color-accent-rgb), 0.1),
+    transparent 68%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.hero:hover .hero__spotlight {
+  opacity: 1;
 }
 
 /* Content is constrained to the normal container but only allowed to occupy
@@ -36,10 +77,29 @@
   z-index: 1;
 }
 
+/* Tonal scrim over the photo: deep-navy from the left and bottom so the image
+   melts into the page, with a whisper of volt at the top edge. Keeps the hero
+   coherent no matter what photograph (or placeholder) sits underneath. */
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--color-bg-deep) 6%, transparent 52%),
+    linear-gradient(0deg, var(--color-bg-deep) 6%, transparent 46%),
+    linear-gradient(180deg, rgba(var(--color-accent-rgb), 0.14), transparent 24%),
+    linear-gradient(180deg, transparent 60%, rgba(46, 82, 140, 0.28));
+  pointer-events: none;
+}
+
 .hero__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Desaturate into the brand: any photo (or the current placeholder) is pulled
+     to a cool near-monochrome so it reads as navy-toned, never a clashing slab.
+     Swap/relax when real, colour-graded coach photography is dropped in. */
+  filter: grayscale(1) brightness(0.72) contrast(1.08);
   /* Soft diagonal fade so the navy bleeds into the photo instead of a hard seam. */
   -webkit-mask-image: linear-gradient(
     100deg,
@@ -105,16 +165,35 @@
 
 .hero__stats {
   display: flex;
-  gap: var(--space-xl);
-  margin-top: var(--space-2xl);
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
   flex-wrap: wrap;
+}
+
+/* Thin volt rule above each stat block — a lane marker under the numbers. */
+.hero__stat {
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.hero__stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 2px;
+  height: 2.4rem;
+  background: var(--color-accent);
+  opacity: 0.5;
 }
 
 .hero__stat-value {
   font-family: var(--font-display);
   font-size: 2.75rem;
   line-height: 1;
-  color: var(--color-accent);
+  color: var(--color-text);
 }
 
 .hero__stat-label {
@@ -257,11 +336,13 @@
   position: relative;
   padding: var(--space-xl) var(--space-lg) var(--space-lg);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: border-color var(--duration-fast) var(--ease-out),
-    transform var(--duration-fast) var(--ease-out);
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
 }
 
 .why__item::before {
@@ -279,8 +360,9 @@
 }
 
 .why__item:hover {
-  border-color: var(--color-accent);
+  border-color: rgba(var(--color-accent-rgb), 0.55);
   transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
 .why__item:hover::before {
@@ -336,16 +418,19 @@
   position: relative;
   padding: var(--space-lg);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: border-color var(--duration-fast) var(--ease-out),
-    transform var(--duration-fast) var(--ease-out);
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
 }
 
 .workflow-item:hover {
-  border-color: var(--color-accent);
+  border-color: rgba(var(--color-accent-rgb), 0.55);
   transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Oversized step number bled into the corner — a training-plan cue. */

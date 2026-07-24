@@ -30,7 +30,8 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" data-spotlight>
+      <div class="hero__spotlight" aria-hidden="true"></div>
       <div class="hero__inner container">
         <div class="hero__content">
           <span class="eyebrow" data-reveal>Personal branding for fitness coaches</span>
@@ -102,17 +103,17 @@
         </p>
       </div>
       <ul class="why__list" data-reveal-group>
-        <li class="why__item" data-reveal>
+        <li class="why__item" data-reveal data-glow>
           <span class="why__item-num" aria-hidden="true">01</span>
           <h3 class="why__item-tag">Your time back</h3>
           <p>No scripting at midnight, no fighting the editing timeline. You just show up and coach.</p>
         </li>
-        <li class="why__item" data-reveal>
+        <li class="why__item" data-reveal data-glow>
           <span class="why__item-num" aria-hidden="true">02</span>
           <h3 class="why__item-tag">A coach's voice</h3>
           <p>We came up in the gym, so nothing we write for you sounds like a generic ad.</p>
         </li>
-        <li class="why__item" data-reveal>
+        <li class="why__item" data-reveal data-glow>
           <span class="why__item-num" aria-hidden="true">03</span>
           <h3 class="why__item-tag">Real consistency</h3>
           <p>A steady feed the algorithm rewards — instead of one burst every few months.</p>
@@ -140,7 +141,7 @@
         <a href="services.html" class="btn btn--outline" data-reveal>See all services</a>
       </div>
       <div class="workflow-grid" data-reveal-group>
-        <div class="workflow-item" data-reveal>
+        <div class="workflow-item" data-reveal data-glow>
           <span class="workflow-item__num" aria-hidden="true">01</span>
           <span class="workflow-item__icon icon-interactive" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -151,7 +152,7 @@
           <h3>Script Writing</h3>
           <p>Hooks and scripts built around your coaching, so every video has a point before the camera rolls.</p>
         </div>
-        <div class="workflow-item" data-reveal>
+        <div class="workflow-item" data-reveal data-glow>
           <span class="workflow-item__num" aria-hidden="true">02</span>
           <span class="workflow-item__icon icon-interactive" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -162,7 +163,7 @@
           <h3>Video Recording</h3>
           <p>Sessions filmed in the gym with the gear and direction to make you look like the expert you are.</p>
         </div>
-        <div class="workflow-item" data-reveal>
+        <div class="workflow-item" data-reveal data-glow>
           <span class="workflow-item__num" aria-hidden="true">03</span>
           <span class="workflow-item__icon icon-interactive" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -178,10 +179,59 @@
       </div>
     </section>
 
-    <section class="cta-band">
-      <span class="eyebrow" data-reveal>Let's build your brand</span>
-      <h2 data-reveal>Keep coaching. We'll handle the content.</h2>
-      <a href="contact.html" class="btn btn--primary" data-reveal>Book a call</a>
+    <!-- Proof. Placeholder testimonials — swap the names, handles, quotes and
+         growth numbers for real coach results when you have them. -->
+    <section class="section container testimonials">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow" data-reveal>The receipts</span>
+          <h2 data-reveal>Coaches who stopped editing and started growing</h2>
+        </div>
+      </div>
+      <div class="testimonial-grid" data-reveal-group>
+        <figure class="testimonial" data-reveal data-glow>
+          <div class="testimonial__result">+38K<span>followers in 4 months</span></div>
+          <blockquote>
+            "I went from posting once a month to three reels a week without touching an edit.
+            My reach isn't even comparable to where it was."
+          </blockquote>
+          <figcaption>
+            <span class="testimonial__avatar" aria-hidden="true">AK</span>
+            <span class="testimonial__who">
+              <strong>Coach Adam</strong>
+              <span>@adam.strength</span>
+            </span>
+          </figcaption>
+        </figure>
+        <figure class="testimonial" data-reveal data-glow>
+          <div class="testimonial__result">3.1M<span>views on one reel</span></div>
+          <blockquote>
+            "They actually get how coaches talk. The hooks land because they're not writing
+            like an agency that's never set foot in a gym."
+          </blockquote>
+          <figcaption>
+            <span class="testimonial__avatar" aria-hidden="true">MH</span>
+            <span class="testimonial__who">
+              <strong>Coach Mona</strong>
+              <span>@trainwithmona</span>
+            </span>
+          </figcaption>
+        </figure>
+        <figure class="testimonial" data-reveal data-glow>
+          <div class="testimonial__result">12hrs<span>a week back</span></div>
+          <blockquote>
+            "The whole content headache is just gone. I show up, coach on camera, and the
+            reels show up done. Best call I've made for the business."
+          </blockquote>
+          <figcaption>
+            <span class="testimonial__avatar" aria-hidden="true">YF</span>
+            <span class="testimonial__who">
+              <strong>Coach Yassin</strong>
+              <span>@yassin.fit</span>
+            </span>
+          </figcaption>
+        </figure>
+      </div>
     </section>
   </main>
 
@@ -231,6 +281,7 @@
   <script src="assets/js/modules/navIndicator.js"></script>
   <script src="assets/js/modules/scrollReveal.js"></script>
   <script src="assets/js/modules/counter.js"></script>
+  <script src="assets/js/modules/pointer.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
