@@ -74,6 +74,27 @@
   font-size: var(--fs-small);
 }
 
+/* Validation feedback (see contactForm.js). */
+.form-field.has-error input,
+.form-field.has-error textarea,
+.form-field.has-error select {
+  border-color: var(--color-danger);
+}
+
+.form-error {
+  color: var(--color-danger);
+  font-size: var(--fs-small);
+}
+
+.form-status {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.4);
+  border-radius: var(--radius-md);
+  background: rgba(var(--color-accent-rgb), 0.08);
+  color: var(--color-text);
+  font-size: var(--fs-small);
+}
+
 .contact-info {
   display: flex;
   flex-direction: column;

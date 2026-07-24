@@ -14,6 +14,7 @@
   --color-accent-rgb: 198, 255, 58; /* for translucent accent tints */
   --color-border: #1E3859;
   --color-border-strong: #2A4A73; /* hairline that reads on hover / active edges */
+  --color-danger: #FF6B6B; /* form validation errors */
 
   /* Elevation — soft navy-black shadows give cards real depth instead of flat fills */
   --shadow-sm: 0 2px 8px -4px rgba(4, 12, 24, 0.5);
@@ -51,8 +52,8 @@
 
   /* Layout — wider canvas + a tighter gutter cap so content fills the screen
      instead of sitting boxed inside oversized side margins. */
-  --max-width: 1360px;
-  --gutter: clamp(1.25rem, 3vw, 2.5rem);
+  --max-width: 1440px;
+  --gutter: clamp(1.1rem, 2.2vw, 1.9rem);
   --radius-sm: 6px;
   --radius-md: 14px;
   --radius-lg: 22px;

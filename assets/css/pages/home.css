@@ -170,6 +170,9 @@
   padding-top: var(--space-md);
   border-top: 1px solid var(--color-border);
   flex-wrap: wrap;
+  /* Shrink to the width of the stats themselves so the top rule ends at the last
+     stat instead of overhanging into the empty space beside the hero image. */
+  align-self: flex-start;
 }
 
 /* Thin volt rule above each stat block — a lane marker under the numbers. */

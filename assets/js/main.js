@@ -29,11 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const yearEl = document.querySelector("[data-current-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Contact form has no backend yet — just stop the default page reload/query-string submit.
-  const form = document.querySelector("form[data-unwired]");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-    });
-  }
+  // Contact form: client-side validation + input hardening (no backend yet).
+  if (window.ZH.initContactForm) window.ZH.initContactForm();
 });
