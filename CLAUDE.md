@@ -47,14 +47,18 @@ assets/
       variables.css       DESIGN TOKENS — colors, fonts, spacing, motion. Start here.
       reset.css           Box-sizing reset + reduced-motion global
       typography.css      Heading/body/eyebrow type rules
-    components/           navbar, footer, buttons, project-card, modal, icon, testimonials
+    components/           navbar, footer, buttons, project-card, modal, icon, testimonials, transformations
     pages/                home, about, services, work, contact (one file per page)
   js/
     main.js               Entry point — runs init fns on DOMContentLoaded
     modules/              navbar, navIndicator, scrollReveal, counter, videoModal,
                           videoPreview, pointer, contactForm
     data/projects.js      Portfolio data (window.ZH.projects) — single source of truth
-  images/ , video/        Real assets go here (mostly empty placeholders for now)
+  images/
+    results/              Before/After coach profile screenshots (webp) — home "Account transformations"
+    reels/                27 real reel screenshots w/ view counts (webp) — not wired in yet, for the Work grid
+    _originals/           Raw HEIC/oversized source screenshots — GIT-IGNORED, local only
+  video/                  Real assets go here (mostly empty placeholders for now)
 ```
 
 ## Architecture conventions (follow these)
@@ -87,6 +91,12 @@ assets/
   a backend is added, the server must re-validate, use **parameterized queries** for SQL (a `--`
   is only dangerous with string-concatenated SQL, never with parameters — so don't strip it), and
   HTML-escape on output. See also the "Contact form" note under Known TODOs.
+- **Mobile navigation** (`navbar.js` + `navbar.css` `@media (max-width: 720px)`): the hamburger
+  moves to the **top-left** (via `order: -1`) and the nav becomes a **left slide-in drawer**
+  (`.navbar__links`, `position: fixed`, `translateX(-100%)` when closed) over a `.navbar__backdrop`
+  that `navbar.js` injects. Closed by the X, the backdrop, `Escape`, a link click, or a resize
+  back to desktop. Desktop (the 3-column grid, centered links, sliding pill indicator) is
+  unchanged. The drawer is `position: fixed` so it can never render mid-page like the old version.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`.
@@ -148,6 +158,11 @@ rather than per-page.
   cards (01/02/03) with a volt top-bar that fills on hover, plus elevation and pointer glow
   (`data-glow`).
 - **Numbered workflow cards** (01/02/03) with oversized bled-in step numbers.
+- **Account transformations** — replaces the old "Coaches we've filmed" featured-reels grid.
+  Three real coach profiles as stacked Before/After Instagram screenshots + the follower jump
+  (`+delta`, `before → after`). Component in `components/transformations.css`; images (web-ready
+  webp) in `assets/images/results/`. Follower counts are real; the "one to three months"
+  timeframe is an approximate claim flagged in an HTML comment.
 - **"The receipts" testimonials** — result-first proof cards (a growth number → quote →
   initials-monogram attribution). Component in `components/testimonials.css`.
 
@@ -164,8 +179,8 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 `.page-hero` two-column hero; every page's footer carries the one closing CTA.
 - **index.html** — split hero (duotone photo / mesh+grid / spotlight; the stat band's top rule
   shrinks to the width of the stats via `align-self: flex-start`), ticker, "Why you'd want us",
-  featured reels (3 vertical 9:16 cards, `justify-content: start` so they align to the section
-  heading), workflow, and the "The receipts" testimonials.
+  **Account transformations** (3 Before/After coach profiles), workflow, and the "The receipts"
+  testimonials.
 - **services.html** — balanced hero, a **sticky two-column pipeline** (heading left, Script →
   Shoot → Edit steps right — `.services-section__grid`), centered **12 / 24 Reels** package cards
   (`.packages`), and a "How it actually works" **FAQ** covering timeline / travel / revisions /
@@ -186,7 +201,9 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
   but they're still **placeholders** (fictional coach names, portrait `picsum.photos`
   thumbnails at `720/1280`, a shared placeholder `vimeoId`, and `teaserSrc` clips that don't
   exist yet in `assets/video/previews/`). Cards are framed **9:16**, so real phone-shot stills
-  drop straight in — put them in `assets/images/projects/`.
+  drop straight in — put them in `assets/images/projects/`. **`assets/images/reels/` already
+  holds 27 real reel screenshots (with view counts)** — these are the intended replacement for
+  the placeholder Work grid; wiring them into `projects.js` / the grid is still TODO.
 - Hero and card images point at `picsum.photos` placeholders — replace with real coach
   photography. The hero photo is force-desaturated (`filter: grayscale(...)` in `home.css`);
   relax that once real, colour-graded stills are in.

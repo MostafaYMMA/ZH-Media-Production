@@ -8,6 +8,7 @@
 @import url("components/modal.css");
 @import url("components/icon.css");
 @import url("components/testimonials.css");
+@import url("components/transformations.css");
 
 .container {
   max-width: var(--max-width);

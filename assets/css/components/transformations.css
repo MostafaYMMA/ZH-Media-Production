@@ -1,0 +1,118 @@
+/* Account transformations — real coach profiles before we started vs. after.
+   A stacked before/after screenshot pair per coach, then the follower jump.
+   Depth-driven card like .testimonial / .why__item. */
+.transformations__lead {
+  max-width: 60ch;
+  margin-top: var(--space-sm);
+  color: var(--color-text-muted);
+}
+
+.transformation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.transformation {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.transformation__shots {
+  display: flex;
+  flex-direction: column;
+}
+
+.transformation__shot {
+  position: relative;
+}
+
+.transformation__shot + .transformation__shot {
+  border-top: 1px solid var(--color-border);
+}
+
+.transformation__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.transformation__tag {
+  position: absolute;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: rgba(var(--color-accent-rgb), 0.12);
+  color: var(--color-text-muted);
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(4px);
+}
+
+.transformation__tag--after {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+.transformation__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+  margin-top: auto;
+}
+
+.transformation__result {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.transformation__delta {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.transformation__range {
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.transformation__who {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.transformation__who strong {
+  font-size: 1.05rem;
+}
+
+.transformation__who span {
+  color: var(--color-text-dim);
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 900px) {
+  .transformation-grid {
+    grid-template-columns: 1fr;
+    max-width: 32rem;
+  }
+}

@@ -10,3 +10,14 @@ desktop.ini
 node_modules/
 package.json
 package-lock.json
+
+# Raw source images (HEIC / oversized) — kept locally, not deployed.
+# Web-ready copies live in assets/images/results/ and assets/images/reels/.
+assets/images/_originals/
+
+# Browser-automation / screenshot scratch
+.playwright-mcp/
+_contact_sheet.png
+_loose_sheet.png
+contact-full.png
+contact-mobile.png

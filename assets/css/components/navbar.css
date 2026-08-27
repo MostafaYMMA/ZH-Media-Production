@@ -85,17 +85,31 @@
   justify-self: end;
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  width: 28px;
+  box-sizing: content-box;
+  width: 26px;
+  padding: 9px 8px;
+  margin: -9px -8px;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  z-index: calc(var(--z-nav) + 1);
+  z-index: calc(var(--z-nav) + 2);
 }
 
 .navbar__toggle span {
   height: 2px;
+  width: 100%;
+  border-radius: 2px;
   background: var(--color-text);
   transition: transform var(--duration-fast) var(--ease-out),
     opacity var(--duration-fast) var(--ease-out);
+}
+
+/* Off-canvas backdrop (injected by navbar.js). Hidden until the mobile
+   media query gives it real layout. */
+.navbar__backdrop {
+  display: none;
 }
 
 .navbar.is-open .navbar__toggle span:nth-child(1) {
@@ -111,27 +125,87 @@
 }
 
 @media (max-width: 720px) {
+  /* Drop the desktop 3-column grid. The menu becomes a left slide-in drawer;
+     as a flex row the bar just holds the hamburger (first) and the logo. */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-sm);
+  }
+
   .navbar__toggle {
+    order: -1; /* hamburger sits at the top-left */
     display: flex;
   }
 
-  .navbar__links {
-    position: fixed;
-    inset: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-lg);
-    background: var(--color-bg);
-    transform: translateY(-100%);
-    transition: transform var(--duration-base) var(--ease-in-out);
+  .navbar__logo {
+    font-size: 1.15rem;
   }
 
-  .navbar__links a {
-    font-size: 1.5rem;
+  /* Left slide-in drawer. Fixed to the viewport (not a grid cell), so it can
+     never render mid-page — when closed it is fully off-screen to the left. */
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(80vw, 320px);
+    justify-self: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: var(--space-2xs, 0.4rem);
+    padding: calc(var(--space-3xl) + env(safe-area-inset-top, 0px)) var(--gutter)
+      var(--space-xl);
+    background: var(--color-bg-alt);
+    border-right: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(-100%);
+    transition: transform var(--duration-base) var(--ease-in-out);
+    overflow-y: auto;
+    z-index: calc(var(--z-nav) + 1);
   }
 
   .navbar.is-open .navbar__links {
-    transform: translateY(0);
+    transform: translateX(0);
+  }
+
+  /* The sliding desktop pill indicator has no place in the drawer. */
+  .navbar__indicator {
+    display: none;
+  }
+
+  .navbar__links a {
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  .navbar__link:not(.btn) {
+    padding: var(--space-sm);
+    margin: 0;
+    border-radius: var(--radius-sm);
+  }
+
+  .navbar__links a.btn {
+    margin-top: var(--space-md);
+    text-align: center;
+  }
+
+  .navbar__backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 21, 39, 0.6);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-base) var(--ease-out);
+    z-index: var(--z-nav);
+  }
+
+  .navbar.is-open .navbar__backdrop {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
