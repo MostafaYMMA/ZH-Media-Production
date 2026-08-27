@@ -4,7 +4,7 @@ Context for working on this repository. Read this first before making changes.
 
 ## What this is
 
-**ZH Media Production** — the marketing site for a digital-marketing studio that does
+**ZH Personal Branding** — the marketing site for a digital-marketing studio that does
 **personal branding for fitness coaches**. The studio handles the whole content pipeline
 for a coach: **script writing → video recording → video editing (reels & short-form)**.
 The founder has 5+ years in the fitness world, so the positioning is "content run by
@@ -56,7 +56,7 @@ assets/
     data/projects.js      Work-grid data (window.ZH.projects) — single source of truth
   images/
     results/              Before/After coach profile screenshots (webp) — home "Account transformations"
-    reels/                27 real reel screenshots w/ view counts (webp) — the Work grid renders these
+    reels/                reel-01..20.webp — the Work grid, in a deliberate style-mix order (see below)
     _originals/           Raw HEIC/oversized source screenshots — GIT-IGNORED, local only
   video/                  Real assets go here (mostly empty placeholders for now)
 ```
@@ -104,7 +104,7 @@ assets/
 - **Cache-busting:** every local CSS/JS ref carries `?v=N` — the `<link>`/`<script>` tags in each
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
-  CSS or JS** or a redeploy won't reach people. Currently `v=4`.
+  CSS or JS** or a redeploy won't reach people. Currently `v=5`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`.
@@ -196,11 +196,12 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 - **about.html** — balanced hero, stat band (5+ / 20+ / 100%), a **founder block** (`.founder` —
   placeholder monogram portrait + first-person story + signature), three "why coaches trust us"
   value cards. (The old fictional team section was removed.)
-- **work.html** — reels wall data-driven from `projects.js`: our **12 top reels ordered by view
-  count** (`reel-01` = highest), screenshots in `assets/images/reels/` with the view count baked
-  in. Framed **vertical 9/14** short-form (grid `auto-fill, minmax(200px, 1fr)`; 2-up under 460px).
-  **No video playback** — cards are framed stills (`projectGrid.js`); we don't host the reels.
-  (Originals for the other 15 reels are in `_originals/` if the set needs re-ranking.)
+- **work.html** — reels wall data-driven from `projects.js` (20 reels, `assets/images/reels/`,
+  view count baked into each). Order is a **deliberate style mix**: ~60% shot-in-the-gym pieces,
+  ~40% cut-out / graphic-overlay pieces, **no two cut-out reels adjacent** — so a first-time
+  visitor sees the studio does several kinds of video. Framed **vertical 9/14** short-form (grid
+  `auto-fill, minmax(200px, 1fr)`; 2-up under 460px). **No video playback** — framed stills only
+  (`projectGrid.js`).
 - **contact.html** — balanced hero, booking form (**package `<select>`** 12 / 24 / not sure, with
   the custom CSS arrow in `contact.css`) with **client-side validation + input hardening**
   (`contactForm.js`, inline `.form-error` / `.form-status`), and a "What happens next" info card
@@ -208,13 +209,13 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 
 ## Known TODOs / placeholders
 
-- **Work grid** (`assets/js/data/projects.js` → `projectGrid.js`) renders the **12 top reels,
-  view-count descending** (`reel-01.webp` = 2.4M … `reel-12.webp` = 618K) from
-  `assets/images/reels/`. Stills with the view count baked in — **no video hosting / playback**
-  (removed: `videoModal.js`, `components/modal.css`, `<video>` teaser, `vimeoId`/`teaserSrc`).
-  `projects.js` is a hand-ordered list of `{ views }` mapped to `{ id, thumbnail, views, alt }`.
-  To re-rank/swap: re-export the webp files in the new order and edit that list. Raw source
-  screenshots for all 27 are in `assets/images/_originals/` (git-ignored).
+- **Work grid** (`assets/js/data/projects.js` → `projectGrid.js`): 20 real reels, **hand-ordered
+  for a visible style mix** (see work.html note above — ~40% cut-out reels, never adjacent).
+  Stills with the view count baked in — **no video hosting / playback** (removed: `videoModal.js`,
+  `components/modal.css`, `<video>` teaser, `vimeoId`/`teaserSrc`). `projects.js` is an array of
+  `views` strings mapped to `{ id, thumbnail, views, alt }` → `reel-01.webp`…`reel-20.webp`. To
+  change: re-export the webp files in the new order and edit the array. Raw source screenshots for
+  all 27 candidates are in `assets/images/_originals/` (git-ignored).
 - The **home hero image** still points at a `picsum.photos` placeholder — replace with a real
   coach still. It's force-desaturated (`filter: grayscale(...)` in `home.css`); relax that once a
   real, colour-graded still is in.

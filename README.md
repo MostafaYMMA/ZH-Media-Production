@@ -1,6 +1,6 @@
-# ZH Media Production — Website
+# ZH Personal Branding — Website
 
-The marketing and portfolio website for **ZH Media Production**, a content-creation and media-production studio.
+The marketing and portfolio website for **ZH Personal Branding**, a content-creation and media-production studio.
 
 **🔗 Live site:** [mostafaymma.github.io/ZH-Media-Production](https://mostafaymma.github.io/ZH-Media-Production/)
 *(if the link above isn't live yet, GitHub Pages may still be deploying — give it a minute after enabling it in the repo's Settings → Pages)*
@@ -13,11 +13,11 @@ The marketing and portfolio website for **ZH Media Production**, a content-creat
 
 | Page | What it shows |
 |---|---|
-| **Home** | Hero intro, featured work, and the content → filming → editing workflow |
-| **Work** | Full portfolio grid — hover a project to preview, click to watch |
-| **Services** | What the studio offers, plus package/pricing tiers |
-| **About** | Studio story, values, and team |
-| **Contact** | Project inquiry form and direct contact info |
+| **Home** | Hero, "why us", real Before/After account transformations, workflow, testimonials |
+| **Work** | Wall of real reels (screenshots with view counts) — a deliberate mix of styles |
+| **Services** | The pipeline, the 12 / 24 Reels packages, and an FAQ (no prices — "Book a call") |
+| **About** | Studio story, founder block, and why coaches trust us |
+| **Contact** | Booking form that hands off to WhatsApp, plus contact info |
 
 ## Design highlights
 
@@ -53,10 +53,10 @@ assets/
     main.js          entry point, feature-detects what's on the page and boots the right modules
     modules/         navbar.js, navIndicator.js, scrollReveal.js, counter.js, projectGrid.js, pointer.js, contactForm.js
     data/
-      projects.js    the Work grid's list of reel screenshots
+      projects.js    the Work grid's ordered list of reels (deliberate style mix)
   images/
     results/       Before/After coach profile screenshots (home "Account transformations")
-    reels/         reel-01..27.webp — the Work grid (real reels, view count baked in)
+    reels/         reel-01..20.webp — the Work grid (real reels, view count baked in)
 ```
 
 Every local CSS/JS reference carries a `?v=N` query (in the HTML tags and in `main.css`'s
@@ -64,18 +64,19 @@ Every local CSS/JS reference carries a `?v=N` query (in the HTML tags and in `ma
 mobile browsers cache assets aggressively, so without a version bump a redeploy won't reach
 visitors.
 
-### Adding / removing reels on the Work page
+### Changing the Work-page reels
 
-Drop a `reel-NN.webp` into `assets/images/reels/` and update the loop count in
-`assets/js/data/projects.js`. Cards are framed stills only — the site does not host or play the
-reels.
+`assets/js/data/projects.js` is an explicit ordered array (one `views` string per reel, mapped
+to `reel-01.webp`, `reel-02.webp`, …). The order is intentional — a visible mix of
+shot-in-the-gym and cut-out/graphic reels, no two cut-out reels adjacent — so re-export the
+webp files in the new order and edit the array. Cards are framed stills only; no playback.
 
 ### Placeholder content still to replace
 
 - The **home hero image** points at a random `picsum.photos` image — swap for a real coach still.
 - The **founder** photo/name/story on `about.html` is a placeholder monogram (`Ziad Hazem`).
 - The **"The receipts"** testimonials on Home (names / handles / quotes / numbers) are placeholders.
-- Email (`hello@zhmediaproduction.com`), address, and the footer Instagram link (`#` href) are placeholders.
+- Email (`hello@zhpersonalbranding.com`), address, and the footer Instagram link (`#` href) are placeholders.
 
 ### Contact form
 
