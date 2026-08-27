@@ -37,6 +37,24 @@ window.ZH = window.ZH || {};
   var ALLOWED_TIMESLOTS = ["", "9-12", "12-15", "15-18", "18-21"];
   var ALLOWED_DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
+  // WhatsApp handoff. On a valid submit we don't POST anywhere — we open a
+  // wa.me link with the normalised details pre-filled so the visitor just hits
+  // send. REPLACE with the studio's real number in full international format,
+  // digits only (no +, spaces or dashes). e.g. Egypt 010 1234 5678 -> "201012345678".
+  var WHATSAPP_NUMBER = "201234567890";
+
+  // Human labels for the coded <select> / checkbox values, used in the message.
+  var PACKAGE_LABELS = { "12-reels": "12 Reels / month", "24-reels": "24 Reels / month" };
+  var TIMESLOT_LABELS = {
+    "9-12": "Morning (9am-12pm)",
+    "12-15": "Early afternoon (12pm-3pm)",
+    "15-18": "Late afternoon (3pm-6pm)",
+    "18-21": "Evening (6pm-9pm)",
+  };
+  var DAY_LABELS = {
+    mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri", sat: "Sat", sun: "Sun",
+  };
+
   // Control-char strippers, built from escape strings so this source stays pure
   // ASCII. CONTROL_ALL removes every C0 control char + DEL + zero-width joiners +
   // BOM; CONTROL_KEEP_NL is the same but spares TAB (u0009) and LF (u000A) so the
@@ -181,18 +199,42 @@ window.ZH = window.ZH || {};
         return;
       }
 
-      // Valid + normalised. No backend is wired yet, so we can't submit — surface a
-      // clear confirmation and point the user at email. When a backend exists, send
-      // `data` (never the raw inputs) to an endpoint that uses parameterized queries.
+      // Valid + normalised. Build a plain-text summary and hand off to WhatsApp.
+      // `data` is already trimmed / length-capped / control-stripped and angle
+      // brackets are rejected, so it's safe to drop straight into the message.
+      var lines = ["New call booking", "", "Name: " + data.name, "Email: " + data.email];
+      if (data.handle) lines.push("Handle: " + data.handle);
+      lines.push("Package: " + (PACKAGE_LABELS[data.package] || "Not sure yet"));
+      lines.push("Preferred time: " + (TIMESLOT_LABELS[data.timeslot] || "Any time"));
+      lines.push(
+        "Preferred days: " +
+          (data.days.length
+            ? data.days
+                .map(function (d) {
+                  return DAY_LABELS[d];
+                })
+                .join(", ")
+            : "Any day")
+      );
+      lines.push("", data.message);
+
+      var waUrl =
+        "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
+      window.open(waUrl, "_blank", "noopener");
+
       var status = document.createElement("p");
       status.className = "form-status";
       status.setAttribute("role", "status");
-      status.textContent =
-        "Thanks, " + data.name.split(" ")[0] + " — your details check out. " +
-        "The form isn't connected to an inbox yet, so please email us at " +
-        "hello@zhmediaproduction.com to lock in your call.";
+      status.append(
+        "Opening WhatsApp with your details… nothing happened? "
+      );
+      var link = document.createElement("a");
+      link.href = waUrl;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = "Tap here to send your booking.";
+      status.append(link);
       form.appendChild(status);
-      form.querySelector('button[type="submit"]').disabled = true;
     });
   };
 })();

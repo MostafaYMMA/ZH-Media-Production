@@ -44,9 +44,10 @@
 
     <section class="section container contact-layout">
       <!--
-        Backend not wired yet: form has no submit handler / action endpoint.
-        When ready, either set action to a form service (e.g. Formspree) or
-        point it at a serverless function, and remove the data-unwired flag.
+        No server backend: on a valid submit, contactForm.js opens a WhatsApp
+        (wa.me) link with the normalised details pre-filled. Set the studio
+        number in WHATSAPP_NUMBER at the top of that module. To move to a real
+        endpoint later, POST the module's `data` object and drop data-unwired.
       -->
       <form class="contact-form" data-unwired novalidate data-reveal>
         <div class="form-field">
@@ -98,8 +99,8 @@
         </div>
         <button type="submit" class="btn btn--primary">Book a call</button>
         <p class="form-note text-muted">
-          This form isn't connected to an inbox yet — email us directly at
-          <a href="mailto:hello@zhmediaproduction.com">hello@zhmediaproduction.com</a> in the meantime.
+          Pressing "Book a call" opens WhatsApp with your details ready to send. No WhatsApp?
+          Email <a href="mailto:hello@zhmediaproduction.com">hello@zhmediaproduction.com</a>.
         </p>
       </form>
 
