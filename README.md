@@ -46,40 +46,50 @@ index.html / work.html / services.html / about.html / contact.html
 assets/
   css/
     base/        design tokens, reset, typography
-    components/  navbar, footer, buttons, project-card, modal, icon — reusable across pages
+    components/  navbar, footer, buttons, project-card, icon, testimonials, transformations
     pages/       one file per page for page-specific layout
     main.css     imports base + components; every page also links its own pages/<name>.css
   js/
     main.js          entry point, feature-detects what's on the page and boots the right modules
-    modules/         navbar.js, navIndicator.js, scrollReveal.js, videoPreview.js, videoModal.js
+    modules/         navbar.js, navIndicator.js, scrollReveal.js, counter.js, projectGrid.js, pointer.js, contactForm.js
     data/
-      projects.js    single source of truth for portfolio projects (Home "featured" + full Work grid)
-  images/        logo/, projects/ (poster stills), icons/
-  video/previews/ short local muted looping teaser clips
+      projects.js    the Work grid's list of reel screenshots
+  images/
+    results/       Before/After coach profile screenshots (home "Account transformations")
+    reels/         reel-01..27.webp — the Work grid (real reels, view count baked in)
 ```
 
-### Adding a portfolio project
+Every local CSS/JS reference carries a `?v=N` query (in the HTML tags and in `main.css`'s
+`@import`s). **Bump every `?v=` together whenever you change CSS or JS** — GitHub Pages and
+mobile browsers cache assets aggressively, so without a version bump a redeploy won't reach
+visitors.
 
-Edit `assets/js/data/projects.js` — add an object with `title`, `category`, `thumbnail`, `teaserSrc`, `vimeoId`, and `featured` (true if it should also show on the Home page). Both the Home and Work grids render from this file automatically.
+### Adding / removing reels on the Work page
+
+Drop a `reel-NN.webp` into `assets/images/reels/` and update the loop count in
+`assets/js/data/projects.js`. Cards are framed stills only — the site does not host or play the
+reels.
 
 ### Placeholder content still to replace
 
-- `projects.js` thumbnails currently point at random `picsum.photos` images — swap for real poster stills and short (2-5s, muted, compressed) teaser clips in `assets/video/previews/`.
-- Every project currently points at the same placeholder Vimeo ID (`76979871`) — swap in real Vimeo video IDs once footage is uploaded.
-- Team photos on `about.html` use placeholder portraits — swap for real photos.
-- Email (`hello@zhmediaproduction.com`), address, and social links (`#` hrefs in the footer) are placeholders.
-- Hero stats on Home (`20+ Clients`, `1 Year in business`) should be updated as those numbers change.
+- The **home hero image** points at a random `picsum.photos` image — swap for a real coach still.
+- The **founder** photo/name/story on `about.html` is a placeholder monogram (`Ziad Hazem`).
+- The **"The receipts"** testimonials on Home (names / handles / quotes / numbers) are placeholders.
+- Email (`hello@zhmediaproduction.com`), address, and the footer Instagram link (`#` href) are placeholders.
 
 ### Contact form
 
-`contact.html`'s form is UI-only (marked `data-unwired`) — it doesn't send anywhere yet. Point its `action` at a form service (e.g. Formspree) or a serverless function, and remove the `data-unwired` attribute (and its guard in `main.js`) once real submit logic is in place.
+`contact.html`'s form has no server backend. On a valid submit, `contactForm.js` opens a
+WhatsApp (`wa.me`) link with the details pre-filled (studio number in `WHATSAPP_NUMBER` at the
+top of that module). To move to a real endpoint later, POST the module's normalised `data`
+object and drop the `data-unwired` attribute.
 
 ### Motion / interaction notes
 
 - **Icon hover**: `.icon-interactive` (see `assets/css/components/icon.css`) scales/rotates slightly on hover/focus.
 - **Scroll-reveal**: add `data-reveal` (and optionally `data-reveal-delay="150"`) to fade/slide an element in on scroll (`scrollReveal.js`, via IntersectionObserver). Wrap a grid/list in `data-reveal-group` to auto-stagger its children.
 - **Sliding nav indicator**: `navIndicator.js` moves a shared pill between nav links on hover/focus using `getBoundingClientRect()` + CSS transitions.
-- Project cards: hover brightens the poster; clicking opens a modal with the full Vimeo embed.
+- Work-grid cards: a framed reel screenshot that zooms slightly on hover. No playback.
 - Respects `prefers-reduced-motion`.
 
 </details>

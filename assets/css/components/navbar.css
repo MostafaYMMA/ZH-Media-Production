@@ -144,12 +144,16 @@
   }
 
   /* Left slide-in drawer. Fixed to the viewport (not a grid cell), so it can
-     never render mid-page — when closed it is fully off-screen to the left. */
+     never render mid-page — when closed it is fully off-screen to the left.
+     Explicit height (not top/bottom:0) because `.navbar.is-scrolled` uses
+     backdrop-filter, which makes .navbar the containing block for fixed
+     children — top/bottom:0 would then only span the ~60px bar. */
   .navbar__links {
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
+    height: 100vh;
+    height: 100dvh;
     width: min(80vw, 320px);
     justify-self: stretch;
     flex-direction: column;
@@ -195,13 +199,22 @@
   .navbar__backdrop {
     display: block;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     background: rgba(8, 21, 39, 0.6);
-    backdrop-filter: blur(2px);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--duration-base) var(--ease-out);
     z-index: var(--z-nav);
+  }
+
+  /* Drop the bar's blur while the drawer is open — as a backdrop-filtered
+     ancestor it distorts the fixed drawer's sizing on some engines. */
+  .navbar.is-open.is-scrolled {
+    backdrop-filter: none;
   }
 
   .navbar.is-open .navbar__backdrop {

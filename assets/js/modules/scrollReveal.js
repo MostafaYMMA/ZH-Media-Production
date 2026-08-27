@@ -30,21 +30,43 @@ window.ZH = window.ZH || {};
       return;
     }
 
+    const reveal = function (el) {
+      el.style.transitionDelay = `${resolveDelay(el)}ms`;
+      el.classList.add("is-visible");
+    };
+
     const observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            entry.target.style.transitionDelay = `${resolveDelay(entry.target)}ms`;
-            entry.target.classList.add("is-visible");
+            reveal(entry.target);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      // threshold 0 so tall elements (which may never cover 15% of a phone
+      // viewport) still trigger the moment any part scrolls in.
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
 
     targets.forEach(function (el) {
       observer.observe(el);
     });
+
+    // Safety net: nothing that scrolled past should stay invisible. If a target
+    // is still hidden a few seconds after load, reveal it outright — a stuck
+    // observer or a layout race must never leave content permanently blank.
+    window.setTimeout(function () {
+      targets.forEach(function (el) {
+        if (!el.classList.contains("is-visible")) {
+          const box = el.getBoundingClientRect();
+          if (box.top < window.innerHeight) {
+            el.style.transitionDelay = "0ms";
+            el.classList.add("is-visible");
+            observer.unobserve(el);
+          }
+        }
+      });
+    }, 2500);
   };
 })();

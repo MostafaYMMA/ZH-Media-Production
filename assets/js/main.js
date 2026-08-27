@@ -7,15 +7,9 @@ window.ZH = window.ZH || {};
 document.addEventListener("DOMContentLoaded", function () {
   window.ZH.initNavbar();
   window.ZH.initNavIndicator();
-  window.ZH.initVideoModal();
-
-  const featuredGrid = document.querySelector("[data-project-grid='featured']");
-  if (featuredGrid) {
-    window.ZH.renderProjectGrid(featuredGrid, window.ZH.getFeaturedProjects());
-  }
 
   const fullGrid = document.querySelector("[data-project-grid='all']");
-  if (fullGrid) {
+  if (fullGrid && window.ZH.renderProjectGrid) {
     window.ZH.renderProjectGrid(fullGrid, window.ZH.projects);
   }
 

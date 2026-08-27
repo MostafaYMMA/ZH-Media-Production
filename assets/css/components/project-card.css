@@ -1,100 +1,40 @@
 .project-grid {
   display: grid;
   /* Portrait reels stay phone-sized in a dense wall rather than ballooning to
-     full column width (a 9:16 card at 400px+ wide is absurdly tall). */
+     full column width (a tall card at 400px+ wide is absurd). */
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-md);
 }
 
-/* Home's featured strip: three phone-sized reels aligned to the section heading
-   (and to the workflow / testimonial cards below) rather than floating centred. */
-.project-grid[data-project-grid="featured"] {
-  grid-template-columns: repeat(3, minmax(0, 320px));
-  justify-content: start;
-  gap: var(--space-lg);
-}
-
-@media (max-width: 680px) {
-  .project-grid[data-project-grid="featured"] {
-    grid-template-columns: repeat(2, minmax(0, 300px));
+@media (max-width: 460px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
   }
 }
 
-/* Reels are vertical — frame the media 9:16 so the portfolio looks like the
-   short-form it actually is (and so real phone-shot stills drop straight in). */
+/* Reels are vertical screenshots (video frame + baked-in view count). Frame the
+   media to their real aspect so nothing — least of all the view count — is
+   cropped. No playback: we don't host the reels. */
 .project-card__media {
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 9 / 14;
   border-radius: var(--radius-md);
   overflow: hidden;
-  cursor: pointer;
-  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
 }
 
-.project-card__poster,
-.project-card__teaser {
+.project-card__poster {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity var(--duration-base) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
-}
-
-/* Current phase: posters are placeholder images shown dimmed, and simply
-   brighten on hover. When real teaser clips exist in assets/video/previews/,
-   restore the poster->teaser cross-fade (swap the rules below for the poster
-   fading to opacity:0 and the teaser fading to opacity:1 on hover). */
-.project-card__poster {
-  opacity: 0.62;
-}
-
-.project-card__teaser {
-  opacity: 0;
+  transition: transform var(--duration-slow) var(--ease-out);
 }
 
 .project-card__media:hover .project-card__poster {
-  opacity: 1;
   transform: scale(1.04);
-}
-
-.project-card__play {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(10, 26, 48, 0.55);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(234, 242, 255, 0.25);
-}
-
-.project-card__play::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 54%;
-  transform: translate(-50%, -50%);
-  border-style: solid;
-  border-width: 6px 0 6px 10px;
-  border-color: transparent transparent transparent var(--color-text);
-}
-
-.project-card__info {
-  padding-top: var(--space-sm);
-}
-
-.project-card__category {
-  font-size: var(--fs-small);
-  color: var(--color-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.project-card__title {
-  margin-top: var(--space-2xs);
-  font-size: 1.15rem;
 }

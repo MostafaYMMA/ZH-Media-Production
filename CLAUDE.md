@@ -47,16 +47,16 @@ assets/
       variables.css       DESIGN TOKENS — colors, fonts, spacing, motion. Start here.
       reset.css           Box-sizing reset + reduced-motion global
       typography.css      Heading/body/eyebrow type rules
-    components/           navbar, footer, buttons, project-card, modal, icon, testimonials, transformations
+    components/           navbar, footer, buttons, project-card, icon, testimonials, transformations
     pages/                home, about, services, work, contact (one file per page)
   js/
     main.js               Entry point — runs init fns on DOMContentLoaded
-    modules/              navbar, navIndicator, scrollReveal, counter, videoModal,
-                          videoPreview, pointer, contactForm
-    data/projects.js      Portfolio data (window.ZH.projects) — single source of truth
+    modules/              navbar, navIndicator, scrollReveal, counter, projectGrid,
+                          pointer, contactForm
+    data/projects.js      Work-grid data (window.ZH.projects) — single source of truth
   images/
     results/              Before/After coach profile screenshots (webp) — home "Account transformations"
-    reels/                27 real reel screenshots w/ view counts (webp) — not wired in yet, for the Work grid
+    reels/                27 real reel screenshots w/ view counts (webp) — the Work grid renders these
     _originals/           Raw HEIC/oversized source screenshots — GIT-IGNORED, local only
   video/                  Real assets go here (mostly empty placeholders for now)
 ```
@@ -96,7 +96,15 @@ assets/
   (`.navbar__links`, `position: fixed`, `translateX(-100%)` when closed) over a `.navbar__backdrop`
   that `navbar.js` injects. Closed by the X, the backdrop, `Escape`, a link click, or a resize
   back to desktop. Desktop (the 3-column grid, centered links, sliding pill indicator) is
-  unchanged. The drawer is `position: fixed` so it can never render mid-page like the old version.
+  unchanged. The drawer uses an explicit `height: 100dvh` (not `top/bottom: 0`) because
+  `.navbar.is-scrolled`'s `backdrop-filter` makes `.navbar` the containing block for its
+  `position: fixed` children — with `top/bottom:0` the drawer would collapse to the ~60px bar
+  (this was the "menu broken on inner pages" bug); `.navbar.is-open.is-scrolled` also drops the
+  blur as a second guard.
+- **Cache-busting:** every local CSS/JS ref carries `?v=N` — the `<link>`/`<script>` tags in each
+  HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
+  and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
+  CSS or JS** or a redeploy won't reach people. Currently `v=3`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`.
@@ -188,8 +196,10 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 - **about.html** — balanced hero, stat band (5+ / 20+ / 100%), a **founder block** (`.founder` —
   placeholder monogram portrait + first-person story + signature), three "why coaches trust us"
   value cards. (The old fictional team section was removed.)
-- **work.html** — reels wall data-driven from `projects.js`, framed **vertical 9:16** so it reads
-  as short-form (the grid is `auto-fill, minmax(200px, 1fr)` — fits all reels edge-to-edge).
+- **work.html** — reels wall data-driven from `projects.js` (27 real reel screenshots in
+  `assets/images/reels/`, each with its view count baked in), framed **vertical 9/14** so it reads
+  as short-form (grid is `auto-fill, minmax(200px, 1fr)`; 2-up under 460px). **No video playback**
+  — the cards are just framed stills (`projectGrid.js`); we don't host the reels themselves.
 - **contact.html** — balanced hero, booking form (**package `<select>`** 12 / 24 / not sure, with
   the custom CSS arrow in `contact.css`) with **client-side validation + input hardening**
   (`contactForm.js`, inline `.form-error` / `.form-status`), and a "What happens next" info card
@@ -197,16 +207,15 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 
 ## Known TODOs / placeholders
 
-- **Portfolio data** (`assets/js/data/projects.js`) now uses fitness-coach reel entries,
-  but they're still **placeholders** (fictional coach names, portrait `picsum.photos`
-  thumbnails at `720/1280`, a shared placeholder `vimeoId`, and `teaserSrc` clips that don't
-  exist yet in `assets/video/previews/`). Cards are framed **9:16**, so real phone-shot stills
-  drop straight in — put them in `assets/images/projects/`. **`assets/images/reels/` already
-  holds 27 real reel screenshots (with view counts)** — these are the intended replacement for
-  the placeholder Work grid; wiring them into `projects.js` / the grid is still TODO.
-- Hero and card images point at `picsum.photos` placeholders — replace with real coach
-  photography. The hero photo is force-desaturated (`filter: grayscale(...)` in `home.css`);
-  relax that once real, colour-graded stills are in.
+- **Work grid** (`assets/js/data/projects.js` → `projectGrid.js`) now renders **27 real reel
+  screenshots** from `assets/images/reels/` (`reel-01…27.webp`). These are stills with the view
+  count baked in — **there is no video hosting / playback** (removed: `videoModal.js`,
+  `components/modal.css`, the `<video>` teaser, `vimeoId`/`teaserSrc`). `projects.js` is now just
+  `{ id, thumbnail, alt }`. To add/remove reels, drop a webp in `assets/images/reels/` and adjust
+  the loop count in `projects.js`.
+- The **home hero image** still points at a `picsum.photos` placeholder — replace with a real
+  coach still. It's force-desaturated (`filter: grayscale(...)` in `home.css`); relax that once a
+  real, colour-graded still is in.
 - **Placeholder copy to swap** (each flagged with an HTML comment): the "The receipts"
   testimonials on Home (names / handles / quotes / growth numbers) and the founder name
   (`Ziad Hazem`) + story + monogram on About.
