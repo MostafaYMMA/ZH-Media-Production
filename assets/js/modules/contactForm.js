@@ -34,6 +34,8 @@ window.ZH = window.ZH || {};
   // Letters from any language (\p{L}) + combining marks, space, dot, apostrophe, hyphen.
   var NAME_RE = /^[\p{L}\p{M} .'\-]{1,80}$/u;
   var ALLOWED_PACKAGES = ["", "12-reels", "24-reels"];
+  var ALLOWED_TIMESLOTS = ["", "9-12", "12-15", "15-18", "18-21"];
+  var ALLOWED_DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
   // Control-char strippers, built from escape strings so this source stays pure
   // ASCII. CONTROL_ALL removes every C0 control char + DEL + zero-width joiners +
@@ -104,6 +106,8 @@ window.ZH = window.ZH || {};
       email: form.querySelector('[name="email"]'),
       handle: form.querySelector('[name="handle"]'),
       package: form.querySelector('[name="package"]'),
+      timeslot: form.querySelector('[name="timeslot"]'),
+      days: form.querySelectorAll('[name="days"]'),
       message: form.querySelector('[name="message"]'),
     };
 
@@ -148,6 +152,19 @@ window.ZH = window.ZH || {};
       // Package — must be one of the known option values, else treated as unset.
       data.package =
         ALLOWED_PACKAGES.indexOf(fields.package.value) > -1 ? fields.package.value : "";
+
+      // Preferred call time — must be one of the known slots, else treated as "any".
+      data.timeslot =
+        ALLOWED_TIMESLOTS.indexOf(fields.timeslot.value) > -1 ? fields.timeslot.value : "";
+
+      // Preferred days — collect only checked, whitelisted values, in week order.
+      var checkedDays = {};
+      Array.prototype.forEach.call(fields.days, function (cb) {
+        if (cb.checked && ALLOWED_DAYS.indexOf(cb.value) > -1) checkedDays[cb.value] = true;
+      });
+      data.days = ALLOWED_DAYS.filter(function (d) {
+        return checkedDays[d];
+      });
 
       // Message — free text; keeps punctuation but no HTML tags / control chars.
       data.message = clean(fields.message.value, LIMITS.message, true);

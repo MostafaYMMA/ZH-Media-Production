@@ -70,6 +70,29 @@
           </select>
         </div>
         <div class="form-field">
+          <label for="timeslot">Preferred time of day for the call</label>
+          <select id="timeslot" name="timeslot">
+            <option value="" selected>Any time works</option>
+            <option value="9-12">Morning — 9am to 12pm</option>
+            <option value="12-15">Early afternoon — 12pm to 3pm</option>
+            <option value="15-18">Late afternoon — 3pm to 6pm</option>
+            <option value="18-21">Evening — 6pm to 9pm</option>
+          </select>
+        </div>
+        <fieldset class="form-field form-field--group">
+          <legend>Preferred days</legend>
+          <p class="form-hint text-muted">Pick any that work — we'll aim for one of them.</p>
+          <div class="checkbox-grid">
+            <label class="checkbox"><input type="checkbox" name="days" value="mon" /> Mon</label>
+            <label class="checkbox"><input type="checkbox" name="days" value="tue" /> Tue</label>
+            <label class="checkbox"><input type="checkbox" name="days" value="wed" /> Wed</label>
+            <label class="checkbox"><input type="checkbox" name="days" value="thu" /> Thu</label>
+            <label class="checkbox"><input type="checkbox" name="days" value="fri" /> Fri</label>
+            <label class="checkbox"><input type="checkbox" name="days" value="sat" /> Sat</label>
+            <label class="checkbox"><input type="checkbox" name="days" value="sun" /> Sun</label>
+          </div>
+        </fieldset>
+        <div class="form-field">
           <label for="message">Tell us about your coaching</label>
           <textarea id="message" name="message" placeholder="Who you train, what you post now, and where you want to take it..." required></textarea>
         </div>
