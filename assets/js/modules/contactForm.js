@@ -41,7 +41,7 @@ window.ZH = window.ZH || {};
   // wa.me link with the normalised details pre-filled so the visitor just hits
   // send. REPLACE with the studio's real number in full international format,
   // digits only (no +, spaces or dashes). e.g. Egypt 010 1234 5678 -> "201012345678".
-  var WHATSAPP_NUMBER = "201234567890";
+  var WHATSAPP_NUMBER = "201150065115";
 
   // Human labels for the coded <select> / checkbox values, used in the message.
   var PACKAGE_LABELS = { "12-reels": "12 Reels / month", "24-reels": "24 Reels / month" };
@@ -208,13 +208,13 @@ window.ZH = window.ZH || {};
       lines.push("Preferred time: " + (TIMESLOT_LABELS[data.timeslot] || "Any time"));
       lines.push(
         "Preferred days: " +
-          (data.days.length
-            ? data.days
-                .map(function (d) {
-                  return DAY_LABELS[d];
-                })
-                .join(", ")
-            : "Any day")
+        (data.days.length
+          ? data.days
+            .map(function (d) {
+              return DAY_LABELS[d];
+            })
+            .join(", ")
+          : "Any day")
       );
       lines.push("", data.message);
 
