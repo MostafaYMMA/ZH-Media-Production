@@ -108,6 +108,22 @@
   mask-image: linear-gradient(270deg, #000 0%, transparent 92%);
 }
 
+/* Hero eyebrow is centred, so mirror the volt tick on the right too. */
+.hero__content .eyebrow {
+  padding-right: 2.4rem;
+}
+
+.hero__content .eyebrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1.8rem;
+  height: 2px;
+  transform: translateY(-50%);
+  background: var(--color-accent);
+}
+
 .hero__title {
   font-size: var(--fs-hero);
   max-width: 16ch;
