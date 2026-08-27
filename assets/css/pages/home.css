@@ -50,8 +50,7 @@
   opacity: 1;
 }
 
-/* Content is constrained to the normal container but only allowed to occupy
-   the left half, so it never collides with the full-bleed right-hand image. */
+/* Copy sits centred in the canvas, framed by the two faded gym visuals. */
 .hero__inner {
   width: 100%;
   position: relative;
@@ -63,87 +62,55 @@
 .hero__content {
   display: flex;
   flex-direction: column;
-  max-width: 42rem;
-  width: 52%;
+  align-items: center;
+  text-align: center;
+  max-width: 46rem;
+  margin: 0 auto;
 }
 
-/* Full-height media pinned to the right edge, covering the right half. */
-.hero__media {
+/* Two anonymous, heavily-faded gym stills — one bleeding off each edge — so the
+   hero reads as "this is who we film" without ever spotlighting one face.
+   Desaturated into the brand and masked to melt into the navy canvas. */
+.hero__frame {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 50vw;
-  height: 100%;
+  bottom: 0;
+  width: 34vw;
+  max-width: 520px;
   z-index: 1;
-}
-
-/* Tonal scrim over the photo: deep-navy from the left and bottom so the image
-   melts into the page, with a whisper of volt at the top edge. Keeps the hero
-   coherent no matter what photograph (or placeholder) sits underneath. */
-.hero__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, var(--color-bg-deep) 6%, transparent 52%),
-    linear-gradient(0deg, var(--color-bg-deep) 6%, transparent 46%),
-    linear-gradient(180deg, rgba(var(--color-accent-rgb), 0.14), transparent 24%),
-    linear-gradient(180deg, transparent 60%, rgba(46, 82, 140, 0.28));
+  overflow: hidden;
   pointer-events: none;
 }
 
-.hero__image {
+.hero__frame--left {
+  left: 0;
+}
+
+.hero__frame--right {
+  right: 0;
+}
+
+.hero__frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Desaturate into the brand: any photo (or the current placeholder) is pulled
-     to a cool near-monochrome so it reads as navy-toned, never a clashing slab.
-     Swap/relax when real, colour-graded coach photography is dropped in. */
-  filter: grayscale(1) brightness(0.72) contrast(1.08);
-  /* Soft diagonal fade so the navy bleeds into the photo instead of a hard seam. */
-  -webkit-mask-image: linear-gradient(
-    100deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.35) 14%,
-    #000 42%
-  );
-  mask-image: linear-gradient(
-    100deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.35) 14%,
-    #000 42%
-  );
-  animation: heroZoom 18s var(--ease-in-out) infinite alternate;
+  filter: grayscale(1) brightness(0.6) contrast(1.06);
+  opacity: 0.32;
 }
 
-/* Volt glow rising from behind the subject. */
-.hero__media-glow {
-  position: absolute;
-  right: -10%;
-  bottom: -20%;
-  width: 60%;
-  height: 70%;
-  background: radial-gradient(
-    circle at center,
-    rgba(var(--color-accent-rgb), 0.28),
-    transparent 68%
-  );
-  filter: blur(10px);
-  pointer-events: none;
+.hero__frame--left img {
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 92%);
+  mask-image: linear-gradient(90deg, #000 0%, transparent 92%);
 }
 
-@keyframes heroZoom {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.08);
-  }
+.hero__frame--right img {
+  -webkit-mask-image: linear-gradient(270deg, #000 0%, transparent 92%);
+  mask-image: linear-gradient(270deg, #000 0%, transparent 92%);
 }
 
 .hero__title {
   font-size: var(--fs-hero);
-  max-width: 14ch;
+  max-width: 16ch;
 }
 
 .hero__title-accent {
@@ -153,7 +120,7 @@
 .hero__subtitle {
   margin-top: var(--space-md);
   font-size: 1.15rem;
-  max-width: 42ch;
+  max-width: 52ch;
 }
 
 .hero__actions {
@@ -170,9 +137,7 @@
   padding-top: var(--space-md);
   border-top: 1px solid var(--color-border);
   flex-wrap: wrap;
-  /* Shrink to the width of the stats themselves so the top rule ends at the last
-     stat instead of overhanging into the empty space beside the hero image. */
-  align-self: flex-start;
+  justify-content: center;
 }
 
 /* Thin volt rule above each stat block — a lane marker under the numbers. */
@@ -215,25 +180,18 @@
     min-height: auto;
   }
 
-  .hero__content {
-    width: 100%;
-    max-width: 100%;
-  }
-
   .hero__inner {
     padding-top: calc(var(--space-3xl) + var(--space-lg));
     padding-bottom: var(--space-xl);
   }
 
-  /* On small screens the photo becomes a dimmed backdrop rather than a half. */
-  .hero__media {
-    width: 100%;
-    opacity: 0.22;
+  /* Frames fall behind the copy as faint corner texture rather than side rails. */
+  .hero__frame {
+    width: 56vw;
   }
 
-  .hero__image {
-    -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
-    mask-image: linear-gradient(180deg, transparent, #000 60%);
+  .hero__frame img {
+    opacity: 0.14;
   }
 }
 
@@ -408,6 +366,12 @@
   align-items: flex-end;
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.section__head-actions {
+  display: flex;
+  gap: var(--space-sm);
   flex-wrap: wrap;
 }
 

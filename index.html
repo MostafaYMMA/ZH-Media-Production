@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/main.css?v=5" />
-  <link rel="stylesheet" href="assets/css/pages/home.css?v=5" />
+  <link rel="stylesheet" href="assets/css/main.css?v=6" />
+  <link rel="stylesheet" href="assets/css/pages/home.css?v=6" />
 </head>
 <body>
 
@@ -32,6 +32,14 @@
   <main>
     <section class="hero" data-spotlight>
       <div class="hero__spotlight" aria-hidden="true"></div>
+      <!-- Faded, anonymous gym visuals framing the copy: a coach working with a
+           client, kept low-contrast so no single face is the focus. -->
+      <div class="hero__frame hero__frame--left" aria-hidden="true">
+        <img src="assets/images/hero-gym-1.png" alt="" />
+      </div>
+      <div class="hero__frame hero__frame--right" aria-hidden="true">
+        <img src="assets/images/hero-gym-2.png" alt="" />
+      </div>
       <div class="hero__inner container">
         <div class="hero__content">
           <span class="eyebrow" data-reveal>You built the coach. We build the brand.</span>
@@ -63,11 +71,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="hero__media" data-reveal>
-        <!-- Placeholder hero image locked to the right half. Swap for a real coach still. -->
-        <img class="hero__image" src="https://picsum.photos/seed/zhcoach/1000/1400" alt="A fitness coach mid-session" />
-        <div class="hero__media-glow" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -122,15 +125,18 @@
     </section>
 
     <!-- Account transformations — real coach profiles, before we started vs. now.
-         Screenshots and follower counts are real. The "one to three months"
+         Screenshots and follower counts are real. The "one to two months"
          timeframe is an approximate claim — confirm the exact window per coach. -->
     <section class="section container transformations">
       <div class="section__head">
         <div>
           <span class="eyebrow" data-reveal>Account transformations</span>
-          <h2 data-reveal>Same coach. One to three months apart.</h2>
+          <h2 data-reveal>Same coach. One to two months apart.</h2>
         </div>
-        <a href="contact.html" class="btn btn--outline" data-reveal>Start yours</a>
+        <div class="section__head-actions" data-reveal>
+          <a href="contact.html" class="btn btn--outline">Start yours</a>
+          <a href="work.html" class="btn btn--outline">See the work</a>
+        </div>
       </div>
       <p class="transformations__lead" data-reveal>
         We script, film, and edit the whole feed. These are the follower counts before we
@@ -252,61 +258,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Proof. Placeholder testimonials — swap the names, handles, quotes and
-         growth numbers for real coach results when you have them. -->
-    <section class="section container testimonials">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow" data-reveal>The receipts</span>
-          <h2 data-reveal>Coaches who stopped editing and started growing</h2>
-        </div>
-      </div>
-      <div class="testimonial-grid" data-reveal-group>
-        <figure class="testimonial" data-reveal data-glow>
-          <div class="testimonial__result">+38K<span>followers in 4 months</span></div>
-          <blockquote>
-            "I went from posting once a month to three reels a week without touching an edit.
-            My reach isn't even comparable to where it was."
-          </blockquote>
-          <figcaption>
-            <span class="testimonial__avatar" aria-hidden="true">AK</span>
-            <span class="testimonial__who">
-              <strong>Coach Adam</strong>
-              <span>@adam.strength</span>
-            </span>
-          </figcaption>
-        </figure>
-        <figure class="testimonial" data-reveal data-glow>
-          <div class="testimonial__result">3.1M<span>views on one reel</span></div>
-          <blockquote>
-            "They actually get how coaches talk. The hooks land because they're not writing
-            like an agency that's never set foot in a gym."
-          </blockquote>
-          <figcaption>
-            <span class="testimonial__avatar" aria-hidden="true">MH</span>
-            <span class="testimonial__who">
-              <strong>Coach Mona</strong>
-              <span>@trainwithmona</span>
-            </span>
-          </figcaption>
-        </figure>
-        <figure class="testimonial" data-reveal data-glow>
-          <div class="testimonial__result">12hrs<span>a week back</span></div>
-          <blockquote>
-            "The whole content headache is just gone. I show up, coach on camera, and the
-            reels show up done. Best call I've made for the business."
-          </blockquote>
-          <figcaption>
-            <span class="testimonial__avatar" aria-hidden="true">YF</span>
-            <span class="testimonial__who">
-              <strong>Coach Yassin</strong>
-              <span>@yassin.fit</span>
-            </span>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
@@ -343,11 +294,11 @@
     </div>
   </footer>
 
-  <script src="assets/js/modules/navbar.js?v=5"></script>
-  <script src="assets/js/modules/navIndicator.js?v=5"></script>
-  <script src="assets/js/modules/scrollReveal.js?v=5"></script>
-  <script src="assets/js/modules/counter.js?v=5"></script>
-  <script src="assets/js/modules/pointer.js?v=5"></script>
-  <script src="assets/js/main.js?v=5"></script>
+  <script src="assets/js/modules/navbar.js?v=6"></script>
+  <script src="assets/js/modules/navIndicator.js?v=6"></script>
+  <script src="assets/js/modules/scrollReveal.js?v=6"></script>
+  <script src="assets/js/modules/counter.js?v=6"></script>
+  <script src="assets/js/modules/pointer.js?v=6"></script>
+  <script src="assets/js/main.js?v=6"></script>
 </body>
 </html>
