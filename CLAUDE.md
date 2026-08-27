@@ -104,7 +104,7 @@ assets/
 - **Cache-busting:** every local CSS/JS ref carries `?v=N` — the `<link>`/`<script>` tags in each
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
-  CSS or JS** or a redeploy won't reach people. Currently `v=3`.
+  CSS or JS** or a redeploy won't reach people. Currently `v=4`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`.
@@ -196,10 +196,11 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 - **about.html** — balanced hero, stat band (5+ / 20+ / 100%), a **founder block** (`.founder` —
   placeholder monogram portrait + first-person story + signature), three "why coaches trust us"
   value cards. (The old fictional team section was removed.)
-- **work.html** — reels wall data-driven from `projects.js` (27 real reel screenshots in
-  `assets/images/reels/`, each with its view count baked in), framed **vertical 9/14** so it reads
-  as short-form (grid is `auto-fill, minmax(200px, 1fr)`; 2-up under 460px). **No video playback**
-  — the cards are just framed stills (`projectGrid.js`); we don't host the reels themselves.
+- **work.html** — reels wall data-driven from `projects.js`: our **12 top reels ordered by view
+  count** (`reel-01` = highest), screenshots in `assets/images/reels/` with the view count baked
+  in. Framed **vertical 9/14** short-form (grid `auto-fill, minmax(200px, 1fr)`; 2-up under 460px).
+  **No video playback** — cards are framed stills (`projectGrid.js`); we don't host the reels.
+  (Originals for the other 15 reels are in `_originals/` if the set needs re-ranking.)
 - **contact.html** — balanced hero, booking form (**package `<select>`** 12 / 24 / not sure, with
   the custom CSS arrow in `contact.css`) with **client-side validation + input hardening**
   (`contactForm.js`, inline `.form-error` / `.form-status`), and a "What happens next" info card
@@ -207,12 +208,13 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 
 ## Known TODOs / placeholders
 
-- **Work grid** (`assets/js/data/projects.js` → `projectGrid.js`) now renders **27 real reel
-  screenshots** from `assets/images/reels/` (`reel-01…27.webp`). These are stills with the view
-  count baked in — **there is no video hosting / playback** (removed: `videoModal.js`,
-  `components/modal.css`, the `<video>` teaser, `vimeoId`/`teaserSrc`). `projects.js` is now just
-  `{ id, thumbnail, alt }`. To add/remove reels, drop a webp in `assets/images/reels/` and adjust
-  the loop count in `projects.js`.
+- **Work grid** (`assets/js/data/projects.js` → `projectGrid.js`) renders the **12 top reels,
+  view-count descending** (`reel-01.webp` = 2.4M … `reel-12.webp` = 618K) from
+  `assets/images/reels/`. Stills with the view count baked in — **no video hosting / playback**
+  (removed: `videoModal.js`, `components/modal.css`, `<video>` teaser, `vimeoId`/`teaserSrc`).
+  `projects.js` is a hand-ordered list of `{ views }` mapped to `{ id, thumbnail, views, alt }`.
+  To re-rank/swap: re-export the webp files in the new order and edit that list. Raw source
+  screenshots for all 27 are in `assets/images/_originals/` (git-ignored).
 - The **home hero image** still points at a `picsum.photos` placeholder — replace with a real
   coach still. It's force-desaturated (`filter: grayscale(...)` in `home.css`); relax that once a
   real, colour-graded still is in.

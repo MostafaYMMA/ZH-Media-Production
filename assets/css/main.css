@@ -2,16 +2,16 @@
    <head>) whenever CSS changes — GitHub Pages caches assets for ~10 min and
    mobile browsers hold them far longer, so a version query is how a redeploy
    actually reaches people. */
-@import url("base/variables.css?v=3");
-@import url("base/reset.css?v=3");
-@import url("base/typography.css?v=3");
-@import url("components/navbar.css?v=3");
-@import url("components/footer.css?v=3");
-@import url("components/buttons.css?v=3");
-@import url("components/project-card.css?v=3");
-@import url("components/icon.css?v=3");
-@import url("components/testimonials.css?v=3");
-@import url("components/transformations.css?v=3");
+@import url("base/variables.css?v=4");
+@import url("base/reset.css?v=4");
+@import url("base/typography.css?v=4");
+@import url("components/navbar.css?v=4");
+@import url("components/footer.css?v=4");
+@import url("components/buttons.css?v=4");
+@import url("components/project-card.css?v=4");
+@import url("components/icon.css?v=4");
+@import url("components/testimonials.css?v=4");
+@import url("components/transformations.css?v=4");
 
 .container {
   max-width: var(--max-width);
