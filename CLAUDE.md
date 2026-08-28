@@ -104,7 +104,7 @@ assets/
 - **Cache-busting:** every local CSS/JS ref carries `?v=N` — the `<link>`/`<script>` tags in each
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
-  CSS or JS** or a redeploy won't reach people. Currently `v=5`.
+  CSS or JS** or a redeploy won't reach people. Currently `v=8`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`.
@@ -167,7 +167,7 @@ rather than per-page.
   (`data-glow`).
 - **Numbered workflow cards** (01/02/03) with oversized bled-in step numbers.
 - **Account transformations** — replaces the old "Coaches we've filmed" featured-reels grid.
-  Three real coach profiles as stacked Before/After Instagram screenshots + the follower jump
+  Four real coach profiles as stacked Before/After Instagram screenshots + the follower jump
   (`+delta`, `before → after`). Component in `components/transformations.css`; images (web-ready
   webp) in `assets/images/results/`. Follower counts are real; the "one to three months"
   timeframe is an approximate claim flagged in an HTML comment.
@@ -187,7 +187,7 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 `.page-hero` two-column hero; every page's footer carries the one closing CTA.
 - **index.html** — split hero (duotone photo / mesh+grid / spotlight; the stat band's top rule
   shrinks to the width of the stats via `align-self: flex-start`), ticker, "Why you'd want us",
-  **Account transformations** (3 Before/After coach profiles), workflow, and the "The receipts"
+  **Account transformations** (4 Before/After coach profiles), workflow, and the "The receipts"
   testimonials.
 - **services.html** — balanced hero, a **sticky two-column pipeline** (heading left, Script →
   Shoot → Edit steps right — `.services-section__grid`), centered **12 / 24 Reels** package cards
