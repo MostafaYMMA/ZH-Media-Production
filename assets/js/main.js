@@ -7,6 +7,7 @@ window.ZH = window.ZH || {};
 document.addEventListener("DOMContentLoaded", function () {
   window.ZH.initNavbar();
   window.ZH.initNavIndicator();
+  if (window.ZH.initSectionNav) window.ZH.initSectionNav();
 
   const fullGrid = document.querySelector("[data-project-grid='all']");
   if (fullGrid && window.ZH.renderProjectGrid) {

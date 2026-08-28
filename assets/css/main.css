@@ -2,16 +2,18 @@
    <head>) whenever CSS changes — GitHub Pages caches assets for ~10 min and
    mobile browsers hold them far longer, so a version query is how a redeploy
    actually reaches people. */
-@import url("base/variables.css?v=8");
-@import url("base/reset.css?v=8");
-@import url("base/typography.css?v=8");
-@import url("components/navbar.css?v=8");
-@import url("components/footer.css?v=8");
-@import url("components/buttons.css?v=8");
-@import url("components/project-card.css?v=8");
-@import url("components/icon.css?v=8");
-@import url("components/testimonials.css?v=8");
-@import url("components/transformations.css?v=8");
+@import url("base/variables.css?v=15");
+@import url("base/reset.css?v=15");
+@import url("base/typography.css?v=15");
+@import url("components/navbar.css?v=15");
+@import url("components/footer.css?v=15");
+@import url("components/buttons.css?v=15");
+@import url("components/project-card.css?v=15");
+@import url("components/icon.css?v=15");
+@import url("components/testimonials.css?v=15");
+@import url("components/transformations.css?v=15");
+@import url("components/clients.css?v=15");
+@import url("components/section-scroll.css?v=15");
 
 .container {
   max-width: var(--max-width);
@@ -41,8 +43,15 @@
   align-items: end;
 }
 
-.page-hero__head h1 {
+.page-hero__head h1,
+.page-hero__head h2 {
   max-width: 16ch;
+}
+
+/* Inner-section heroes use <h2> now that they share one document with the
+   home <h1> — keep them at hero scale. */
+.page-hero__head h2 {
+  font-size: var(--fs-h1);
 }
 
 .page-hero__lead {

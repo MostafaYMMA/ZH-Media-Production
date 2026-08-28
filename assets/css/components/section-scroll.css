@@ -1,0 +1,54 @@
+/* ==========================================================================
+   One-page section scroll
+
+   The site is a single document: #home / #work / #services / #about / #contact
+   sections that scroll into each other. sectionNav.js handles smooth-scroll,
+   active-link state, and keeps --header-height matched to the fixed navbar.
+   ========================================================================== */
+
+:root {
+  /* Fallback until sectionNav.js measures the real navbar. */
+  --header-height: 84px;
+}
+
+.snap-section {
+  /* After a jump, keep the section top clear of the fixed navbar. */
+  scroll-margin-top: var(--header-height);
+}
+
+/* A section is a landmark when JS makes it focusable (tabindex -1) after a
+   nav jump — don't paint the focus ring on the whole panel. */
+.snap-section:focus {
+  outline: none;
+}
+
+/* Skip link — keyboard users jump straight past the nav. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: calc(var(--z-nav) + 5);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+/* NOTE ON SCROLL-SNAP: intentionally not used. Every section here is 2–4
+   viewports tall (hero + several sub-sections). `mandatory` snap would trap a
+   reader mid-section, and even `proximity` snap makes the browser grab the
+   "nearest" section edge when a nav jump's smooth-scroll settles — so clicking
+   "About" could land you on "Work". The one-page feel comes from smooth
+   scrolling + the header offset above; snapping only fought it. If sections
+   ever become single-screen, revisit `scroll-snap-type: y proximity` here. */

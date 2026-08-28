@@ -35,11 +35,13 @@ are dropped in.
 ## File layout
 
 ```
-index.html          Home / landing page (the main marketing page)
-about.html          Studio story
-services.html       Service breakdown
-work.html           Portfolio grid
-contact.html        Contact form (front-end only — no backend wired up)
+index.html          THE WHOLE SITE — one page, sections #home / #work / #services
+                    / #about / #contact scroll into each other (see "Single-page
+                    architecture" below)
+about.html          Redirect stub → index.html#about (kept for old links/bookmarks)
+services.html       Redirect stub → index.html#services
+work.html           Redirect stub → index.html#work
+contact.html        Redirect stub → index.html#contact
 assets/
   css/
     main.css              Entry stylesheet — @imports everything below
@@ -47,19 +49,59 @@ assets/
       variables.css       DESIGN TOKENS — colors, fonts, spacing, motion. Start here.
       reset.css           Box-sizing reset + reduced-motion global
       typography.css      Heading/body/eyebrow type rules
-    components/           navbar, footer, buttons, project-card, icon, testimonials, transformations
-    pages/                home, about, services, work, contact (one file per page)
+    components/           navbar, footer, buttons, project-card, icon, testimonials,
+                          transformations, clients (roster profile cards),
+                          section-scroll (one-page section offsets)
+    pages/                home, about, services, work, contact — ALL loaded together
+                          by index.html now; each stays scoped to its own classes
   js/
     main.js               Entry point — runs init fns on DOMContentLoaded
-    modules/              navbar, navIndicator, scrollReveal, counter, projectGrid,
-                          pointer, contactForm
+    modules/              navbar, navIndicator, sectionNav (one-page nav: smooth
+                          scroll + active-link state), scrollReveal, counter,
+                          projectGrid, pointer, contactForm
     data/projects.js      Work-grid data (window.ZH.projects) — single source of truth
   images/
     results/              Before/After coach profile screenshots (webp) — home "Account transformations"
+    clients/              client-01..18.webp — round avatars for the "#clients" roster, cropped
+                          from the profile screenshots in _originals/clients/
     reels/                reel-01..20.webp — the Work grid, in a deliberate style-mix order (see below)
     _originals/           Raw HEIC/oversized source screenshots — GIT-IGNORED, local only
   video/                  Real assets go here (mostly empty placeholders for now)
 ```
+
+## Single-page architecture
+
+The site is **one document**. `index.html` holds every section — `#home`, `#work`,
+`#clients`, `#services`, `#about`, `#contact` (nav order) — each wrapped in
+`<section id="…" class="snap-section">` inside `<main>`, followed by the one shared `<footer>`. `about.html` / `services.html` /
+`work.html` / `contact.html` are now **redirect stubs** (`<meta http-equiv="refresh">` +
+`location.replace()` + `<link rel="canonical">`) that bounce to the matching `#hash` — keep
+them so old inbound links and bookmarks still land right.
+
+- `index.html` loads **all five** `pages/*.css` files and every JS module (projects +
+  projectGrid for `#work`, contactForm for `#contact`, counter for the hero stats).
+- **`#clients`** is a plain HTML section (`components/clients.css`) — a 2-row band of profile
+  cards (avatar + name + `@handle`, no full screenshots) that scrolls horizontally when the
+  roster outgrows the width (`.clients-scroller` > `.clients-grid`, `grid-auto-flow: column`).
+  18 real client cards; round avatars in `assets/images/clients/` were cropped from the profile
+  screenshots (a Python crop script lived in the session scratchpad, not committed).
+- **Nav links are hash links** (`href="#services"`). `sectionNav.js` (`window.ZH.initSectionNav`)
+  smooth-scrolls on click (respects `prefers-reduced-motion`), moves focus into the target
+  section, drives the active-link state via `aria-current="page"` with an `IntersectionObserver`
+  (`rootMargin: -45% 0 -45%` so it works for multi-viewport sections), keeps the URL hash in
+  sync with `replaceState`, and keeps `--header-height` matched to the live navbar height so
+  `scroll-margin-top` (in `components/section-scroll.css`) lands sections below the fixed bar.
+- **No CSS scroll-snap.** Every section is 2–4 viewports tall; snap (even `proximity`) hijacks
+  the landing point of a nav jump. The "one page" feel is just smooth scroll + header offset.
+  See the note at the top of `section-scroll.css`.
+- **Deep links must survive image load.** `sectionNav.js` re-asserts the target on `load` and
+  again 250ms later, because lazy images *above* the target grow the page after the initial jump
+  and would otherwise strand the visitor a section early — this broke `/#services` and every
+  redirect stub. For the same reason **every `<img>` needs `width`/`height` (or a CSS
+  `aspect-ratio` box, as `.project-card__media` has)** so its space is reserved before it loads.
+- Inner-section heroes use `<h2>` (not `<h1>`) since they share the document with the home
+  `<h1>`; `main.css` keeps `.page-hero__head h2` at `--fs-h1` scale.
+- There's a `.skip-link` (top of `<body>`) styled in `section-scroll.css`.
 
 ## Architecture conventions (follow these)
 
@@ -73,7 +115,10 @@ assets/
   works from `file://`. Module `<script>`s must be included **before** `main.js`.
 - **Scroll reveals** are opt-in via `data-reveal` (and `data-reveal-group` for staggered
   children), handled by `scrollReveal.js`. Gated behind a `.js` class added inline in
-  `<head>` so content stays visible if JS fails.
+  `<head>` so content stays visible if JS fails. A `sweep()` safety net reveals anything already
+  scrolled into view — once 2.5s after load **and again 250ms after every scroll stops** — because
+  on a page this long a fast flick-scroll can outrun the observer (it coalesces an enter+leave
+  between frames) and would otherwise leave a block permanently invisible.
 - **Count-up stats** use `data-count-to="20" data-count-suffix="+"` on an element with a
   starting text of `0`; `counter.js` animates them when scrolled into view and respects
   reduced motion.
@@ -91,7 +136,7 @@ assets/
   a backend is added, the server must re-validate, use **parameterized queries** for SQL (a `--`
   is only dangerous with string-concatenated SQL, never with parameters — so don't strip it), and
   HTML-escape on output. See also the "Contact form" note under Known TODOs.
-- **Mobile navigation** (`navbar.js` + `navbar.css` `@media (max-width: 720px)`): the hamburger
+- **Mobile navigation** (`navbar.js` + `navbar.css` `@media (max-width: 980px)`): the hamburger
   moves to the **top-left** (via `order: -1`) and the nav becomes a **left slide-in drawer**
   (`.navbar__links`, `position: fixed`, `translateX(-100%)` when closed) over a `.navbar__backdrop`
   that `navbar.js` injects. Closed by the X, the backdrop, `Escape`, a link click, or a resize
@@ -100,14 +145,22 @@ assets/
   `.navbar.is-scrolled`'s `backdrop-filter` makes `.navbar` the containing block for its
   `position: fixed` children — with `top/bottom:0` the drawer would collapse to the ~60px bar
   (this was the "menu broken on inner pages" bug); `.navbar.is-open.is-scrolled` also drops the
-  blur as a second guard.
+  blur as a second guard. The breakpoint is **980px, not 720px**: the centered desktop links plus
+  the logo either side need ~980px, and below that the CONTACT button ran off the right edge.
+  **navbar.css's media query and navbar.js's resize guard must stay in step** — re-measure both
+  if a nav item is ever added or removed.
 - **Cache-busting:** every local CSS/JS ref carries `?v=N` — the `<link>`/`<script>` tags in each
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
-  CSS or JS** or a redeploy won't reach people. Currently `v=8`.
+  CSS or JS** or a redeploy won't reach people. Currently `v=15`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
-  decorative elements `aria-hidden`.
+  decorative elements `aria-hidden`. **Don't skip heading levels** — the aside/footer labels are
+  `<h3>` (sized down in CSS), not `<h4>`, because the nearest section heading is an `<h2>`.
+  Lighthouse mobile currently scores **100 / 100 / 100** (a11y, best practices, SEO) — keep it there.
+- **Form controls must be ≥16px.** `reset.css` gives `button, input, textarea, select` `font: inherit`;
+  `select` is in that list deliberately — under 16px iOS Safari zooms the page in on tap and never
+  zooms back out.
 
 ## Design system (current — fitness/athletic direction)
 
@@ -174,35 +227,40 @@ rather than per-page.
 - **"The receipts" testimonials** — result-first proof cards (a growth number → quote →
   initials-monogram attribution). Component in `components/testimonials.css`.
 
-The **footer holds the single closing CTA** on every page. The old standalone `.cta-band`
-was removed from Home/Work/About to kill the duplicate CTA; its CSS still lives in `main.css`
-but is currently unused.
+The **footer holds the single closing CTA** at the end of the page. The old standalone
+`.cta-band` was removed to kill the duplicate CTA; its CSS still lives in `main.css` but is
+currently unused.
 
 If you change the accent or fonts, update the token table above so this file stays true.
 
 ## Page status
 
-All five pages are on the fitness-coach brand and share the depth-driven cards, cursor-reactive
-glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the shared
-`.page-hero` two-column hero; every page's footer carries the one closing CTA.
-- **index.html** — split hero (duotone photo / mesh+grid / spotlight; the stat band's top rule
+Everything is one page (`index.html`) — see "Single-page architecture" above. All sections are
+on the fitness-coach brand and share the depth-driven cards, cursor-reactive glow, and tightened
+spacing. `#work` / `#services` / `#about` / `#contact` use the shared `.page-hero` two-column
+hero (headline now `<h2>`); the footer carries the one closing CTA.
+- **`#home`** — split hero (duotone photo / mesh+grid / spotlight; the stat band's top rule
   shrinks to the width of the stats via `align-self: flex-start`), ticker, "Why you'd want us",
   **Account transformations** (4 Before/After coach profiles), workflow, and the "The receipts"
   testimonials.
-- **services.html** — balanced hero, a **sticky two-column pipeline** (heading left, Script →
+- **`#services`** — balanced hero, a **sticky two-column pipeline** (heading left, Script →
   Shoot → Edit steps right — `.services-section__grid`), centered **12 / 24 Reels** package cards
   (`.packages`), and a "How it actually works" **FAQ** covering timeline / travel / revisions /
   contract / cost (no price figures — see house rules).
-- **about.html** — balanced hero, stat band (5+ / 20+ / 100%), a **founder block** (`.founder` —
+- **`#about`** — balanced hero, stat band (5+ / 20+ / 100%), a **founder block** (`.founder` —
   placeholder monogram portrait + first-person story + signature), three "why coaches trust us"
   value cards. (The old fictional team section was removed.)
-- **work.html** — reels wall data-driven from `projects.js` (20 reels, `assets/images/reels/`,
+- **`#work`** — reels wall data-driven from `projects.js` (20 reels, `assets/images/reels/`,
   view count baked into each). Order is a **deliberate style mix**: ~60% shot-in-the-gym pieces,
   ~40% cut-out / graphic-overlay pieces, **no two cut-out reels adjacent** — so a first-time
   visitor sees the studio does several kinds of video. Framed **vertical 9/14** short-form (grid
   `auto-fill, minmax(200px, 1fr)`; 2-up under 460px). **No video playback** — framed stills only
   (`projectGrid.js`).
-- **contact.html** — balanced hero, booking form (**package `<select>`** 12 / 24 / not sure, with
+- **`#clients`** — "Our clients" roster: a 2-row horizontally-scrolling band of profile cards
+  (`.client-card` = circular avatar + name + `@handle`), `components/clients.css`. 18 real client
+  cards (`client-01..18.webp`). To change: add/remove `<figure class="client-card">` blocks freely
+  (the band just grows and scrolls), and drop a matching round avatar in `assets/images/clients/`.
+- **`#contact`** — balanced hero, booking form (**package `<select>`** 12 / 24 / not sure, with
   the custom CSS arrow in `contact.css`) with **client-side validation + input hardening**
   (`contactForm.js`, inline `.form-error` / `.form-status`), and a "What happens next" info card
   in the right column.
@@ -222,6 +280,10 @@ glow, and tightened spacing. Inner pages (Work/Services/About/Contact) use the s
 - **Placeholder copy to swap** (each flagged with an HTML comment): the "The receipts"
   testimonials on Home (names / handles / quotes / growth numbers) and the founder name
   (`Ziad Hazem`) + story + monogram on About.
+- **`#clients` roster** — 18 real cards. Two names are best-guesses from the handle
+  (`@itskaty___` → "Katy", `@sakr_procoaching` → "Sakr Pro Coaching") since those screenshots
+  had no Latin display name — confirm/replace. A few avatars are full-body or busy crops (the
+  source screenshot's own profile pic) — re-crop from `_originals/clients/` if a tighter one is wanted.
 - Contact form has **no backend** yet. `contactForm.js` validates + sanitises the fields
   (name / email / handle / package / message) and, on success, shows a confirmation pointing the
   user to email — it does not send anywhere. When wiring a backend: send the module's normalised

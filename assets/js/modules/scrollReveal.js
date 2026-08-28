@@ -53,10 +53,11 @@ window.ZH = window.ZH || {};
       observer.observe(el);
     });
 
-    // Safety net: nothing that scrolled past should stay invisible. If a target
-    // is still hidden a few seconds after load, reveal it outright — a stuck
-    // observer or a layout race must never leave content permanently blank.
-    window.setTimeout(function () {
+    // Safety net: nothing that scrolled past should stay invisible. A stuck
+    // observer, a layout race, or a fast flick-scroll (the observer can coalesce
+    // an enter+leave that happens between frames) must never leave content
+    // permanently blank — so sweep anything already scrolled into view.
+    const sweep = function () {
       targets.forEach(function (el) {
         if (!el.classList.contains("is-visible")) {
           const box = el.getBoundingClientRect();
@@ -67,6 +68,20 @@ window.ZH = window.ZH || {};
           }
         }
       });
-    }, 2500);
+    };
+
+    window.setTimeout(sweep, 2500);
+
+    // Re-sweep once the user stops scrolling. The whole site is one long page,
+    // so a single post-load check isn't enough to cover every section.
+    let sweepTimer = 0;
+    window.addEventListener(
+      "scroll",
+      function () {
+        window.clearTimeout(sweepTimer);
+        sweepTimer = window.setTimeout(sweep, 250);
+      },
+      { passive: true }
+    );
   };
 })();

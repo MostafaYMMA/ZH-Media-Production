@@ -11,20 +11,27 @@ The marketing and portfolio website for **ZH Personal Branding**, a content-crea
 
 ## What's on the site
 
-| Page | What it shows |
+It's a **single page** — the nav links jump between sections that scroll into each other.
+
+| Section | What it shows |
 |---|---|
-| **Home** | Hero, "why us", real Before/After account transformations, workflow, testimonials |
-| **Work** | Wall of real reels (screenshots with view counts) — a deliberate mix of styles |
-| **Services** | The pipeline, the 12 / 24 Reels packages, and an FAQ (no prices — "Book a call") |
-| **About** | Studio story, founder block, and why coaches trust us |
-| **Contact** | Booking form that hands off to WhatsApp, plus contact info |
+| **#home** | Hero, "why us", real Before/After account transformations, workflow |
+| **#work** | Wall of real reels (screenshots with view counts) — a deliberate mix of styles |
+| **#clients** | Roster of client accounts as profile cards (avatar + name + @handle) |
+| **#services** | The pipeline, the 12 / 24 Reels packages, and an FAQ (no prices — "Book a call") |
+| **#about** | Studio story, founder block, and why coaches trust us |
+| **#contact** | Booking form that hands off to WhatsApp, plus contact info |
+
+The old `work.html` / `services.html` / `about.html` / `contact.html` URLs still work — they
+redirect to the matching section on `index.html`.
 
 ## Design highlights
 
 - Smooth scroll-reveal animations as you scroll down each page
 - A sliding highlight that follows your cursor across the top navigation
 - Hover-interactive icons and project cards throughout
-- Fully responsive — works on desktop, tablet, and mobile
+- Fully responsive — works on desktop, tablet, and mobile (verified 320px → 1440px)
+- Lighthouse mobile: **100 accessibility / 100 best practices / 100 SEO**
 
 ---
 
@@ -42,20 +49,26 @@ Open `index.html` directly in a browser (double-click it). No dev server needed.
 ### Structure
 
 ```
-index.html / work.html / services.html / about.html / contact.html
+index.html                       the whole site — all sections on one page
+work/services/about/contact.html redirect stubs → index.html#<section>
 assets/
   css/
     base/        design tokens, reset, typography
-    components/  navbar, footer, buttons, project-card, icon, testimonials, transformations
-    pages/       one file per page for page-specific layout
-    main.css     imports base + components; every page also links its own pages/<name>.css
+    components/  navbar, footer, buttons, project-card, icon, testimonials,
+                 transformations, clients (roster cards),
+                 section-scroll (one-page section offsets + skip link)
+    pages/       home/work/services/about/contact layout — index.html loads all five
+    main.css     imports base + components; index.html links all pages/<name>.css
   js/
     main.js          entry point, feature-detects what's on the page and boots the right modules
-    modules/         navbar.js, navIndicator.js, scrollReveal.js, counter.js, projectGrid.js, pointer.js, contactForm.js
+    modules/         navbar.js, navIndicator.js, sectionNav.js (one-page smooth-scroll nav +
+                     active-link state), scrollReveal.js, counter.js, projectGrid.js,
+                     pointer.js, contactForm.js
     data/
       projects.js    the Work grid's ordered list of reels (deliberate style mix)
   images/
     results/       Before/After coach profile screenshots (home "Account transformations")
+    clients/       client-01..18.webp — round avatars for the #clients roster (cropped from profile screenshots)
     reels/         reel-01..20.webp — the Work grid (real reels, view count baked in)
 ```
 
@@ -76,6 +89,7 @@ webp files in the new order and edit the array. Cards are framed stills only; no
 - The **home hero image** points at a random `picsum.photos` image — swap for a real coach still.
 - The **founder** photo/name/story on `about.html` is a placeholder monogram (`Ziad Hazem`).
 - The **"The receipts"** testimonials on Home (names / handles / quotes / numbers) are placeholders.
+- The **#clients roster** has 18 real cards. Two display names are guessed from the handle (`@itskaty___`, `@sakr_procoaching`) — confirm those.
 - Email (`hello@zhpersonalbranding.com`), address, and the footer Instagram link (`#` href) are placeholders.
 
 ### Contact form
@@ -90,6 +104,7 @@ object and drop the `data-unwired` attribute.
 - **Icon hover**: `.icon-interactive` (see `assets/css/components/icon.css`) scales/rotates slightly on hover/focus.
 - **Scroll-reveal**: add `data-reveal` (and optionally `data-reveal-delay="150"`) to fade/slide an element in on scroll (`scrollReveal.js`, via IntersectionObserver). Wrap a grid/list in `data-reveal-group` to auto-stagger its children.
 - **Sliding nav indicator**: `navIndicator.js` moves a shared pill between nav links on hover/focus using `getBoundingClientRect()` + CSS transitions.
+- **One-page section nav**: `sectionNav.js` smooth-scrolls to `#section` on nav click, moves focus into the section, and highlights the current link (`aria-current="page"`) with an IntersectionObserver as you scroll. Keeps `--header-height` matched to the fixed navbar so jumps land below it. No CSS scroll-snap (sections are multi-viewport; it fought the jump landing).
 - Work-grid cards: a framed reel screenshot that zooms slightly on hover. No playback.
 - Respects `prefers-reduced-motion`.
 

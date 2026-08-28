@@ -36,7 +36,8 @@ window.ZH.initNavbar = function () {
     // If the viewport grows back to desktop while the drawer is open, drop the
     // open state so the body scroll lock doesn't stick.
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 720 && navbar.classList.contains("is-open")) {
+      // Must match navbar.css's drawer breakpoint (see the note there).
+      if (window.innerWidth > 980 && navbar.classList.contains("is-open")) {
         setOpen(false);
       }
     });

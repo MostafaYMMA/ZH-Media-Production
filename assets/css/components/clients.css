@@ -1,0 +1,116 @@
+/* Our Clients — a roster of the coach accounts we run, shown as compact
+   profile cards (circular avatar + name + @handle). Avatars are cropped from
+   the profile screenshots (assets/images/_originals/clients/, git-ignored)
+   into round webp files in assets/images/clients/. Depth-driven card like
+   .transformation / .why__item.
+
+   Layout: a fixed 2-row band that scrolls horizontally when the roster
+   outgrows the width (cards flow top-to-bottom, then into the next column). */
+.clients__lead {
+  max-width: 60ch;
+  margin-top: var(--space-sm);
+  color: var(--color-text-muted);
+}
+
+.clients-scroller {
+  margin-top: var(--space-xl);
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* room for the scrollbar so it doesn't sit on the bottom row */
+  padding-bottom: var(--space-sm);
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+.clients-scroller::-webkit-scrollbar {
+  height: 8px;
+}
+
+.clients-scroller::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+
+.clients-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, auto);
+  grid-auto-columns: 190px;
+  gap: var(--space-md);
+  /* so the last card isn't flush against the scroll edge */
+  width: max-content;
+}
+
+.client-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-xs);
+  padding: var(--space-lg) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+  scroll-snap-align: start;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.client-card:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.client-card__avatar {
+  width: 96px;
+  height: 96px;
+  margin-bottom: var(--space-xs);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+}
+
+.client-card__name {
+  font-size: 1.05rem;
+  line-height: 1.2;
+  /* reserve two lines so handles line up across cards whether the name wraps */
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.client-card__handle {
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+}
+
+@media (max-width: 480px) {
+  .clients-grid {
+    grid-auto-columns: 150px;
+    gap: var(--space-sm);
+  }
+
+  .client-card {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .client-card__avatar {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-scroller {
+    scroll-snap-type: none;
+  }
+}

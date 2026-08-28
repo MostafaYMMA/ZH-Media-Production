@@ -9,19 +9,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/main.css?v=8" />
-  <link rel="stylesheet" href="assets/css/pages/home.css?v=8" />
+  <link rel="stylesheet" href="assets/css/main.css?v=15" />
+  <!-- All page stylesheets — every section now lives on this one document. -->
+  <link rel="stylesheet" href="assets/css/pages/home.css?v=15" />
+  <link rel="stylesheet" href="assets/css/pages/services.css?v=15" />
+  <link rel="stylesheet" href="assets/css/pages/about.css?v=15" />
+  <link rel="stylesheet" href="assets/css/pages/work.css?v=15" />
+  <link rel="stylesheet" href="assets/css/pages/contact.css?v=15" />
 </head>
 <body>
 
+  <a href="#home" class="skip-link">Skip to content</a>
+
   <header class="navbar">
-    <a href="index.html" class="navbar__logo">ZH&nbsp;Personal&nbsp;Branding</a>
-    <nav class="navbar__links">
-      <a href="index.html" class="navbar__link" aria-current="page">Home</a>
-      <a href="work.html" class="navbar__link">Work</a>
-      <a href="services.html" class="navbar__link">Services</a>
-      <a href="about.html" class="navbar__link">About</a>
-      <a href="contact.html" class="navbar__link btn btn--outline">Contact</a>
+    <a href="#home" class="navbar__logo">ZH&nbsp;Personal&nbsp;Branding</a>
+    <nav class="navbar__links" aria-label="Primary">
+      <a href="#home" class="navbar__link" aria-current="page">Home</a>
+      <a href="#work" class="navbar__link">Work</a>
+      <a href="#clients" class="navbar__link">Clients</a>
+      <a href="#services" class="navbar__link">Services</a>
+      <a href="#about" class="navbar__link">About</a>
+      <a href="#contact" class="navbar__link btn btn--outline">Contact</a>
       <span class="navbar__indicator" aria-hidden="true"></span>
     </nav>
     <button class="navbar__toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
@@ -30,254 +38,734 @@
   </header>
 
   <main>
-    <section class="hero" data-spotlight>
-      <div class="hero__spotlight" aria-hidden="true"></div>
-      <!-- Faded, anonymous gym visuals framing the copy: a coach working with a
-           client, kept low-contrast so no single face is the focus. -->
-      <div class="hero__frame hero__frame--left" aria-hidden="true">
-        <img src="assets/images/hero-gym-1.png" alt="" />
+
+    <!-- ==================================================================
+         HOME
+         ================================================================== -->
+    <section id="home" class="snap-section">
+      <div class="hero" data-spotlight>
+        <div class="hero__spotlight" aria-hidden="true"></div>
+        <!-- Faded, anonymous gym visuals framing the copy: a coach working with a
+             client, kept low-contrast so no single face is the focus. -->
+        <div class="hero__frame hero__frame--left" aria-hidden="true">
+          <img src="assets/images/hero-gym-1.png" alt="" width="449" height="298" />
+        </div>
+        <div class="hero__frame hero__frame--right" aria-hidden="true">
+          <img src="assets/images/hero-gym-2.png" alt="" width="332" height="371" />
+        </div>
+        <div class="hero__inner container">
+          <div class="hero__content">
+            <span class="eyebrow" data-reveal>You built the coach. We build the brand.</span>
+            <h1 class="hero__title" data-reveal>
+              Personal branding for<br />
+              <span class="hero__title-accent">fitness coaches.</span>
+            </h1>
+            <p class="hero__subtitle" data-reveal>
+              Scripts, filming, and short-form editing — reels, shorts, the whole feed —
+              handled end to end. Run by people who came up in the gym, so your content
+              actually sounds like a coach, not an agency.
+            </p>
+            <div class="hero__actions" data-reveal>
+              <a href="#contact" class="btn btn--primary">Book a call</a>
+              <a href="#work" class="btn btn--outline">See the work</a>
+            </div>
+            <div class="hero__stats" data-reveal>
+              <div class="hero__stat">
+                <div class="hero__stat-value" data-count-to="5" data-count-suffix="+">0</div>
+                <div class="hero__stat-label">Years in the fitness world</div>
+              </div>
+              <div class="hero__stat">
+                <div class="hero__stat-value" data-count-to="20" data-count-suffix="+">0</div>
+                <div class="hero__stat-label">Coaches we've filmed</div>
+              </div>
+              <div class="hero__stat">
+                <div class="hero__stat-value" data-count-to="100" data-count-suffix="%">0</div>
+                <div class="hero__stat-label">Done-for-you</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero__frame hero__frame--right" aria-hidden="true">
-        <img src="assets/images/hero-gym-2.png" alt="" />
+
+      <!-- Service ticker: an athletic scoreboard-style scroll of what we do -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+          <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+          <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+          <span>Editing</span><span class="ticker__dot">&bull;</span>
+          <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
+          <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+          <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+          <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+          <span>Editing</span><span class="ticker__dot">&bull;</span>
+          <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
+        </div>
       </div>
-      <div class="hero__inner container">
-        <div class="hero__content">
-          <span class="eyebrow" data-reveal>You built the coach. We build the brand.</span>
-          <h1 class="hero__title" data-reveal>
-            Personal branding for<br />
-            <span class="hero__title-accent">fitness coaches.</span>
-          </h1>
-          <p class="hero__subtitle" data-reveal>
-            Scripts, filming, and short-form editing — reels, shorts, the whole feed —
-            handled end to end. Run by people who came up in the gym, so your content
-            actually sounds like a coach, not an agency.
+
+      <!-- Why you'd want us -->
+      <div class="section container why">
+        <div class="why__head">
+          <span class="eyebrow" data-reveal>Why you'd want us</span>
+          <h2 class="why__headline" data-reveal>
+            You didn't get into coaching<br />
+            to sit in the edit bay.
+          </h2>
+          <p class="why__lead" data-reveal>
+            Between programming, check-ins, and actually training clients, marketing is the
+            thing that quietly slips — so the reels never post and coaches with worse advice
+            keep out-posting you. That's the whole job we take off your plate: you coach on
+            camera, we handle the script, the shoot, and the edit.
           </p>
-          <div class="hero__actions" data-reveal>
-            <a href="contact.html" class="btn btn--primary">Book a call</a>
-            <a href="work.html" class="btn btn--outline">See the work</a>
+        </div>
+        <ul class="why__list" data-reveal-group>
+          <li class="why__item" data-reveal data-glow>
+            <span class="why__item-num" aria-hidden="true">01</span>
+            <h3 class="why__item-tag">Your time back</h3>
+            <p>No scripting at midnight, no fighting the editing timeline. You just show up and coach.</p>
+          </li>
+          <li class="why__item" data-reveal data-glow>
+            <span class="why__item-num" aria-hidden="true">02</span>
+            <h3 class="why__item-tag">A coach's voice</h3>
+            <p>We came up in the gym, so nothing we write for you sounds like a generic ad.</p>
+          </li>
+          <li class="why__item" data-reveal data-glow>
+            <span class="why__item-num" aria-hidden="true">03</span>
+            <h3 class="why__item-tag">Real consistency</h3>
+            <p>A steady feed the algorithm rewards — instead of one burst every few months.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Account transformations — real coach profiles, before we started vs. now.
+           Screenshots and follower counts are real. The "one to two months"
+           timeframe is an approximate claim — confirm the exact window per coach. -->
+      <div class="section container transformations">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>Account transformations</span>
+            <h2 data-reveal>Same coach. One to two months apart.</h2>
           </div>
-          <div class="hero__stats" data-reveal>
-            <div class="hero__stat">
-              <div class="hero__stat-value" data-count-to="5" data-count-suffix="+">0</div>
-              <div class="hero__stat-label">Years in the fitness world</div>
-            </div>
-            <div class="hero__stat">
-              <div class="hero__stat-value" data-count-to="20" data-count-suffix="+">0</div>
-              <div class="hero__stat-label">Coaches we've filmed</div>
-            </div>
-            <div class="hero__stat">
-              <div class="hero__stat-value" data-count-to="100" data-count-suffix="%">0</div>
-              <div class="hero__stat-label">Done-for-you</div>
-            </div>
+          <div class="section__head-actions" data-reveal>
+            <a href="#contact" class="btn btn--outline">Start yours</a>
+            <a href="#work" class="btn btn--outline">See the work</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Service ticker: an athletic scoreboard-style scroll of what we do -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__track">
-        <span>Script Writing</span><span class="ticker__dot">&bull;</span>
-        <span>Video Recording</span><span class="ticker__dot">&bull;</span>
-        <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
-        <span>Editing</span><span class="ticker__dot">&bull;</span>
-        <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
-        <span>Script Writing</span><span class="ticker__dot">&bull;</span>
-        <span>Video Recording</span><span class="ticker__dot">&bull;</span>
-        <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
-        <span>Editing</span><span class="ticker__dot">&bull;</span>
-        <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
-      </div>
-    </div>
-
-    <!-- Why you'd want us -->
-    <section class="section container why">
-      <div class="why__head">
-        <span class="eyebrow" data-reveal>Why you'd want us</span>
-        <h2 class="why__headline" data-reveal>
-          You didn't get into coaching<br />
-          to sit in the edit bay.
-        </h2>
-        <p class="why__lead" data-reveal>
-          Between programming, check-ins, and actually training clients, marketing is the
-          thing that quietly slips — so the reels never post and coaches with worse advice
-          keep out-posting you. That's the whole job we take off your plate: you coach on
-          camera, we handle the script, the shoot, and the edit.
+        <p class="transformations__lead" data-reveal>
+          We script, film, and edit the whole feed. These are the follower counts before we
+          started and after — nothing boosted, nothing bought.
         </p>
+        <div class="transformation-grid" data-reveal-group>
+          <figure class="transformation" data-reveal data-glow>
+            <div class="transformation__shots">
+              <div class="transformation__shot">
+                <span class="transformation__tag">Before</span>
+                <img src="assets/images/results/transformation-1-before.webp" alt="Mustafa Ashraf's Instagram profile at 54.1K followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+              <div class="transformation__shot">
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="assets/images/results/transformation-1-after.webp" alt="Mustafa Ashraf's Instagram profile at 68.4K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+            </div>
+            <figcaption class="transformation__meta">
+              <div class="transformation__result">
+                <span class="transformation__delta">+14.3K</span>
+                <span class="transformation__range">54.1K &rarr; 68.4K followers</span>
+              </div>
+              <div class="transformation__who">
+                <strong>Mustafa Ashraf</strong>
+                <span>@mustafa_ashraf_26</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="transformation" data-reveal data-glow>
+            <div class="transformation__shots">
+              <div class="transformation__shot">
+                <span class="transformation__tag">Before</span>
+                <img src="assets/images/results/transformation-2-before.webp" alt="Galal Mohamed's Instagram profile at 43.6K followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+              <div class="transformation__shot">
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="assets/images/results/transformation-2-after.webp" alt="Galal Mohamed's Instagram profile at 63.8K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+            </div>
+            <figcaption class="transformation__meta">
+              <div class="transformation__result">
+                <span class="transformation__delta">+20.2K</span>
+                <span class="transformation__range">43.6K &rarr; 63.8K followers</span>
+              </div>
+              <div class="transformation__who">
+                <strong>Galal Mohamed</strong>
+                <span>@galalmohamed99</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="transformation" data-reveal data-glow>
+            <div class="transformation__shots">
+              <div class="transformation__shot">
+                <span class="transformation__tag">Before</span>
+                <img src="assets/images/results/transformation-3-before.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 2,948 followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+              <div class="transformation__shot">
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="assets/images/results/transformation-3-after.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 17.1K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+            </div>
+            <figcaption class="transformation__meta">
+              <div class="transformation__result">
+                <span class="transformation__delta">+14.2K</span>
+                <span class="transformation__range">2,948 &rarr; 17.1K followers</span>
+              </div>
+              <div class="transformation__who">
+                <strong>Mohamed Abd El-Shafy</strong>
+                <span>@moh.abdelshafy</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="transformation" data-reveal data-glow>
+            <div class="transformation__shots">
+              <div class="transformation__shot">
+                <span class="transformation__tag">Before</span>
+                <img src="assets/images/results/transformation-4-before.webp" alt="Mohamed Badr's Instagram profile at 9,194 followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+              <div class="transformation__shot">
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="assets/images/results/transformation-4-after.webp" alt="Mohamed Badr's Instagram profile at 32.4K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
+              </div>
+            </div>
+            <figcaption class="transformation__meta">
+              <div class="transformation__result">
+                <span class="transformation__delta">+23.2K</span>
+                <span class="transformation__range">9,194 &rarr; 32.4K followers</span>
+              </div>
+              <div class="transformation__who">
+                <strong>Mohamed Badr</strong>
+                <span>@coach.butcher</span>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
       </div>
-      <ul class="why__list" data-reveal-group>
-        <li class="why__item" data-reveal data-glow>
-          <span class="why__item-num" aria-hidden="true">01</span>
-          <h3 class="why__item-tag">Your time back</h3>
-          <p>No scripting at midnight, no fighting the editing timeline. You just show up and coach.</p>
-        </li>
-        <li class="why__item" data-reveal data-glow>
-          <span class="why__item-num" aria-hidden="true">02</span>
-          <h3 class="why__item-tag">A coach's voice</h3>
-          <p>We came up in the gym, so nothing we write for you sounds like a generic ad.</p>
-        </li>
-        <li class="why__item" data-reveal data-glow>
-          <span class="why__item-num" aria-hidden="true">03</span>
-          <h3 class="why__item-tag">Real consistency</h3>
-          <p>A steady feed the algorithm rewards — instead of one burst every few months.</p>
-        </li>
-      </ul>
+
+      <div class="section container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>What we do</span>
+            <h2 data-reveal>From first idea to posted reel</h2>
+          </div>
+          <a href="#services" class="btn btn--outline" data-reveal>See all services</a>
+        </div>
+        <div class="workflow-grid" data-reveal-group>
+          <div class="workflow-item" data-reveal data-glow>
+            <span class="workflow-item__num" aria-hidden="true">01</span>
+            <span class="workflow-item__icon icon-interactive" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20h4l10.5-10.5a2.121 2.121 0 0 0-3-3L5 17v3z" />
+                <path d="M13.5 6.5l3 3" />
+              </svg>
+            </span>
+            <h3>Script Writing</h3>
+            <p>Hooks and scripts built around your coaching, so every video has a point before the camera rolls.</p>
+          </div>
+          <div class="workflow-item" data-reveal data-glow>
+            <span class="workflow-item__num" aria-hidden="true">02</span>
+            <span class="workflow-item__icon icon-interactive" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 7l-7 5 7 5V7z" />
+                <rect x="1" y="5" width="15" height="14" rx="2" />
+              </svg>
+            </span>
+            <h3>Video Recording</h3>
+            <p>Sessions filmed in the gym with the gear and direction to make you look like the expert you are.</p>
+          </div>
+          <div class="workflow-item" data-reveal data-glow>
+            <span class="workflow-item__num" aria-hidden="true">03</span>
+            <span class="workflow-item__icon icon-interactive" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 8l2-4h4l-2 4" />
+                <path d="M8 8l2-4h4l-2 4" />
+                <path d="M14 8l2-4h4l-2 4" />
+                <rect x="2" y="8" width="20" height="12" rx="1" />
+              </svg>
+            </span>
+            <h3>Reels &amp; Editing</h3>
+            <p>Short-form edits cut for the feed — captions, pacing, and sound tuned for reels and shorts.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Account transformations — real coach profiles, before we started vs. now.
-         Screenshots and follower counts are real. The "one to two months"
-         timeframe is an approximate claim — confirm the exact window per coach. -->
-    <section class="section container transformations">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow" data-reveal>Account transformations</span>
-          <h2 data-reveal>Same coach. One to two months apart.</h2>
-        </div>
-        <div class="section__head-actions" data-reveal>
-          <a href="contact.html" class="btn btn--outline">Start yours</a>
-          <a href="work.html" class="btn btn--outline">See the work</a>
+    <!-- ==================================================================
+         WORK
+         ================================================================== -->
+    <section id="work" class="snap-section">
+      <div class="work-hero page-hero container">
+        <div class="page-hero__grid">
+          <div class="page-hero__head">
+            <span class="eyebrow" data-reveal>Our work</span>
+            <h2 data-reveal>Coaches we've put on the feed.</h2>
+          </div>
+          <div class="page-hero__lead" data-reveal>
+            <p>Vertical reels and shorts we scripted, shot, and cut for coaches — each one's view count is right there on the thumbnail.</p>
+          </div>
         </div>
       </div>
-      <p class="transformations__lead" data-reveal>
-        We script, film, and edit the whole feed. These are the follower counts before we
-        started and after — nothing boosted, nothing bought.
-      </p>
-      <div class="transformation-grid" data-reveal-group>
-        <figure class="transformation" data-reveal data-glow>
-          <div class="transformation__shots">
-            <div class="transformation__shot">
-              <span class="transformation__tag">Before</span>
-              <img src="assets/images/results/transformation-1-before.webp" alt="Mustafa Ashraf's Instagram profile at 54.1K followers before working with ZH Personal Branding" loading="lazy" />
-            </div>
-            <div class="transformation__shot">
-              <span class="transformation__tag transformation__tag--after">After</span>
-              <img src="assets/images/results/transformation-1-after.webp" alt="Mustafa Ashraf's Instagram profile at 68.4K followers after working with ZH Personal Branding" loading="lazy" />
-            </div>
-          </div>
-          <figcaption class="transformation__meta">
-            <div class="transformation__result">
-              <span class="transformation__delta">+14.3K</span>
-              <span class="transformation__range">54.1K &rarr; 68.4K followers</span>
-            </div>
-            <div class="transformation__who">
-              <strong>Mustafa Ashraf</strong>
-              <span>@mustafa_ashraf_26</span>
-            </div>
-          </figcaption>
-        </figure>
-        <figure class="transformation" data-reveal data-glow>
-          <div class="transformation__shots">
-            <div class="transformation__shot">
-              <span class="transformation__tag">Before</span>
-              <img src="assets/images/results/transformation-2-before.webp" alt="Galal Mohamed's Instagram profile at 43.6K followers before working with ZH Personal Branding" loading="lazy" />
-            </div>
-            <div class="transformation__shot">
-              <span class="transformation__tag transformation__tag--after">After</span>
-              <img src="assets/images/results/transformation-2-after.webp" alt="Galal Mohamed's Instagram profile at 63.8K followers after working with ZH Personal Branding" loading="lazy" />
-            </div>
-          </div>
-          <figcaption class="transformation__meta">
-            <div class="transformation__result">
-              <span class="transformation__delta">+20.2K</span>
-              <span class="transformation__range">43.6K &rarr; 63.8K followers</span>
-            </div>
-            <div class="transformation__who">
-              <strong>Galal Mohamed</strong>
-              <span>@galalmohamed99</span>
-            </div>
-          </figcaption>
-        </figure>
-        <figure class="transformation" data-reveal data-glow>
-          <div class="transformation__shots">
-            <div class="transformation__shot">
-              <span class="transformation__tag">Before</span>
-              <img src="assets/images/results/transformation-3-before.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 2,948 followers before working with ZH Personal Branding" loading="lazy" />
-            </div>
-            <div class="transformation__shot">
-              <span class="transformation__tag transformation__tag--after">After</span>
-              <img src="assets/images/results/transformation-3-after.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 17.1K followers after working with ZH Personal Branding" loading="lazy" />
-            </div>
-          </div>
-          <figcaption class="transformation__meta">
-            <div class="transformation__result">
-              <span class="transformation__delta">+14.2K</span>
-              <span class="transformation__range">2,948 &rarr; 17.1K followers</span>
-            </div>
-            <div class="transformation__who">
-              <strong>Mohamed Abd El-Shafy</strong>
-              <span>@moh.abdelshafy</span>
-            </div>
-          </figcaption>
-        </figure>
-        <figure class="transformation" data-reveal data-glow>
-          <div class="transformation__shots">
-            <div class="transformation__shot">
-              <span class="transformation__tag">Before</span>
-              <img src="assets/images/results/transformation-4-before.webp" alt="Mohamed Badr's Instagram profile at 9,194 followers before working with ZH Personal Branding" loading="lazy" />
-            </div>
-            <div class="transformation__shot">
-              <span class="transformation__tag transformation__tag--after">After</span>
-              <img src="assets/images/results/transformation-4-after.webp" alt="Mohamed Badr's Instagram profile at 32.4K followers after working with ZH Personal Branding" loading="lazy" />
-            </div>
-          </div>
-          <figcaption class="transformation__meta">
-            <div class="transformation__result">
-              <span class="transformation__delta">+23.2K</span>
-              <span class="transformation__range">9,194 &rarr; 32.4K followers</span>
-            </div>
-            <div class="transformation__who">
-              <strong>Mohamed Badr</strong>
-              <span>@coach.butcher</span>
-            </div>
-          </figcaption>
-        </figure>
+
+      <div class="section container work-grid">
+        <div class="project-grid" data-project-grid="all" data-reveal-group></div>
       </div>
     </section>
 
-    <section class="section container">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow" data-reveal>What we do</span>
-          <h2 data-reveal>From first idea to posted reel</h2>
+    <!-- ==================================================================
+         OUR CLIENTS
+         Profile cards only — avatar + name + @handle, no full screenshots.
+         Avatars in assets/images/clients/ were cropped from the profile
+         screenshots in assets/images/_originals/clients/ (git-ignored).
+         Two-row band; scrolls horizontally when the roster outgrows the width.
+         ================================================================== -->
+    <section id="clients" class="snap-section">
+      <div class="section container clients">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>Our clients</span>
+            <h2 data-reveal>Accounts we run day to day.</h2>
+          </div>
+          <a href="#contact" class="btn btn--outline" data-reveal>Become one</a>
         </div>
-        <a href="services.html" class="btn btn--outline" data-reveal>See all services</a>
+        <p class="clients__lead" data-reveal>
+          The coaching accounts whose content — scripts, shoots, and edits — runs
+          through us every week. Scroll for the full roster.
+        </p>
+        <div class="clients-scroller" data-reveal>
+          <div class="clients-grid">
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-04.webp" alt="Mustafa Ashraf" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Mustafa Ashraf</figcaption>
+              <span class="client-card__handle">@mustafa_ashraf_26</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-06.webp" alt="Mira Reda" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Mira</figcaption>
+              <span class="client-card__handle">@mirareda</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-02.webp" alt="Mohamed Badr" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Mohamed Badr</figcaption>
+              <span class="client-card__handle">@coach.butcher</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-16.webp" alt="Galal Mohamed" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Galal Mohamed</figcaption>
+              <span class="client-card__handle">@galalmohamed95</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-08.webp" alt="Muhammed Saad" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Muhammed Saad</figcaption>
+              <span class="client-card__handle">@__memmes</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-03.webp" alt="Mohanad Hesham" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Mohanad Hesham</figcaption>
+              <span class="client-card__handle">@mohanad_elmaghraby</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-01.webp" alt="Amr Moharram" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Amr Moharram</figcaption>
+              <span class="client-card__handle">@coach_amrmoharram</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-09.webp" alt="Mohamed Abd El-Shafy" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Mohamed Abd El-Shafy</figcaption>
+              <span class="client-card__handle">@moh.abdelshafy</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-11.webp" alt="Kareem Mahmoud" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Kareem Mahmoud</figcaption>
+              <span class="client-card__handle">@kariiim.mahmoud</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-15.webp" alt="Gehad Fahmy" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Gehad Fahmy</figcaption>
+              <span class="client-card__handle">@gehadd_fahmy</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-05.webp" alt="Katy" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Katy</figcaption>
+              <span class="client-card__handle">@itskaty___</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-13.webp" alt="Noura Alaa" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Noura Alaa</figcaption>
+              <span class="client-card__handle">@nouraalaa10</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-17.webp" alt="Sakr Pro Coaching" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Sakr Pro Coaching</figcaption>
+              <span class="client-card__handle">@sakr_procoaching</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-18.webp" alt="Omar Nasr" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Omar Nasr</figcaption>
+              <span class="client-card__handle">@omarnasrbaker</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-10.webp" alt="Karim Maghraby" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Karim Maghraby</figcaption>
+              <span class="client-card__handle">@karimmaghraby</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-14.webp" alt="Dr. Ziad Tharwat" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Dr. Ziad Tharwat</figcaption>
+              <span class="client-card__handle">@dr_ziadtharwat</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-07.webp" alt="Rohaim Moustafa" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Rohaim Moustafa</figcaption>
+              <span class="client-card__handle">@rohaim_moustafa</span>
+            </figure>
+            <figure class="client-card" data-glow>
+              <img class="client-card__avatar" src="assets/images/clients/client-12.webp" alt="Mostafa Sharaf" loading="lazy" width="256" height="256" />
+              <figcaption class="client-card__name">Mostafa Sharaf</figcaption>
+              <span class="client-card__handle">@c.mostafa_sharaf</span>
+            </figure>
+          </div>
+        </div>
       </div>
-      <div class="workflow-grid" data-reveal-group>
-        <div class="workflow-item" data-reveal data-glow>
-          <span class="workflow-item__num" aria-hidden="true">01</span>
-          <span class="workflow-item__icon icon-interactive" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 20h4l10.5-10.5a2.121 2.121 0 0 0-3-3L5 17v3z" />
-              <path d="M13.5 6.5l3 3" />
-            </svg>
-          </span>
-          <h3>Script Writing</h3>
-          <p>Hooks and scripts built around your coaching, so every video has a point before the camera rolls.</p>
+    </section>
+
+    <!-- ==================================================================
+         SERVICES
+         ================================================================== -->
+    <section id="services" class="snap-section">
+      <div class="services-hero page-hero container">
+        <div class="page-hero__grid">
+          <div class="page-hero__head">
+            <span class="eyebrow" data-reveal>What we do</span>
+            <h2 data-reveal>You coach. We make the content.</h2>
+          </div>
+          <div class="page-hero__lead" data-reveal>
+            <p>One team handling the whole pipeline — scripting, filming, and editing — so your reels get made and posted without eating your week.</p>
+          </div>
         </div>
-        <div class="workflow-item" data-reveal data-glow>
-          <span class="workflow-item__num" aria-hidden="true">02</span>
-          <span class="workflow-item__icon icon-interactive" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M23 7l-7 5 7 5V7z" />
-              <rect x="1" y="5" width="15" height="14" rx="2" />
-            </svg>
-          </span>
-          <h3>Video Recording</h3>
-          <p>Sessions filmed in the gym with the gear and direction to make you look like the expert you are.</p>
+      </div>
+
+      <div class="section container services-section">
+        <div class="services-section__grid">
+          <div class="services-section__head">
+            <span class="eyebrow" data-reveal>The pipeline</span>
+            <h2 data-reveal>Every reel, start to finish</h2>
+            <p class="services-section__lead" data-reveal>Three stages, one team. You're only ever asked to show up and coach — we carry the rest, from blank page to posted reel.</p>
+          </div>
+          <div class="services-list" data-reveal-group>
+          <div class="service-row" data-reveal>
+            <span class="service-row__index">01</span>
+            <span class="service-row__icon icon-interactive" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20h4l10.5-10.5a2.121 2.121 0 0 0-3-3L5 17v3z" />
+                <path d="M13.5 6.5l3 3" />
+              </svg>
+            </span>
+            <div>
+              <h3>Scripting &amp; Ideas</h3>
+              <p class="service-row__desc">We turn your coaching into hooks and scripts built to stop the scroll — you approve, we roll. No more staring at a blank notes app.</p>
+            </div>
+          </div>
+          <div class="service-row" data-reveal>
+            <span class="service-row__index">02</span>
+            <span class="service-row__icon icon-interactive" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 7l-7 5 7 5V7z" />
+                <rect x="1" y="5" width="15" height="14" rx="2" />
+              </svg>
+            </span>
+            <div>
+              <h3>Filming &amp; Shooting</h3>
+              <p class="service-row__desc">Sessions filmed in the gym with the gear and direction to make you look like the expert you already are — batched so one shoot fuels weeks of content.</p>
+            </div>
+          </div>
+          <div class="service-row" data-reveal>
+            <span class="service-row__index">03</span>
+            <span class="service-row__icon icon-interactive" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 8l2-4h4l-2 4" />
+                <path d="M8 8l2-4h4l-2 4" />
+                <path d="M14 8l2-4h4l-2 4" />
+                <rect x="2" y="8" width="20" height="12" rx="1" />
+              </svg>
+            </span>
+            <div>
+              <h3>Editing — Reels &amp; Shorts</h3>
+              <p class="service-row__desc">Cut, captioned, and paced for the feed. Every reel comes back ready to post to Instagram, TikTok, and YouTube Shorts.</p>
+            </div>
+          </div>
+          </div>
         </div>
-        <div class="workflow-item" data-reveal data-glow>
-          <span class="workflow-item__num" aria-hidden="true">03</span>
-          <span class="workflow-item__icon icon-interactive" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 8l2-4h4l-2 4" />
-              <path d="M8 8l2-4h4l-2 4" />
-              <path d="M14 8l2-4h4l-2 4" />
-              <rect x="2" y="8" width="20" height="12" rx="1" />
-            </svg>
-          </span>
-          <h3>Reels &amp; Editing</h3>
-          <p>Short-form edits cut for the feed — captions, pacing, and sound tuned for reels and shorts.</p>
+      </div>
+
+      <div class="section container packages">
+        <div class="packages__head">
+          <span class="eyebrow" data-reveal>Packages</span>
+          <h2 data-reveal>Pick your monthly output</h2>
+          <p class="packages-note text-muted" data-reveal>
+            Both packages are fully done-for-you — scripting, shooting, and editing all included.
+            The only question is how much you want to post.
+          </p>
         </div>
+        <div class="pricing-grid" data-reveal-group>
+          <div class="pricing-card" data-reveal data-glow>
+            <span class="pricing-card__label">Starter</span>
+            <div class="pricing-card__count">12<span>reels</span></div>
+            <p class="text-muted">A steady, consistent presence — three reels a week to build momentum and stay on the feed.</p>
+            <ul class="pricing-card__features">
+              <li>12 done-for-you reels / month</li>
+              <li>Scripting for every reel</li>
+              <li>Filming session included</li>
+              <li>Editing, captions &amp; ready to post</li>
+            </ul>
+            <a href="#contact" class="btn btn--outline">Book a call</a>
+          </div>
+          <div class="pricing-card pricing-card--featured" data-reveal data-glow>
+            <span class="pricing-card__badge">Best for growth</span>
+            <span class="pricing-card__label">Scale</span>
+            <div class="pricing-card__count">24<span>reels</span></div>
+            <p class="text-muted">Double the output for coaches going all-in — enough volume to actually move the algorithm.</p>
+            <ul class="pricing-card__features">
+              <li>24 done-for-you reels / month</li>
+              <li>Scripting for every reel</li>
+              <li>Priority filming sessions</li>
+              <li>Editing, captions &amp; ready to post</li>
+              <li>Faster turnaround</li>
+            </ul>
+            <a href="#contact" class="btn btn--primary">Book a call</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section container faq">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>Before you ask</span>
+            <h2 data-reveal>How it actually works</h2>
+          </div>
+        </div>
+        <div class="faq__list" data-reveal-group>
+          <div class="faq__item" data-reveal>
+            <h3 class="faq__q">What happens after I book a call?</h3>
+            <p class="faq__a">We hop on a short call to learn your coaching, your audience, and your goals. If it's a fit, we plan your first month of content and book your shoot — usually within the same week.</p>
+          </div>
+          <div class="faq__item" data-reveal>
+            <h3 class="faq__q">Do I have to travel to film?</h3>
+            <p class="faq__a">No. We film on-location at your gym. If you're outside our area we run remote shoots and direct you over the call — many coaches capture a full month in one session.</p>
+          </div>
+          <div class="faq__item" data-reveal>
+            <h3 class="faq__q">How many reels, and how fast?</h3>
+            <p class="faq__a">12 or 24 finished reels a month, depending on your package. First edits usually land within a few days of the shoot — captioned and ready to post.</p>
+          </div>
+          <div class="faq__item" data-reveal>
+            <h3 class="faq__q">What if I want changes to an edit?</h3>
+            <p class="faq__a">Every reel includes revisions. We tweak the cut, captions, or pacing until it's something you're happy to put your name on.</p>
+          </div>
+          <div class="faq__item" data-reveal>
+            <h3 class="faq__q">Am I locked into a long contract?</h3>
+            <p class="faq__a">We work month to month. The plan is that the results keep you around — not the paperwork.</p>
+          </div>
+          <div class="faq__item" data-reveal>
+            <h3 class="faq__q">What does it cost?</h3>
+            <p class="faq__a">Pricing depends on your package and shoot logistics, so we quote it on the call once we know what you need. Book a call and we'll walk you through it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ABOUT
+         ================================================================== -->
+    <section id="about" class="snap-section">
+      <div class="about-hero page-hero container">
+        <div class="page-hero__grid">
+          <div class="page-hero__head">
+            <span class="eyebrow" data-reveal>About us</span>
+            <h2 data-reveal>We came up in the gym, not an ad agency.</h2>
+          </div>
+          <div class="page-hero__lead" data-reveal>
+            <p>
+              ZH Personal Branding exists for one kind of client: fitness coaches. We spent
+              years in the fitness world before picking up a camera, so we don't need
+              progressive overload explained — we already speak your language, and it shows
+              in every reel we script, shoot, and cut.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section container">
+        <div class="about-stats" data-reveal-group>
+          <div class="about-stat" data-reveal>
+            <span class="about-stat__value">5+</span>
+            <span class="about-stat__label">Years in the fitness world</span>
+          </div>
+          <div class="about-stat" data-reveal>
+            <span class="about-stat__value">20+</span>
+            <span class="about-stat__label">Coaches we've filmed</span>
+          </div>
+          <div class="about-stat" data-reveal>
+            <span class="about-stat__value">100%</span>
+            <span class="about-stat__label">Done-for-you, start to post</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Founder. Portrait is a placeholder monogram — replace .founder__portrait
+           with a real photo, and swap the name/copy below, when you're ready. -->
+      <div class="section container founder">
+        <div class="founder__grid">
+          <div class="founder__portrait" data-reveal aria-hidden="true">
+            <span class="founder__monogram">ZH</span>
+          </div>
+          <div class="founder__body" data-reveal>
+            <span class="eyebrow">The founder</span>
+            <h2>Years under the bar, then behind the camera.</h2>
+            <p>
+              Before this studio, I spent years in the fitness world — training, competing,
+              and living the exact grind our clients are in now. I saw the same thing over
+              and over: the coaches who win online aren't the best trainers, they're the ones
+              who show up consistently. And almost none of them have time to script, shoot,
+              and edit on top of a full client roster.
+            </p>
+            <p>
+              So I built the studio I wished existed — a team that already speaks fitness,
+              takes the whole content pipeline off your plate, and makes you look like the
+              expert you already are.
+            </p>
+            <p class="founder__sign">— Ziad Hazem, Founder</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>How we work</span>
+            <h2 data-reveal>Why coaches trust us</h2>
+          </div>
+        </div>
+        <div class="about-values" data-reveal-group>
+          <div class="about-value" data-reveal data-glow>
+            <h3>We speak fitness</h3>
+            <p>Your content sounds like a coach who knows their stuff — not a generic ad written by someone who's never trained a client.</p>
+          </div>
+          <div class="about-value" data-reveal data-glow>
+            <h3>Done-for-you</h3>
+            <p>Script, shoot, edit — the whole thing is off your plate. You show up, coach on camera, and get reels back ready to post.</p>
+          </div>
+          <div class="about-value" data-reveal data-glow>
+            <h3>Built for the feed</h3>
+            <p>Every reel is made to perform — hooks that stop the scroll and pacing tuned for how people actually watch short-form.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         CONTACT
+         ================================================================== -->
+    <section id="contact" class="snap-section">
+      <div class="contact-hero page-hero container">
+        <div class="page-hero__grid">
+          <div class="page-hero__head">
+            <span class="eyebrow" data-reveal>Book a call</span>
+            <h2 data-reveal>Let's get your content handled.</h2>
+          </div>
+          <div class="page-hero__lead" data-reveal>
+            <p>Tell us about your coaching and where you want to take it — we typically reply within one business day.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section container contact-layout">
+        <!--
+          No server backend: on a valid submit, contactForm.js opens a WhatsApp
+          (wa.me) link with the normalised details pre-filled. Set the studio
+          number in WHATSAPP_NUMBER at the top of that module. To move to a real
+          endpoint later, POST the module's `data` object and drop data-unwired.
+        -->
+        <form class="contact-form" data-unwired novalidate data-reveal>
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-field">
+            <label for="handle">Instagram / TikTok handle</label>
+            <input type="text" id="handle" name="handle" placeholder="@yourcoaching" />
+          </div>
+          <div class="form-field">
+            <label for="package">Which package fits?</label>
+            <select id="package" name="package">
+              <option value="" selected>I'm not sure yet</option>
+              <option value="12-reels">12 Reels / month</option>
+              <option value="24-reels">24 Reels / month</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="timeslot">Preferred time of day for the call</label>
+            <select id="timeslot" name="timeslot">
+              <option value="" selected>Any time works</option>
+              <option value="9-12">Morning — 9am to 12pm</option>
+              <option value="12-15">Early afternoon — 12pm to 3pm</option>
+              <option value="15-18">Late afternoon — 3pm to 6pm</option>
+              <option value="18-21">Evening — 6pm to 9pm</option>
+            </select>
+          </div>
+          <fieldset class="form-field form-field--group">
+            <legend>Preferred days</legend>
+            <p class="form-hint text-muted">Pick any that work — we'll aim for one of them.</p>
+            <div class="checkbox-grid">
+              <label class="checkbox"><input type="checkbox" name="days" value="mon" /> Mon</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="tue" /> Tue</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="wed" /> Wed</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="thu" /> Thu</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="fri" /> Fri</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="sat" /> Sat</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="sun" /> Sun</label>
+            </div>
+          </fieldset>
+          <div class="form-field">
+            <label for="message">Tell us about your coaching</label>
+            <textarea id="message" name="message" placeholder="Who you train, what you post now, and where you want to take it..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Book a call</button>
+          <p class="form-note text-muted">
+            Pressing "Book a call" opens WhatsApp with your details ready to send. No WhatsApp?
+            Email <a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a>.
+          </p>
+        </form>
+
+        <aside class="contact-info" data-reveal>
+          <div class="contact-info__block contact-next">
+            <h3>What happens next</h3>
+            <ol class="contact-steps">
+              <li><span aria-hidden="true">1</span> We reply within one business day.</li>
+              <li><span aria-hidden="true">2</span> A quick call to map out your content and goals.</li>
+              <li><span aria-hidden="true">3</span> We plan your first shoot — often the same week.</li>
+            </ol>
+          </div>
+          <div class="contact-info__block">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a></p>
+          </div>
+          <div class="contact-info__block">
+            <h3>Studio</h3>
+            <p>Cairo, Egypt — available for remote &amp; on-location projects worldwide.</p>
+          </div>
+          <div class="contact-info__block">
+            <h3>Follow</h3>
+            <p><a href="#">Instagram</a></p>
+          </div>
+        </aside>
       </div>
     </section>
   </main>
@@ -286,7 +774,7 @@
     <div class="footer__top">
       <div class="footer__cta">
         <h2>Let's build your coaching brand.</h2>
-        <a href="contact.html" class="btn btn--primary">Book a call</a>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
       </div>
       <div class="footer__brand">
         <span class="footer__brand-mark" aria-hidden="true">ZH</span>
@@ -295,7 +783,7 @@
       </div>
       <div class="footer__columns">
         <div class="footer__column">
-          <h4>Contact</h4>
+          <h3>Contact</h3>
           <a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a>
           <p class="footer__location text-muted">Cairo, Egypt &mdash; remote &amp; on-location</p>
           <div class="footer__socials">
@@ -316,11 +804,15 @@
     </div>
   </footer>
 
-  <script src="assets/js/modules/navbar.js?v=8"></script>
-  <script src="assets/js/modules/navIndicator.js?v=8"></script>
-  <script src="assets/js/modules/scrollReveal.js?v=8"></script>
-  <script src="assets/js/modules/counter.js?v=8"></script>
-  <script src="assets/js/modules/pointer.js?v=8"></script>
-  <script src="assets/js/main.js?v=8"></script>
+  <script src="assets/js/data/projects.js?v=15"></script>
+  <script src="assets/js/modules/projectGrid.js?v=15"></script>
+  <script src="assets/js/modules/navbar.js?v=15"></script>
+  <script src="assets/js/modules/navIndicator.js?v=15"></script>
+  <script src="assets/js/modules/sectionNav.js?v=15"></script>
+  <script src="assets/js/modules/scrollReveal.js?v=15"></script>
+  <script src="assets/js/modules/counter.js?v=15"></script>
+  <script src="assets/js/modules/pointer.js?v=15"></script>
+  <script src="assets/js/modules/contactForm.js?v=15"></script>
+  <script src="assets/js/main.js?v=15"></script>
 </body>
 </html>

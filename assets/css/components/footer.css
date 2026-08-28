@@ -65,7 +65,7 @@
   flex-wrap: wrap;
 }
 
-.footer__column h4 {
+.footer__column h3 {
   font-size: var(--fs-small);
   text-transform: uppercase;
   letter-spacing: 0.1em;

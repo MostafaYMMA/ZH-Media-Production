@@ -54,7 +54,9 @@
   cursor: pointer;
   background-image: linear-gradient(45deg, transparent 50%, var(--color-accent) 50%),
     linear-gradient(135deg, var(--color-accent) 50%, transparent 50%);
-  background-position: calc(100% - 1.15rem) 1.25rem, calc(100% - 0.8rem) 1.25rem;
+  /* Vertically centered rather than a fixed offset from the top, so the arrow
+     stays put whatever the control's font-size / padding works out to. */
+  background-position: calc(100% - 1.15rem) center, calc(100% - 0.8rem) center;
   background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
   background-repeat: no-repeat;
   padding-right: 2.5rem;
@@ -153,7 +155,7 @@
   gap: var(--space-lg);
 }
 
-.contact-info__block h4 {
+.contact-info__block h3 {
   font-size: var(--fs-small);
   text-transform: uppercase;
   letter-spacing: 0.08em;
