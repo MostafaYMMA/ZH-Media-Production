@@ -233,7 +233,24 @@ Chromium, Firefox and WebKit, served over `python -m http.server`.
 | Keyboard only | ✅ every control reachable and labelled; Space toggles play without scrolling the page |
 | Contact form → WhatsApp | ✅ name, email, handle, package, preferred time, preferred days and message all arrive |
 | The four redirect stubs | ✅ all land on the right section, below the fixed header |
-| **Lighthouse mobile** | ✅ **100 accessibility / 100 best practices / 100 SEO** — 56 passed, 0 failed |
+| **Lighthouse mobile** | ✅ **100 accessibility / 100 best practices / 100 SEO** — 56 passed, 0 failed — ⚠️ **measured at `?v=22`, see the note below** |
+
+> **⚠️ One caveat on that Lighthouse row.** It was measured at `?v=22`. The
+> browser-automation server I ran it through died part-way through the review
+> rounds and did not come back, so it has **not** been re-run against the
+> current build (`?v=29`). What has been re-run on the current build, every
+> round, is stricter in the one category that ever failed: a full-page WCAG
+> contrast sweep with every scroll-reveal forced open, which reports **0
+> failures** — Lighthouse itself missed six of those, because axe skips
+> elements sitting at `opacity: 0`. The structural checks behind the other
+> categories were also re-verified directly on the current build: heading order
+> across all 46 headings, `alt` on every image, a label or accessible name on
+> every control, link and button, nothing focusable inside `aria-hidden`, valid
+> list structure, `lang`, `title`, meta description, viewport meta and all four
+> landmarks — **0 issues**.
+>
+> It is still worth re-running Lighthouse once before merge, to put a number on
+> it rather than an argument.
 
 ### Three real defects found and fixed during testing
 
