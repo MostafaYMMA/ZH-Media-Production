@@ -2,9 +2,12 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 0.95rem 1.9rem;
+  /* The CTA is the single most important control on the page, so it is sized
+     like one. The navbar's Contact pill is pinned back to the old size in
+     navbar.css — the desktop nav's 980px breakpoint is measured against it. */
+  padding: 1.15rem 2.5rem;
   font-family: var(--font-data);
-  font-size: var(--fs-small);
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -75,4 +78,10 @@
 /* Inside a flex/grid CTA block the note supplies its own rhythm via the gap. */
 .cta-pair .cta-note {
   margin-block-start: 0;
+}
+
+/* Every major section ends on the same ask, so the block that carries it is
+   shared rather than re-declared per section. */
+.section-cta {
+  margin-block-start: var(--space-2xl);
 }

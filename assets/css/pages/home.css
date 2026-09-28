@@ -153,10 +153,22 @@
   max-width: 24ch;
 }
 
+/* The line that actually explains the business. It sits right under the
+   "Personal branding for fitness coaches" line, which names the category but
+   does not say what we do — so this one says it in plain words, and is sized
+   and coloured to be read rather than skimmed past. */
 .hero__subtitle {
   margin-top: var(--space-md);
   font-size: var(--fs-lead);
-  max-width: 52ch;
+  line-height: 1.5;
+  color: var(--color-text);
+  max-width: 54ch;
+}
+
+/* The three verbs are the offer; let them carry the line. */
+.hero__subtitle strong {
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .hero__actions {

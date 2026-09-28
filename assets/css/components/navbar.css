@@ -56,6 +56,15 @@
   border-radius: 999px;
 }
 
+/* The Contact pill keeps the button size the bar was measured at. .btn grew
+   for the content CTAs, but this one lives inside the 980px desktop-nav
+   breakpoint that CLAUDE.md says to re-measure before touching — growing it
+   here would push the bar past it. */
+.navbar__link.btn {
+  padding: 0.95rem 1.9rem;
+  font-size: var(--fs-small);
+}
+
 .navbar__link[aria-current="page"] {
   color: var(--color-accent);
 }

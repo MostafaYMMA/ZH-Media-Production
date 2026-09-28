@@ -16,8 +16,16 @@
    ========================================================================== */
 
 .journey__head {
-  max-inline-size: 46rem;
+  max-inline-size: 52rem;
   margin-block-end: var(--space-2xl);
+}
+
+/* This heading is where a coach actually works out what he is buying, so it
+   is sized above every other section heading on the page rather than level
+   with them. */
+.journey__head h2 {
+  font-size: clamp(2.6rem, 5.2vw, 4.5rem);
+  line-height: 0.95;
 }
 
 .journey__lead {
@@ -30,6 +38,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Drives the oversized ghost numeral on each card — see
+     .journey-step__card::before. Counting in CSS keeps the number in one
+     place: the marker's <span> stays the only copy in the markup. */
+  counter-reset: journey-step;
 }
 
 /* --------------------------------------------------------------------------
@@ -39,6 +51,7 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   column-gap: var(--space-md);
+  counter-increment: journey-step;
 }
 
 .journey-step__marker {
@@ -85,7 +98,13 @@
   display: none;
 }
 
+/* The site already uses oversized, bled-in step numerals (.why__item-num,
+   .workflow-item__num). These cards had none, which is most of why they read
+   as empty boxes: a short paragraph floating in a wide card. The numeral
+   fills the dead space without adding anything to read. */
 .journey-step__card {
+  position: relative;
+  overflow: hidden;
   grid-column: 2;
   margin-block-end: var(--space-lg);
   padding: var(--space-lg);
@@ -98,19 +117,63 @@
     box-shadow var(--duration-base) var(--ease-out);
 }
 
+.journey-step__card::before {
+  content: counter(journey-step, decimal-leading-zero);
+  position: absolute;
+  /* Sits on the side the copy is NOT on, so it fills the empty half of the
+     card rather than crowding the text. Copy is start-aligned by default, so
+     the numeral goes to the end edge; the desktop zigzag flips both. */
+  inset-block-end: -0.3em;
+  inset-inline-end: -0.04em;
+  font-family: var(--font-display);
+  font-size: 9rem;
+  line-height: 1;
+  color: rgba(var(--color-accent-rgb), 0.1);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* The icon was a bare 34px glyph floating above the title with the copy
+   capped well short of the card's width, which is what made these read as
+   mostly-empty boxes. It is now a filled disc sitting on the same line as the
+   title, so the card opens on a solid header row instead of whitespace. */
 .journey-step__icon {
+  flex: none;
   display: grid;
   place-items: center;
-  inline-size: 34px;
-  block-size: 34px;
-  margin-block-end: var(--space-sm);
+  inline-size: 52px;
+  block-size: 52px;
+  border-radius: 50%;
+  background: rgba(var(--color-accent-rgb), 0.12);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.3);
   color: var(--color-accent);
-  transition: color var(--duration-base) var(--ease-out);
+  transition: color var(--duration-base) var(--ease-out),
+    background var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
 }
 
 .journey-step__icon svg {
-  inline-size: 24px;
-  block-size: 24px;
+  inline-size: 28px;
+  block-size: 28px;
+}
+
+/* Icon + title + who-pill as one header row. */
+.journey-step__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-block-end: var(--space-md);
+  padding-block-end: var(--space-md);
+  border-block-end: 1px solid rgba(var(--color-accent-rgb), 0.18);
+}
+
+.journey-step__headings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+  min-inline-size: 0;
 }
 
 /* Per the brief: 20px minimum on mobile, 24px on desktop. */
@@ -138,11 +201,11 @@
 /* Full-strength text, not a grey aside — a coach has to be able to read
    exactly what he gets and what he has to do. */
 .journey-step__desc {
+  position: relative;
   margin-block-start: var(--space-sm);
   font-size: var(--fs-statement);
   line-height: 1.7;
   color: var(--color-text);
-  max-inline-size: 52ch;
 }
 
 /* --------------------------------------------------------------------------
@@ -168,7 +231,17 @@
 }
 
 .js .journey-step:not(.is-lit) .journey-step__icon {
-  color: var(--color-text-dim);
+  color: var(--color-text-muted);
+  background: transparent;
+  border-color: var(--color-border-strong);
+}
+
+.js .journey-step:not(.is-lit) .journey-step__head {
+  border-block-end-color: var(--color-border);
+}
+
+.js .journey-step:not(.is-lit) .journey-step__card::before {
+  color: rgba(255, 255, 255, 0.05);
 }
 
 .js .journey-step:not(.is-lit) .journey-step__marker::after {
@@ -216,20 +289,24 @@
     grid-column: 3;
   }
 
-  /* The card on the starting side reads better flush to the line. */
+  /* The card on the starting side reads better flush to the line, which means
+     its header row runs the other way too — icon on the outside, headings
+     hard against the line. */
   .journey-step:nth-child(odd) .journey-step__card {
     text-align: end;
   }
 
-  .journey-step:nth-child(odd) .journey-step__desc {
-    margin-inline-start: auto;
+  .journey-step:nth-child(odd) .journey-step__head {
+    flex-direction: row-reverse;
   }
 
-  /* The icon is a block box, so it stays pinned to the start edge unless it is
-     pushed over too — otherwise it floats away from the right-aligned copy it
-     belongs to. */
-  .journey-step:nth-child(odd) .journey-step__icon {
-    margin-inline-start: auto;
+  .journey-step:nth-child(odd) .journey-step__headings {
+    align-items: flex-end;
+  }
+
+  .journey-step:nth-child(odd) .journey-step__card::before {
+    inset-inline-end: auto;
+    inset-inline-start: -0.04em;
   }
 
   .journey-step__title {
@@ -242,13 +319,28 @@
    -------------------------------------------------------------------------- */
 .journey-summary {
   display: grid;
-  /* The middle column is the offer -- it carries the whole pipeline now that
-     the separate "what we do" cards are gone -- so it gets the width as well
-     as the accent. The two either side are context, not the pitch. */
-  grid-template-columns: 1fr 1.5fr 1fr;
-  align-items: start;
+  /* "What we do" is the offer — it carries the whole pipeline now that the
+     separate "what we do" cards are gone. So it takes a column of its own,
+     full height, while "what you do" and "what you get" stack beside it: the
+     two small things asked of the coach next to the one big thing we do. */
+  grid-template-columns: 1fr 1.9fr;
+  grid-template-areas:
+    "you we"
+    "get we";
   gap: var(--space-lg);
   margin-block-start: var(--space-2xl);
+}
+
+.journey-summary__col:nth-child(1) {
+  grid-area: you;
+}
+
+.journey-summary__col--lead {
+  grid-area: we;
+}
+
+.journey-summary__col:nth-child(3) {
+  grid-area: get;
 }
 
 .journey-summary__col {
@@ -331,6 +423,14 @@
 @media (max-width: 900px) {
   .journey-summary {
     grid-template-columns: 1fr;
+    /* The areas have to be redefined, not just the columns: leaving the
+       two-column template in place keeps forcing a second column here and the
+       "what we do" card runs off the side of a 360px screen. Same order as the
+       DOM, so the visual order never disagrees with the reading order. */
+    grid-template-areas:
+      "you"
+      "we"
+      "get";
     gap: var(--space-md);
   }
 
