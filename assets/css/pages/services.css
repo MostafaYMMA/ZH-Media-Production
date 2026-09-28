@@ -1,6 +1,15 @@
 /* FAQ — a two-column ledger answering the deal-shape questions (timeline,
    travel, revisions, contract, price) so no one has to book a call just to
    find out how it works. */
+/* The line under the FAQ heading — same treatment as every other section's
+   lead (see --fs-lead). */
+.faq__lead {
+  max-width: 60ch;
+  margin-top: calc(-1 * var(--space-md));
+  margin-bottom: var(--space-xl);
+  font-size: var(--fs-lead);
+}
+
 .faq__list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -123,13 +132,23 @@
   text-align: center;
 }
 
-/* The eyebrow's left tick breaks centering — drop it here. */
+/* A single left tick reads lopsided under a centred heading. Rather than drop
+   it, mirror it — the label gets a rule either side, which is what makes
+   "Investment" read as the section's name instead of a caption. Matches
+   .investment-for__head on the home page. */
 .packages__head .eyebrow {
-  padding-left: 0;
+  padding-right: 3.2rem;
 }
 
-.packages__head .eyebrow::before {
-  display: none;
+.packages__head .eyebrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 2.4rem;
+  height: 3px;
+  transform: translateY(-50%);
+  background: var(--color-accent);
 }
 
 .packages-note {

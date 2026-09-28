@@ -275,7 +275,7 @@
 }
 
 .journey-summary__col--lead .journey-summary__title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 .journey-summary__col--lead .journey-summary__list {
@@ -287,8 +287,11 @@
   line-height: 1.55;
 }
 
+/* Centred over the rule, with the list below left-aligned — the heading is a
+   label for the column, the list is something you read down. */
 .journey-summary__title {
-  font-size: 1.2rem;
+  font-size: 1.45rem;
+  text-align: center;
   color: var(--color-accent);
   margin-block-end: var(--space-md);
   padding-block-end: var(--space-sm);

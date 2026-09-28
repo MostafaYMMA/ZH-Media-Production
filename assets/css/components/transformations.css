@@ -110,11 +110,57 @@
   color: var(--color-accent);
 }
 
+/* --- before → after ------------------------------------------------------
+   This is the proof on the card, and at 14px uppercase muted, wrapped onto
+   the same baseline row as the +delta, it was the least visible thing on it.
+   Size alone would not have fixed that — it needed to stop competing for the
+   delta's line and start reading as a jump. So: its own full-width row, both
+   figures in display type at ~2rem, and the colour carrying the story —
+   the old number dim, the arrow volt, the new number full-strength white
+   under a volt rule. You read "dim small number → bright big number" before
+   you read any of the digits. */
 .transformation__range {
+  flex: 1 0 100%;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-sm);
+  margin-block-start: var(--space-2xs);
+}
+
+.transformation__from,
+.transformation__to {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Where he started: present, but visibly the past. */
+.transformation__from {
+  color: var(--color-text-muted);
+}
+
+.transformation__arrow {
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* Where he is now. */
+.transformation__to {
+  color: var(--color-text);
+  padding-block-end: 0.15rem;
+  border-block-end: 2px solid var(--color-accent);
+}
+
+.transformation__unit {
   font-family: var(--font-data);
   font-size: var(--fs-small);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   color: var(--color-text-muted);
 }
 

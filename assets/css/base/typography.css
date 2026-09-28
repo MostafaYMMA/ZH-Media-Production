@@ -46,6 +46,21 @@ p {
   padding-left: 2.4rem;
 }
 
+/* A louder eyebrow, for the one or two places where the label itself is the
+   thing people are looking for — "Investment" above the packages. The tick
+   and the extra spacing grow with it so it stays the same shape, just bigger. */
+.eyebrow--lg {
+  font-size: 1.4rem;
+  letter-spacing: 0.26em;
+  padding-left: 3.2rem;
+  margin-bottom: var(--space-md);
+}
+
+.eyebrow--lg::before {
+  width: 2.4rem;
+  height: 3px;
+}
+
 /* Eyebrow gets a short volt tick — a stopwatch/lane marker cue */
 .eyebrow::before {
   content: "";
@@ -60,4 +75,19 @@ p {
 
 .text-muted {
   color: var(--color-text-muted);
+}
+
+/* Text for screen readers only — kept out of the visual layout without being
+   hidden from the accessibility tree (display:none / visibility:hidden would
+   take it out of both). */
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }

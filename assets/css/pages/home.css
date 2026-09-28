@@ -183,8 +183,16 @@
   margin-bottom: 0;
 }
 
+/* The sales video. Capped by viewport height as well as width so a 9:16 frame
+   can never outgrow a short laptop screen.
+
+   On desktop the media has its own grid column, so its height does not move
+   the CTAs at all — measured identical at 1440x900, 1280x720 and 1512x830 —
+   which is why it can afford the larger 74vh / 460px budget here. Below 900px
+   the hero stacks and the frame IS in the flow above the buttons, so it gets a
+   tighter budget of its own further down. */
 .hero__player {
-  max-inline-size: min(400px, calc(64vh * 9 / 16), 100%);
+  max-inline-size: min(460px, calc(74vh * 9 / 16), 100%);
 }
 
 .hero__stats {
@@ -278,6 +286,13 @@
 @media (max-width: 900px) {
   .hero {
     min-height: auto;
+  }
+
+  /* Stacked, the frame sits directly above the CTAs, so every pixel of it is a
+     pixel of scroll between the headline and "Book a call". Still larger than
+     it was, just not at the desktop budget. */
+  .hero__player {
+    max-inline-size: min(400px, calc(68vh * 9 / 16), 100%);
   }
 
   .hero__inner {
