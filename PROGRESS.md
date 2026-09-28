@@ -5,7 +5,7 @@ The § 9 report is in `FINAL-REPORT.md` — read that one.
 
 Delete this file and `FINAL-REPORT.md` before merging.
 
-- **Branch:** `landing-v2`, 18 commits from `main` @ `caca8c6`.
+- **Branch:** `landing-v2`, from `main` @ `caca8c6`.
   **`main` is untouched, nothing pushed, no remote branch exists.**
 - **Working tree clean**, except the pre-existing untracked
   `scroll-snap-navigation-guide.md` (already untracked on `main`; not mine).

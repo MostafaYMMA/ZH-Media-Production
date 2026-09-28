@@ -14,8 +14,7 @@ Delete this file and `PROGRESS.md` before merging.
 - **Nothing has been pushed.** No `origin/landing-v2` exists yet.
 - `vercel.json`, deployment settings, domains and environment config were not
   opened.
-- All work is on the local branch `landing-v2`, 18 commits, branched from
-  `main`.
+- All work is on the local branch `landing-v2`, branched from `main`.
 
 Push only when you say so. The exact command, to run **only** on your word:
 
