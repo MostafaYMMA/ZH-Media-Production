@@ -157,7 +157,12 @@
    transitioned by the declarations already on the base rules.
    -------------------------------------------------------------------------- */
 .js .journey-step:not(.is-lit) .journey-step__num {
-  color: var(--color-text-dim);
+  /* --color-text-dim here is the numeral ON the page background, which comes
+     out at 3.6:1 -- under the 4.5:1 floor, and Lighthouse fails it. The muted
+     token reads at 6.7:1 on the same background. The step still reads as "not
+     reached yet" from the dim border and the hollow fill, which is what
+     actually carries that state; the numeral itself has to stay legible. */
+  color: var(--color-text-muted);
   border-color: var(--color-border-strong);
   background: var(--color-bg);
 }

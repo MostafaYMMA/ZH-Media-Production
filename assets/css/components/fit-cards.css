@@ -141,7 +141,10 @@
 .not-for__item p {
   margin: 0;
   font-size: var(--fs-small);
-  color: var(--color-text-dim);
+  /* Muted, not dim: at this size the dim token is 3.6:1 on the page
+     background and Lighthouse fails it. Muted is 6.7:1 and still sits clearly
+     below the "this is for you" list above. */
+  color: var(--color-text-muted);
   max-inline-size: 28ch;
 }
 

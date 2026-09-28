@@ -2,26 +2,26 @@
    <head>) whenever CSS changes — GitHub Pages caches assets for ~10 min and
    mobile browsers hold them far longer, so a version query is how a redeploy
    actually reaches people. */
-@import url("base/variables.css?v=21");
-@import url("base/reset.css?v=21");
-@import url("base/typography.css?v=21");
-@import url("components/navbar.css?v=21");
-@import url("components/footer.css?v=21");
-@import url("components/buttons.css?v=21");
-@import url("components/project-card.css?v=21");
-@import url("components/icon.css?v=21");
-@import url("components/testimonials.css?v=21");
-@import url("components/video-player.css?v=21");
-@import url("components/voicenote.css?v=21");
-@import url("components/carousel.css?v=21");
-@import url("components/feedback.css?v=21");
-@import url("components/transformations.css?v=21");
-@import url("components/duration-bar.css?v=21");
-@import url("components/fit-cards.css?v=21");
-@import url("components/journey.css?v=21");
-@import url("components/clients.css?v=21");
-@import url("components/section-scroll.css?v=21");
-@import url("components/sticky-cta.css?v=21");
+@import url("base/variables.css?v=22");
+@import url("base/reset.css?v=22");
+@import url("base/typography.css?v=22");
+@import url("components/navbar.css?v=22");
+@import url("components/footer.css?v=22");
+@import url("components/buttons.css?v=22");
+@import url("components/project-card.css?v=22");
+@import url("components/icon.css?v=22");
+@import url("components/testimonials.css?v=22");
+@import url("components/video-player.css?v=22");
+@import url("components/voicenote.css?v=22");
+@import url("components/carousel.css?v=22");
+@import url("components/feedback.css?v=22");
+@import url("components/transformations.css?v=22");
+@import url("components/duration-bar.css?v=22");
+@import url("components/fit-cards.css?v=22");
+@import url("components/journey.css?v=22");
+@import url("components/clients.css?v=22");
+@import url("components/section-scroll.css?v=22");
+@import url("components/sticky-cta.css?v=22");
 
 .container {
   max-width: var(--max-width);
