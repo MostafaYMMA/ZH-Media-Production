@@ -152,7 +152,7 @@ them so old inbound links and bookmarks still land right.
 - **Cache-busting:** every local CSS/JS ref carries `?v=N` — the `<link>`/`<script>` tags in each
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
-  CSS or JS** or a redeploy won't reach people. Currently `v=20`.
+  CSS or JS** or a redeploy won't reach people. Currently `v=21`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`. **Don't skip heading levels** — the aside/footer labels are

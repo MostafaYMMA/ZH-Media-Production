@@ -357,14 +357,16 @@ window.ZH = window.ZH || {};
       ? Array.prototype.slice.call(wave.querySelectorAll("i"))
       : [];
 
-    play.addEventListener("click", function () {
+    function togglePlayback() {
       if (audio.paused || audio.ended) {
         const attempt = audio.play();
         if (attempt && typeof attempt.catch === "function") attempt.catch(function () {});
       } else {
         audio.pause();
       }
-    });
+    }
+
+    play.addEventListener("click", togglePlayback);
 
     audio.addEventListener("play", function () {
       root.classList.add("is-playing");
@@ -403,17 +405,77 @@ window.ZH = window.ZH || {};
       });
     });
 
-    // Clicking the waveform scrubs, the same way the bar on a video does.
+    // The waveform scrubs, the same way the bar on a video does. In the HTML it
+    // is aria-hidden decoration, because without JS it does nothing; once it is
+    // wired up it becomes a real slider, so scrubbing is not mouse-only.
     if (wave) {
-      wave.addEventListener("click", function (event) {
+      wave.removeAttribute("aria-hidden");
+      wave.setAttribute("role", "slider");
+      wave.setAttribute("tabindex", "0");
+      wave.setAttribute("aria-label", "Seek voice note from " + who);
+      wave.setAttribute("aria-valuemin", "0");
+
+      function seekTo(ratio) {
         if (!audio.duration) return;
+        audio.currentTime = Math.min(Math.max(ratio, 0), 1) * audio.duration;
+      }
+
+      function paintWaveValue() {
+        if (!audio.duration) return;
+        wave.setAttribute("aria-valuemax", String(Math.round(audio.duration)));
+        wave.setAttribute("aria-valuenow", String(Math.round(audio.currentTime)));
+        wave.setAttribute(
+          "aria-valuetext",
+          formatTime(audio.currentTime) + " of " + formatTime(audio.duration)
+        );
+      }
+      audio.addEventListener("loadedmetadata", paintWaveValue);
+      audio.addEventListener("timeupdate", paintWaveValue);
+      paintWaveValue();
+
+      wave.addEventListener("click", function (event) {
         const box = wave.getBoundingClientRect();
         if (!box.width) return;
         let ratio = (event.clientX - box.left) / box.width;
         // Read direction off the document rather than assuming left-to-right,
         // so this keeps working when the Arabic (RTL) build lands.
         if (getComputedStyle(wave).direction === "rtl") ratio = 1 - ratio;
-        audio.currentTime = Math.min(Math.max(ratio, 0), 1) * audio.duration;
+        seekTo(ratio);
+      });
+
+      wave.addEventListener("keydown", function (event) {
+        if (!audio.duration) return;
+        // Arrows follow the reading direction too, so "forward" is always the
+        // way the waveform actually fills.
+        const rtl = getComputedStyle(wave).direction === "rtl";
+        const forward = rtl ? "ArrowLeft" : "ArrowRight";
+        const back = rtl ? "ArrowRight" : "ArrowLeft";
+        let next = null;
+
+        if (event.key === forward || event.key === "ArrowUp") {
+          next = audio.currentTime + 1;
+        } else if (event.key === back || event.key === "ArrowDown") {
+          next = audio.currentTime - 1;
+        } else if (event.key === "PageUp") {
+          next = audio.currentTime + 5;
+        } else if (event.key === "PageDown") {
+          next = audio.currentTime - 5;
+        } else if (event.key === "Home") {
+          next = 0;
+        } else if (event.key === "End") {
+          next = audio.duration;
+        } else if (event.key === " " || event.key === "Enter") {
+          // Same affordance as the play button, so a keyboard user who has
+          // landed on the waveform does not have to tab back to start it.
+          event.preventDefault();
+          togglePlayback();
+          return;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        seekTo(next / audio.duration);
       });
     }
   }
