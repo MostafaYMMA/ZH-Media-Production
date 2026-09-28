@@ -220,6 +220,13 @@
     margin-inline-start: auto;
   }
 
+  /* The icon is a block box, so it stays pinned to the start edge unless it is
+     pushed over too — otherwise it floats away from the right-aligned copy it
+     belongs to. */
+  .journey-step:nth-child(odd) .journey-step__icon {
+    margin-inline-start: auto;
+  }
+
   .journey-step__title {
     font-size: 1.5rem;
   }

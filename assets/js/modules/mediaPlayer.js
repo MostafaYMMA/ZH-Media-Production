@@ -64,6 +64,14 @@ window.ZH = window.ZH || {};
     return (key && media[key]) || null;
   }
 
+  // An entry only counts as playable once the real file is in and its config
+  // entry says `ready: true`. Until then we never touch the network, so a page
+  // full of not-yet-shot testimonials has a clean console instead of a 404 per
+  // player. The poster (if any) is still used, so the plate isn't blank.
+  function isReady(entry) {
+    return !!(entry && entry.src && entry.ready !== false);
+  }
+
   function makeButton(className, label, icon) {
     const btn = document.createElement("button");
     btn.type = "button";
@@ -106,9 +114,9 @@ window.ZH = window.ZH || {};
     const label = root.dataset.label || "Video";
     video.setAttribute("aria-label", label);
 
-    // No entry, or an entry with no file yet: render the "coming soon" state
+    // No entry, or the file isn't in yet: render the "coming soon" state
     // rather than a player that can only fail.
-    if (!entry || !entry.src) {
+    if (!isReady(entry)) {
       showMissing(root, video, entry);
       return;
     }
@@ -292,7 +300,10 @@ window.ZH = window.ZH || {};
     root.classList.remove("is-enhanced");
     video.removeAttribute("controls");
     video.controls = false;
-    if (entry && entry.poster) video.poster = entry.poster;
+    // Only reach for the poster if the entry is actually live — a not-yet-ready
+    // entry's poster doesn't exist either, and requesting it would put back the
+    // 404 the `ready` flag exists to avoid.
+    if (entry && entry.poster && entry.ready !== false) video.poster = entry.poster;
     if (root.querySelector(".vplayer__missing")) return;
     const note = document.createElement("p");
     note.className = "vplayer__missing";
@@ -312,7 +323,7 @@ window.ZH = window.ZH || {};
     const entry = lookup(root.dataset.mediaKey);
     const who = root.dataset.label || "this coach";
 
-    if (!entry || !entry.src) {
+    if (!isReady(entry)) {
       root.classList.add("is-missing");
       audio.removeAttribute("controls");
       audio.controls = false;

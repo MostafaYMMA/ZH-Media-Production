@@ -152,11 +152,11 @@
 }
 
 /* --- who said it --------------------------------------------------------- */
+/* Plain block flow, deliberately not flex-wrap: the quote caps its measure at
+   60ch, and under flex that smaller hypothetical size lets it ride up onto the
+   name's line whenever the name is short. A block <p> after two inline spans
+   always starts its own line. */
 .voicenote__meta {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0 var(--space-xs);
   /* Line up under the bubble's inner padding, not its border. */
   padding-inline-start: var(--space-md);
 }
@@ -170,13 +170,14 @@
 }
 
 .voicenote__handle {
+  margin-inline-start: var(--space-xs);
   font-size: var(--fs-small);
   color: var(--color-text-dim);
 }
 
 .voicenote__quote {
-  flex-basis: 100%;
   margin: 0;
+  margin-block-start: var(--space-2xs);
   font-size: var(--fs-small);
   color: var(--color-text-muted);
   max-inline-size: 60ch;

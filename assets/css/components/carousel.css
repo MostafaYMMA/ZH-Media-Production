@@ -10,6 +10,12 @@
 
 .carousel {
   margin-block-start: var(--space-xl);
+  /* Cap the strip rather than the card: three 9:16 frames stretched across a
+     1440px canvas would be ~780px tall each — taller than the viewport, so you
+     could never see a whole testimonial and its name at once. At this cap the
+     cards land near 300px wide / 530px tall, which reads like the vertical
+     video it is. Left-aligned to match the section heading. */
+  max-inline-size: 1040px;
 }
 
 .carousel__viewport {

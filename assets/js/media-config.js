@@ -13,11 +13,19 @@ window.ZH = window.ZH || {};
      src    — path or absolute URL to the media file
      poster — still frame shown before playback (video only)
      type   — optional MIME hint, e.g. "video/mp4"
+     ready  — false until the real file exists. See below.
 
-   A key whose `src` is empty (or whose file is missing) renders as the
-   "coming soon" state instead of a broken player — see mediaPlayer.js. Drop
-   the real files into assets/media/ (see the README there for specs) and the
-   players light up with no other change.
+   >>> WHEN A REAL FILE LANDS: drop it in assets/media/ (the README there has
+   >>> the specs) and set that entry's `ready` to true. That is the only edit.
+
+   `ready: false` means the player renders its tidy "coming soon" state and
+   never requests the file, which is why the console stays clean while the
+   media is still being shot. Without the flag the browser would fire a 404 for
+   every one of these paths on each page load. The paths are written out in
+   full regardless, so this file stays the single place any URL is defined.
+
+   A key that is missing entirely, or whose file 404s despite `ready: true`,
+   also falls back to "coming soon" rather than a broken player.
    ========================================================================== */
 window.ZH.media = {
   /* Hero sales video — "Hear it from Ziad" */
@@ -25,6 +33,7 @@ window.ZH.media = {
     src: "assets/media/sales-video.mp4",
     poster: "assets/media/posters/sales-video.webp",
     type: "video/mp4",
+    ready: false,
   },
 
   /* Video testimonials — "Hear it from our coaches" carousel */
@@ -32,32 +41,37 @@ window.ZH.media = {
     src: "assets/media/testimonial-1.mp4",
     poster: "assets/media/posters/testimonial-1.webp",
     type: "video/mp4",
+    ready: false,
   },
   testimonialVideo2: {
     src: "assets/media/testimonial-2.mp4",
     poster: "assets/media/posters/testimonial-2.webp",
     type: "video/mp4",
+    ready: false,
   },
   testimonialVideo3: {
     src: "assets/media/testimonial-3.mp4",
     poster: "assets/media/posters/testimonial-3.webp",
     type: "video/mp4",
+    ready: false,
   },
   testimonialVideo4: {
     src: "assets/media/testimonial-4.mp4",
     poster: "assets/media/posters/testimonial-4.webp",
     type: "video/mp4",
+    ready: false,
   },
   testimonialVideo5: {
     src: "assets/media/testimonial-5.mp4",
     poster: "assets/media/posters/testimonial-5.webp",
     type: "video/mp4",
+    ready: false,
   },
 
   /* Voice notes — WhatsApp-style audio testimonials */
-  voiceNote1: { src: "assets/media/voice-note-1.m4a", type: "audio/mp4" },
-  voiceNote2: { src: "assets/media/voice-note-2.m4a", type: "audio/mp4" },
-  voiceNote3: { src: "assets/media/voice-note-3.m4a", type: "audio/mp4" },
-  voiceNote4: { src: "assets/media/voice-note-4.m4a", type: "audio/mp4" },
-  voiceNote5: { src: "assets/media/voice-note-5.m4a", type: "audio/mp4" },
+  voiceNote1: { src: "assets/media/voice-note-1.m4a", type: "audio/mp4", ready: false },
+  voiceNote2: { src: "assets/media/voice-note-2.m4a", type: "audio/mp4", ready: false },
+  voiceNote3: { src: "assets/media/voice-note-3.m4a", type: "audio/mp4", ready: false },
+  voiceNote4: { src: "assets/media/voice-note-4.m4a", type: "audio/mp4", ready: false },
+  voiceNote5: { src: "assets/media/voice-note-5.m4a", type: "audio/mp4", ready: false },
 };
