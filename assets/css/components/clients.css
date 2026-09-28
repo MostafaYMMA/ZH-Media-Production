@@ -77,7 +77,7 @@
 }
 
 .client-card__name {
-  font-size: 1.05rem;
+  font-size: var(--fs-statement);
   line-height: 1.2;
   /* reserve two lines so handles line up across cards whether the name wraps */
   min-height: 2.4em;

@@ -45,11 +45,28 @@
     inline-size: 100%;
   }
 
+  /* The paired line sits above the button rather than below it, so the button
+     stays flush with the safe-area chin where a thumb expects it. */
+  .sticky-cta__note {
+    margin-block-end: var(--space-2xs);
+    text-align: center;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
   /* Never let the bar sit on top of the last of the content. --sticky-cta-height
      is measured and published by stickyCta.js; the fallback covers the frame
      before it runs. */
   body {
     padding-block-end: var(--sticky-cta-height, 74px);
+  }
+}
+
+/* Below ~340px the bar is all button -- the reminder costs a line of height
+   the chin cannot spare, and the button alone still says the important part. */
+@media (max-width: 339px) {
+  .sticky-cta__note {
+    display: none;
   }
 }
 

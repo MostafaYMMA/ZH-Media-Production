@@ -22,7 +22,7 @@
 
 .journey__lead {
   margin-block-start: var(--space-md);
-  font-size: 1.1rem;
+  font-size: var(--fs-lead);
   color: var(--color-text);
 }
 
@@ -139,7 +139,7 @@
    exactly what he gets and what he has to do. */
 .journey-step__desc {
   margin-block-start: var(--space-sm);
-  font-size: 1.05rem;
+  font-size: var(--fs-statement);
   line-height: 1.7;
   color: var(--color-text);
   max-inline-size: 52ch;
@@ -194,13 +194,22 @@
     column-gap: var(--space-xl);
   }
 
+  /* Both children are pinned to row 1 explicitly. Without grid-row the card
+     on an odd step -- which sits in column 1 but comes AFTER the marker in DOM
+     order -- cannot be auto-placed back into row 1, because sparse placement
+     never moves backwards. It landed in row 2 instead, so the step was two
+     rows tall and the marker stretched only across the first: the connecting
+     line stopped ~290px short and the path broke next to every left-hand
+     card. Even steps hid the bug, because column 3 is forwards. */
   .journey-step__marker {
     grid-column: 2;
+    grid-row: 1;
   }
 
   /* Odd steps sit before the line, even steps after it. */
   .journey-step__card {
     grid-column: 1;
+    grid-row: 1;
   }
 
   .journey-step:nth-child(even) .journey-step__card {
@@ -233,7 +242,11 @@
    -------------------------------------------------------------------------- */
 .journey-summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* The middle column is the offer -- it carries the whole pipeline now that
+     the separate "what we do" cards are gone -- so it gets the width as well
+     as the accent. The two either side are context, not the pitch. */
+  grid-template-columns: 1fr 1.5fr 1fr;
+  align-items: start;
   gap: var(--space-lg);
   margin-block-start: var(--space-2xl);
 }
@@ -246,10 +259,32 @@
   box-shadow: var(--shadow-md);
 }
 
-/* The outcome column is the one to land on. */
+/* The column to land on. */
 .journey-summary__col--accent {
   background: var(--gradient-surface), var(--color-surface-2);
   border-color: rgba(var(--color-accent-rgb), 0.4);
+}
+
+/* Bigger type and a volt edge, so "what we do" reads as the main event next
+   to the two supporting columns rather than one of three equal lists. */
+.journey-summary__col--lead {
+  padding: var(--space-xl);
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(var(--color-accent-rgb), 0.14),
+    0 22px 60px -34px rgba(var(--color-accent-rgb), 0.5);
+}
+
+.journey-summary__col--lead .journey-summary__title {
+  font-size: 1.5rem;
+}
+
+.journey-summary__col--lead .journey-summary__list {
+  gap: var(--space-sm);
+}
+
+.journey-summary__col--lead .journey-summary__list li {
+  font-size: var(--fs-lead);
+  line-height: 1.55;
 }
 
 .journey-summary__title {
@@ -269,7 +304,7 @@
 .journey-summary__list li {
   position: relative;
   padding-inline-start: var(--space-md);
-  font-size: 1.02rem;
+  font-size: var(--fs-statement);
   color: var(--color-text);
 }
 
@@ -294,6 +329,13 @@
   .journey-summary {
     grid-template-columns: 1fr;
     gap: var(--space-md);
+  }
+
+  .journey-summary__col--lead {
+    /* Stacked, the extra padding only costs line length on a phone. Deliberately
+       no `order` reshuffle: that would put the visual order out of step with the
+       reading order for anyone on a keyboard or a screen reader. */
+    padding: var(--space-lg);
   }
 }
 

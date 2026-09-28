@@ -10,12 +10,10 @@
 
 .carousel {
   margin-block-start: var(--space-xl);
-  /* Cap the strip rather than the card: three 9:16 frames stretched across a
-     1440px canvas would be ~780px tall each — taller than the viewport, so you
-     could never see a whole testimonial and its name at once. At this cap the
-     cards land near 300px wide / 530px tall, which reads like the vertical
-     video it is. Left-aligned to match the section heading. */
-  max-inline-size: 1040px;
+  /* Full width of the section. The strip is NOT capped: the card height is
+     controlled by how many fit across instead (see the breakpoints at the
+     bottom), which is what keeps a 9:16 frame from stretching to ~780px tall
+     on a wide canvas while still letting the strip fill the page. */
 }
 
 .carousel__viewport {
@@ -84,7 +82,8 @@
 
 .carousel__handle {
   font-size: var(--fs-small);
-  color: var(--color-text-dim);
+  /* Dim is 3.6:1 on the page background, under the floor for text. */
+  color: var(--color-text-muted);
   align-self: start;
 }
 
@@ -92,7 +91,7 @@
   grid-column: 1 / -1;
   margin: 0;
   margin-block-start: var(--space-xs);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   color: var(--color-text-muted);
   max-inline-size: none;
 }
@@ -189,10 +188,25 @@
   position: relative;
 }
 
-/* --- desktop: three across ----------------------------------------------- */
+/* --- how many fit across -------------------------------------------------
+   Each step up adds a card rather than widening the ones already there. That
+   is what lets the strip run the full width of the section without a 9:16
+   frame growing taller than the viewport. */
 @media (min-width: 900px) {
   .carousel__slide {
     /* Three visible, accounting for the two gaps between them. */
     inline-size: calc((100% - 2 * var(--space-lg)) / 3);
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel__slide {
+    inline-size: calc((100% - 3 * var(--space-lg)) / 4);
+  }
+}
+
+@media (min-width: 1560px) {
+  .carousel__slide {
+    inline-size: calc((100% - 4 * var(--space-lg)) / 5);
   }
 }

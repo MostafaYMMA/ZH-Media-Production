@@ -1,43 +1,82 @@
 /* ==========================================================================
-   VOICE NOTE — WhatsApp-shaped audio testimonials, in the brand's navy/volt
-   rather than WhatsApp green. Stacked like a chat thread.
+   VOICE NOTE — audio testimonials, presented as cards that match the
+   "How we work together" steps: same surface, radius, shadow and volt edge,
+   so the whole page reads as one system rather than a chat window dropped
+   into it. The WhatsApp shape survives inside the card, as the player strip.
+
+   They are laid out two across on desktop and fill the section's full width,
+   with the last one spanning both columns so the block always ends square
+   instead of leaving a hole.
 
    Built by js/modules/mediaPlayer.js (play button + clock), which also toggles
-   .is-played on each waveform bar as audio advances. Without JS the markup
-   degrades to the avatar, the decorative waveform, and a native <audio>.
+   .is-played on each waveform bar as audio advances and promotes the waveform
+   to a real keyboard slider. Without JS the markup degrades to the avatar, the
+   decorative waveform, and a native <audio>.
 
    Logical properties throughout, for the planned Arabic RTL build.
    ========================================================================== */
 
 .voicenotes {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  max-inline-size: 46rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
 }
 
+@media (min-width: 900px) {
+  .voicenotes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Five notes into two columns leaves one orphan; let it take the full row
+     rather than sit next to an empty cell. */
+  .voicenotes > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --- the card ------------------------------------------------------------ */
 .voicenote {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.35);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(var(--color-accent-rgb), 0.12),
+    0 18px 50px -30px rgba(var(--color-accent-rgb), 0.45);
+  transition: border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
 }
 
-/* --- the bubble ---------------------------------------------------------- */
+.voicenote.is-playing {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(var(--color-accent-rgb), 0.25),
+    0 22px 60px -30px rgba(var(--color-accent-rgb), 0.6);
+}
+
+/* A note with nothing behind it yet should not advertise itself. */
+.voicenote.is-missing {
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- the player strip inside the card ------------------------------------ */
 .voicenote__bubble {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
-  border: 1px solid var(--color-border);
   /* Chat-bubble silhouette: one corner pulled in, the rest fully round. */
   border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-sm);
-  background: var(--gradient-surface), var(--color-surface);
-  box-shadow: var(--shadow-md);
-  transition: border-color var(--duration-fast) var(--ease-out);
+  border: 1px solid var(--color-border);
+  /* Deeper than the card it sits on, so the strip reads as the thing you
+     press rather than more card. */
+  background: var(--color-bg);
 }
 
-.voicenote.is-playing .voicenote__bubble {
-  border-color: var(--color-accent);
+.voicenote.is-missing .voicenote__bubble {
+  border-style: dashed;
 }
 
 .voicenote__avatar {
@@ -89,7 +128,8 @@
 /* --- waveform ------------------------------------------------------------
    Bars are literal <i> elements in the HTML, each carrying its own height as
    --h (0–1), so every note has its own shape and none of it depends on JS to
-   exist. mediaPlayer.js only adds .is-played as the playhead passes. */
+   exist. mediaPlayer.js only adds .is-played as the playhead passes, and
+   promotes the strip to role="slider" so it can be scrubbed from a keyboard. */
 .voicenote__wave {
   flex: 1 1 auto;
   min-inline-size: 0;
@@ -144,11 +184,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-dim);
-}
-
-.voicenote.is-missing .voicenote__bubble {
-  border-style: dashed;
+  color: var(--color-text-muted);
 }
 
 /* --- who said it --------------------------------------------------------- */
@@ -157,8 +193,9 @@
    name's line whenever the name is short. A block <p> after two inline spans
    always starts its own line. */
 .voicenote__meta {
-  /* Line up under the bubble's inner padding, not its border. */
-  padding-inline-start: var(--space-md);
+  /* The card supplies the padding now, so the byline lines up with the card's
+     edge rather than being indented twice. */
+  margin-block-start: auto;
 }
 
 .voicenote__name {
@@ -172,25 +209,31 @@
 .voicenote__handle {
   margin-inline-start: var(--space-xs);
   font-size: var(--fs-small);
-  color: var(--color-text-dim);
+  /* Dim is 3.1:1 on the card — quiet enough, but not legible enough. */
+  color: var(--color-text-muted);
 }
 
 .voicenote__quote {
   margin: 0;
   margin-block-start: var(--space-2xs);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   color: var(--color-text-muted);
   max-inline-size: 60ch;
 }
 
 @media (max-width: 560px) {
+  .voicenote {
+    padding: var(--space-md);
+  }
+
   .voicenote__bubble {
     gap: var(--space-xs);
     padding-inline: var(--space-sm);
   }
 
   /* On a phone the avatar, button, waveform and clock together are too much
-     for the width — the avatar moves to the byline underneath instead. */
+     for the width — the avatar drops out and the byline underneath carries
+     who it is. */
   .voicenote__avatar {
     display: none;
   }

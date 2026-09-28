@@ -57,7 +57,10 @@
   padding: 0.15rem 0.55rem;
   border-radius: var(--radius-sm);
   background: rgba(var(--color-accent-rgb), 0.12);
-  color: var(--color-text-muted);
+  /* Full text colour, not muted: this tag sits on a translucent accent tint
+     over the screenshot, which lifts the effective background enough that
+     muted lands at 4.2:1 — just under the floor. */
+  color: var(--color-text);
   font-family: var(--font-data);
   font-size: var(--fs-small);
   text-transform: uppercase;
@@ -120,11 +123,12 @@
 }
 
 .transformation__who strong {
-  font-size: 1.05rem;
+  font-size: var(--fs-statement);
 }
 
 .transformation__who span {
-  color: var(--color-text-dim);
+  /* Dim is 3.1:1 on the card behind it, under the 4.5:1 floor for text. */
+  color: var(--color-text-muted);
   font-size: var(--fs-small);
 }
 

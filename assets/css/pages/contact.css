@@ -189,6 +189,6 @@
 .contact-steps span {
   flex-shrink: 0;
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: var(--fs-lead);
   color: var(--color-accent);
 }

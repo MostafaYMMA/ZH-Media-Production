@@ -2,10 +2,10 @@
    "WHO IS THIS INVESTMENT FOR?" — six statements a coach should recognise
    himself in, then a deliberately quieter "Not for you if…" block.
 
-   The contrast between the two is the point: the qualifying cards get the
-   full card treatment (surface, shadow, volt check, pointer glow), the
-   disqualifying list gets none of it — muted ✕, no card, no glow. It reads as
-   an honest aside rather than a warning.
+   Both lists get the same card treatment, so the second one is as easy to
+   read as the first — a coach has to be able to rule himself out as clearly
+   as he rules himself in. What separates them is the mark, not the styling:
+   a volt check for "this is you", a red ✕ for "this isn't".
 
    Entrance animation is the site's existing data-reveal / data-reveal-group
    (scrollReveal.js), which already stays put under prefers-reduced-motion and
@@ -88,64 +88,43 @@
   margin: 0;
   color: var(--color-text);
   /* Statements are the copy here, not supporting text — keep them readable. */
-  font-size: 1.05rem;
+  font-size: var(--fs-statement);
   max-inline-size: none;
 }
 
-/* --- the quieter "Not for you if…" block ---------------------------------- */
+/* --- "Not for you if…" ---------------------------------------------------
+   Same cards, different mark. The heading is a divider above them, so the two
+   lists read as one honest answer rather than two unrelated sections. */
 .not-for {
   margin-block-start: var(--space-xl);
   padding-block-start: var(--space-lg);
   border-block-start: 1px solid var(--color-border);
-  max-inline-size: 46rem;
-  margin-inline: auto;
   text-align: center;
 }
 
 .not-for__title {
   font-size: 1.1rem;
   color: var(--color-text-muted);
-  margin-block-end: var(--space-md);
+  margin-block-end: 0;
 }
 
-.not-for__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm) var(--space-lg);
+.fit-grid--no {
+  margin-block-start: var(--space-lg);
 }
 
-.not-for__item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-xs);
-  text-align: start;
+/* Red enough to read as "no", never so loud it looks like an error state —
+   this is an honest disqualifier, not a validation failure. */
+.fit-card--no {
+  border-color: rgba(var(--color-danger-rgb), 0.22);
 }
 
-/* Muted, never alarm-red: this is "not a fit", not an error. */
-.not-for__icon {
-  flex: none;
-  display: grid;
-  place-items: center;
-  inline-size: 18px;
-  block-size: 18px;
-  margin-block-start: 0.2rem;
-  color: var(--color-text-dim);
+.fit-card--no:hover {
+  border-color: rgba(var(--color-danger-rgb), 0.45);
 }
 
-.not-for__icon svg {
-  inline-size: 13px;
-  block-size: 13px;
-}
-
-.not-for__item p {
-  margin: 0;
-  font-size: var(--fs-small);
-  /* Muted, not dim: at this size the dim token is 3.6:1 on the page
-     background and Lighthouse fails it. Muted is 6.7:1 and still sits clearly
-     below the "this is for you" list above. */
-  color: var(--color-text-muted);
-  max-inline-size: 28ch;
+.fit-card__icon--no {
+  background: rgba(var(--color-danger-rgb), 0.14);
+  color: var(--color-danger);
 }
 
 @media (max-width: 1024px) {
@@ -164,17 +143,7 @@
     padding: var(--space-md);
   }
 
-  .not-for__list {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: start;
-  }
-
   .not-for {
     text-align: start;
-  }
-
-  .not-for__item p {
-    max-inline-size: none;
   }
 }

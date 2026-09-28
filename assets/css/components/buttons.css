@@ -41,3 +41,38 @@
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
+
+/* ==========================================================================
+   CTA PAIR — every "Book a call" is followed by the same one-line reminder of
+   what booking it is: the start of money going into the business, not a cost.
+   The note is a sibling of the button, never part of its label, so the link
+   text screen readers announce stays the short, unambiguous "Book a call".
+
+   Logical properties throughout, for the planned Arabic RTL build.
+   ========================================================================== */
+.cta-pair {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.cta-pair--center {
+  align-items: center;
+}
+
+.cta-note {
+  margin: 0;
+  margin-block-start: var(--space-sm);
+  font-family: var(--font-data);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Inside a flex/grid CTA block the note supplies its own rhythm via the gap. */
+.cta-pair .cta-note {
+  margin-block-start: 0;
+}

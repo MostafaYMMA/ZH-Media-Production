@@ -9,13 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/main.css?v=22" />
+  <link rel="stylesheet" href="assets/css/main.css?v=25" />
   <!-- All page stylesheets — every section now lives on this one document. -->
-  <link rel="stylesheet" href="assets/css/pages/home.css?v=22" />
-  <link rel="stylesheet" href="assets/css/pages/services.css?v=22" />
-  <link rel="stylesheet" href="assets/css/pages/about.css?v=22" />
-  <link rel="stylesheet" href="assets/css/pages/work.css?v=22" />
-  <link rel="stylesheet" href="assets/css/pages/contact.css?v=22" />
+  <link rel="stylesheet" href="assets/css/pages/home.css?v=25" />
+  <link rel="stylesheet" href="assets/css/pages/services.css?v=25" />
+  <link rel="stylesheet" href="assets/css/pages/about.css?v=25" />
+  <link rel="stylesheet" href="assets/css/pages/work.css?v=25" />
+  <link rel="stylesheet" href="assets/css/pages/contact.css?v=25" />
 </head>
 <body>
 
@@ -87,9 +87,12 @@
               handled end to end. Run by people who came up in the gym, so your content
               actually sounds like a coach, not an agency.
             </p>
-            <div class="hero__actions" data-reveal>
-              <a href="#contact" class="btn btn--primary">Book a call</a>
-              <a href="#work" class="btn btn--outline">See the work</a>
+            <div class="cta-pair" data-reveal>
+              <div class="hero__actions">
+                <a href="#contact" class="btn btn--primary">Book a call</a>
+                <a href="#work" class="btn btn--outline">See the work</a>
+              </div>
+              <p class="cta-note">Start investing in your business.</p>
             </div>
           </div>
 
@@ -348,33 +351,34 @@
 
         <div class="not-for" data-reveal>
           <h3 class="not-for__title">Not for you if&hellip;</h3>
-          <ul class="not-for__list">
-            <li class="not-for__item">
-              <span class="not-for__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                  <path d="M6 6l12 12M18 6L6 18" />
-                </svg>
-              </span>
-              <p>You want overnight results without showing up consistently.</p>
-            </li>
-            <li class="not-for__item">
-              <span class="not-for__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                  <path d="M6 6l12 12M18 6L6 18" />
-                </svg>
-              </span>
-              <p>You're not willing to get in front of the camera.</p>
-            </li>
-            <li class="not-for__item">
-              <span class="not-for__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                  <path d="M6 6l12 12M18 6L6 18" />
-                </svg>
-              </span>
-              <p>You want bought followers or fake numbers.</p>
-            </li>
-          </ul>
         </div>
+
+        <ul class="fit-grid fit-grid--no" data-reveal-group>
+          <li class="fit-card fit-card--no" data-reveal data-glow>
+            <span class="fit-card__icon fit-card__icon--no" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </span>
+            <p>You want overnight results without showing up consistently.</p>
+          </li>
+          <li class="fit-card fit-card--no" data-reveal data-glow>
+            <span class="fit-card__icon fit-card__icon--no" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </span>
+            <p>You're not willing to get in front of the camera.</p>
+          </li>
+          <li class="fit-card fit-card--no" data-reveal data-glow>
+            <span class="fit-card__icon fit-card__icon--no" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </span>
+            <p>You want bought followers or fake numbers.</p>
+          </li>
+        </ul>
       </div>
 
       <!-- Why you'd want us -->
@@ -382,80 +386,37 @@
         <div class="why__head">
           <span class="eyebrow" data-reveal>Why you'd want us</span>
           <h2 class="why__headline" data-reveal>
-            You didn't get into coaching<br />
-            to sit in the edit bay.
+            We're not here to post reels.<br />
+            We're here to grow your business.
           </h2>
           <p class="why__lead" data-reveal>
-            Between programming, check-ins, and actually training clients, marketing is the
-            thing that quietly slips — so the reels never post and coaches with worse advice
-            keep out-posting you. That's the whole job we take off your plate: you coach on
-            camera, we handle the script, the shoot, and the edit.
+            Reels are the tool, not the point. The point is a coach whose calendar fills
+            without chasing anyone, who raises his rates and keeps every client, and who
+            becomes the name people in his niche send friends to. That's what a feed working
+            properly does for a business — and it's what we're actually building when we
+            script, shoot, and cut your content.
           </p>
         </div>
         <ul class="why__list" data-reveal-group>
           <li class="why__item" data-reveal data-glow>
             <span class="why__item-num" aria-hidden="true">01</span>
-            <h3 class="why__item-tag">Your time back</h3>
-            <p>No scripting at midnight, no fighting the editing timeline. You just show up and coach.</p>
+            <h3 class="why__item-tag">A pipeline, not a follower count</h3>
+            <p>Content built to bring the right people into your DMs ready to buy — so you stop
+              waiting on referrals and start picking which clients you take.</p>
           </li>
           <li class="why__item" data-reveal data-glow>
             <span class="why__item-num" aria-hidden="true">02</span>
-            <h3 class="why__item-tag">A coach's voice</h3>
-            <p>We came up in the gym, so nothing we write for you sounds like a generic ad.</p>
+            <h3 class="why__item-tag">Room to raise your rates</h3>
+            <p>An audience that already trusts you is what makes a higher price obvious instead
+              of awkward. Authority is the asset — the reels are how you build it.</p>
           </li>
           <li class="why__item" data-reveal data-glow>
             <span class="why__item-num" aria-hidden="true">03</span>
-            <h3 class="why__item-tag">Real consistency</h3>
-            <p>A steady feed the algorithm rewards — instead of one burst every few months.</p>
+            <h3 class="why__item-tag">Growth that compounds</h3>
+            <p>Every month of a steady feed stacks on the last — reach, trust, and inbound all
+              climbing while you keep doing the part you actually trained for.</p>
           </li>
         </ul>
-      </div>
-
-      <div class="section container">
-        <div class="section__head">
-          <div>
-            <span class="eyebrow" data-reveal>What we do</span>
-            <h2 data-reveal>From first idea to posted reel</h2>
-          </div>
-          <a href="#services" class="btn btn--outline" data-reveal>See all services</a>
-        </div>
-        <div class="workflow-grid" data-reveal-group>
-          <div class="workflow-item" data-reveal data-glow>
-            <span class="workflow-item__num" aria-hidden="true">01</span>
-            <span class="workflow-item__icon icon-interactive" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 20h4l10.5-10.5a2.121 2.121 0 0 0-3-3L5 17v3z" />
-                <path d="M13.5 6.5l3 3" />
-              </svg>
-            </span>
-            <h3>Script Writing</h3>
-            <p>Hooks and scripts built around your coaching, so every video has a point before the camera rolls.</p>
-          </div>
-          <div class="workflow-item" data-reveal data-glow>
-            <span class="workflow-item__num" aria-hidden="true">02</span>
-            <span class="workflow-item__icon icon-interactive" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 7l-7 5 7 5V7z" />
-                <rect x="1" y="5" width="15" height="14" rx="2" />
-              </svg>
-            </span>
-            <h3>Video Recording</h3>
-            <p>Sessions filmed in the gym with the gear and direction to make you look like the expert you are.</p>
-          </div>
-          <div class="workflow-item" data-reveal data-glow>
-            <span class="workflow-item__num" aria-hidden="true">03</span>
-            <span class="workflow-item__icon icon-interactive" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 8l2-4h4l-2 4" />
-                <path d="M8 8l2-4h4l-2 4" />
-                <path d="M14 8l2-4h4l-2 4" />
-                <rect x="2" y="8" width="20" height="12" rx="1" />
-              </svg>
-            </span>
-            <h3>Reels &amp; Editing</h3>
-            <p>Short-form edits cut for the feed — captions, pacing, and sound tuned for reels and shorts.</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -463,18 +424,6 @@
          SERVICES
          ================================================================== -->
     <section id="services" class="snap-section">
-      <div class="services-hero page-hero container">
-        <div class="page-hero__grid">
-          <div class="page-hero__head">
-            <span class="eyebrow" data-reveal>What we do</span>
-            <h2 data-reveal>You coach. We make the content.</h2>
-          </div>
-          <div class="page-hero__lead" data-reveal>
-            <p>One team handling the whole pipeline — scripting, filming, and editing — so your reels get made and posted without eating your week.</p>
-          </div>
-        </div>
-      </div>
-
       <!-- HOW WE WORK TOGETHER
            The old three-stage pipeline, opened out into the full nine steps a
            coach actually goes through. The three stages' copy is not gone: it
@@ -640,17 +589,21 @@
               <li>Post your reels</li>
             </ul>
           </div>
-          <div class="journey-summary__col" data-reveal>
+          <!-- The lead column: this is the whole offer, and since the old
+               "what we do" cards were removed it is now the one place the
+               pipeline is spelled out. Sized and coloured to match. -->
+          <div class="journey-summary__col journey-summary__col--lead journey-summary__col--accent" data-reveal>
             <h3 class="journey-summary__title">What we do</h3>
             <ul class="journey-summary__list">
-              <li>Scripts</li>
-              <li>Filming</li>
-              <li>Editing</li>
-              <li>Captions</li>
-              <li>Revisions</li>
+              <li>Write every script, built around your coaching</li>
+              <li>Film you in the gym, with the gear and the direction</li>
+              <li>Cut, caption, and pace every reel for the feed</li>
+              <li>Tune the sound for Reels, TikTok, and Shorts</li>
+              <li>Revise until you're happy to put your name on it</li>
+              <li>Do it again next month, without you chasing us</li>
             </ul>
           </div>
-          <div class="journey-summary__col journey-summary__col--accent" data-reveal>
+          <div class="journey-summary__col" data-reveal>
             <h3 class="journey-summary__title">What you get</h3>
             <ul class="journey-summary__list">
               <li>12 or 24 finished reels every month, ready to post</li>
@@ -658,8 +611,9 @@
           </div>
         </div>
 
-        <div class="journey__cta" data-reveal>
+        <div class="journey__cta cta-pair cta-pair--center" data-reveal>
           <a href="#contact" class="btn btn--primary">Book a call</a>
+          <p class="cta-note">Start investing in your business.</p>
         </div>
       </div>
     </section>
@@ -866,8 +820,9 @@
           <div class="carousel__nav" data-carousel-nav></div>
         </div>
 
-        <div class="feedback__cta" data-reveal>
+        <div class="feedback__cta cta-pair cta-pair--center" data-reveal>
           <a href="#contact" class="btn btn--primary">Book a call</a>
+          <p class="cta-note">Start investing in your business.</p>
         </div>
       </div>
     </section>
@@ -1154,6 +1109,7 @@
               <li>Editing, captions &amp; ready to post</li>
             </ul>
             <a href="#contact" class="btn btn--outline">Book a call</a>
+            <p class="cta-note">Start investing in your business.</p>
           </div>
           <div class="pricing-card pricing-card--featured" data-reveal data-glow>
             <span class="pricing-card__badge">Best for growth</span>
@@ -1168,6 +1124,7 @@
               <li>Faster turnaround</li>
             </ul>
             <a href="#contact" class="btn btn--primary">Book a call</a>
+            <p class="cta-note">Start investing in your business.</p>
           </div>
         </div>
       </div>
@@ -1245,6 +1202,7 @@
             <textarea id="message" name="message" placeholder="Who you train, what you post now, and where you want to take it..." required></textarea>
           </div>
           <button type="submit" class="btn btn--primary">Book a call</button>
+          <p class="cta-note">Start investing in your business.</p>
           <p class="form-note text-muted">
             Pressing "Book a call" opens WhatsApp with your details ready to send. No WhatsApp?
             Email <a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a>.
@@ -1283,6 +1241,7 @@
       <div class="footer__cta">
         <h2>Let's build your coaching brand.</h2>
         <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
       <div class="footer__brand">
         <span class="footer__brand-mark" aria-hidden="true">ZH</span>
@@ -1318,23 +1277,24 @@
   <!-- Sticky mobile CTA (< 768px). Hidden by default in CSS and only ever
        revealed by stickyCta.js, so it can't strand a bar on a no-JS page. -->
   <div class="sticky-cta" data-sticky-cta>
+    <p class="cta-note sticky-cta__note">Start investing in your business</p>
     <a href="#contact" class="btn btn--primary">Book a call</a>
   </div>
 
-  <script src="assets/js/data/projects.js?v=22"></script>
-  <script src="assets/js/media-config.js?v=22"></script>
-  <script src="assets/js/modules/projectGrid.js?v=22"></script>
-  <script src="assets/js/modules/navbar.js?v=22"></script>
-  <script src="assets/js/modules/navIndicator.js?v=22"></script>
-  <script src="assets/js/modules/sectionNav.js?v=22"></script>
-  <script src="assets/js/modules/scrollReveal.js?v=22"></script>
-  <script src="assets/js/modules/counter.js?v=22"></script>
-  <script src="assets/js/modules/journey.js?v=22"></script>
-  <script src="assets/js/modules/pointer.js?v=22"></script>
-  <script src="assets/js/modules/mediaPlayer.js?v=22"></script>
-  <script src="assets/js/modules/carousel.js?v=22"></script>
-  <script src="assets/js/modules/stickyCta.js?v=22"></script>
-  <script src="assets/js/modules/contactForm.js?v=22"></script>
-  <script src="assets/js/main.js?v=22"></script>
+  <script src="assets/js/data/projects.js?v=25"></script>
+  <script src="assets/js/media-config.js?v=25"></script>
+  <script src="assets/js/modules/projectGrid.js?v=25"></script>
+  <script src="assets/js/modules/navbar.js?v=25"></script>
+  <script src="assets/js/modules/navIndicator.js?v=25"></script>
+  <script src="assets/js/modules/sectionNav.js?v=25"></script>
+  <script src="assets/js/modules/scrollReveal.js?v=25"></script>
+  <script src="assets/js/modules/counter.js?v=25"></script>
+  <script src="assets/js/modules/journey.js?v=25"></script>
+  <script src="assets/js/modules/pointer.js?v=25"></script>
+  <script src="assets/js/modules/mediaPlayer.js?v=25"></script>
+  <script src="assets/js/modules/carousel.js?v=25"></script>
+  <script src="assets/js/modules/stickyCta.js?v=25"></script>
+  <script src="assets/js/modules/contactForm.js?v=25"></script>
+  <script src="assets/js/main.js?v=25"></script>
 </body>
 </html>

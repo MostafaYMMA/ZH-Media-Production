@@ -240,7 +240,9 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-text-dim);
+  /* Muted, not dim: dim measures 3.1:1 on the card behind it, under the 4.5:1
+     floor for text. */
+  color: var(--color-text-muted);
   background: linear-gradient(to top, rgba(4, 12, 24, 0.9), rgba(4, 12, 24, 0));
   max-inline-size: none;
 }

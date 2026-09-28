@@ -32,7 +32,8 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-dim);
+  /* 3.8:1 as dim, under the floor at this size. */
+  color: var(--color-text-muted);
 }
 
 /* The rule itself, with the endpoint dot on its outer edge. */

@@ -50,7 +50,7 @@
 }
 
 .testimonial blockquote {
-  font-size: 1.05rem;
+  font-size: var(--fs-statement);
   line-height: 1.55;
   color: var(--color-text);
 }
