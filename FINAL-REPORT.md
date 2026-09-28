@@ -162,6 +162,21 @@ are all on `--fs-lead` now.
 buttons, eyebrows, form labels — and the navbar's 980px breakpoint is measured
 against it (CLAUDE.md), so growing it would push the nav past that breakpoint.
 
+**Later in the same round:**
+
+- **Before → after** on the transformation cards was the least visible thing on
+  them. It is now its own row, both figures at 32px display type, with the
+  colour carrying the jump: old number muted, arrow volt, new number
+  full-strength white under a volt rule. It still announces as "54.1K grew to
+  68.4K followers" (new `.sr-only` utility).
+- **"What you do / we do / you get"** headers are larger and centred over their
+  rule; the lists under them stay left-aligned.
+- **The FAQ section is called what it is** — eyebrow "FAQs", heading
+  "Frequently asked questions". The old heading is kept as the lead underneath.
+- **"Investment"** above the packages goes 14 → 22.4px via a new `.eyebrow--lg`
+  modifier, with its volt tick mirrored either side instead of dropped.
+- **The sales video** is larger: 324 → 375px on desktop, 304 → 323px stacked.
+
 ---
 
 ## What still needs you — the TODO list
@@ -324,5 +339,5 @@ whenever you want it.
 | `03296f5` | fix: contrast floor, back to 100 |
 | `c0f7b44` | fix: restore the one dropped line of copy |
 
-24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=26`,
+24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=29`,
 41 references in lockstep.
