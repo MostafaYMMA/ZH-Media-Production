@@ -1,0 +1,311 @@
+/* ==========================================================================
+   HOW WE WORK TOGETHER — the nine-step path, with a line that fills and steps
+   that light up as you scroll.
+
+   READABILITY IS THE CONTRACT HERE. Everything below is decoration over an
+   ordered list that already reads correctly:
+     - the LIT state is the DEFAULT. Only `.js .journey-step:not(.is-lit)` is
+       dimmed, so with JS off every step is fully lit, exactly as intended.
+     - journey.js lights all steps immediately under prefers-reduced-motion,
+       and the transitions here are killed by the global reduced-motion rule
+       in reset.css anyway.
+   The line is not one long fill bar — it is one segment per step, so the whole
+   effect runs on IntersectionObserver with no scroll handler.
+
+   Logical properties throughout, for the planned Arabic RTL build.
+   ========================================================================== */
+
+.journey__head {
+  max-inline-size: 46rem;
+  margin-block-end: var(--space-2xl);
+}
+
+.journey__lead {
+  margin-block-start: var(--space-md);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.journey__steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   One step = a marker column (number + the line segment below it) and a card
+   -------------------------------------------------------------------------- */
+.journey-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--space-md);
+}
+
+.journey-step__marker {
+  grid-column: 1;
+  /* Stretch to the step's full height so the segment below the number reaches
+     the next step's number with no gap. */
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journey-step__num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 46px;
+  block-size: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-strong);
+  background: var(--color-bg);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--color-text-dim);
+  transition: color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    background var(--duration-base) var(--ease-out);
+}
+
+/* The connecting segment. Each step owns the piece of line beneath it, which
+   is what lets the whole path "fill" from IntersectionObserver alone. */
+.journey-step__marker::after {
+  content: "";
+  flex: 1 1 auto;
+  inline-size: 2px;
+  min-block-size: var(--space-lg);
+  background: var(--color-border-strong);
+  transition: background var(--duration-slow) var(--ease-out);
+}
+
+.journey-step:last-child .journey-step__marker::after {
+  /* Nothing to connect to. */
+  display: none;
+}
+
+.journey-step__card {
+  grid-column: 2;
+  margin-block-end: var(--space-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.journey-step__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 34px;
+  block-size: 34px;
+  margin-block-end: var(--space-sm);
+  color: var(--color-text-dim);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.journey-step__icon svg {
+  inline-size: 24px;
+  block-size: 24px;
+}
+
+/* Per the brief: 20px minimum on mobile, 24px on desktop. */
+.journey-step__title {
+  font-size: 1.35rem;
+  margin-block-end: var(--space-xs);
+}
+
+/* Who carries this step. A quiet pill, never louder than the title. */
+.journey-step__who {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+/* Full-strength text, not a grey aside — a coach has to be able to read
+   exactly what he gets and what he has to do. */
+.journey-step__desc {
+  margin-block-start: var(--space-sm);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  max-inline-size: 52ch;
+}
+
+/* --------------------------------------------------------------------------
+   Lit / unlit. Default = lit; only a JS-enabled page dims what hasn't been
+   reached yet, so the no-JS page shows the finished state.
+   -------------------------------------------------------------------------- */
+.journey-step.is-lit .journey-step__num,
+.js .journey-step.is-lit .journey-step__num {
+  color: var(--color-accent-ink);
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+}
+
+.journey-step.is-lit .journey-step__icon {
+  color: var(--color-accent);
+}
+
+.journey-step.is-lit .journey-step__marker::after {
+  background: var(--color-accent);
+}
+
+.journey-step.is-lit .journey-step__card {
+  border-color: rgba(var(--color-accent-rgb), 0.35);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(var(--color-accent-rgb), 0.12),
+    0 18px 50px -30px rgba(var(--color-accent-rgb), 0.45);
+}
+
+.journey-step.is-lit .journey-step__who {
+  color: var(--color-accent);
+  border-color: rgba(var(--color-accent-rgb), 0.45);
+}
+
+/* The dimmed "not reached yet" state — JS pages only. */
+.js .journey-step:not(.is-lit) .journey-step__num {
+  color: var(--color-text-dim);
+  border-color: var(--color-border-strong);
+  background: var(--color-bg);
+}
+
+.js .journey-step:not(.is-lit) .journey-step__icon {
+  color: var(--color-text-dim);
+}
+
+.js .journey-step:not(.is-lit) .journey-step__marker::after {
+  background: var(--color-border-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Desktop: centred line, cards alternating left and right
+   -------------------------------------------------------------------------- */
+@media (min-width: 900px) {
+  .journey-step {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: var(--space-xl);
+  }
+
+  .journey-step__marker {
+    grid-column: 2;
+  }
+
+  /* Odd steps sit before the line, even steps after it. */
+  .journey-step__card {
+    grid-column: 1;
+  }
+
+  .journey-step:nth-child(even) .journey-step__card {
+    grid-column: 3;
+  }
+
+  /* The card on the starting side reads better flush to the line. */
+  .journey-step:nth-child(odd) .journey-step__card {
+    text-align: end;
+  }
+
+  .journey-step:nth-child(odd) .journey-step__desc {
+    margin-inline-start: auto;
+  }
+
+  .journey-step__title {
+    font-size: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Summary — what you do / what we do / what you get
+   -------------------------------------------------------------------------- */
+.journey-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin-block-start: var(--space-2xl);
+}
+
+.journey-summary__col {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+/* The outcome column is the one to land on. */
+.journey-summary__col--accent {
+  background: var(--gradient-surface), var(--color-surface-2);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+}
+
+.journey-summary__title {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  margin-block-end: var(--space-md);
+  padding-block-end: var(--space-sm);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.journey-summary__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.journey-summary__list li {
+  position: relative;
+  padding-inline-start: var(--space-md);
+  font-size: 1.02rem;
+  color: var(--color-text);
+}
+
+.journey-summary__list li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.62em;
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.journey__cta {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .journey-summary {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 560px) {
+  .journey-step {
+    column-gap: var(--space-sm);
+  }
+
+  .journey-step__num {
+    inline-size: 38px;
+    block-size: 38px;
+    font-size: 0.95rem;
+  }
+
+  .journey-step__card {
+    padding: var(--space-md);
+  }
+}

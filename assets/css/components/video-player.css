@@ -1,0 +1,251 @@
+/* ==========================================================================
+   VIDEO PLAYER — the shared frame behind the hero sales video and all five
+   video testimonials. Built by js/modules/mediaPlayer.js; see the markup
+   contract at the top of that file.
+
+   Written with logical properties (inline-start/end, padding-inline) so the
+   planned Arabic RTL build flips without a second stylesheet.
+   ========================================================================== */
+
+.vplayer {
+  inline-size: 100%;
+  /* Locked to the short-form shape everything here is shot in. */
+  --vplayer-ratio: 9 / 16;
+}
+
+.vplayer__frame {
+  position: relative;
+  aspect-ratio: var(--vplayer-ratio);
+  inline-size: 100%;
+  overflow: hidden;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-deep);
+  box-shadow: var(--shadow-lg), var(--shadow-accent);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* Clip the video itself to the radius too — a plain overflow:hidden leaves
+   square corners peeking through on Safari. */
+.vplayer__video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius-lg) - 2px);
+  background: var(--color-bg-deep);
+}
+
+/* Desktop pointers only: a restrained lift. No zoom on touch (where "hover"
+   is a sticky tap state) and none under reduced motion. */
+@media (hover: hover) and (pointer: fine) {
+  .vplayer:not(.is-missing) .vplayer__frame:hover {
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vplayer__frame,
+  .vplayer:not(.is-missing) .vplayer__frame:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Big centred play button — visible while paused, gone while playing
+   -------------------------------------------------------------------------- */
+.vplayer__big {
+  position: absolute;
+  /* inset:0 + margin:auto centres a fixed-size box on both axes without a
+     transform — so `transform` stays free for the hover scale, and there is no
+     left/right offset to flip when the RTL build lands. */
+  inset: 0;
+  margin: auto;
+  inline-size: 68px;
+  block-size: 68px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(8, 21, 39, 0.62);
+  border: 1px solid rgba(234, 242, 255, 0.28);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.vplayer__big svg {
+  inline-size: 30px;
+  block-size: 30px;
+  /* Nudge the triangle so it reads optically centred in the circle. */
+  margin-inline-start: 3px;
+}
+
+.vplayer__big:hover {
+  background: rgba(8, 21, 39, 0.8);
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vplayer__big:hover {
+    transform: none;
+  }
+}
+
+.vplayer.is-playing .vplayer__big {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 560px) {
+  .vplayer__big {
+    inline-size: 64px;
+    block-size: 64px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Control bar — Instagram-Reels style, INSIDE the accent frame
+   -------------------------------------------------------------------------- */
+.vplayer__bar {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  /* Inner padding keeps the controls clear of the 2px accent border. */
+  padding: var(--space-sm) var(--space-sm) calc(var(--space-sm) + 2px);
+  /* Readability wash so white controls survive a bright frame underneath. */
+  background: linear-gradient(to top, rgba(4, 12, 24, 0.92), rgba(4, 12, 24, 0));
+  color: #fff;
+  opacity: 1;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+/* Auto-hidden after ~2.5s of stillness while playing (mediaPlayer.js). */
+.vplayer.is-idle .vplayer__bar {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vplayer__btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.vplayer__btn:hover {
+  color: var(--color-accent);
+}
+
+.vplayer__btn svg {
+  inline-size: 19px;
+  block-size: 19px;
+}
+
+.vplayer__time {
+  flex: none;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* --- seek bar ------------------------------------------------------------
+   A real <input type="range">: dragging, clicking and arrow-key seeking all
+   come free and accessibly. --seek (set by JS) paints the played portion. */
+.vplayer__seek {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  block-size: 18px;
+  margin: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+}
+
+.vplayer__seek::-webkit-slider-runnable-track {
+  block-size: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent) var(--seek, 0%),
+    rgba(255, 255, 255, 0.3) var(--seek, 0%)
+  );
+}
+
+.vplayer__seek::-moz-range-track {
+  block-size: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.vplayer__seek::-moz-range-progress {
+  block-size: 3px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.vplayer__seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  inline-size: 11px;
+  block-size: 11px;
+  margin-block-start: -4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: none;
+}
+
+.vplayer__seek::-moz-range-thumb {
+  inline-size: 11px;
+  block-size: 11px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: none;
+}
+
+/* --------------------------------------------------------------------------
+   Missing media — a calm "coming soon" plate, never a broken player
+   -------------------------------------------------------------------------- */
+.vplayer.is-missing .vplayer__frame {
+  border-style: dashed;
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+  background: var(--gradient-surface), var(--color-surface);
+}
+
+.vplayer__missing {
+  position: absolute;
+  inset: auto 0 0 0;
+  margin: 0;
+  padding: var(--space-sm);
+  text-align: center;
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  background: linear-gradient(to top, rgba(4, 12, 24, 0.9), rgba(4, 12, 24, 0));
+  max-inline-size: none;
+}
+
+/* Nothing to show and nothing to play. */
+.vplayer.is-missing .vplayer__video {
+  opacity: 0.35;
+}

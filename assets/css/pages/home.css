@@ -59,10 +59,14 @@
   padding-bottom: var(--space-2xl);
 }
 
-.hero__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Hook, supporting line, video, paragraph and buttons are all direct grid
+   children (see the comment in index.html): the video has to fall between the
+   supporting line and the paragraph on mobile, which it cannot do from inside
+   a separate copy column. Single centred column here is the mobile order;
+   the 1024px rule below lifts the video into its own column. */
+.hero__layout {
+  display: grid;
+  justify-items: center;
   text-align: center;
   max-width: 46rem;
   margin: 0 auto;
@@ -108,12 +112,14 @@
   mask-image: linear-gradient(270deg, #000 0%, transparent 92%);
 }
 
-/* Hero eyebrow is centred, so mirror the volt tick on the right too. */
-.hero__content .eyebrow {
+/* Hero eyebrow is centred, so mirror the volt tick on the right too. Dropped
+   again on the two-column desktop layout below, where the copy is start-aligned
+   and a trailing tick would dangle. */
+.hero__layout .eyebrow {
   padding-right: 2.4rem;
 }
 
-.hero__content .eyebrow::after {
+.hero__layout .eyebrow::after {
   content: "";
   position: absolute;
   right: 0;
@@ -133,6 +139,20 @@
   color: var(--color-accent);
 }
 
+/* The old headline, kept as the line under the hook — same display face, same
+   uppercase poster feel, a step down in size so the <h1> stays the loudest
+   thing on the page. Not a heading any more: there is only one <h1>. */
+.hero__supporting {
+  margin-top: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  max-width: 24ch;
+}
+
 .hero__subtitle {
   margin-top: var(--space-md);
   font-size: 1.15rem;
@@ -144,6 +164,27 @@
   gap: var(--space-sm);
   margin-top: var(--space-lg);
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --- sales video ---------------------------------------------------------
+   Capped by height as well as width so the 9:16 frame can never push the
+   buttons below the fold on a short laptop screen or a phone in landscape. */
+.hero__media {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.hero__media-label {
+  margin-bottom: 0;
+}
+
+.hero__player {
+  max-inline-size: min(400px, calc(64vh * 9 / 16), 100%);
 }
 
 .hero__stats {
@@ -180,6 +221,11 @@
   color: var(--color-text);
 }
 
+/* The proof stat — a real result, not a studio metric — so it gets the volt. */
+.hero__stat-value--accent {
+  color: var(--color-accent);
+}
+
 .hero__stat-label {
   font-family: var(--font-data);
   font-size: var(--fs-small);
@@ -189,6 +235,44 @@
   color: var(--color-text-muted);
   margin-top: var(--space-2xs);
   max-width: 16ch;
+}
+
+/* --------------------------------------------------------------------------
+   Desktop: copy on the left, sales video on the right.
+   The grid areas re-order the same DOM that reads top-to-bottom on mobile.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .hero__layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-areas:
+      "eyebrow    media"
+      "hook       media"
+      "supporting media"
+      "subtitle   media"
+      "actions    media";
+    grid-template-rows: auto auto auto auto 1fr;
+    column-gap: var(--space-2xl);
+    align-items: start;
+    justify-items: start;
+    text-align: start;
+    max-width: none;
+  }
+
+  .hero__eyebrow { grid-area: eyebrow; }
+  .hero__title { grid-area: hook; }
+  .hero__supporting { grid-area: supporting; }
+  .hero__subtitle { grid-area: subtitle; }
+  .hero__actions { grid-area: actions; justify-content: flex-start; }
+  .hero__media { grid-area: media; margin-top: 0; align-self: center; }
+
+  /* Start-aligned copy: drop the mirrored right-hand tick on the eyebrow. */
+  .hero__layout .eyebrow {
+    padding-right: 0;
+  }
+
+  .hero__layout .eyebrow::after {
+    content: none;
+  }
 }
 
 @media (max-width: 900px) {

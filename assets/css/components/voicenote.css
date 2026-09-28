@@ -1,0 +1,196 @@
+/* ==========================================================================
+   VOICE NOTE — WhatsApp-shaped audio testimonials, in the brand's navy/volt
+   rather than WhatsApp green. Stacked like a chat thread.
+
+   Built by js/modules/mediaPlayer.js (play button + clock), which also toggles
+   .is-played on each waveform bar as audio advances. Without JS the markup
+   degrades to the avatar, the decorative waveform, and a native <audio>.
+
+   Logical properties throughout, for the planned Arabic RTL build.
+   ========================================================================== */
+
+.voicenotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-inline-size: 46rem;
+}
+
+.voicenote {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* --- the bubble ---------------------------------------------------------- */
+.voicenote__bubble {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  /* Chat-bubble silhouette: one corner pulled in, the rest fully round. */
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-sm);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.voicenote.is-playing .voicenote__bubble {
+  border-color: var(--color-accent);
+}
+
+.voicenote__avatar {
+  flex: none;
+  inline-size: 46px;
+  block-size: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--color-border-strong);
+}
+
+/* --- play / pause -------------------------------------------------------- */
+.voicenote__play {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 42px;
+  block-size: 42px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.voicenote__play:hover {
+  background: var(--color-accent-hover);
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voicenote__play:hover {
+    transform: none;
+  }
+}
+
+.voicenote__play svg {
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+/* The play triangle needs an optical nudge inside a circle; the pause bars
+   (two rects, already symmetrical) do not. */
+.voicenote:not(.is-playing) .voicenote__play svg {
+  margin-inline-start: 2px;
+}
+
+/* --- waveform ------------------------------------------------------------
+   Bars are literal <i> elements in the HTML, each carrying its own height as
+   --h (0–1), so every note has its own shape and none of it depends on JS to
+   exist. mediaPlayer.js only adds .is-played as the playhead passes. */
+.voicenote__wave {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  block-size: 34px;
+  cursor: pointer;
+}
+
+.voicenote__wave i {
+  flex: 1 1 auto;
+  min-inline-size: 2px;
+  /* Floor the very quiet bars so the strip never breaks into gaps. */
+  block-size: max(4px, calc(var(--h, 0.5) * 100%));
+  border-radius: 999px;
+  background: var(--color-text-dim);
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.voicenote__wave i.is-played {
+  background: var(--color-accent);
+}
+
+.voicenote__time {
+  flex: none;
+  font-family: var(--font-data);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+/* Native <audio> is the no-JS fallback. Once mediaPlayer.js has built the
+   custom UI (.is-enhanced) the native element is hidden but still the thing
+   actually playing. */
+.voicenote__bubble audio {
+  inline-size: 100%;
+  margin-block-start: var(--space-xs);
+}
+
+.voicenote.is-enhanced .voicenote__bubble audio,
+.voicenote.is-missing .voicenote__bubble audio {
+  display: none;
+}
+
+.voicenote__missing {
+  flex: 1 1 auto;
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.voicenote.is-missing .voicenote__bubble {
+  border-style: dashed;
+}
+
+/* --- who said it --------------------------------------------------------- */
+.voicenote__meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 var(--space-xs);
+  /* Line up under the bubble's inner padding, not its border. */
+  padding-inline-start: var(--space-md);
+}
+
+.voicenote__name {
+  font-family: var(--font-data);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.voicenote__handle {
+  font-size: var(--fs-small);
+  color: var(--color-text-dim);
+}
+
+.voicenote__quote {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  max-inline-size: 60ch;
+}
+
+@media (max-width: 560px) {
+  .voicenote__bubble {
+    gap: var(--space-xs);
+    padding-inline: var(--space-sm);
+  }
+
+  /* On a phone the avatar, button, waveform and clock together are too much
+     for the width — the avatar moves to the byline underneath instead. */
+  .voicenote__avatar {
+    display: none;
+  }
+}

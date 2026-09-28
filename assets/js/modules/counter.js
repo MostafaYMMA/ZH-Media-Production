@@ -51,6 +51,10 @@ window.ZH = window.ZH || {};
     );
 
     counters.forEach(function (el) {
+      // The markup carries the real final figure so the stats are correct with
+      // JS off. Zero it only here — on the one path that is definitely going to
+      // count it back up — so a visitor never sees a stat stuck at 0.
+      el.textContent = "0" + (el.dataset.countSuffix || "");
       observer.observe(el);
     });
   };

@@ -1,0 +1,15 @@
+/* ==========================================================================
+   CLIENT FEEDBACK — the "Hear it from our coaches" section wrapper.
+   Holds the voice-note thread (voicenote.css) and the video-testimonial
+   carousel (carousel.css); both components style themselves.
+   ========================================================================== */
+
+.feedback__grid {
+  margin-block-start: var(--space-xl);
+}
+
+.feedback__cta {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-xl);
+}

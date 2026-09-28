@@ -1,0 +1,177 @@
+/* ==========================================================================
+   "WHO IS THIS INVESTMENT FOR?" — six statements a coach should recognise
+   himself in, then a deliberately quieter "Not for you if…" block.
+
+   The contrast between the two is the point: the qualifying cards get the
+   full card treatment (surface, shadow, volt check, pointer glow), the
+   disqualifying list gets none of it — muted ✕, no card, no glow. It reads as
+   an honest aside rather than a warning.
+
+   Entrance animation is the site's existing data-reveal / data-reveal-group
+   (scrollReveal.js), which already stays put under prefers-reduced-motion and
+   leaves everything visible when JS is off.
+
+   Logical properties throughout, for the planned Arabic RTL build.
+   ========================================================================== */
+
+.investment-for__head {
+  text-align: center;
+  max-inline-size: 46rem;
+  margin-inline: auto;
+  margin-block-end: var(--space-xl);
+}
+
+/* Centred eyebrow: mirror the volt tick so it isn't lopsided. */
+.investment-for__head .eyebrow {
+  padding-inline-end: 2.4rem;
+}
+
+.investment-for__head .eyebrow::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: 50%;
+  inline-size: 1.8rem;
+  block-size: 2px;
+  transform: translateY(-50%);
+  background: var(--color-accent);
+}
+
+/* --- the six qualifying cards -------------------------------------------- */
+.fit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.fit-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.fit-card:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fit-card:hover {
+    transform: none;
+  }
+}
+
+.fit-card__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: 50%;
+  background: rgba(var(--color-accent-rgb), 0.12);
+  color: var(--color-accent);
+}
+
+.fit-card__icon svg {
+  inline-size: 16px;
+  block-size: 16px;
+}
+
+.fit-card p {
+  margin: 0;
+  color: var(--color-text);
+  /* Statements are the copy here, not supporting text — keep them readable. */
+  font-size: 1.05rem;
+  max-inline-size: none;
+}
+
+/* --- the quieter "Not for you if…" block ---------------------------------- */
+.not-for {
+  margin-block-start: var(--space-xl);
+  padding-block-start: var(--space-lg);
+  border-block-start: 1px solid var(--color-border);
+  max-inline-size: 46rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.not-for__title {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-block-end: var(--space-md);
+}
+
+.not-for__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm) var(--space-lg);
+}
+
+.not-for__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  text-align: start;
+}
+
+/* Muted, never alarm-red: this is "not a fit", not an error. */
+.not-for__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 18px;
+  block-size: 18px;
+  margin-block-start: 0.2rem;
+  color: var(--color-text-dim);
+}
+
+.not-for__icon svg {
+  inline-size: 13px;
+  block-size: 13px;
+}
+
+.not-for__item p {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--color-text-dim);
+  max-inline-size: 28ch;
+}
+
+@media (max-width: 1024px) {
+  .fit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .fit-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .fit-card {
+    padding: var(--space-md);
+  }
+
+  .not-for__list {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: start;
+  }
+
+  .not-for {
+    text-align: start;
+  }
+
+  .not-for__item p {
+    max-inline-size: none;
+  }
+}

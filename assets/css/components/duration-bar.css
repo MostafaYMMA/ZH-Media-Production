@@ -1,0 +1,86 @@
+/* ==========================================================================
+   DURATION BAR — the "how long did that take" timeline sitting between the
+   Before and After screenshots on a transformation card.
+
+      Before ●━━━━━ 40 days ━━━━━● After
+
+   Deliberately its own component, not a .transformation__* part: the card
+   markup only drops a .duration-bar in, so this whole treatment can be
+   restyled (or swapped for a different one) without touching any card.
+
+   The bar is role="img" with its own aria-label — the "Before" / "After"
+   wording is already announced by the tags on the two screenshots, so the
+   inner text here is presentational and would otherwise be read twice.
+
+   Logical properties throughout, for the planned Arabic RTL build.
+   ========================================================================== */
+
+.duration-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border-block: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+}
+
+/* The "Before" / "After" captions at each end. */
+.duration-bar__end {
+  flex: none;
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+/* The rule itself, with the endpoint dot on its outer edge. */
+.duration-bar__line {
+  position: relative;
+  flex: 1 1 auto;
+  min-inline-size: 0.75rem;
+  block-size: 2px;
+  background: var(--color-accent);
+  opacity: 0.55;
+}
+
+.duration-bar__line::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 0;
+  inline-size: 7px;
+  block-size: 7px;
+  margin-block-start: -3.5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* Second half: the dot belongs on the far end, next to "After". */
+.duration-bar__line--flip::before {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+/* The point of the whole bar — bold, clearly bigger than body text, never a
+   grey aside. */
+.duration-bar__value {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+/* The card is at its narrowest (~300px) whenever the grid is 4-up or 2-up,
+   i.e. anywhere above the 900px single-column breakpoint. Everything still
+   fits there, so only the padding tightens; the end captions stay. */
+@media (max-width: 1180px) {
+  .duration-bar {
+    padding-inline: var(--space-sm);
+  }
+}

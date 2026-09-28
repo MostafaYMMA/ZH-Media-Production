@@ -54,12 +54,34 @@
           <img src="assets/images/hero-gym-2.png" alt="" width="332" height="371" />
         </div>
         <div class="hero__inner container">
-          <div class="hero__content">
-            <span class="eyebrow" data-reveal>You built the coach. We build the brand.</span>
+          <!-- Hero pieces are direct grid children rather than nested in a copy
+               column, because the video has to sit BETWEEN the supporting line
+               and the paragraph on mobile but in its own column on desktop.
+               DOM order here is the mobile order; the desktop grid-areas in
+               home.css lift the video out to the right. -->
+          <div class="hero__layout">
+            <span class="eyebrow hero__eyebrow" data-reveal>You built the coach. We build the brand.</span>
             <h1 class="hero__title" data-reveal>
-              Personal branding for<br />
-              <span class="hero__title-accent">fitness coaches.</span>
+              Your coaching deserves<br />
+              <span class="hero__title-accent">a bigger audience.</span>
             </h1>
+            <p class="hero__supporting" data-reveal>
+              Personal branding for fitness coaches.
+            </p>
+
+            <div class="hero__media" data-reveal>
+              <span class="eyebrow hero__media-label">Hear it from Ziad</span>
+              <div class="vplayer hero__player" data-vplayer data-media-key="salesVideo"
+                   data-label="Ziad explaining how ZH Personal Branding works">
+                <div class="vplayer__frame">
+                  <!-- `controls` is the no-JS fallback; mediaPlayer.js removes it
+                       once the custom bar exists. src/poster come from
+                       assets/js/media-config.js, never from here. -->
+                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
+                </div>
+              </div>
+            </div>
+
             <p class="hero__subtitle" data-reveal>
               Scripts, filming, and short-form editing — reels, shorts, the whole feed —
               handled end to end. Run by people who came up in the gym, so your content
@@ -69,19 +91,31 @@
               <a href="#contact" class="btn btn--primary">Book a call</a>
               <a href="#work" class="btn btn--outline">See the work</a>
             </div>
-            <div class="hero__stats" data-reveal>
-              <div class="hero__stat">
-                <div class="hero__stat-value" data-count-to="5" data-count-suffix="+">0</div>
-                <div class="hero__stat-label">Years in the fitness world</div>
-              </div>
-              <div class="hero__stat">
-                <div class="hero__stat-value" data-count-to="20" data-count-suffix="+">0</div>
-                <div class="hero__stat-label">Coaches we've filmed</div>
-              </div>
-              <div class="hero__stat">
-                <div class="hero__stat-value" data-count-to="100" data-count-suffix="%">0</div>
-                <div class="hero__stat-label">Done-for-you</div>
-              </div>
+          </div>
+
+          <!-- Real figures live in the HTML so they are correct with JS off.
+               counter.js resets each one to 0 itself, only when it is actually
+               going to animate it. -->
+          <div class="hero__stats" data-reveal>
+            <div class="hero__stat">
+              <div class="hero__stat-value" data-count-to="5" data-count-suffix="+">5+</div>
+              <div class="hero__stat-label">Years in the fitness world</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value" data-count-to="20" data-count-suffix="+">20+</div>
+              <div class="hero__stat-label">Coaches we've filmed</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value" data-count-to="100" data-count-suffix="%">100%</div>
+              <div class="hero__stat-label">Done-for-you</div>
+            </div>
+            <!-- Fastest result in the Before/After data below: Mustafa Ashraf,
+                 +14.3K in 30 days — both the shortest window and the highest
+                 per-day rate of the four. Keep this in step with that card.
+                 TODO: confirm real duration (the 30 days is a placeholder). -->
+            <div class="hero__stat">
+              <div class="hero__stat-value hero__stat-value--accent">+14.3K</div>
+              <div class="hero__stat-label">Followers in 30 days</div>
             </div>
           </div>
         </div>
@@ -162,6 +196,14 @@
                 <span class="transformation__tag">Before</span>
                 <img src="assets/images/results/transformation-1-before.webp" alt="Mustafa Ashraf's Instagram profile at 54.1K followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
+              <!-- TODO: confirm real duration -->
+              <div class="duration-bar" role="img" aria-label="30 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
+                <span class="duration-bar__line" aria-hidden="true"></span>
+                <span class="duration-bar__value">30 days</span>
+                <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
+                <span class="duration-bar__end">After</span>
+              </div>
               <div class="transformation__shot">
                 <span class="transformation__tag transformation__tag--after">After</span>
                 <img src="assets/images/results/transformation-1-after.webp" alt="Mustafa Ashraf's Instagram profile at 68.4K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
@@ -170,6 +212,7 @@
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+14.3K</span>
+                <span class="transformation__days">in 30 days</span>
                 <span class="transformation__range">54.1K &rarr; 68.4K followers</span>
               </div>
               <div class="transformation__who">
@@ -184,6 +227,14 @@
                 <span class="transformation__tag">Before</span>
                 <img src="assets/images/results/transformation-2-before.webp" alt="Galal Mohamed's Instagram profile at 43.6K followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
+              <!-- TODO: confirm real duration -->
+              <div class="duration-bar" role="img" aria-label="60 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
+                <span class="duration-bar__line" aria-hidden="true"></span>
+                <span class="duration-bar__value">60 days</span>
+                <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
+                <span class="duration-bar__end">After</span>
+              </div>
               <div class="transformation__shot">
                 <span class="transformation__tag transformation__tag--after">After</span>
                 <img src="assets/images/results/transformation-2-after.webp" alt="Galal Mohamed's Instagram profile at 63.8K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
@@ -192,6 +243,7 @@
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+20.2K</span>
+                <span class="transformation__days">in 60 days</span>
                 <span class="transformation__range">43.6K &rarr; 63.8K followers</span>
               </div>
               <div class="transformation__who">
@@ -206,6 +258,14 @@
                 <span class="transformation__tag">Before</span>
                 <img src="assets/images/results/transformation-3-before.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 2,948 followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
+              <!-- TODO: confirm real duration -->
+              <div class="duration-bar" role="img" aria-label="40 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
+                <span class="duration-bar__line" aria-hidden="true"></span>
+                <span class="duration-bar__value">40 days</span>
+                <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
+                <span class="duration-bar__end">After</span>
+              </div>
               <div class="transformation__shot">
                 <span class="transformation__tag transformation__tag--after">After</span>
                 <img src="assets/images/results/transformation-3-after.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 17.1K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
@@ -214,6 +274,7 @@
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+14.2K</span>
+                <span class="transformation__days">in 40 days</span>
                 <span class="transformation__range">2,948 &rarr; 17.1K followers</span>
               </div>
               <div class="transformation__who">
@@ -228,6 +289,14 @@
                 <span class="transformation__tag">Before</span>
                 <img src="assets/images/results/transformation-4-before.webp" alt="Mohamed Badr's Instagram profile at 9,194 followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
+              <!-- TODO: confirm real duration -->
+              <div class="duration-bar" role="img" aria-label="60 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
+                <span class="duration-bar__line" aria-hidden="true"></span>
+                <span class="duration-bar__value">60 days</span>
+                <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
+                <span class="duration-bar__end">After</span>
+              </div>
               <div class="transformation__shot">
                 <span class="transformation__tag transformation__tag--after">After</span>
                 <img src="assets/images/results/transformation-4-after.webp" alt="Mohamed Badr's Instagram profile at 32.4K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
@@ -236,6 +305,7 @@
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+23.2K</span>
+                <span class="transformation__days">in 60 days</span>
                 <span class="transformation__range">9,194 &rarr; 32.4K followers</span>
               </div>
               <div class="transformation__who">
@@ -244,6 +314,97 @@
               </div>
             </figcaption>
           </figure>
+        </div>
+      </div>
+
+      <!-- Who is this investment for? — the qualifier. Six statements a coach
+           should recognise himself in, then a quieter block naming who this
+           isn't for, so the call is pre-filtered rather than pitched to. -->
+      <div class="section container investment-for">
+        <div class="investment-for__head">
+          <span class="eyebrow" data-reveal>For you?</span>
+          <h2 data-reveal>Who is this investment for?</h2>
+        </div>
+
+        <ul class="fit-grid" data-reveal-group>
+          <li class="fit-card" data-reveal data-glow>
+            <span class="fit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12.5l5.2 5.2L20 7" />
+              </svg>
+            </span>
+            <p>You want your DMs full of people asking for coaching — not you chasing them.</p>
+          </li>
+          <li class="fit-card" data-reveal data-glow>
+            <span class="fit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12.5l5.2 5.2L20 7" />
+              </svg>
+            </span>
+            <p>You'd rather perfect a client's program than a caption.</p>
+          </li>
+          <li class="fit-card" data-reveal data-glow>
+            <span class="fit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12.5l5.2 5.2L20 7" />
+              </svg>
+            </span>
+            <p>You're done watching less-qualified coaches outgrow you.</p>
+          </li>
+          <li class="fit-card" data-reveal data-glow>
+            <span class="fit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12.5l5.2 5.2L20 7" />
+              </svg>
+            </span>
+            <p>You want your content bringing in clients while you're on the gym floor.</p>
+          </li>
+          <li class="fit-card" data-reveal data-glow>
+            <span class="fit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12.5l5.2 5.2L20 7" />
+              </svg>
+            </span>
+            <p>You want to raise your prices — and have the audience that makes it make sense.</p>
+          </li>
+          <li class="fit-card" data-reveal data-glow>
+            <span class="fit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12.5l5.2 5.2L20 7" />
+              </svg>
+            </span>
+            <p>You want to be the coach people think of first in your niche, not another account that posts once a month.</p>
+          </li>
+        </ul>
+
+        <div class="not-for" data-reveal>
+          <h3 class="not-for__title">Not for you if&hellip;</h3>
+          <ul class="not-for__list">
+            <li class="not-for__item">
+              <span class="not-for__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </span>
+              <p>You want overnight results without showing up consistently.</p>
+            </li>
+            <li class="not-for__item">
+              <span class="not-for__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </span>
+              <p>You're not willing to get in front of the camera.</p>
+            </li>
+            <li class="not-for__item">
+              <span class="not-for__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </span>
+              <p>You want bought followers or fake numbers.</p>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -313,6 +474,193 @@
 
       <div class="section container work-grid">
         <div class="project-grid" data-project-grid="all" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         CLIENT FEEDBACK — "Hear it from our coaches"
+
+         Every quote below is the literal placeholder "Testimonial coming
+         soon". That is deliberate: the photos, names and handles are real
+         clients, so an invented quote attached to one of them could go live
+         as a real endorsement by accident. The placeholder cannot.
+         Voice notes and videos are wired to media-config.js keys; until the
+         files land, each player renders its own "coming soon" state.
+         ================================================================== -->
+    <section id="feedback" class="snap-section">
+      <div class="section container feedback">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>Client feedback</span>
+            <h2 data-reveal>Hear it from our coaches.</h2>
+          </div>
+        </div>
+
+        <div class="feedback__grid">
+          <!-- Voice notes, stacked like a chat thread -->
+          <div class="voicenotes" data-reveal-group>
+            <!-- TODO: real testimonial -->
+            <figure class="voicenote" data-voicenote data-media-key="voiceNote1" data-label="Mustafa Ashraf" data-reveal>
+              <div class="voicenote__bubble">
+                <img class="voicenote__avatar" src="assets/images/clients/client-04.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.30"></i><i style="--h:.52"></i><i style="--h:.74"></i><i style="--h:.42"></i><i style="--h:.88"></i><i style="--h:.61"></i><i style="--h:.35"></i><i style="--h:.70"></i><i style="--h:.95"></i><i style="--h:.48"></i><i style="--h:.26"></i><i style="--h:.58"></i><i style="--h:.82"></i><i style="--h:.44"></i><i style="--h:.66"></i><i style="--h:.90"></i><i style="--h:.38"></i><i style="--h:.55"></i><i style="--h:.72"></i><i style="--h:.31"></i><i style="--h:.63"></i><i style="--h:.85"></i><i style="--h:.47"></i><i style="--h:.28"></i><i style="--h:.56"></i><i style="--h:.34"></i></span>
+                <audio preload="metadata" controls data-audio></audio>
+              </div>
+              <figcaption class="voicenote__meta">
+                <span class="voicenote__name">Mustafa Ashraf</span>
+                <span class="voicenote__handle">@mustafa_ashraf_26</span>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="voicenote" data-voicenote data-media-key="voiceNote2" data-label="Mohamed Badr" data-reveal>
+              <div class="voicenote__bubble">
+                <img class="voicenote__avatar" src="assets/images/clients/client-02.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.62"></i><i style="--h:.38"></i><i style="--h:.84"></i><i style="--h:.55"></i><i style="--h:.29"></i><i style="--h:.71"></i><i style="--h:.93"></i><i style="--h:.46"></i><i style="--h:.33"></i><i style="--h:.68"></i><i style="--h:.87"></i><i style="--h:.51"></i><i style="--h:.27"></i><i style="--h:.60"></i><i style="--h:.79"></i><i style="--h:.41"></i><i style="--h:.92"></i><i style="--h:.64"></i><i style="--h:.36"></i><i style="--h:.57"></i><i style="--h:.75"></i><i style="--h:.43"></i><i style="--h:.66"></i><i style="--h:.32"></i><i style="--h:.49"></i><i style="--h:.25"></i></span>
+                <audio preload="metadata" controls data-audio></audio>
+              </div>
+              <figcaption class="voicenote__meta">
+                <span class="voicenote__name">Mohamed Badr</span>
+                <span class="voicenote__handle">@coach.butcher</span>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="voicenote" data-voicenote data-media-key="voiceNote3" data-label="Galal Mohamed" data-reveal>
+              <div class="voicenote__bubble">
+                <img class="voicenote__avatar" src="assets/images/clients/client-16.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.45"></i><i style="--h:.72"></i><i style="--h:.31"></i><i style="--h:.89"></i><i style="--h:.58"></i><i style="--h:.40"></i><i style="--h:.66"></i><i style="--h:.27"></i><i style="--h:.81"></i><i style="--h:.53"></i><i style="--h:.94"></i><i style="--h:.37"></i><i style="--h:.62"></i><i style="--h:.48"></i><i style="--h:.76"></i><i style="--h:.34"></i><i style="--h:.59"></i><i style="--h:.86"></i><i style="--h:.42"></i><i style="--h:.69"></i><i style="--h:.28"></i><i style="--h:.54"></i><i style="--h:.78"></i><i style="--h:.39"></i><i style="--h:.61"></i><i style="--h:.30"></i></span>
+                <audio preload="metadata" controls data-audio></audio>
+              </div>
+              <figcaption class="voicenote__meta">
+                <span class="voicenote__name">Galal Mohamed</span>
+                <!-- TODO: confirm correct handle — the Before/After card above
+                     says @galalmohamed99, the client roster says
+                     @galalmohamed95. Left as-is in both places; not guessed. -->
+                <span class="voicenote__handle">@galalmohamed95</span>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="voicenote" data-voicenote data-media-key="voiceNote4" data-label="Mohamed Abd El-Shafy" data-reveal>
+              <div class="voicenote__bubble">
+                <img class="voicenote__avatar" src="assets/images/clients/client-09.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.36"></i><i style="--h:.64"></i><i style="--h:.91"></i><i style="--h:.47"></i><i style="--h:.25"></i><i style="--h:.73"></i><i style="--h:.56"></i><i style="--h:.83"></i><i style="--h:.32"></i><i style="--h:.60"></i><i style="--h:.44"></i><i style="--h:.88"></i><i style="--h:.51"></i><i style="--h:.29"></i><i style="--h:.70"></i><i style="--h:.96"></i><i style="--h:.40"></i><i style="--h:.67"></i><i style="--h:.35"></i><i style="--h:.58"></i><i style="--h:.80"></i><i style="--h:.46"></i><i style="--h:.26"></i><i style="--h:.63"></i><i style="--h:.42"></i><i style="--h:.33"></i></span>
+                <audio preload="metadata" controls data-audio></audio>
+              </div>
+              <figcaption class="voicenote__meta">
+                <span class="voicenote__name">Mohamed Abd El-Shafy</span>
+                <span class="voicenote__handle">@moh.abdelshafy</span>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="voicenote" data-voicenote data-media-key="voiceNote5" data-label="Amr Moharram" data-reveal>
+              <div class="voicenote__bubble">
+                <img class="voicenote__avatar" src="assets/images/clients/client-01.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.54"></i><i style="--h:.28"></i><i style="--h:.77"></i><i style="--h:.41"></i><i style="--h:.65"></i><i style="--h:.90"></i><i style="--h:.34"></i><i style="--h:.59"></i><i style="--h:.43"></i><i style="--h:.85"></i><i style="--h:.30"></i><i style="--h:.68"></i><i style="--h:.52"></i><i style="--h:.74"></i><i style="--h:.37"></i><i style="--h:.61"></i><i style="--h:.93"></i><i style="--h:.45"></i><i style="--h:.27"></i><i style="--h:.71"></i><i style="--h:.56"></i><i style="--h:.82"></i><i style="--h:.39"></i><i style="--h:.48"></i><i style="--h:.31"></i><i style="--h:.57"></i></span>
+                <audio preload="metadata" controls data-audio></audio>
+              </div>
+              <figcaption class="voicenote__meta">
+                <span class="voicenote__name">Amr Moharram</span>
+                <span class="voicenote__handle">@coach_amrmoharram</span>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Video testimonials. Same player component as the hero sales video.
+             The nav row (arrows + dots) is built by carousel.js: without JS the
+             strip is still a swipeable, scroll-snapping, keyboard-scrollable
+             list, so nothing here depends on the script. -->
+        <div class="carousel" data-carousel data-reveal>
+          <div class="carousel__viewport" data-carousel-viewport tabindex="0" role="group" aria-label="Video testimonials from coaches">
+            <!-- TODO: real testimonial -->
+            <figure class="carousel__slide">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo1" data-label="video testimonial from Mohanad Hesham">
+                <div class="vplayer__frame">
+                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
+                </div>
+              </div>
+              <figcaption class="carousel__meta">
+                <img class="carousel__avatar" src="assets/images/clients/client-03.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="carousel__name">Mohanad Hesham</span>
+                <span class="carousel__handle">@mohanad_elmaghraby</span>
+                <p class="carousel__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="carousel__slide">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo2" data-label="video testimonial from Kareem Mahmoud">
+                <div class="vplayer__frame">
+                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
+                </div>
+              </div>
+              <figcaption class="carousel__meta">
+                <img class="carousel__avatar" src="assets/images/clients/client-11.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="carousel__name">Kareem Mahmoud</span>
+                <span class="carousel__handle">@kariiim.mahmoud</span>
+                <p class="carousel__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="carousel__slide">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo3" data-label="video testimonial from Omar Nasr">
+                <div class="vplayer__frame">
+                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
+                </div>
+              </div>
+              <figcaption class="carousel__meta">
+                <img class="carousel__avatar" src="assets/images/clients/client-18.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="carousel__name">Omar Nasr</span>
+                <span class="carousel__handle">@omarnasrbaker</span>
+                <p class="carousel__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="carousel__slide">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo4" data-label="video testimonial from Karim Maghraby">
+                <div class="vplayer__frame">
+                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
+                </div>
+              </div>
+              <figcaption class="carousel__meta">
+                <img class="carousel__avatar" src="assets/images/clients/client-10.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="carousel__name">Karim Maghraby</span>
+                <span class="carousel__handle">@karimmaghraby</span>
+                <p class="carousel__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+
+            <!-- TODO: real testimonial -->
+            <figure class="carousel__slide">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo5" data-label="video testimonial from Rohaim Moustafa">
+                <div class="vplayer__frame">
+                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
+                </div>
+              </div>
+              <figcaption class="carousel__meta">
+                <img class="carousel__avatar" src="assets/images/clients/client-07.webp" alt="" loading="lazy" width="256" height="256" />
+                <span class="carousel__name">Rohaim Moustafa</span>
+                <span class="carousel__handle">@rohaim_moustafa</span>
+                <p class="carousel__quote">Testimonial coming soon.</p>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="carousel__nav" data-carousel-nav></div>
+        </div>
+
+        <div class="feedback__cta" data-reveal>
+          <a href="#contact" class="btn btn--primary">Book a call</a>
+        </div>
       </div>
     </section>
 
@@ -449,56 +797,191 @@
         </div>
       </div>
 
-      <div class="section container services-section">
-        <div class="services-section__grid">
-          <div class="services-section__head">
-            <span class="eyebrow" data-reveal>The pipeline</span>
-            <h2 data-reveal>Every reel, start to finish</h2>
-            <p class="services-section__lead" data-reveal>Three stages, one team. You're only ever asked to show up and coach — we carry the rest, from blank page to posted reel.</p>
-          </div>
-          <div class="services-list" data-reveal-group>
-          <div class="service-row" data-reveal>
-            <span class="service-row__index">01</span>
-            <span class="service-row__icon icon-interactive" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 20h4l10.5-10.5a2.121 2.121 0 0 0-3-3L5 17v3z" />
-                <path d="M13.5 6.5l3 3" />
-              </svg>
-            </span>
-            <div>
-              <h3>Scripting &amp; Ideas</h3>
-              <p class="service-row__desc">We turn your coaching into hooks and scripts built to stop the scroll — you approve, we roll. No more staring at a blank notes app.</p>
+      <!-- HOW WE WORK TOGETHER
+           The old three-stage pipeline, opened out into the full nine steps a
+           coach actually goes through. The three stages' copy is not gone: it
+           now lives in steps 04 (Ideas & scripts), 05 (Shoot day) and 06
+           (Editing). Clarity first — the animation is decoration over a list
+           that reads perfectly with no JS and under reduced motion. -->
+      <div class="section container journey">
+        <div class="journey__head">
+          <span class="eyebrow" data-reveal>How we work together</span>
+          <h2 data-reveal>Every reel, start to finish</h2>
+          <p class="journey__lead" data-reveal>You're only ever asked to show up and coach — we carry the rest, from blank page to posted reel.</p>
+        </div>
+
+        <!-- TODO: owner to confirm step wording with client -->
+        <ol class="journey__steps">
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">01</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-3.4A8.4 8.4 0 1 1 21 11.5z" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">You reach out</h3>
+              <span class="journey-step__who">You</span>
+              <p class="journey-step__desc">Message us on WhatsApp or through the form. We reply within one business day.</p>
             </div>
-          </div>
-          <div class="service-row" data-reveal>
-            <span class="service-row__index">02</span>
-            <span class="service-row__icon icon-interactive" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 7l-7 5 7 5V7z" />
-                <rect x="1" y="5" width="15" height="14" rx="2" />
-              </svg>
-            </span>
-            <div>
-              <h3>Filming &amp; Shooting</h3>
-              <p class="service-row__desc">Sessions filmed in the gym with the gear and direction to make you look like the expert you already are — batched so one shoot fuels weeks of content.</p>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">02</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2.1z" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">Discovery call</h3>
+              <span class="journey-step__who">Together</span>
+              <p class="journey-step__desc">A short call about your coaching, your audience, and your goals. We pick the package that fits: 12 or 24 reels a month.</p>
             </div>
-          </div>
-          <div class="service-row" data-reveal>
-            <span class="service-row__index">03</span>
-            <span class="service-row__icon icon-interactive" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 8l2-4h4l-2 4" />
-                <path d="M8 8l2-4h4l-2 4" />
-                <path d="M14 8l2-4h4l-2 4" />
-                <rect x="2" y="8" width="20" height="12" rx="1" />
-              </svg>
-            </span>
-            <div>
-              <h3>Editing — Reels &amp; Shorts</h3>
-              <p class="service-row__desc">Cut, captioned, and paced for the feed. Every reel comes back ready to post to Instagram, TikTok, and YouTube Shorts.</p>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">03</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <circle cx="12" cy="12" r="4.5" />
+                  <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">We learn your brand</h3>
+              <span class="journey-step__who">We</span>
+              <p class="journey-step__desc">How you coach, who you train, and what you want to be known for, so every reel sounds like you.</p>
             </div>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">04</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 20h4l10.5-10.5a2.121 2.121 0 0 0-3-3L5 17v3z" />
+                  <path d="M13.5 6.5l3 3" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">Ideas &amp; scripts</h3>
+              <span class="journey-step__who">We write, you approve</span>
+              <p class="journey-step__desc">We turn your coaching into hooks and scripts built to stop the scroll. You approve them or ask for changes before anything is filmed.</p>
+            </div>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">05</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 7l-7 5 7 5V7z" />
+                  <rect x="1" y="5" width="15" height="14" rx="2" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">Shoot day</h3>
+              <span class="journey-step__who">You show up, we direct</span>
+              <p class="journey-step__desc">We film at your gym with the gear and direction to make you look like the expert you are. One session covers weeks of content. Outside our area? We direct a remote shoot over a call.</p>
+            </div>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">06</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 8l2-4h4l-2 4" />
+                  <path d="M8 8l2-4h4l-2 4" />
+                  <path d="M14 8l2-4h4l-2 4" />
+                  <rect x="2" y="8" width="20" height="12" rx="1" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">Editing</h3>
+              <span class="journey-step__who">We</span>
+              <p class="journey-step__desc">Every reel is cut, captioned, and paced for the feed, with sound tuned for Reels, TikTok, and Shorts.</p>
+            </div>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">07</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12a9 9 0 0 1 15.3-6.4L21 8" />
+                  <path d="M21 3v5h-5" />
+                  <path d="M21 12a9 9 0 0 1-15.3 6.4L3 16" />
+                  <path d="M3 21v-5h5" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">Your review</h3>
+              <span class="journey-step__who">You review, we revise</span>
+              <p class="journey-step__desc">Want something changed? The cut, captions, or pacing: we revise until you're happy to put your name on it.</p>
+            </div>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">08</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 19V5" />
+                  <path d="M5.5 11.5L12 5l6.5 6.5" />
+                  <path d="M4 21h16" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">Ready to post</h3>
+              <span class="journey-step__who">You</span>
+              <p class="journey-step__desc">Your finished reels are delivered ready to post on Instagram, TikTok, and YouTube Shorts.</p>
+            </div>
+          </li>
+
+          <li class="journey-step" data-journey-step>
+            <span class="journey-step__marker" aria-hidden="true"><span class="journey-step__num">09</span></span>
+            <div class="journey-step__card" data-glow>
+              <span class="journey-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="16" rx="2" />
+                  <path d="M3 10h18" />
+                  <path d="M8 3v4M16 3v4" />
+                </svg>
+              </span>
+              <h3 class="journey-step__title">Next month</h3>
+              <span class="journey-step__who">Together</span>
+              <p class="journey-step__desc">New ideas, new shoot, and the feed keeps moving. Month to month, no long contract.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="journey-summary" data-reveal-group>
+          <div class="journey-summary__col" data-reveal>
+            <h3 class="journey-summary__title">What you do</h3>
+            <ul class="journey-summary__list">
+              <li>Show up and coach on camera</li>
+              <li>Approve scripts</li>
+              <li>Post your reels</li>
+            </ul>
           </div>
+          <div class="journey-summary__col" data-reveal>
+            <h3 class="journey-summary__title">What we do</h3>
+            <ul class="journey-summary__list">
+              <li>Scripts</li>
+              <li>Filming</li>
+              <li>Editing</li>
+              <li>Captions</li>
+              <li>Revisions</li>
+            </ul>
           </div>
+          <div class="journey-summary__col journey-summary__col--accent" data-reveal>
+            <h3 class="journey-summary__title">What you get</h3>
+            <ul class="journey-summary__list">
+              <li>12 or 24 finished reels every month, ready to post</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="journey__cta" data-reveal>
+          <a href="#contact" class="btn btn--primary">Book a call</a>
         </div>
       </div>
 
@@ -805,13 +1288,17 @@
   </footer>
 
   <script src="assets/js/data/projects.js?v=15"></script>
+  <script src="assets/js/media-config.js?v=15"></script>
   <script src="assets/js/modules/projectGrid.js?v=15"></script>
   <script src="assets/js/modules/navbar.js?v=15"></script>
   <script src="assets/js/modules/navIndicator.js?v=15"></script>
   <script src="assets/js/modules/sectionNav.js?v=15"></script>
   <script src="assets/js/modules/scrollReveal.js?v=15"></script>
   <script src="assets/js/modules/counter.js?v=15"></script>
+  <script src="assets/js/modules/journey.js?v=15"></script>
   <script src="assets/js/modules/pointer.js?v=15"></script>
+  <script src="assets/js/modules/mediaPlayer.js?v=15"></script>
+  <script src="assets/js/modules/carousel.js?v=15"></script>
   <script src="assets/js/modules/contactForm.js?v=15"></script>
   <script src="assets/js/main.js?v=15"></script>
 </body>

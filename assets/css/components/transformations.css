@@ -92,6 +92,17 @@
   color: var(--color-accent);
 }
 
+/* How long the jump took — sits right after the delta so the growth line reads
+   "+14.3K in 30 days". Kept in step with the .duration-bar on the same card. */
+.transformation__days {
+  font-family: var(--font-data);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
 .transformation__range {
   font-family: var(--font-data);
   font-size: var(--fs-small);

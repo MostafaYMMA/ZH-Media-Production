@@ -1,0 +1,192 @@
+/* ==========================================================================
+   CAROUSEL — the video-testimonial strip under "Hear it from our coaches".
+
+   The strip is CSS-only: a scroll-snapping flex row. One card mostly visible
+   with the next peeking in on a phone, three across on desktop. carousel.js
+   adds the arrows and dots on top; nothing here needs it.
+
+   Logical properties throughout, for the planned Arabic RTL build.
+   ========================================================================== */
+
+.carousel {
+  margin-block-start: var(--space-xl);
+}
+
+.carousel__viewport {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Keep the snap point clear of the gutter. */
+  scroll-padding-inline-start: 0;
+  padding-block-end: var(--space-xs);
+  /* Firefox / standards scrollbar; the WebKit rule is below. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.carousel__viewport::-webkit-scrollbar {
+  block-size: 6px;
+}
+
+.carousel__viewport::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+
+.carousel__viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel__slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  /* Phone default: one card dominant, the next one peeking in at the edge. */
+  inline-size: min(78%, 320px);
+  margin: 0;
+}
+
+/* --- who said it ---------------------------------------------------------- */
+.carousel__meta {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-sm);
+  row-gap: 0;
+  margin-block-start: var(--space-md);
+}
+
+.carousel__avatar {
+  grid-row: 1 / span 2;
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--color-border-strong);
+}
+
+.carousel__name {
+  font-family: var(--font-data);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  align-self: end;
+}
+
+.carousel__handle {
+  font-size: var(--fs-small);
+  color: var(--color-text-dim);
+  align-self: start;
+}
+
+.carousel__quote {
+  grid-column: 1 / -1;
+  margin: 0;
+  margin-block-start: var(--space-xs);
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  max-inline-size: none;
+}
+
+/* --- arrows + dots (built by carousel.js) -------------------------------- */
+.carousel__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-block-start: var(--space-md);
+}
+
+/* Nothing to show until the script has filled the row. */
+.carousel__nav:empty {
+  display: none;
+}
+
+.carousel__arrow {
+  display: grid;
+  place-items: center;
+  inline-size: 42px;
+  block-size: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.carousel__arrow:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.carousel__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.carousel__arrow svg {
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+/* Arrows flip with the reading direction — the chevrons are drawn LTR. */
+[dir="rtl"] .carousel__arrow svg {
+  transform: scaleX(-1);
+}
+
+.carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.carousel__dot {
+  inline-size: 8px;
+  block-size: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.carousel__dot:hover {
+  background: var(--color-text-muted);
+}
+
+.carousel__dot.is-active {
+  background: var(--color-accent);
+  transform: scale(1.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__dot.is-active {
+    transform: none;
+  }
+}
+
+/* Dots are small targets; give them a comfortable hit area without changing
+   how they look. */
+.carousel__dot::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.carousel__dot {
+  position: relative;
+}
+
+/* --- desktop: three across ----------------------------------------------- */
+@media (min-width: 900px) {
+  .carousel__slide {
+    /* Three visible, accounting for the two gaps between them. */
+    inline-size: calc((100% - 2 * var(--space-lg)) / 3);
+  }
+}
