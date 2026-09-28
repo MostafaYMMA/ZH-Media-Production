@@ -9,6 +9,7 @@
 .clients__lead {
   max-width: 60ch;
   margin-top: var(--space-sm);
+  font-size: var(--fs-lead);
   color: var(--color-text-muted);
 }
 

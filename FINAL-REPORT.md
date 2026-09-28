@@ -141,11 +141,26 @@ every "Book a call" is paired with *Start investing in your business*; the
 voice notes are journey-style cards filling the full width; and the video
 carousel fills the width instead of stopping at 1040px.
 
-**Body type raised.** The statements were good but 16px. `--fs-body` is now
-1.125rem, with two new tokens (`--fs-lead`, `--fs-statement`) replacing a
-dozen hardcoded sizes. Body copy 16 → 18px, card statements 16.8 → 18.4px,
-section leads → 20.2px. `--fs-small` was deliberately left alone: it is the UI
-label scale, and the navbar's 980px breakpoint is measured against it.
+**Body type raised, twice.** The statements were good but 16px. `--fs-body` is
+now 1.1875rem, with two new tokens (`--fs-lead`, `--fs-statement`) replacing a
+dozen hardcoded sizes:
+
+| | before | now |
+|---|---|---|
+| Body copy — FAQ answers, package copy, quotes, about | 16px | **19px** |
+| Card statements — "who is this for", journey steps, summary | 16.8px | **20px** |
+| Section leads — the line under each heading | 16px | **24.5px** |
+| `<h3>` | 21.6px | **25.6px** |
+
+The section leads moved most. Several of them — the `transformations`,
+`clients` and `services-section` leads, and the packages note — had **no
+font-size at all** and were silently inheriting body size, which is why that
+line under each heading was disappearing under the display type above it. They
+are all on `--fs-lead` now.
+
+`--fs-small` was deliberately left alone: it is the UI label scale — nav links,
+buttons, eyebrows, form labels — and the navbar's 980px breakpoint is measured
+against it (CLAUDE.md), so growing it would push the nav past that breakpoint.
 
 ---
 
@@ -309,5 +324,5 @@ whenever you want it.
 | `03296f5` | fix: contrast floor, back to 100 |
 | `c0f7b44` | fix: restore the one dropped line of copy |
 
-24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=25`,
+24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=26`,
 41 references in lockstep.

@@ -4,6 +4,10 @@
 .transformations__lead {
   max-width: 60ch;
   margin-top: var(--space-sm);
+  /* The section's explaining line — same size as every other lead on the page
+     (see --fs-lead). It was inheriting body size and vanishing under the
+     display heading above it. */
+  font-size: var(--fs-lead);
   color: var(--color-text-muted);
 }
 

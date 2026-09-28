@@ -36,16 +36,18 @@
   --fs-hero: clamp(3rem, 6.5vw, 6.5rem);
   --fs-h1: clamp(2.5rem, 4.5vw, 4rem);
   --fs-h2: clamp(2rem, 3.4vw, 3rem);
-  --fs-h3: 1.5rem;
+  --fs-h3: 1.65rem;
   /* Body copy carries the argument on this page — the statements in the cards
      are the thing people actually read and repeat back. It was 1rem, which
-     tested as "good writing you can't really see", so the whole non-heading
-     scale moved up a step. */
-  --fs-body: 1.125rem;
-  /* Section leads and the statement lines inside cards: a deliberate step
-     above body, so a scanning reader lands on them first. */
-  --fs-lead: clamp(1.25rem, 1.4vw, 1.45rem);
-  --fs-statement: clamp(1.15rem, 1.1vw, 1.3rem);
+     tested as "good writing you can't really see". Raised twice since. */
+  --fs-body: 1.1875rem;
+  /* The paragraph under a section heading. This is the line that explains what
+     the section is, and at body size it was disappearing under the display
+     type above it, so it gets a deliberate jump rather than a nudge — it is
+     closer to a small heading than to body copy. */
+  --fs-lead: clamp(1.4rem, 1.7vw, 1.75rem);
+  /* The statement lines inside cards: above body, below lead. */
+  --fs-statement: clamp(1.25rem, 1.2vw, 1.4rem);
   /* Deliberately NOT raised with the rest. This is the UI label scale -- nav
      links, buttons, eyebrows, form labels -- and the desktop navbar's 980px
      breakpoint was measured against it (see CLAUDE.md). Growing it would push

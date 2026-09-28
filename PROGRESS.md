@@ -9,7 +9,7 @@ Delete this file and `FINAL-REPORT.md` before merging.
   **`main` is untouched, nothing pushed, no remote branch exists.**
 - **Working tree clean**, except the pre-existing untracked
   `scroll-snap-navigation-guide.md` (already untracked on `main`; not mine).
-- Cache-bust at **`?v=25`** across `index.html` + `main.css` (41 refs, lockstep).
+- Cache-bust at **`?v=26`** across `index.html` + `main.css` (41 refs, lockstep).
 
 ## Open bugs
 
