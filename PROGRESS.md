@@ -5,15 +5,15 @@ The § 9 report is in `FINAL-REPORT.md` — read that one.
 
 Delete this file and `FINAL-REPORT.md` before merging.
 
-- **Branch:** `landing-v2`, 16 commits from `main` @ `caca8c6`.
+- **Branch:** `landing-v2`, 18 commits from `main` @ `caca8c6`.
   **`main` is untouched, nothing pushed, no remote branch exists.**
 - **Working tree clean**, except the pre-existing untracked
   `scroll-snap-navigation-guide.md` (already untracked on `main`; not mine).
-- Cache-bust at **`?v=22`** across `index.html` + `main.css` (41 refs, lockstep).
+- Cache-bust at **`?v=25`** across `index.html` + `main.css` (41 refs, lockstep).
 
 ## Open bugs
 
-None. The three found during testing — no-JS journey steps rendering dim, the
+None. The five found during testing — no-JS journey steps rendering dim, the
 mouse-only waveform, and two contrast failures — are fixed, committed and
 re-verified. See `FINAL-REPORT.md`.
 

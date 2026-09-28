@@ -56,7 +56,8 @@ TODO list.
 
 ### § 3.3 — "Who is this investment for?"
 
-Six "this is you" lines and a quieter "not for you if…" block underneath.
+Six "this is you" cards, then three "not for you if…" cards in the same shape
+with a red ✕ instead of the volt check.
 
 ### § 3.4 — how we work together
 
@@ -114,6 +115,38 @@ All new CSS uses logical properties (`inline-size`, `inset-inline-start`,
 carousel paging, the waveform scrub, the waveform arrow keys — reads the
 direction off the document instead of assuming left-to-right. The Arabic build
 itself is not in this branch.
+
+---
+
+## Owner review round (after the first pass)
+
+**Removed, on your instruction** — this is the one place the "don't delete
+content" rule in § 0 was set aside, because you asked for it directly:
+
+- the home "What we do" block, *From first idea to posted reel*, and its three
+  cards (Script Writing / Video Recording / Reels & Editing);
+- the services hero, *You coach. We make the content.*, and its lead.
+
+`#services` now opens on "How we work together", which has its own heading and
+top padding. Their substance is not gone: the three cards' copy is in journey
+steps 04, 05 and 06, and the pipeline is written out in full in the "What we
+do" summary column, which is why that column was enlarged.
+
+**Fixed:** the connecting line through the nine steps broke next to every
+left-hand card — see the defects list below.
+
+**Reworked:** the "not for you" list now uses the same cards as the list above
+it; "Why you'd want us" is rewritten around growing the business rather than
+listing services; "What we do" is the lead column of the journey summary;
+every "Book a call" is paired with *Start investing in your business*; the
+voice notes are journey-style cards filling the full width; and the video
+carousel fills the width instead of stopping at 1040px.
+
+**Body type raised.** The statements were good but 16px. `--fs-body` is now
+1.125rem, with two new tokens (`--fs-lead`, `--fs-statement`) replacing a
+dozen hardcoded sizes. Body copy 16 → 18px, card statements 16.8 → 18.4px,
+section leads → 20.2px. `--fs-small` was deliberately left alone: it is the UI
+label scale, and the navbar's 980px breakpoint is measured against it.
 
 ---
 
@@ -187,6 +220,17 @@ Chromium, Firefox and WebKit, served over `python -m http.server`.
    accessibility to 97; both moved to the muted token (6.7:1) and it is back at
    100.
 
+4. **The journey line broke next to every left-hand card.** Measured at 1440px:
+   on steps 1, 3, 5 and 7 the marker column was 82px tall inside a 375px step,
+   so the line stopped ~290px short. The card sits in column 1 but comes after
+   the marker in DOM order, and sparse grid auto-placement never moves
+   backwards — so it was pushed into row 2 and the marker stretched across only
+   the first. Both children are now pinned to row 1; every gap measures 0px.
+5. **Seven more contrast failures**, six of which Lighthouse never saw because
+   the reveal animation had those elements at `opacity: 0` during the audit.
+   All were `--color-text-dim` used on text. A full-page sweep with every
+   reveal forced open now reports **0 failures**.
+
 Also fixed earlier in the pass: 24 console 404s for unshot media (now 0), a
 voice-note quote that rode up onto short names, and three carousel cards
 rendering 780px tall — taller than the viewport.
@@ -223,7 +267,9 @@ rendering 780px tall — taller than the viewport.
 8. **A `ready` flag in `media-config.js`** — not in the brief. It is what takes
    the console from 24 errors to 0 while the media is unshot. One word to change
    per file when the real file lands.
-9. **Contrast tokens** — two places where the brief's visual intent was "quieter
+9. **Content removed** — § 0 says not to delete content. Two blocks were
+   deleted anyway, because you asked for them by name in review. Noted above.
+10. **Contrast tokens** — two places where the brief's visual intent was "quieter
    than the rest" now use `--color-text-muted` instead of `--color-text-dim`,
    because the dim token fails the contrast floor for text on the page
    background. Still visibly quieter, just legible.
@@ -264,5 +310,5 @@ whenever you want it.
 | `03296f5` | fix: contrast floor, back to 100 |
 | `c0f7b44` | fix: restore the one dropped line of copy |
 
-24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=22`,
+24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=25`,
 41 references in lockstep.
