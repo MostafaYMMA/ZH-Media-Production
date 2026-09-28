@@ -32,12 +32,14 @@ merge it yourself when you are happy.
 
 ### § 2 — page order
 
-The page now reads: **home → services → work → feedback → clients → about →
-faq → investment → contact**, and within `#home`: hero → Before/After →
-"who is this for" → why you'd want us → what we do.
+The nine sections read: **home → services → work → feedback → clients → about
+→ faq → investment → contact**.
 
-Nothing was cut to do it; whole `<section>` blocks moved. Verified by sorting
-every non-blank line of `index.html` before and after: **zero removals**.
+The reorder itself cut nothing — whole `<section>` blocks moved, verified by
+sorting every non-blank line of `index.html` before and after: **zero
+removals**. What `#home` holds has since changed on your instruction (see the
+review rounds below): it is now hero → Before/After → CTA, with "who is this
+investment for" moved into `#services` and "why you'd want us" removed.
 
 ### § 3.1 — hero
 
@@ -176,6 +178,29 @@ against it (CLAUDE.md), so growing it would push the nav past that breakpoint.
 - **"Investment"** above the packages goes 14 → 22.4px via a new `.eyebrow--lg`
   modifier, with its volt tick mirrored either side instead of dropped.
 - **The sales video** is larger: 324 → 375px on desktop, 304 → 323px stacked.
+
+**Latest round:**
+
+- **"Book a call" is bigger everywhere** — 14 → 16.8px with roomier padding.
+  The one exception is the navbar's Contact pill, pinned back to the old size:
+  it sits inside the 980px desktop-nav breakpoint CLAUDE.md says to re-measure
+  before touching.
+- **"Book a call" now closes every one of the nine sections.** Nothing existing
+  was removed; six new blocks filled the gaps. "Start yours" → "Start
+  investing".
+- **"Why you'd want us" is gone.**
+- **The summary relaid out** — "What you do" and "What you get" stacked in a
+  narrow left column, "What we do" full height beside them.
+- **"Who is this investment for / not for you if"** moved out of `#home` to sit
+  directly under those cards in `#services`.
+- **The journey cards are filled** — the icon is a 52px disc on the title's
+  line under a divider, the copy runs the card's full width, and each card
+  carries an oversized bled-in numeral (from a CSS counter, so the number still
+  exists only once in the markup) on the side the copy is not on.
+- **"How we work together"** is 72px at 1440 — above every other section
+  heading, since this is where a coach works out what he is buying.
+- **The hero** says what the business does in plain words instead of listing
+  services.
 
 ---
 
@@ -356,5 +381,5 @@ whenever you want it.
 | `03296f5` | fix: contrast floor, back to 100 |
 | `c0f7b44` | fix: restore the one dropped line of copy |
 
-24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=29`,
+24 files changed, 3777 insertions, 232 deletions. Cache-bust at `?v=30`,
 41 references in lockstep.
