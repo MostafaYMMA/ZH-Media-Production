@@ -248,6 +248,9 @@
               </div>
               <div class="transformation__who">
                 <strong>Galal Mohamed</strong>
+                <!-- TODO: confirm correct handle — this card says
+                     @galalmohamed99, the #clients roster says @galalmohamed95.
+                     Both left exactly as they were; not guessed. -->
                 <span>@galalmohamed99</span>
               </div>
             </figcaption>
@@ -704,6 +707,8 @@
             <figure class="client-card" data-glow>
               <img class="client-card__avatar" src="assets/images/clients/client-16.webp" alt="Galal Mohamed" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Galal Mohamed</figcaption>
+              <!-- TODO: confirm correct handle — the Before/After card says
+                   @galalmohamed99, this one says @galalmohamed95. -->
               <span class="client-card__handle">@galalmohamed95</span>
             </figure>
             <figure class="client-card" data-glow>
@@ -1250,6 +1255,7 @@
           </div>
           <div class="contact-info__block">
             <h3>Follow</h3>
+            <!-- TODO: add real Instagram URL -->
             <p><a href="#">Instagram</a></p>
           </div>
         </aside>
@@ -1274,6 +1280,7 @@
           <a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a>
           <p class="footer__location text-muted">Cairo, Egypt &mdash; remote &amp; on-location</p>
           <div class="footer__socials">
+            <!-- TODO: add real Instagram URL -->
             <a href="#" class="icon-interactive" aria-label="Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -1286,7 +1293,9 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; <span data-current-year></span> ZH Personal Branding. All rights reserved.</span>
+      <!-- Static year is the fallback: main.js overwrites [data-current-year]
+           with the real one, but with JS off the span rendered empty before. -->
+      <span>&copy; <span data-current-year>2026</span> ZH Personal Branding. All rights reserved.</span>
       <span>Made with care, one frame at a time.</span>
     </div>
   </footer>
