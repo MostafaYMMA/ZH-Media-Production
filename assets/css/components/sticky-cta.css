@@ -1,0 +1,60 @@
+/* ==========================================================================
+   STICKY MOBILE CTA — fixed "Book a call" bar, phones only (< 768px).
+
+   Toggled by stickyCta.js (hidden over the hero and over the contact section).
+   Default state is hidden, so a page without JS never shows it.
+
+   ON THE RESERVED SPACE: the brief asks for matching bottom padding "when
+   visible". It is reserved for the whole of the mobile breakpoint instead,
+   because adding it at the moment the bar slides in would shove the page up
+   by ~70px mid-scroll, right after the hero. Reserving it means the bar can
+   never cover content AND the page never jumps; the only cost is a little
+   clear space under the footer, which is exactly where the bar hides anyway.
+   ========================================================================== */
+
+.sticky-cta {
+  /* Desktop and tablet: this bar does not exist. */
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .sticky-cta {
+    display: block;
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: var(--z-nav);
+    padding: var(--space-sm) var(--gutter);
+    /* Sit above the home-bar / notch chin on iPhones. */
+    padding-block-end: calc(var(--space-sm) + env(safe-area-inset-bottom, 0px));
+    background: var(--color-bg-alt);
+    border-block-start: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(110%);
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .sticky-cta.is-visible {
+    transform: translateY(0);
+  }
+
+  .sticky-cta .btn {
+    /* One full-width primary button. */
+    display: flex;
+    justify-content: center;
+    inline-size: 100%;
+  }
+
+  /* Never let the bar sit on top of the last of the content. --sticky-cta-height
+     is measured and published by stickyCta.js; the fallback covers the frame
+     before it runs. */
+  body {
+    padding-block-end: var(--sticky-cta-height, 74px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-cta {
+    transition: none;
+  }
+}

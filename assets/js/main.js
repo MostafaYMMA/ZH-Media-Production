@@ -33,6 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Video-testimonial strip: adds the arrows and dots over the CSS scroll-snap.
   if (window.ZH.initCarousels) window.ZH.initCarousels();
 
+  // Fixed "Book a call" bar on phones, between the hero and the contact form.
+  if (window.ZH.initStickyCta) window.ZH.initStickyCta();
+
   const yearEl = document.querySelector("[data-current-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 

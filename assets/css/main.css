@@ -21,6 +21,7 @@
 @import url("components/journey.css?v=15");
 @import url("components/clients.css?v=15");
 @import url("components/section-scroll.css?v=15");
+@import url("components/sticky-cta.css?v=15");
 
 .container {
   max-width: var(--max-width);
