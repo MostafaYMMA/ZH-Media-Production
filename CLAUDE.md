@@ -231,7 +231,7 @@ falls back to English. **Adding a runtime string means adding it to both diction
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
   CSS or JS** or a redeploy won't reach people — and **both** HTML documents, not just
-  the one you were looking at. Currently `v=31`.
+  the one you were looking at. Currently `v=32`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`. **Don't skip heading levels** — the aside/footer labels are
@@ -364,8 +364,12 @@ hero (headline now `<h2>`); the footer carries the one closing CTA.
   had no Latin display name — confirm/replace. A few avatars are full-body or busy crops (the
   source screenshot's own profile pic) — re-crop from `_originals/clients/` if a tighter one is wanted.
 - Contact form has **no backend** yet. `contactForm.js` validates + sanitises the fields
-  (name / email / handle / package / message) and, on success, shows a confirmation pointing the
-  user to email — it does not send anywhere. When wiring a backend: send the module's normalised
+  (name / **phone** / handle / package / preferred time / preferred days / message) and, on
+  success, opens WhatsApp with the details pre-filled — it does not POST anywhere. The field is a
+  **phone number, not an email**: the booking is handed off over WhatsApp, so a number is what the
+  studio can act on. Validation checks the digit COUNT (7–15, E.164's ceiling) rather than a shape,
+  and folds Arabic-Indic digits to ASCII first, since `\d` does not match what an Arabic keyboard
+  produces. When wiring a backend: send the module's normalised
   `data` object (never the raw inputs), use **parameterized queries** (SQL) and output-encoding
   (stored XSS), and re-validate server-side — the client checks are UX + first-pass only.
 - Package **prices** are deliberately absent — keep it "Book a call" until told otherwise.

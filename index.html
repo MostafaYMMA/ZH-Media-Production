@@ -17,13 +17,13 @@
        it); Anton and Barlow stay for the Latin islands — the logo, "ZH", the
        @handles and the email. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/main.css?v=31" />
+  <link rel="stylesheet" href="assets/css/main.css?v=32" />
   <!-- All page stylesheets — every section now lives on this one document. -->
-  <link rel="stylesheet" href="assets/css/pages/home.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/services.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/about.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/work.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/contact.css?v=31" />
+  <link rel="stylesheet" href="assets/css/pages/home.css?v=32" />
+  <link rel="stylesheet" href="assets/css/pages/services.css?v=32" />
+  <link rel="stylesheet" href="assets/css/pages/about.css?v=32" />
+  <link rel="stylesheet" href="assets/css/pages/work.css?v=32" />
+  <link rel="stylesheet" href="assets/css/pages/contact.css?v=32" />
 </head>
 <body>
 
@@ -215,7 +215,9 @@
                 <span class="transformation__days">في 30 يوم</span>
                 <span class="transformation__range">
                   <span class="transformation__from">54.1K</span>
-                  <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
+                  <!-- &larr;, not &rarr;: this arrow runs from the "before" figure to the
+                       "after" one, and in RTL that is right-to-left. -->
+                  <span class="transformation__arrow" aria-hidden="true">&larr;</span>
                   <span class="sr-only"> وصل إلى </span>
                   <span class="transformation__to">68.4K</span>
                   <span class="transformation__unit">متابع</span>
@@ -252,7 +254,9 @@
                 <span class="transformation__days">في 60 يوم</span>
                 <span class="transformation__range">
                   <span class="transformation__from">43.6K</span>
-                  <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
+                  <!-- &larr;, not &rarr;: this arrow runs from the "before" figure to the
+                       "after" one, and in RTL that is right-to-left. -->
+                  <span class="transformation__arrow" aria-hidden="true">&larr;</span>
                   <span class="sr-only"> وصل إلى </span>
                   <span class="transformation__to">63.8K</span>
                   <span class="transformation__unit">متابع</span>
@@ -292,7 +296,9 @@
                 <span class="transformation__days">في 40 يوم</span>
                 <span class="transformation__range">
                   <span class="transformation__from">2,948</span>
-                  <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
+                  <!-- &larr;, not &rarr;: this arrow runs from the "before" figure to the
+                       "after" one, and in RTL that is right-to-left. -->
+                  <span class="transformation__arrow" aria-hidden="true">&larr;</span>
                   <span class="sr-only"> وصل إلى </span>
                   <span class="transformation__to">17.1K</span>
                   <span class="transformation__unit">متابع</span>
@@ -329,7 +335,9 @@
                 <span class="transformation__days">في 60 يوم</span>
                 <span class="transformation__range">
                   <span class="transformation__from">9,194</span>
-                  <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
+                  <!-- &larr;, not &rarr;: this arrow runs from the "before" figure to the
+                       "after" one, and in RTL that is right-to-left. -->
+                  <span class="transformation__arrow" aria-hidden="true">&larr;</span>
                   <span class="sr-only"> وصل إلى </span>
                   <span class="transformation__to">32.4K</span>
                   <span class="transformation__unit">متابع</span>
@@ -1243,8 +1251,11 @@
             <input type="text" id="name" name="name" placeholder="اسمك" required />
           </div>
           <div class="form-field">
-            <label for="email">البريد الإلكتروني</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" dir="ltr" required />
+            <label for="phone">رقم الموبايل</label>
+            <!-- type="tel" + inputmode bring up the phone keypad on mobile; dir="ltr"
+                 keeps a number typed with a leading + from being reordered. -->
+            <input type="tel" id="phone" name="phone" placeholder="+20 10 1234 5678"
+                   inputmode="tel" autocomplete="tel" dir="ltr" required />
           </div>
           <div class="form-field">
             <label for="handle">حساب إنستجرام أو تيك توك</label>
@@ -1353,7 +1364,9 @@
     <div class="footer__bottom">
       <!-- Static year is the fallback: main.js overwrites [data-current-year]
            with the real one, but with JS off the span rendered empty before. -->
-      <span>&copy; <span data-current-year>2026</span> ZH Personal Branding. جميع الحقوق محفوظة.</span>
+      <!-- The notice is one Latin run; without dir="ltr" bidi reorders the year
+           and the brand name against each other. -->
+      <span><span dir="ltr">&copy; <span data-current-year>2026</span> ZH Personal Branding.</span> جميع الحقوق محفوظة.</span>
       <span>مصنوع باهتمام، إطار ورا إطار.</span>
     </div>
   </footer>
@@ -1367,21 +1380,21 @@
 
   <!-- Must come first: the data files and every module read their strings
        from it, and it picks its dictionary off <html lang>. -->
-  <script src="assets/js/i18n.js?v=31"></script>
-  <script src="assets/js/data/projects.js?v=31"></script>
-  <script src="assets/js/media-config.js?v=31"></script>
-  <script src="assets/js/modules/projectGrid.js?v=31"></script>
-  <script src="assets/js/modules/navbar.js?v=31"></script>
-  <script src="assets/js/modules/navIndicator.js?v=31"></script>
-  <script src="assets/js/modules/sectionNav.js?v=31"></script>
-  <script src="assets/js/modules/scrollReveal.js?v=31"></script>
-  <script src="assets/js/modules/counter.js?v=31"></script>
-  <script src="assets/js/modules/journey.js?v=31"></script>
-  <script src="assets/js/modules/pointer.js?v=31"></script>
-  <script src="assets/js/modules/mediaPlayer.js?v=31"></script>
-  <script src="assets/js/modules/carousel.js?v=31"></script>
-  <script src="assets/js/modules/stickyCta.js?v=31"></script>
-  <script src="assets/js/modules/contactForm.js?v=31"></script>
-  <script src="assets/js/main.js?v=31"></script>
+  <script src="assets/js/i18n.js?v=32"></script>
+  <script src="assets/js/data/projects.js?v=32"></script>
+  <script src="assets/js/media-config.js?v=32"></script>
+  <script src="assets/js/modules/projectGrid.js?v=32"></script>
+  <script src="assets/js/modules/navbar.js?v=32"></script>
+  <script src="assets/js/modules/navIndicator.js?v=32"></script>
+  <script src="assets/js/modules/sectionNav.js?v=32"></script>
+  <script src="assets/js/modules/scrollReveal.js?v=32"></script>
+  <script src="assets/js/modules/counter.js?v=32"></script>
+  <script src="assets/js/modules/journey.js?v=32"></script>
+  <script src="assets/js/modules/pointer.js?v=32"></script>
+  <script src="assets/js/modules/mediaPlayer.js?v=32"></script>
+  <script src="assets/js/modules/carousel.js?v=32"></script>
+  <script src="assets/js/modules/stickyCta.js?v=32"></script>
+  <script src="assets/js/modules/contactForm.js?v=32"></script>
+  <script src="assets/js/main.js?v=32"></script>
 </body>
 </html>

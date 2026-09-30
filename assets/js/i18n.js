@@ -52,8 +52,8 @@ window.ZH = window.ZH || {};
       /* booking form (contactForm.js) */
       "form.nameRequired": "Please enter your name.",
       "form.nameInvalid": "Use letters, spaces, hyphens or apostrophes only.",
-      "form.emailRequired": "Please enter your email.",
-      "form.emailInvalid": "That doesn't look like a valid email address.",
+      "form.phoneRequired": "Please enter your phone number.",
+      "form.phoneInvalid": "That doesn't look like a valid phone number.",
       "form.handleInvalid": "Handles use only letters, numbers, dots and underscores.",
       "form.messageRequired": "Tell us a little about your coaching.",
       "form.messageAngle": "Please remove any < or > characters.",
@@ -63,7 +63,7 @@ window.ZH = window.ZH || {};
       /* the WhatsApp message the form hands off (contactForm.js) */
       "wa.title": "New call booking",
       "wa.name": "Name",
-      "wa.email": "Email",
+      "wa.phone": "Phone",
       "wa.handle": "Handle",
       "wa.package": "Package",
       "wa.time": "Preferred time",
@@ -114,8 +114,8 @@ window.ZH = window.ZH || {};
 
       "form.nameRequired": "اكتب اسمك من فضلك.",
       "form.nameInvalid": "استخدم حروفًا ومسافات وشرطات فقط.",
-      "form.emailRequired": "اكتب بريدك الإلكتروني من فضلك.",
-      "form.emailInvalid": "ده مش شكل بريد إلكتروني صحيح.",
+      "form.phoneRequired": "اكتب رقم موبايلك من فضلك.",
+      "form.phoneInvalid": "ده مش شكل رقم موبايل صحيح.",
       "form.handleInvalid": "اسم الحساب بيتكوّن من حروف وأرقام ونقط وشرطة سفلية فقط.",
       "form.messageRequired": "كلّمنا شوية عن تدريبك.",
       "form.messageAngle": "من فضلك امسح أي علامة < أو >.",
@@ -124,7 +124,7 @@ window.ZH = window.ZH || {};
 
       "wa.title": "حجز مكالمة جديد",
       "wa.name": "الاسم",
-      "wa.email": "البريد الإلكتروني",
+      "wa.phone": "رقم الموبايل",
       "wa.handle": "الحساب",
       "wa.package": "الباكدج",
       "wa.time": "الوقت المفضّل",

@@ -60,6 +60,9 @@ window.ZH = window.ZH || {};
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     /* --- build the nav row ------------------------------------------------ */
+    // The chevrons are drawn for LTR and stay that way: carousel.css already
+    // mirrors them with scaleX(-1) under [dir="rtl"], so swapping the paths here
+    // too would cancel that out and leave them pointing backwards.
     const prev = document.createElement("button");
     prev.type = "button";
     prev.className = "carousel__arrow carousel__arrow--prev";

@@ -147,6 +147,24 @@ html[dir="rtl"] .founder__monogram {
   text-transform: uppercase;
 }
 
+/* NUMBERS THAT CARRY A SIGN OR A SUFFIX.
+   "5+" and "+14.3K" are the stat values, written with the sign where English
+   wants it. Bidi treats a leading/trailing "+" next to digits as a NEUTRAL, so
+   in an RTL paragraph it resolves to the paragraph direction and jumps to the
+   other side of the number — "5+" rendered as "+5" and "+14.3K" as "14.3K+",
+   which reads as a different claim. Giving each value its own LTR paragraph
+   pins the sign to the digits. (Percent is a different bidi class and was
+   never affected; it is included so the whole stat row is governed by one
+   rule rather than three that look arbitrary.) */
+html[dir="rtl"] .hero__stat-value,
+html[dir="rtl"] .about-stat__value,
+html[dir="rtl"] .transformation__delta,
+html[dir="rtl"] .transformation__from,
+html[dir="rtl"] .transformation__to {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
 /* `unicode-bidi: isolate` keeps a bare "@handle" or an email from dragging the
    surrounding Arabic punctuation to the wrong end of the line. */
 html[dir="rtl"] .client-card__handle,

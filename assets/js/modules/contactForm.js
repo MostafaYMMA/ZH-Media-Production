@@ -21,7 +21,7 @@ window.ZH = window.ZH || {};
 
    What this file does defensively: trims, caps length, strips control &
    zero-width characters, rejects angle brackets / HTML tags and null bytes,
-   and strictly format-checks name / email / handle / package. The free-text
+   and strictly format-checks name / phone / handle / package. The free-text
    message keeps normal punctuation (it's legitimate) but is bounded and
    control-stripped. Send the returned `data` object to your backend, never the
    raw field values.
@@ -35,9 +35,29 @@ window.ZH = window.ZH || {};
     return window.ZH.t ? window.ZH.t.apply(null, arguments) : arguments[0];
   }
 
-  var LIMITS = { name: 80, email: 254, handle: 30, message: 2000 };
+  var LIMITS = { name: 80, phone: 32, handle: 30, message: 2000 };
 
-  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  // Phone, not email: the booking is handed off to WhatsApp, so a number is
+  // what the studio can actually act on. Punctuation people really type is
+  // allowed (+, spaces, dashes, brackets); the digit COUNT is what is checked,
+  // against E.164's 15-digit ceiling.
+  var PHONE_CHARS_RE = /^[+()\d][\d\s().-]*$/;
+  var PHONE_MIN_DIGITS = 7;
+  var PHONE_MAX_DIGITS = 15;
+
+  // Arabic-Indic (U+0660..0669) and Extended Arabic-Indic (U+06F0..06F9) digits
+  // are what an Arabic keyboard produces, and \d does not match them. Fold them
+  // to ASCII first, so a number typed in Arabic validates and reaches WhatsApp
+  // in a form the studio can dial.
+  function foldDigits(str) {
+    // Built from a RegExp string so this source stays pure ASCII, the same way
+    // the control-char strippers below are.
+    return str.replace(new RegExp("[\u0660-\u0669\u06F0-\u06F9]", "g"), function (ch) {
+      var code = ch.charCodeAt(0);
+      return String((code >= 0x06F0 ? code - 0x06F0 : code - 0x0660));
+    });
+  }
+
   var HANDLE_RE = /^@?[A-Za-z0-9._]{1,30}$/;
   // Letters from any language (\p{L}) + combining marks, space, dot, apostrophe, hyphen.
   var NAME_RE = /^[\p{L}\p{M} .'\-]{1,80}$/u;
@@ -132,7 +152,7 @@ window.ZH = window.ZH || {};
 
     var fields = {
       name: form.querySelector('[name="name"]'),
-      email: form.querySelector('[name="email"]'),
+      phone: form.querySelector('[name="phone"]'),
       handle: form.querySelector('[name="handle"]'),
       package: form.querySelector('[name="package"]'),
       timeslot: form.querySelector('[name="timeslot"]'),
@@ -157,14 +177,19 @@ window.ZH = window.ZH || {};
         firstBad = firstBad || fields.name;
       }
 
-      // Email — normalised to lower case and format-checked.
-      data.email = clean(fields.email.value, LIMITS.email, false).toLowerCase();
-      if (!data.email) {
-        showError(fields.email, tr("form.emailRequired"));
-        firstBad = firstBad || fields.email;
-      } else if (!EMAIL_RE.test(data.email)) {
-        showError(fields.email, tr("form.emailInvalid"));
-        firstBad = firstBad || fields.email;
+      // Phone — Arabic digits folded to ASCII, then shape- and length-checked.
+      data.phone = foldDigits(clean(fields.phone.value, LIMITS.phone, false));
+      var phoneDigits = data.phone.replace(/\D/g, "");
+      if (!data.phone) {
+        showError(fields.phone, tr("form.phoneRequired"));
+        firstBad = firstBad || fields.phone;
+      } else if (
+        !PHONE_CHARS_RE.test(data.phone) ||
+        phoneDigits.length < PHONE_MIN_DIGITS ||
+        phoneDigits.length > PHONE_MAX_DIGITS
+      ) {
+        showError(fields.phone, tr("form.phoneInvalid"));
+        firstBad = firstBad || fields.phone;
       }
 
       // Handle — optional. Letters/numbers/dot/underscore, single leading @.
@@ -217,7 +242,7 @@ window.ZH = window.ZH || {};
         tr("wa.title"),
         "",
         tr("wa.name") + ": " + data.name,
-        tr("wa.email") + ": " + data.email,
+        tr("wa.phone") + ": " + data.phone,
       ];
       if (data.handle) lines.push(tr("wa.handle") + ": " + data.handle);
       lines.push(
