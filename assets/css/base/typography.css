@@ -43,7 +43,7 @@ p {
   color: var(--color-accent);
   margin-bottom: var(--space-sm);
   position: relative;
-  padding-left: 2.4rem;
+  padding-inline-start: 2.4rem;
 }
 
 /* A louder eyebrow, for the one or two places where the label itself is the
@@ -52,7 +52,7 @@ p {
 .eyebrow--lg {
   font-size: 1.4rem;
   letter-spacing: 0.26em;
-  padding-left: 3.2rem;
+  padding-inline-start: 3.2rem;
   margin-bottom: var(--space-md);
 }
 
@@ -65,7 +65,7 @@ p {
 .eyebrow::before {
   content: "";
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 50%;
   width: 1.8rem;
   height: 2px;

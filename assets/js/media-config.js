@@ -75,3 +75,17 @@ window.ZH.media = {
   voiceNote4: { src: "assets/media/voice-note-4.m4a", type: "audio/mp4", ready: false },
   voiceNote5: { src: "assets/media/voice-note-5.m4a", type: "audio/mp4", ready: false },
 };
+
+/* Every path above is written relative to the SITE ROOT, so this stays the one
+   readable place a URL is defined. The English build at /en/ is one directory
+   down and sets window.ZH.base = "../" in its <head>; prefixing here means the
+   entries above never have to know which document loaded them. */
+(function () {
+  var base = window.ZH.base;
+  if (!base) return;
+  Object.keys(window.ZH.media).forEach(function (key) {
+    var entry = window.ZH.media[key];
+    if (entry.src) entry.src = base + entry.src;
+    if (entry.poster) entry.poster = base + entry.poster;
+  });
+})();

@@ -6,6 +6,10 @@
 // `views` here is documentation only. No video playback — we don't host the reels.
 window.ZH = window.ZH || {};
 
+/* Thumbnail paths are written relative to the site root. The English build at
+   /en/ sets window.ZH.base = "../" in its <head>, so one data file serves both
+   documents — see the note in index.html. This file has no IIFE, so the prefix
+   is read inline rather than parked in a global. */
 window.ZH.projects = [
   "2.4M", "2.4M", "1.3M", "987K", "2.2M",
   "618K", "1.9M", "507K", "393K", "1.3M",
@@ -15,8 +19,12 @@ window.ZH.projects = [
   var n = i + 1 < 10 ? "0" + (i + 1) : String(i + 1);
   return {
     id: "reel-" + n,
-    thumbnail: "assets/images/reels/reel-" + n + ".webp",
+    thumbnail: (window.ZH.base || "") + "assets/images/reels/reel-" + n + ".webp",
     views: views,
-    alt: "A reel we scripted, shot, and edited for a fitness coach — " + views + " views",
+    // Alt text is generated, so it comes from the string table rather than the
+    // markup (assets/js/i18n.js, keyed off <html lang>).
+    alt: window.ZH.t
+      ? window.ZH.t("work.reelAltViews", views)
+      : "A reel we scripted, shot, and edited for a fitness coach — " + views + " views",
   };
 });

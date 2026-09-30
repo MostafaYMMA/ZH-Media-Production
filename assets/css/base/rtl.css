@@ -1,0 +1,222 @@
+/* ==========================================================================
+   RTL / ARABIC LAYER
+
+   The Arabic build (the root index.html) is the SAME markup and the SAME
+   stylesheets as the English one at /en/ — only <html lang="ar" dir="rtl">
+   differs. Everything in this file is scoped to `html[dir="rtl"]`, so it is
+   inert on the English page and the two builds can never drift apart.
+
+   Mirroring itself is NOT done here. The components use logical properties
+   (inset-inline-start, padding-inline-end, text-align: start…) so the browser
+   mirrors them from `dir` alone. This file only carries the things `dir`
+   cannot do on its own:
+
+     1. Arabic type      — Anton/Barlow have no Arabic glyphs, so the three
+                           font tokens are re-pointed at Cairo.
+     2. Letter-spacing   — Arabic is a JOINING script: tracking pulls the
+                           letters of a word apart and breaks the joins. Every
+                           tracked rule in the design system has to go to
+                           `normal` here. This is the one non-negotiable rule.
+     3. Physical transforms — translateX is never mirrored by `direction`, so
+                           the nav drawer and the ticker read their shift from a
+                           token that gets its sign flipped below.
+     4. Latin islands    — handles, emails, "ZH", the brand name. They are
+                           marked `dir="ltr"` in the Arabic HTML; here they get
+                           the Latin font stack back.
+
+   Specificity note: `html[dir="rtl"] *` is (0,1,1), which beats the (0,1,0)
+   single-class rules it has to override, so nothing here needs !important.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TYPE
+   Cairo covers Arabic in one family across display / body / UI weights, which
+   is what keeps the athletic, one-voice feel of Anton + Barlow. Anton is a
+   single 400 weight; Cairo's equivalent poster weight is 900, so the heading
+   weight is a token too rather than a hardcoded 400.
+   -------------------------------------------------------------------------- */
+html[dir="rtl"] {
+  --font-display: "Cairo", "Noto Kufi Arabic", "Segoe UI", sans-serif;
+  --font-body: "Cairo", "Segoe UI", Tahoma, sans-serif;
+  --font-data: "Cairo", "Segoe UI", Tahoma, sans-serif;
+
+  /* Anton is condensed; Cairo is not. Same nominal size therefore sets far
+     more width, so the display scale comes down a step rather than letting
+     headlines wrap to four lines. */
+  --fs-hero: clamp(2.5rem, 5vw, 4.75rem);
+  --fs-h1: clamp(2.1rem, 3.6vw, 3.25rem);
+  --fs-h2: clamp(1.75rem, 2.8vw, 2.5rem);
+  --fs-h3: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. NO TRACKING, ANYWHERE
+   See the header: tracking breaks Arabic letter joining. One rule, high enough
+   specificity to beat every tracked component class.
+   -------------------------------------------------------------------------- */
+html[dir="rtl"] *,
+html[dir="rtl"] *::before,
+html[dir="rtl"] *::after {
+  letter-spacing: normal;
+}
+
+/* Arabic has no letter case, so `text-transform: uppercase` is a no-op on the
+   script itself — but it would shout any Latin word (Reels, WhatsApp) mixed
+   into a heading or a label. Dropped for the same reason the tracking is. */
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .btn,
+html[dir="rtl"] .cta-note,
+html[dir="rtl"] .ticker__track span {
+  text-transform: none;
+}
+
+/* Cairo needs real weight to carry the poster headings Anton carried at 400,
+   and Arabic ascenders/descenders need more leading than Anton's 0.98. */
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 {
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+/* Wider glyphs mean the ch-based measures cut the line too early. */
+html[dir="rtl"] .hero__title {
+  max-width: 22ch;
+}
+
+/* --------------------------------------------------------------------------
+   3. PHYSICAL TRANSFORMS
+   -------------------------------------------------------------------------- */
+
+/* Nav drawer: it is anchored with inset-inline-start, so in RTL it sits on the
+   right and has to hide off the RIGHT edge. Inside the same breakpoint the
+   drawer exists in, or this would move the desktop nav. */
+@media (max-width: 980px) {
+  html[dir="rtl"] .navbar__links {
+    --drawer-hidden-x: 100%;
+  }
+}
+
+/* Ticker: the track is laid out right-to-left here, so it has to travel the
+   other way for the text to move WITH the reading direction. */
+html[dir="rtl"] .ticker__track {
+  --ticker-shift: 50%;
+}
+
+/* The volt bar that fills across a package card on hover. scaleX grows from
+   `transform-origin`, which takes no logical keyword, so it is named here. */
+html[dir="rtl"] .pricing-card::before {
+  transform-origin: right;
+}
+
+/* --------------------------------------------------------------------------
+   4. THE SELECT ARROW
+   contact.css draws the caret from two clipped gradients pinned to the
+   trailing edge. padding-inline-end already moves the text clear of it in RTL,
+   but a background is not mirrored by `direction`: both the pin and the two
+   gradient angles have to be reflected about the vertical axis (a → -a).
+   -------------------------------------------------------------------------- */
+html[dir="rtl"] .form-field select {
+  background-image: linear-gradient(-45deg, transparent 50%, var(--color-accent) 50%),
+    linear-gradient(-135deg, var(--color-accent) 50%, transparent 50%);
+  background-position: 1.15rem center, 0.8rem center;
+}
+
+/* --------------------------------------------------------------------------
+   5. LATIN ISLANDS
+   Handles, emails, the "ZH" marks and the brand name stay in Latin script and
+   stay left-to-right. The Arabic HTML marks them `dir="ltr"`; here they get the
+   Latin stack back so they are not rendered in Cairo's Latin fallback, and
+   they keep their tracking since it never touched Arabic.
+   -------------------------------------------------------------------------- */
+html[dir="rtl"] [dir="ltr"] {
+  font-family: "Barlow", "Helvetica Neue", Arial, sans-serif;
+}
+
+html[dir="rtl"] .navbar__logo,
+html[dir="rtl"] .footer__brand-mark,
+html[dir="rtl"] .footer__brand-name,
+html[dir="rtl"] .founder__monogram {
+  font-family: "Anton", "Arial Narrow", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* `unicode-bidi: isolate` keeps a bare "@handle" or an email from dragging the
+   surrounding Arabic punctuation to the wrong end of the line. */
+html[dir="rtl"] .client-card__handle,
+html[dir="rtl"] .voicenote__handle,
+html[dir="rtl"] .carousel__handle,
+html[dir="rtl"] .transformation__who span {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* --------------------------------------------------------------------------
+   6. LANGUAGE SWITCHER
+   Lives in the navbar's third grid column, beside the hamburger, rather than
+   inside .navbar__links — the centred desktop link row was measured against
+   the 980px breakpoint (see CLAUDE.md) and adding an item to it would push the
+   bar past it. Not RTL-specific, but it only exists because of this build, so
+   it is documented and styled here with the rest of it.
+   -------------------------------------------------------------------------- */
+.navbar__lang {
+  grid-column: 3;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.navbar__lang:hover,
+.navbar__lang:focus-visible {
+  color: var(--color-accent);
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+}
+
+/* The label is the language you would switch TO, so it is always in that
+   language's own script — which means it never follows the page's font. */
+.navbar__lang[hreflang="en"] {
+  font-family: "Barlow Semi Condensed", "Barlow", sans-serif;
+}
+
+.navbar__lang[hreflang="ar"] {
+  font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: normal;
+}
+
+/* Below the drawer breakpoint the bar is a flex row (hamburger first, then the
+   logo), so the pill is pushed to the trailing edge instead of a grid cell.
+
+   PHYSICAL margins, deliberately: the pill carries its own `dir` (it is labelled
+   in the language it switches TO), and a logical margin resolves against the
+   ELEMENT's direction, not the bar's — so `margin-inline-start: auto` landed on
+   the wrong side and left the pill floating 39px short of the edge. `justify-self`
+   on the desktop grid above has no such problem: it resolves against the
+   container. */
+@media (max-width: 980px) {
+  .navbar__lang {
+    margin-left: auto;
+  }
+
+  html[dir="rtl"] .navbar__lang {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}

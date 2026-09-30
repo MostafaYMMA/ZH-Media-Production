@@ -116,13 +116,13 @@
    again on the two-column desktop layout below, where the copy is start-aligned
    and a trailing tick would dangle. */
 .hero__layout .eyebrow {
-  padding-right: 2.4rem;
+  padding-inline-end: 2.4rem;
 }
 
 .hero__layout .eyebrow::after {
   content: "";
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: 50%;
   width: 1.8rem;
   height: 2px;
@@ -220,13 +220,13 @@
 /* Thin volt rule above each stat block — a lane marker under the numbers. */
 .hero__stat {
   position: relative;
-  padding-left: var(--space-md);
+  padding-inline-start: var(--space-md);
 }
 
 .hero__stat::before {
   content: "";
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 0.15em;
   width: 2px;
   height: 2.4rem;
@@ -287,7 +287,7 @@
 
   /* Start-aligned copy: drop the mirrored right-hand tick on the eyebrow. */
   .hero__layout .eyebrow {
-    padding-right: 0;
+    padding-inline-end: 0;
   }
 
   .hero__layout .eyebrow::after {
@@ -339,6 +339,9 @@
   gap: var(--space-lg);
   white-space: nowrap;
   will-change: transform;
+  /* Physical shift — base/rtl.css flips the sign so the Arabic ticker runs
+     with the reading direction instead of against it. */
+  --ticker-shift: -50%;
   animation: tickerScroll 26s linear infinite;
 }
 
@@ -359,8 +362,8 @@
     transform: translateX(0);
   }
   to {
-    /* Track holds two identical halves, so -50% loops seamlessly. */
-    transform: translateX(-50%);
+    /* Track holds two identical halves, so a half-width shift loops seamlessly. */
+    transform: translateX(var(--ticker-shift, -50%));
   }
 }
 

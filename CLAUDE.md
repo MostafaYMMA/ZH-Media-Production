@@ -27,21 +27,24 @@ static files. Live site link is in `README.md`.
 
 ## Running / previewing
 
-Just open `index.html` in a browser, or serve the folder statically (e.g.
-`python -m http.server`). There is nothing to compile. Fonts load from Google Fonts and
-placeholder images from `picsum.photos`, so a preview needs internet until real assets
-are dropped in.
+Just open `index.html` (Arabic) or `en/index.html` (English) in a browser, or serve the
+folder statically (e.g. `python -m http.server`). There is nothing to compile. Fonts load
+from Google Fonts and placeholder images from `picsum.photos`, so a preview needs internet
+until real assets are dropped in.
 
 ## File layout
 
 ```
-index.html          THE WHOLE SITE — one page, sections #home / #work / #services
-                    / #about / #contact scroll into each other (see "Single-page
-                    architecture" below)
+index.html          THE WHOLE SITE, IN ARABIC — one page, sections #home / #work
+                    / #services / #about / #contact scroll into each other (see
+                    "Single-page architecture" below). Arabic is the default build.
+en/index.html       The same document in English (see "Two languages" below)
 about.html          Redirect stub → index.html#about (kept for old links/bookmarks)
 services.html       Redirect stub → index.html#services
 work.html           Redirect stub → index.html#work
 contact.html        Redirect stub → index.html#contact
+en/about|services|work|contact.html
+                    The same four stubs for the English build → en/index.html#…
 assets/
   css/
     main.css              Entry stylesheet — @imports everything below
@@ -49,6 +52,7 @@ assets/
       variables.css       DESIGN TOKENS — colors, fonts, spacing, motion. Start here.
       reset.css           Box-sizing reset + reduced-motion global
       typography.css      Heading/body/eyebrow type rules
+      rtl.css             Arabic/RTL layer — everything `dir` can't do by itself
     components/           navbar, footer, buttons, project-card, icon, testimonials,
                           transformations, clients (roster profile cards),
                           section-scroll (one-page section offsets)
@@ -60,6 +64,8 @@ assets/
                           scroll + active-link state), scrollReveal, counter,
                           projectGrid, pointer, contactForm
     data/projects.js      Work-grid data (window.ZH.projects) — single source of truth
+    i18n.js               UI strings for text the JS BUILDS (player labels, form errors,
+                          generated alt text). Keyed off <html lang>. Loaded first.
   images/
     results/              Before/After coach profile screenshots (webp) — home "Account transformations"
     clients/              client-01..18.webp — round avatars for the "#clients" roster, cropped
@@ -102,6 +108,78 @@ them so old inbound links and bookmarks still land right.
 - Inner-section heroes use `<h2>` (not `<h1>`) since they share the document with the home
   `<h1>`; `main.css` keeps `.page-hero__head h2` at `--fs-h1` scale.
 - There's a `.skip-link` (top of `<body>`) styled in `section-scroll.css`.
+
+## Two languages (Arabic default, English at /en/)
+
+The site ships as **two documents built from the same markup, the same stylesheets and the
+same scripts**. Arabic is the default at `/`; English lives at `/en/`. They differ only in
+their copy and in the `<html lang dir>` line:
+
+| | Arabic | English |
+|---|---|---|
+| URL | `/` (`index.html`) | `/en/` (`en/index.html`) |
+| root element | `<html lang="ar" dir="rtl">` | `<html lang="en" dir="ltr">` |
+| asset paths | `assets/…` | `../assets/…` |
+| font | Cairo (400/600/700/900) | Anton + Barlow + Barlow Semi Condensed |
+
+**If you change one document's structure, change the other's.** They are meant to stay
+line-for-line parallel; only the text nodes differ. (`en/index.html` was the source the
+Arabic one was generated from, which is why they match exactly.)
+
+- **Asset paths.** Everything is relative, so the site still opens over `file://`. The
+  English build sits one directory down, so its `<head>` sets `window.ZH.base = "../"` and
+  the two data files (`data/projects.js`, `media-config.js`) prefix their root-relative
+  paths with it. The Arabic build leaves `base` unset. **Never introduce a root-relative
+  (`/assets/…`) path** — GitHub Pages serves this repo from a subdirectory.
+- **Language switcher** is `.navbar__lang`, styled at the bottom of `base/rtl.css`. It sits
+  in the navbar's **third grid column, next to the hamburger — deliberately NOT inside
+  `.navbar__links`**, because that centred link row is what the 980px breakpoint was
+  measured against (see the navbar note below); a seventh link would break it.
+- **`hreflang`** — each document declares `ar`, `en` and `x-default` (Arabic). If the live
+  URL ever changes, update all six tags.
+- **Redirect stubs** exist in both places: the root four bounce to the Arabic sections,
+  `en/`'s four to the English ones.
+
+### How the RTL build actually mirrors
+
+Almost nothing is mirrored by hand. The components use **logical properties**
+(`inset-inline-start`, `padding-inline-end`, `text-align: start`…) so the browser flips
+them from `dir` alone — **keep using logical properties in new CSS** and the Arabic build
+stays correct for free. `base/rtl.css` only carries what `dir` cannot do:
+
+1. **Type.** The three font tokens re-point at **Cairo**; headings go to `font-weight: 900`
+   (Cairo's poster weight, since Anton's single 400 has no Arabic) and `line-height: 1.25`,
+   and the display size scale steps down because Cairo is not condensed.
+2. **`letter-spacing: normal` on everything.** Arabic is a *joining* script — tracking pulls
+   the letters of a word apart and breaks the joins. This is the one non-negotiable rule:
+   **any new tracked class is automatically covered** by the `html[dir="rtl"] *` rule, so
+   don't fight it with higher specificity.
+3. **Physical transforms.** `translateX` is never mirrored by `direction`, so the nav drawer
+   and the ticker read their shift from a custom property (`--drawer-hidden-x`,
+   `--ticker-shift`) whose sign `rtl.css` flips. Same reason `.navbar__indicator` keeps a
+   **physical `left: 0`** — `navIndicator.js` feeds it a physical delta.
+4. **Backgrounds.** The contact `select` caret is two clipped gradients; a background is not
+   mirrored by `direction`, so `rtl.css` reflects both the pin and the gradient angles.
+5. **Latin islands.** Handles, emails, `ZH`, and the brand name are marked `dir="ltr"` in the
+   Arabic HTML and get the Latin stack back. **Client names and `@handles` were left in Latin
+   on purpose** — they are real people's profile names and guessing an Arabic spelling would
+   put a wrong name on a real client. Supply them if you want them transliterated.
+
+**Gotcha worth knowing:** a *logical* margin resolves against the **element's own**
+`direction`, not its parent's. `.navbar__lang` carries its own `dir` (it is labelled in the
+language it switches *to*), so its mobile push-to-the-edge uses **physical** `margin-left` /
+`margin-right` per document direction. `justify-self` on the desktop grid has no such
+problem — that one resolves against the container.
+
+### Strings the JS builds
+
+Copy that lives in the markup is translated in the markup. The handful of labels the
+modules *create* — player buttons, carousel arrows, form validation, the WhatsApp booking
+message, generated reel alt text — come from **`assets/js/i18n.js`**, which picks its
+dictionary off `<html lang>` and must be **loaded before every other script**. Call it as
+`window.ZH.t("player.play")`, with `{0}` / `{1}` slots; each module wraps it in a guarded
+`tr()` so the page still works if the file is missing, and anything absent from a dictionary
+falls back to English. **Adding a runtime string means adding it to both dictionaries.**
 
 ## Architecture conventions (follow these)
 
@@ -152,7 +230,8 @@ them so old inbound links and bookmarks still land right.
 - **Cache-busting:** every local CSS/JS ref carries `?v=N` — the `<link>`/`<script>` tags in each
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
-  CSS or JS** or a redeploy won't reach people. Currently `v=30`.
+  CSS or JS** or a redeploy won't reach people — and **both** HTML documents, not just
+  the one you were looking at. Currently `v=31`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`. **Don't skip heading levels** — the aside/footer labels are

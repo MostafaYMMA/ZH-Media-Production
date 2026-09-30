@@ -11,7 +11,10 @@ The marketing and portfolio website for **ZH Personal Branding**, a content-crea
 
 ## What's on the site
 
-It's a **single page** — the nav links jump between sections that scroll into each other.
+It's a **single page** — the nav links jump between sections that scroll into each other —
+and it ships in **two languages**: Arabic at [`/`](https://mostafaymma.github.io/ZH-Media-Production/)
+(the default) and English at [`/en/`](https://mostafaymma.github.io/ZH-Media-Production/en/).
+The pill in the top corner of the navbar switches between them.
 
 | Section | What it shows |
 |---|---|
@@ -23,7 +26,7 @@ It's a **single page** — the nav links jump between sections that scroll into 
 | **#contact** | Booking form that hands off to WhatsApp, plus contact info |
 
 The old `work.html` / `services.html` / `about.html` / `contact.html` URLs still work — they
-redirect to the matching section on `index.html`.
+redirect to the matching section on `index.html`, and `/en/` has the same four stubs.
 
 ## Design highlights
 
@@ -44,16 +47,19 @@ Static site — plain HTML/CSS/JS, no build step, no backend required to run.
 
 ### Running locally
 
-Open `index.html` directly in a browser (double-click it). No dev server needed.
+Open `index.html` (Arabic) or `en/index.html` (English) directly in a browser
+(double-click it). No dev server needed — every path is relative.
 
 ### Structure
 
 ```
-index.html                       the whole site — all sections on one page
+index.html                       the whole site, in Arabic — all sections on one page
+en/index.html                    the same document in English
 work/services/about/contact.html redirect stubs → index.html#<section>
+en/…                             the same four stubs for the English build
 assets/
   css/
-    base/        design tokens, reset, typography
+    base/        design tokens, reset, typography, rtl.css (the Arabic/RTL layer)
     components/  navbar, footer, buttons, project-card, icon, testimonials,
                  transformations, clients (roster cards),
                  section-scroll (one-page section offsets + skip link)
@@ -64,6 +70,8 @@ assets/
     modules/         navbar.js, navIndicator.js, sectionNav.js (one-page smooth-scroll nav +
                      active-link state), scrollReveal.js, counter.js, projectGrid.js,
                      pointer.js, contactForm.js
+    i18n.js          UI strings for text the JS builds (player labels, form errors, alt
+                     text); picks its dictionary from <html lang>, so it loads first
     data/
       projects.js    the Work grid's ordered list of reels (deliberate style mix)
   images/
@@ -73,9 +81,19 @@ assets/
 ```
 
 Every local CSS/JS reference carries a `?v=N` query (in the HTML tags and in `main.css`'s
-`@import`s). **Bump every `?v=` together whenever you change CSS or JS** — GitHub Pages and
-mobile browsers cache assets aggressively, so without a version bump a redeploy won't reach
-visitors.
+`@import`s). **Bump every `?v=` together whenever you change CSS or JS** — in *both* HTML
+documents — GitHub Pages and mobile browsers cache assets aggressively, so without a version
+bump a redeploy won't reach visitors.
+
+### The two language builds
+
+Both documents share every stylesheet and every script; they differ only in their copy and
+in `<html lang dir>`. **Change one's structure and you must change the other's** — they are
+meant to stay line-for-line parallel. The RTL mirroring is done by the browser, because the
+CSS uses logical properties (`inset-inline-start`, `text-align: start`, …); `assets/css/base/rtl.css`
+only carries what `dir` can't do by itself — Arabic type (Cairo), killing `letter-spacing`
+(tracking breaks Arabic letter joining), and the few physical transforms and backgrounds that
+`direction` never mirrors. See `CLAUDE.md` for the full rules before touching either build.
 
 ### Changing the Work-page reels
 

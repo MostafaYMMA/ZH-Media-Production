@@ -137,13 +137,13 @@
    "Investment" read as the section's name instead of a caption. Matches
    .investment-for__head on the home page. */
 .packages__head .eyebrow {
-  padding-right: 3.2rem;
+  padding-inline-end: 3.2rem;
 }
 
 .packages__head .eyebrow::after {
   content: "";
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: 50%;
   width: 2.4rem;
   height: 3px;
@@ -185,7 +185,7 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
   height: 3px;
   background: var(--color-accent);
@@ -217,7 +217,7 @@
 .pricing-card__badge {
   position: absolute;
   top: var(--space-md);
-  right: var(--space-md);
+  inset-inline-end: var(--space-md);
   font-family: var(--font-data);
   font-size: 0.7rem;
   font-weight: 700;
@@ -266,14 +266,14 @@
 }
 
 .pricing-card__features li {
-  padding-left: 1.5rem;
+  padding-inline-start: 1.5rem;
   position: relative;
 }
 
 .pricing-card__features li::before {
   content: "";
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 0.55em;
   width: 0.6rem;
   height: 0.6rem;

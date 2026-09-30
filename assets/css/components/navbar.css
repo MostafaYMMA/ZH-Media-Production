@@ -1,8 +1,7 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   z-index: var(--z-nav);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -70,6 +69,10 @@
 }
 
 /* Shared sliding pill, positioned/sized by navIndicator.js via inline styles */
+/* `left`, deliberately, not inset-inline-start: navIndicator.js positions this
+   with a physical translateX delta measured from the bar's left edge, and
+   translateX is never mirrored by `direction`. Anchoring it physically is what
+   keeps the pill correct in the RTL build too. */
 .navbar__indicator {
   position: absolute;
   top: 0;
@@ -165,7 +168,7 @@
   .navbar__links {
     position: fixed;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     height: 100vh;
     height: 100dvh;
     width: min(80vw, 320px);
@@ -177,9 +180,12 @@
     padding: calc(var(--space-3xl) + env(safe-area-inset-top, 0px)) var(--gutter)
       var(--space-xl);
     background: var(--color-bg-alt);
-    border-right: 1px solid var(--color-border);
+    border-inline-end: 1px solid var(--color-border);
     box-shadow: var(--shadow-lg);
-    transform: translateX(-100%);
+    /* translateX is physical, never mirrored by `direction`, so the hidden
+       offset is a token that the RTL build flips (see base/rtl.css). */
+    --drawer-hidden-x: -100%;
+    transform: translateX(var(--drawer-hidden-x));
     transition: transform var(--duration-base) var(--ease-in-out);
     overflow-y: auto;
     z-index: calc(var(--z-nav) + 1);
@@ -196,7 +202,7 @@
 
   .navbar__links a {
     font-size: 1.2rem;
-    text-align: left;
+    text-align: start;
   }
 
   .navbar__link:not(.btn) {
@@ -214,7 +220,7 @@
     display: block;
     position: fixed;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100vw;
     height: 100vh;
     height: 100dvh;

@@ -57,7 +57,7 @@
 .transformation__tag {
   position: absolute;
   top: var(--space-xs);
-  left: var(--space-xs);
+  inset-inline-start: var(--space-xs);
   padding: 0.15rem 0.55rem;
   border-radius: var(--radius-sm);
   background: rgba(var(--color-accent-rgb), 0.12);

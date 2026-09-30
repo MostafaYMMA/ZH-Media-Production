@@ -59,7 +59,7 @@
   background-position: calc(100% - 1.15rem) center, calc(100% - 0.8rem) center;
   background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
   background-repeat: no-repeat;
-  padding-right: 2.5rem;
+  padding-inline-end: 2.5rem;
 }
 
 .form-field select option {

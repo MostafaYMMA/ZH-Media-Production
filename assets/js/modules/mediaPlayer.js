@@ -35,6 +35,13 @@ window.ZH = window.ZH || {};
 (function () {
   const HIDE_CONTROLS_MS = 2500;
 
+  /* Strings come from assets/js/i18n.js, which picks its dictionary off
+     <html lang>. Guarded so this module still works if that file is absent. */
+  function tr() {
+    return window.ZH.t ? window.ZH.t.apply(null, arguments) : arguments[0];
+  }
+
+
   /* --- icons ------------------------------------------------------------ */
   const ICON = {
     play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>',
@@ -111,7 +118,7 @@ window.ZH = window.ZH || {};
     if (!video || !frame) return;
 
     const entry = lookup(root.dataset.mediaKey);
-    const label = root.dataset.label || "Video";
+    const label = root.dataset.label || tr("player.video");
     video.setAttribute("aria-label", label);
 
     // No entry, or the file isn't in yet: render the "coming soon" state
@@ -128,13 +135,13 @@ window.ZH = window.ZH || {};
     });
 
     /* --- build the custom UI, then drop the native controls --- */
-    const big = makeButton("vplayer__big", "Play " + label, ICON.play);
+    const big = makeButton("vplayer__big", tr("player.playLabel", label), ICON.play);
     frame.appendChild(big);
 
     const bar = document.createElement("div");
     bar.className = "vplayer__bar";
 
-    const toggle = makeButton("vplayer__btn", "Play", ICON.play);
+    const toggle = makeButton("vplayer__btn", tr("player.play"), ICON.play);
     const seek = document.createElement("input");
     seek.type = "range";
     seek.className = "vplayer__seek";
@@ -142,12 +149,12 @@ window.ZH = window.ZH || {};
     seek.max = "1000";
     seek.step = "1";
     seek.value = "0";
-    seek.setAttribute("aria-label", "Seek");
+    seek.setAttribute("aria-label", tr("player.seek"));
     const time = document.createElement("span");
     time.className = "vplayer__time";
     time.textContent = "0:00 / 0:00";
-    const mute = makeButton("vplayer__btn", "Mute", ICON.volume);
-    const full = makeButton("vplayer__btn", "Fullscreen", ICON.expand);
+    const mute = makeButton("vplayer__btn", tr("player.mute"), ICON.volume);
+    const full = makeButton("vplayer__btn", tr("player.fullscreen"), ICON.expand);
 
     bar.appendChild(toggle);
     bar.appendChild(seek);
@@ -187,16 +194,16 @@ window.ZH = window.ZH || {};
     video.addEventListener("play", function () {
       root.classList.add("is-playing");
       toggle.innerHTML = ICON.pause;
-      toggle.setAttribute("aria-label", "Pause");
-      big.setAttribute("aria-label", "Pause " + label);
+      toggle.setAttribute("aria-label", tr("player.pause"));
+      big.setAttribute("aria-label", tr("player.pauseLabel", label));
       scheduleHide();
     });
 
     function onStop() {
       root.classList.remove("is-playing");
       toggle.innerHTML = ICON.play;
-      toggle.setAttribute("aria-label", "Play");
-      big.setAttribute("aria-label", "Play " + label);
+      toggle.setAttribute("aria-label", tr("player.play"));
+      big.setAttribute("aria-label", tr("player.playLabel", label));
       showControls();
     }
     video.addEventListener("pause", onStop);
@@ -246,7 +253,7 @@ window.ZH = window.ZH || {};
     video.addEventListener("volumechange", function () {
       const off = video.muted || video.volume === 0;
       mute.innerHTML = off ? ICON.muted : ICON.volume;
-      mute.setAttribute("aria-label", off ? "Unmute" : "Mute");
+      mute.setAttribute("aria-label", off ? tr("player.unmute") : tr("player.mute"));
     });
 
     /* --- fullscreen. iOS Safari has no Element.requestFullscreen, only the
@@ -307,7 +314,7 @@ window.ZH = window.ZH || {};
     if (root.querySelector(".vplayer__missing")) return;
     const note = document.createElement("p");
     note.className = "vplayer__missing";
-    note.textContent = "Video coming soon";
+    note.textContent = tr("player.videoMissing");
     root.querySelector(".vplayer__frame").appendChild(note);
   }
 
@@ -321,7 +328,7 @@ window.ZH = window.ZH || {};
     if (!audio || !bubble) return;
 
     const entry = lookup(root.dataset.mediaKey);
-    const who = root.dataset.label || "this coach";
+    const who = root.dataset.label || tr("player.thisCoach");
 
     if (!isReady(entry)) {
       root.classList.add("is-missing");
@@ -330,16 +337,16 @@ window.ZH = window.ZH || {};
       if (!root.querySelector(".voicenote__missing")) {
         const note = document.createElement("span");
         note.className = "voicenote__missing";
-        note.textContent = "Voice note coming soon";
+        note.textContent = tr("player.noteMissing");
         bubble.appendChild(note);
       }
       return;
     }
 
     audio.src = entry.src;
-    audio.setAttribute("aria-label", "Voice note from " + who);
+    audio.setAttribute("aria-label", tr("note.label", who));
 
-    const play = makeButton("voicenote__play", "Play voice note from " + who, ICON.play);
+    const play = makeButton("voicenote__play", tr("note.play", who), ICON.play);
     const time = document.createElement("span");
     time.className = "voicenote__time";
     time.textContent = "0:00";
@@ -371,13 +378,13 @@ window.ZH = window.ZH || {};
     audio.addEventListener("play", function () {
       root.classList.add("is-playing");
       play.innerHTML = ICON.pause;
-      play.setAttribute("aria-label", "Pause voice note from " + who);
+      play.setAttribute("aria-label", tr("note.pause", who));
     });
 
     function onStop() {
       root.classList.remove("is-playing");
       play.innerHTML = ICON.play;
-      play.setAttribute("aria-label", "Play voice note from " + who);
+      play.setAttribute("aria-label", tr("note.play", who));
     }
     audio.addEventListener("pause", onStop);
 
@@ -412,7 +419,7 @@ window.ZH = window.ZH || {};
       wave.removeAttribute("aria-hidden");
       wave.setAttribute("role", "slider");
       wave.setAttribute("tabindex", "0");
-      wave.setAttribute("aria-label", "Seek voice note from " + who);
+      wave.setAttribute("aria-label", tr("note.seek", who));
       wave.setAttribute("aria-valuemin", "0");
 
       function seekTo(ratio) {
@@ -426,7 +433,7 @@ window.ZH = window.ZH || {};
         wave.setAttribute("aria-valuenow", String(Math.round(audio.currentTime)));
         wave.setAttribute(
           "aria-valuetext",
-          formatTime(audio.currentTime) + " of " + formatTime(audio.duration)
+          tr("note.position", formatTime(audio.currentTime), formatTime(audio.duration))
         );
       }
       audio.addEventListener("loadedmetadata", paintWaveValue);

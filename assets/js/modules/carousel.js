@@ -17,6 +17,12 @@ window.ZH = window.ZH || {};
    when the Arabic build lands.
    ========================================================================== */
 (function () {
+  /* Strings come from assets/js/i18n.js, which picks its dictionary off
+     <html lang>. Guarded so this module still works if that file is absent. */
+  function tr() {
+    return window.ZH.t ? window.ZH.t.apply(null, arguments) : arguments[0];
+  }
+
   function isRTL(el) {
     return getComputedStyle(el).direction === "rtl";
   }
@@ -57,14 +63,14 @@ window.ZH = window.ZH || {};
     const prev = document.createElement("button");
     prev.type = "button";
     prev.className = "carousel__arrow carousel__arrow--prev";
-    prev.setAttribute("aria-label", "Previous testimonial");
+    prev.setAttribute("aria-label", tr("carousel.prev"));
     prev.innerHTML =
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
 
     const next = document.createElement("button");
     next.type = "button";
     next.className = "carousel__arrow carousel__arrow--next";
-    next.setAttribute("aria-label", "Next testimonial");
+    next.setAttribute("aria-label", tr("carousel.next"));
     next.innerHTML =
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
 
@@ -75,7 +81,7 @@ window.ZH = window.ZH || {};
       const dot = document.createElement("button");
       dot.type = "button";
       dot.className = "carousel__dot";
-      dot.setAttribute("aria-label", "Go to testimonial " + (index + 1));
+      dot.setAttribute("aria-label", tr("carousel.goTo", index + 1));
       dot.addEventListener("click", function () {
         goTo(index);
       });

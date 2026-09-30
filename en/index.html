@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZH Personal Branding — محتوى لكباتن اللياقة</title>
-  <meta name="description" content="ZH Personal Branding بتبني البراند الشخصي لكباتن اللياقة — كتابة السكريبت، التصوير، ومونتاج الريلز والفيديوهات القصيرة، على يد فريق طالع من الجيم." />
+  <title>ZH Personal Branding — Content for Fitness Coaches</title>
+  <meta name="description" content="ZH Personal Branding builds the personal brand of fitness coaches — script writing, video recording, and short-form editing (reels & shorts) run by a team that came up in the gym." />
   <script>document.documentElement.classList.add("js");</script>
+  <!-- This build lives one directory below the site root, so the data files
+       (projects.js, media-config.js) prefix their root-relative paths with this.
+       The Arabic build at / leaves it unset. -->
+  <script>window.ZH = window.ZH || {}; window.ZH.base = "../";</script>
+
   <!-- Two documents, one site: Arabic at /, English here. -->
   <link rel="alternate" hreflang="ar" href="https://mostafaymma.github.io/ZH-Media-Production/" />
   <link rel="alternate" hreflang="en" href="https://mostafaymma.github.io/ZH-Media-Production/en/" />
@@ -13,41 +18,39 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Cairo carries the Arabic (base/rtl.css re-points the three font tokens at
-       it); Anton and Barlow stay for the Latin islands — the logo, "ZH", the
-       @handles and the email. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/main.css?v=31" />
+  <!-- Cairo is here only for the "العربية" label on the language pill. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&family=Cairo:wght@700&display=swap" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=31" />
   <!-- All page stylesheets — every section now lives on this one document. -->
-  <link rel="stylesheet" href="assets/css/pages/home.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/services.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/about.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/work.css?v=31" />
-  <link rel="stylesheet" href="assets/css/pages/contact.css?v=31" />
+  <link rel="stylesheet" href="../assets/css/pages/home.css?v=31" />
+  <link rel="stylesheet" href="../assets/css/pages/services.css?v=31" />
+  <link rel="stylesheet" href="../assets/css/pages/about.css?v=31" />
+  <link rel="stylesheet" href="../assets/css/pages/work.css?v=31" />
+  <link rel="stylesheet" href="../assets/css/pages/contact.css?v=31" />
 </head>
 <body>
 
-  <a href="#home" class="skip-link">تخطَّ إلى المحتوى</a>
+  <a href="#home" class="skip-link">Skip to content</a>
 
   <header class="navbar">
-    <a href="#home" class="navbar__logo" dir="ltr">ZH&nbsp;Personal&nbsp;Branding</a>
-    <nav class="navbar__links" aria-label="التنقّل الرئيسي">
-      <a href="#home" class="navbar__link" aria-current="page">الرئيسية</a>
-      <a href="#work" class="navbar__link">أعمالنا</a>
-      <a href="#clients" class="navbar__link">عملاءنا</a>
-      <a href="#services" class="navbar__link">خدماتنا</a>
-      <a href="#about" class="navbar__link">من نحن</a>
-      <a href="#contact" class="navbar__link btn btn--outline">تواصل معنا</a>
+    <a href="#home" class="navbar__logo">ZH&nbsp;Personal&nbsp;Branding</a>
+    <nav class="navbar__links" aria-label="Primary">
+      <a href="#home" class="navbar__link" aria-current="page">Home</a>
+      <a href="#work" class="navbar__link">Work</a>
+      <a href="#clients" class="navbar__link">Clients</a>
+      <a href="#services" class="navbar__link">Services</a>
+      <a href="#about" class="navbar__link">About</a>
+      <a href="#contact" class="navbar__link btn btn--outline">Contact</a>
       <span class="navbar__indicator" aria-hidden="true"></span>
     </nav>
-    <button class="navbar__toggle" type="button" aria-label="فتح وإغلاق القائمة" aria-expanded="false">
+    <button class="navbar__toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <!-- Deliberately OUTSIDE .navbar__links: the centred desktop link row was
          measured against navbar.css's 980px breakpoint (see CLAUDE.md), so the
          switcher takes the bar's third grid column instead of becoming a
          seventh link. Styled in base/rtl.css alongside the rest of the build. -->
-    <a class="navbar__lang" href="en/index.html" hreflang="en" lang="en" dir="ltr">English</a>
+    <a class="navbar__lang" href="../index.html" hreflang="ar" lang="ar" dir="rtl">العربية</a>
   </header>
 
   <main>
@@ -61,10 +64,10 @@
         <!-- Faded, anonymous gym visuals framing the copy: a coach working with a
              client, kept low-contrast so no single face is the focus. -->
         <div class="hero__frame hero__frame--left" aria-hidden="true">
-          <img src="assets/images/hero-gym-1.png" alt="" width="449" height="298" />
+          <img src="../assets/images/hero-gym-1.png" alt="" width="449" height="298" />
         </div>
         <div class="hero__frame hero__frame--right" aria-hidden="true">
-          <img src="assets/images/hero-gym-2.png" alt="" width="332" height="371" />
+          <img src="../assets/images/hero-gym-2.png" alt="" width="332" height="371" />
         </div>
         <div class="hero__inner container">
           <!-- Hero pieces are direct grid children rather than nested in a copy
@@ -73,19 +76,19 @@
                DOM order here is the mobile order; the desktop grid-areas in
                home.css lift the video out to the right. -->
           <div class="hero__layout">
-            <span class="eyebrow hero__eyebrow" data-reveal>أنت بنيت الكابتن. إحنا نبني البراند.</span>
+            <span class="eyebrow hero__eyebrow" data-reveal>You built the coach. We build the brand.</span>
             <h1 class="hero__title" data-reveal>
-              تدريبك يستحق<br />
-              <span class="hero__title-accent">جمهورًا أكبر.</span>
+              Your coaching deserves<br />
+              <span class="hero__title-accent">a bigger audience.</span>
             </h1>
             <p class="hero__supporting" data-reveal>
-              بناء البراند الشخصي لكباتن اللياقة.
+              Personal branding for fitness coaches.
             </p>
 
             <div class="hero__media" data-reveal>
-              <span class="eyebrow hero__media-label">اسمعها من زياد</span>
+              <span class="eyebrow hero__media-label">Hear it from Ziad</span>
               <div class="vplayer hero__player" data-vplayer data-media-key="salesVideo"
-                   data-label="زياد يشرح إزاي ZH Personal Branding بتشتغل">
+                   data-label="Ziad explaining how ZH Personal Branding works">
                 <div class="vplayer__frame">
                   <!-- `controls` is the no-JS fallback; mediaPlayer.js removes it
                        once the custom bar exists. src/poster come from
@@ -96,17 +99,17 @@
             </div>
 
             <p class="hero__subtitle" data-reveal>
-              يعني إيه بالظبط؟ <strong>إحنا نكتب سكريبتاتك، نصوّرك في جيمك،
-              ونعمل مونتاج كل حاجة لريلز جاهزة.</strong> تاخد محتوى شهر كامل من غير
-              ما تلمس كاميرا ولا تايملاين مونتاج — وعشان إحنا نفسنا طالعين من
-              الجيم، الكلام بيطلع بصوت كابتن، مش بصوت وكالة إعلانات.
+              Here's what that means: <strong>we write your scripts, film you at your gym,
+              and edit everything into finished reels.</strong> You get a month of content
+              without touching a camera or an editing timeline — and because we came up in
+              the gym ourselves, it sounds like a coach, not an agency.
             </p>
             <div class="cta-pair" data-reveal>
               <div class="hero__actions">
-                <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-                <a href="#work" class="btn btn--outline">شوف أعمالنا</a>
+                <a href="#contact" class="btn btn--primary">Book a call</a>
+                <a href="#work" class="btn btn--outline">See the work</a>
               </div>
-              <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+              <p class="cta-note">Start investing in your business.</p>
             </div>
           </div>
 
@@ -116,15 +119,15 @@
           <div class="hero__stats" data-reveal>
             <div class="hero__stat">
               <div class="hero__stat-value" data-count-to="5" data-count-suffix="+">5+</div>
-              <div class="hero__stat-label">سنوات في عالم اللياقة</div>
+              <div class="hero__stat-label">Years in the fitness world</div>
             </div>
             <div class="hero__stat">
               <div class="hero__stat-value" data-count-to="20" data-count-suffix="+">20+</div>
-              <div class="hero__stat-label">كابتن صوّرناهم</div>
+              <div class="hero__stat-label">Coaches we've filmed</div>
             </div>
             <div class="hero__stat">
               <div class="hero__stat-value" data-count-to="100" data-count-suffix="%">100%</div>
-              <div class="hero__stat-label">تنفيذ كامل من عندنا</div>
+              <div class="hero__stat-label">Done-for-you</div>
             </div>
             <!-- Fastest result in the Before/After data below: Mustafa Ashraf,
                  +14.3K in 30 days — both the shortest window and the highest
@@ -132,7 +135,7 @@
                  TODO: confirm real duration (the 30 days is a placeholder). -->
             <div class="hero__stat">
               <div class="hero__stat-value hero__stat-value--accent">+14.3K</div>
-              <div class="hero__stat-label">متابع في 30 يوم</div>
+              <div class="hero__stat-label">Followers in 30 days</div>
             </div>
           </div>
         </div>
@@ -148,26 +151,26 @@
            wide monitor (and on the Arabic build at 1440) and flashed a gap at the
            loop point. Two passes per half clears any realistic screen. Keep the
            two halves identical if a term is ever added. -->
-          <span>كتابة السكريبت</span><span class="ticker__dot">&bull;</span>
-          <span>التصوير</span><span class="ticker__dot">&bull;</span>
-          <span>ريلز وشورتس</span><span class="ticker__dot">&bull;</span>
-          <span>المونتاج</span><span class="ticker__dot">&bull;</span>
-          <span>البراند الشخصي</span><span class="ticker__dot">&bull;</span>
-          <span>كتابة السكريبت</span><span class="ticker__dot">&bull;</span>
-          <span>التصوير</span><span class="ticker__dot">&bull;</span>
-          <span>ريلز وشورتس</span><span class="ticker__dot">&bull;</span>
-          <span>المونتاج</span><span class="ticker__dot">&bull;</span>
-          <span>البراند الشخصي</span><span class="ticker__dot">&bull;</span>
-          <span>كتابة السكريبت</span><span class="ticker__dot">&bull;</span>
-          <span>التصوير</span><span class="ticker__dot">&bull;</span>
-          <span>ريلز وشورتس</span><span class="ticker__dot">&bull;</span>
-          <span>المونتاج</span><span class="ticker__dot">&bull;</span>
-          <span>البراند الشخصي</span><span class="ticker__dot">&bull;</span>
-          <span>كتابة السكريبت</span><span class="ticker__dot">&bull;</span>
-          <span>التصوير</span><span class="ticker__dot">&bull;</span>
-          <span>ريلز وشورتس</span><span class="ticker__dot">&bull;</span>
-          <span>المونتاج</span><span class="ticker__dot">&bull;</span>
-          <span>البراند الشخصي</span><span class="ticker__dot">&bull;</span>
+          <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+          <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+          <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+          <span>Editing</span><span class="ticker__dot">&bull;</span>
+          <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
+          <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+          <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+          <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+          <span>Editing</span><span class="ticker__dot">&bull;</span>
+          <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
+          <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+          <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+          <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+          <span>Editing</span><span class="ticker__dot">&bull;</span>
+          <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
+          <span>Script Writing</span><span class="ticker__dot">&bull;</span>
+          <span>Video Recording</span><span class="ticker__dot">&bull;</span>
+          <span>Reels &amp; Shorts</span><span class="ticker__dot">&bull;</span>
+          <span>Editing</span><span class="ticker__dot">&bull;</span>
+          <span>Personal Branding</span><span class="ticker__dot">&bull;</span>
         </div>
       </div>
 
@@ -177,48 +180,48 @@
       <div class="section container transformations">
         <div class="section__head">
           <div>
-            <span class="eyebrow" data-reveal>تحوُّلات حسابات</span>
-            <h2 data-reveal>نفس الكابتن. بفرق شهر لشهرين.</h2>
+            <span class="eyebrow" data-reveal>Account transformations</span>
+            <h2 data-reveal>Same coach. One to two months apart.</h2>
           </div>
           <div class="section__head-actions" data-reveal>
-            <a href="#contact" class="btn btn--outline">ابدأ الاستثمار</a>
-            <a href="#work" class="btn btn--outline">شوف أعمالنا</a>
+            <a href="#contact" class="btn btn--outline">Start investing</a>
+            <a href="#work" class="btn btn--outline">See the work</a>
           </div>
         </div>
         <p class="transformations__lead" data-reveal>
-          إحنا نكتب ونصوّر ونعمل مونتاج الفيد كله. دي أرقام المتابعين قبل ما نبدأ
-          وبعدها — مفيش بوست ممول ولا متابعين مشتراة.
+          We script, film, and edit the whole feed. These are the follower counts before we
+          started and after — nothing boosted, nothing bought.
         </p>
         <div class="transformation-grid" data-reveal-group>
           <figure class="transformation" data-reveal data-glow>
             <div class="transformation__shots">
               <div class="transformation__shot">
-                <span class="transformation__tag">قبل</span>
-                <img src="assets/images/results/transformation-1-before.webp" alt="حساب Mustafa Ashraf على إنستجرام وعليه 54.1K متابع قبل الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag">Before</span>
+                <img src="../assets/images/results/transformation-1-before.webp" alt="Mustafa Ashraf's Instagram profile at 54.1K followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
               <!-- TODO: confirm real duration -->
-              <div class="duration-bar" role="img" aria-label="30 يوم بين صورة قبل وصورة بعد">
-                <span class="duration-bar__end">قبل</span>
+              <div class="duration-bar" role="img" aria-label="30 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
                 <span class="duration-bar__line" aria-hidden="true"></span>
-                <span class="duration-bar__value">30 يوم</span>
+                <span class="duration-bar__value">30 days</span>
                 <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
-                <span class="duration-bar__end">بعد</span>
+                <span class="duration-bar__end">After</span>
               </div>
               <div class="transformation__shot">
-                <span class="transformation__tag transformation__tag--after">بعد</span>
-                <img src="assets/images/results/transformation-1-after.webp" alt="حساب Mustafa Ashraf على إنستجرام وعليه 68.4K متابع بعد الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="../assets/images/results/transformation-1-after.webp" alt="Mustafa Ashraf's Instagram profile at 68.4K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
             </div>
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+14.3K</span>
-                <span class="transformation__days">في 30 يوم</span>
+                <span class="transformation__days">in 30 days</span>
                 <span class="transformation__range">
                   <span class="transformation__from">54.1K</span>
                   <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
-                  <span class="sr-only"> وصل إلى </span>
+                  <span class="sr-only"> grew to </span>
                   <span class="transformation__to">68.4K</span>
-                  <span class="transformation__unit">متابع</span>
+                  <span class="transformation__unit">followers</span>
                 </span>
               </div>
               <div class="transformation__who">
@@ -230,32 +233,32 @@
           <figure class="transformation" data-reveal data-glow>
             <div class="transformation__shots">
               <div class="transformation__shot">
-                <span class="transformation__tag">قبل</span>
-                <img src="assets/images/results/transformation-2-before.webp" alt="حساب Galal Mohamed على إنستجرام وعليه 43.6K متابع قبل الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag">Before</span>
+                <img src="../assets/images/results/transformation-2-before.webp" alt="Galal Mohamed's Instagram profile at 43.6K followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
               <!-- TODO: confirm real duration -->
-              <div class="duration-bar" role="img" aria-label="60 يوم بين صورة قبل وصورة بعد">
-                <span class="duration-bar__end">قبل</span>
+              <div class="duration-bar" role="img" aria-label="60 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
                 <span class="duration-bar__line" aria-hidden="true"></span>
-                <span class="duration-bar__value">60 يوم</span>
+                <span class="duration-bar__value">60 days</span>
                 <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
-                <span class="duration-bar__end">بعد</span>
+                <span class="duration-bar__end">After</span>
               </div>
               <div class="transformation__shot">
-                <span class="transformation__tag transformation__tag--after">بعد</span>
-                <img src="assets/images/results/transformation-2-after.webp" alt="حساب Galal Mohamed على إنستجرام وعليه 63.8K متابع بعد الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="../assets/images/results/transformation-2-after.webp" alt="Galal Mohamed's Instagram profile at 63.8K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
             </div>
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+20.2K</span>
-                <span class="transformation__days">في 60 يوم</span>
+                <span class="transformation__days">in 60 days</span>
                 <span class="transformation__range">
                   <span class="transformation__from">43.6K</span>
                   <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
-                  <span class="sr-only"> وصل إلى </span>
+                  <span class="sr-only"> grew to </span>
                   <span class="transformation__to">63.8K</span>
-                  <span class="transformation__unit">متابع</span>
+                  <span class="transformation__unit">followers</span>
                 </span>
               </div>
               <div class="transformation__who">
@@ -270,32 +273,32 @@
           <figure class="transformation" data-reveal data-glow>
             <div class="transformation__shots">
               <div class="transformation__shot">
-                <span class="transformation__tag">قبل</span>
-                <img src="assets/images/results/transformation-3-before.webp" alt="حساب Mohamed Abd El-Shafy على إنستجرام وعليه 2,948 متابع قبل الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag">Before</span>
+                <img src="../assets/images/results/transformation-3-before.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 2,948 followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
               <!-- TODO: confirm real duration -->
-              <div class="duration-bar" role="img" aria-label="40 يوم بين صورة قبل وصورة بعد">
-                <span class="duration-bar__end">قبل</span>
+              <div class="duration-bar" role="img" aria-label="40 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
                 <span class="duration-bar__line" aria-hidden="true"></span>
-                <span class="duration-bar__value">40 يوم</span>
+                <span class="duration-bar__value">40 days</span>
                 <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
-                <span class="duration-bar__end">بعد</span>
+                <span class="duration-bar__end">After</span>
               </div>
               <div class="transformation__shot">
-                <span class="transformation__tag transformation__tag--after">بعد</span>
-                <img src="assets/images/results/transformation-3-after.webp" alt="حساب Mohamed Abd El-Shafy على إنستجرام وعليه 17.1K متابع بعد الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="../assets/images/results/transformation-3-after.webp" alt="Mohamed Abd El-Shafy's Instagram profile at 17.1K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
             </div>
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+14.2K</span>
-                <span class="transformation__days">في 40 يوم</span>
+                <span class="transformation__days">in 40 days</span>
                 <span class="transformation__range">
                   <span class="transformation__from">2,948</span>
                   <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
-                  <span class="sr-only"> وصل إلى </span>
+                  <span class="sr-only"> grew to </span>
                   <span class="transformation__to">17.1K</span>
-                  <span class="transformation__unit">متابع</span>
+                  <span class="transformation__unit">followers</span>
                 </span>
               </div>
               <div class="transformation__who">
@@ -307,32 +310,32 @@
           <figure class="transformation" data-reveal data-glow>
             <div class="transformation__shots">
               <div class="transformation__shot">
-                <span class="transformation__tag">قبل</span>
-                <img src="assets/images/results/transformation-4-before.webp" alt="حساب Mohamed Badr على إنستجرام وعليه 9,194 متابع قبل الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag">Before</span>
+                <img src="../assets/images/results/transformation-4-before.webp" alt="Mohamed Badr's Instagram profile at 9,194 followers before working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
               <!-- TODO: confirm real duration -->
-              <div class="duration-bar" role="img" aria-label="60 يوم بين صورة قبل وصورة بعد">
-                <span class="duration-bar__end">قبل</span>
+              <div class="duration-bar" role="img" aria-label="60 days between the before and after screenshots">
+                <span class="duration-bar__end">Before</span>
                 <span class="duration-bar__line" aria-hidden="true"></span>
-                <span class="duration-bar__value">60 يوم</span>
+                <span class="duration-bar__value">60 days</span>
                 <span class="duration-bar__line duration-bar__line--flip" aria-hidden="true"></span>
-                <span class="duration-bar__end">بعد</span>
+                <span class="duration-bar__end">After</span>
               </div>
               <div class="transformation__shot">
-                <span class="transformation__tag transformation__tag--after">بعد</span>
-                <img src="assets/images/results/transformation-4-after.webp" alt="حساب Mohamed Badr على إنستجرام وعليه 32.4K متابع بعد الشغل مع ZH Personal Branding" loading="lazy" width="1200" height="540" />
+                <span class="transformation__tag transformation__tag--after">After</span>
+                <img src="../assets/images/results/transformation-4-after.webp" alt="Mohamed Badr's Instagram profile at 32.4K followers after working with ZH Personal Branding" loading="lazy" width="1200" height="540" />
               </div>
             </div>
             <figcaption class="transformation__meta">
               <div class="transformation__result">
                 <span class="transformation__delta">+23.2K</span>
-                <span class="transformation__days">في 60 يوم</span>
+                <span class="transformation__days">in 60 days</span>
                 <span class="transformation__range">
                   <span class="transformation__from">9,194</span>
                   <span class="transformation__arrow" aria-hidden="true">&rarr;</span>
-                  <span class="sr-only"> وصل إلى </span>
+                  <span class="sr-only"> grew to </span>
                   <span class="transformation__to">32.4K</span>
-                  <span class="transformation__unit">متابع</span>
+                  <span class="transformation__unit">followers</span>
                 </span>
               </div>
               <div class="transformation__who">
@@ -345,8 +348,8 @@
       </div>
 
       <div class="section-cta cta-pair cta-pair--center" data-reveal>
-        <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-        <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
     </section>
 
@@ -362,9 +365,9 @@
            that reads perfectly with no JS and under reduced motion. -->
       <div class="section container journey">
         <div class="journey__head">
-          <span class="eyebrow" data-reveal>إزاي بنشتغل مع بعض</span>
-          <h2 data-reveal>كل ريل، من أوله لآخره</h2>
-          <p class="journey__lead" data-reveal>كل المطلوب منك إنك تحضر وتدرّب — وإحنا نشيل الباقي، من الورقة البيضا لحد الريل المنشور.</p>
+          <span class="eyebrow" data-reveal>How we work together</span>
+          <h2 data-reveal>Every reel, start to finish</h2>
+          <p class="journey__lead" data-reveal>You're only ever asked to show up and coach — we carry the rest, from blank page to posted reel.</p>
         </div>
 
         <!-- TODO: owner to confirm step wording with client -->
@@ -379,11 +382,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">أنت تتواصل معنا</h3>
-                  <span class="journey-step__who">أنت</span>
+                  <h3 class="journey-step__title">You reach out</h3>
+                  <span class="journey-step__who">You</span>
                 </span>
               </div>
-              <p class="journey-step__desc">كلّمنا على واتساب أو من خلال الفورم. بنرد عليك في خلال يوم عمل واحد.</p>
+              <p class="journey-step__desc">Message us on WhatsApp or through the form. We reply within one business day.</p>
             </div>
           </li>
 
@@ -397,11 +400,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">مكالمة تعرُّف</h3>
-                  <span class="journey-step__who">إحنا وأنت</span>
+                  <h3 class="journey-step__title">Discovery call</h3>
+                  <span class="journey-step__who">Together</span>
                 </span>
               </div>
-              <p class="journey-step__desc">مكالمة قصيرة عن تدريبك وجمهورك وأهدافك. ونختار الباكدج المناسبة: 12 أو 24 ريل في الشهر.</p>
+              <p class="journey-step__desc">A short call about your coaching, your audience, and your goals. We pick the package that fits: 12 or 24 reels a month.</p>
             </div>
           </li>
 
@@ -417,11 +420,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">نتعرّف على براندك</h3>
-                  <span class="journey-step__who">إحنا</span>
+                  <h3 class="journey-step__title">We learn your brand</h3>
+                  <span class="journey-step__who">We</span>
                 </span>
               </div>
-              <p class="journey-step__desc">إزاي بتدرّب، مين بتدرّب، وعايز تتعرف بإيه — عشان كل ريل يطلع بصوتك.</p>
+              <p class="journey-step__desc">How you coach, who you train, and what you want to be known for, so every reel sounds like you.</p>
             </div>
           </li>
 
@@ -436,11 +439,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">أفكار وسكريبتات</h3>
-                  <span class="journey-step__who">إحنا نكتب وأنت توافق</span>
+                  <h3 class="journey-step__title">Ideas &amp; scripts</h3>
+                  <span class="journey-step__who">We write, you approve</span>
                 </span>
               </div>
-              <p class="journey-step__desc">نحوّل خبرتك لهوكس وسكريبتات مبنية توقّف السكرول — خلاص مفيش بصّة في نوتة فاضية. وأنت توافق أو تطلب تعديل قبل أي تصوير.</p>
+              <p class="journey-step__desc">We turn your coaching into hooks and scripts built to stop the scroll — no more staring at a blank notes app. You approve them or ask for changes before anything is filmed.</p>
             </div>
           </li>
 
@@ -455,11 +458,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">يوم التصوير</h3>
-                  <span class="journey-step__who">أنت تحضر وإحنا نوجّه</span>
+                  <h3 class="journey-step__title">Shoot day</h3>
+                  <span class="journey-step__who">You show up, we direct</span>
                 </span>
               </div>
-              <p class="journey-step__desc">بنصوّرك في جيمك بالمعدات والتوجيه اللي يخلّيك تبان الخبير اللي أنت هو. جلسة واحدة تغطّي أسابيع محتوى. بره منطقتنا؟ بنوجّه تصوير عن بعد على مكالمة.</p>
+              <p class="journey-step__desc">We film at your gym with the gear and direction to make you look like the expert you are. One session covers weeks of content. Outside our area? We direct a remote shoot over a call.</p>
             </div>
           </li>
 
@@ -476,11 +479,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">المونتاج</h3>
-                  <span class="journey-step__who">إحنا</span>
+                  <h3 class="journey-step__title">Editing</h3>
+                  <span class="journey-step__who">We</span>
                 </span>
               </div>
-              <p class="journey-step__desc">كل ريل بيتقطّع، بيتعمله سَبْتايتل، وبيتظبط إيقاعه للفيد، والصوت متظبط لريلز وتيك توك وشورتس.</p>
+              <p class="journey-step__desc">Every reel is cut, captioned, and paced for the feed, with sound tuned for Reels, TikTok, and Shorts.</p>
             </div>
           </li>
 
@@ -497,11 +500,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">مراجعتك</h3>
-                  <span class="journey-step__who">أنت تراجع وإحنا نعدّل</span>
+                  <h3 class="journey-step__title">Your review</h3>
+                  <span class="journey-step__who">You review, we revise</span>
                 </span>
               </div>
-              <p class="journey-step__desc">عايز تغيّر حاجة؟ القَطْع، السَبْتايتل، أو الإيقاع: بنعدّل لحد ما تكون مرتاح تحطّ اسمك عليه.</p>
+              <p class="journey-step__desc">Want something changed? The cut, captions, or pacing: we revise until you're happy to put your name on it.</p>
             </div>
           </li>
 
@@ -517,11 +520,11 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">جاهز للنشر</h3>
-                  <span class="journey-step__who">أنت</span>
+                  <h3 class="journey-step__title">Ready to post</h3>
+                  <span class="journey-step__who">You</span>
                 </span>
               </div>
-              <p class="journey-step__desc">ريلزك بتتسلّم جاهزة للنشر على إنستجرام وتيك توك ويوتيوب شورتس.</p>
+              <p class="journey-step__desc">Your finished reels are delivered ready to post on Instagram, TikTok, and YouTube Shorts.</p>
             </div>
           </li>
 
@@ -537,49 +540,49 @@
                   </svg>
                 </span>
                 <span class="journey-step__headings">
-                  <h3 class="journey-step__title">الشهر الجاي</h3>
-                  <span class="journey-step__who">إحنا وأنت</span>
+                  <h3 class="journey-step__title">Next month</h3>
+                  <span class="journey-step__who">Together</span>
                 </span>
               </div>
-              <p class="journey-step__desc">أفكار جديدة، تصوير جديد، والفيد ماشي. شهر بشهر، من غير عقد طويل.</p>
+              <p class="journey-step__desc">New ideas, new shoot, and the feed keeps moving. Month to month, no long contract.</p>
             </div>
           </li>
         </ol>
 
         <div class="journey-summary" data-reveal-group>
           <div class="journey-summary__col" data-reveal>
-            <h3 class="journey-summary__title">اللي عليك</h3>
+            <h3 class="journey-summary__title">What you do</h3>
             <ul class="journey-summary__list">
-              <li>تحضر وتدرّب قدام الكاميرا</li>
-              <li>توافق على السكريبتات</li>
-              <li>تنشر ريلزك</li>
+              <li>Show up and coach on camera</li>
+              <li>Approve scripts</li>
+              <li>Post your reels</li>
             </ul>
           </div>
           <!-- The lead column: this is the whole offer, and since the old
                "what we do" cards were removed it is now the one place the
                pipeline is spelled out. Sized and coloured to match. -->
           <div class="journey-summary__col journey-summary__col--lead journey-summary__col--accent" data-reveal>
-            <h3 class="journey-summary__title">اللي علينا</h3>
+            <h3 class="journey-summary__title">What we do</h3>
             <ul class="journey-summary__list">
-              <li>نكتب كل سكريبت، مبني على تدريبك</li>
-              <li>نصوّرك في الجيم، بالمعدات والتوجيه</li>
-              <li>نقطّع ونعمل سَبْتايتل ونظبّط إيقاع كل ريل للفيد</li>
-              <li>نظبّط الصوت لريلز وتيك توك وشورتس</li>
-              <li>نعدّل لحد ما تكون مرتاح تحطّ اسمك عليه</li>
-              <li>نعملها تاني الشهر الجاي، من غير ما تجري ورانا</li>
+              <li>Write every script, built around your coaching</li>
+              <li>Film you in the gym, with the gear and the direction</li>
+              <li>Cut, caption, and pace every reel for the feed</li>
+              <li>Tune the sound for Reels, TikTok, and Shorts</li>
+              <li>Revise until you're happy to put your name on it</li>
+              <li>Do it again next month, without you chasing us</li>
             </ul>
           </div>
           <div class="journey-summary__col" data-reveal>
-            <h3 class="journey-summary__title">اللي بتاخده</h3>
+            <h3 class="journey-summary__title">What you get</h3>
             <ul class="journey-summary__list">
-              <li>12 أو 24 ريل جاهزة كل شهر، جاهزة للنشر</li>
+              <li>12 or 24 finished reels every month, ready to post</li>
             </ul>
           </div>
         </div>
 
         <div class="journey__cta cta-pair cta-pair--center" data-reveal>
-          <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-          <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+          <a href="#contact" class="btn btn--primary">Book a call</a>
+          <p class="cta-note">Start investing in your business.</p>
         </div>
       </div>
 
@@ -588,8 +591,8 @@
            isn't for, so the call is pre-filtered rather than pitched to. -->
       <div class="section container investment-for">
         <div class="investment-for__head">
-          <span class="eyebrow" data-reveal>ليك؟</span>
-          <h2 data-reveal>الاستثمار ده لمين؟</h2>
+          <span class="eyebrow" data-reveal>For you?</span>
+          <h2 data-reveal>Who is this investment for?</h2>
         </div>
 
         <ul class="fit-grid" data-reveal-group>
@@ -599,7 +602,7 @@
                 <path d="M4 12.5l5.2 5.2L20 7" />
               </svg>
             </span>
-            <p>عايز الـDMs تتملى ناس بتسأل على التدريب — مش أنت اللي بتجري وراهم.</p>
+            <p>You want your DMs full of people asking for coaching — not you chasing them.</p>
           </li>
           <li class="fit-card" data-reveal data-glow>
             <span class="fit-card__icon" aria-hidden="true">
@@ -607,7 +610,7 @@
                 <path d="M4 12.5l5.2 5.2L20 7" />
               </svg>
             </span>
-            <p>تفضّل تظبّط برنامج عميل على إنك تظبّط كابشن.</p>
+            <p>You'd rather perfect a client's program than a caption.</p>
           </li>
           <li class="fit-card" data-reveal data-glow>
             <span class="fit-card__icon" aria-hidden="true">
@@ -615,7 +618,7 @@
                 <path d="M4 12.5l5.2 5.2L20 7" />
               </svg>
             </span>
-            <p>زهقت وأنت بتتفرج على كباتن أقل منك بيكبروا أكتر منك.</p>
+            <p>You're done watching less-qualified coaches outgrow you.</p>
           </li>
           <li class="fit-card" data-reveal data-glow>
             <span class="fit-card__icon" aria-hidden="true">
@@ -623,7 +626,7 @@
                 <path d="M4 12.5l5.2 5.2L20 7" />
               </svg>
             </span>
-            <p>عايز محتواك يجيبلك عملاء وأنت واقف على أرض الجيم.</p>
+            <p>You want your content bringing in clients while you're on the gym floor.</p>
           </li>
           <li class="fit-card" data-reveal data-glow>
             <span class="fit-card__icon" aria-hidden="true">
@@ -631,7 +634,7 @@
                 <path d="M4 12.5l5.2 5.2L20 7" />
               </svg>
             </span>
-            <p>عايز ترفع أسعارك — ويكون عندك الجمهور اللي يخلّي ده منطقي.</p>
+            <p>You want to raise your prices — and have the audience that makes it make sense.</p>
           </li>
           <li class="fit-card" data-reveal data-glow>
             <span class="fit-card__icon" aria-hidden="true">
@@ -639,12 +642,12 @@
                 <path d="M4 12.5l5.2 5.2L20 7" />
               </svg>
             </span>
-            <p>عايز تكون الكابتن اللي الناس تفكر فيه الأول في مجالك، مش حساب تاني بينشر مرة في الشهر.</p>
+            <p>You want to be the coach people think of first in your niche, not another account that posts once a month.</p>
           </li>
         </ul>
 
         <div class="not-for" data-reveal>
-          <h3 class="not-for__title">مش ليك لو&hellip;</h3>
+          <h3 class="not-for__title">Not for you if&hellip;</h3>
         </div>
 
         <ul class="fit-grid fit-grid--no" data-reveal-group>
@@ -654,7 +657,7 @@
                 <path d="M6 6l12 12M18 6L6 18" />
               </svg>
             </span>
-            <p>عايز نتيجة بين يوم وليلة من غير ما تكون موجود بانتظام.</p>
+            <p>You want overnight results without showing up consistently.</p>
           </li>
           <li class="fit-card fit-card--no" data-reveal data-glow>
             <span class="fit-card__icon fit-card__icon--no" aria-hidden="true">
@@ -662,7 +665,7 @@
                 <path d="M6 6l12 12M18 6L6 18" />
               </svg>
             </span>
-            <p>مش مستعد تقف قدام الكاميرا.</p>
+            <p>You're not willing to get in front of the camera.</p>
           </li>
           <li class="fit-card fit-card--no" data-reveal data-glow>
             <span class="fit-card__icon fit-card__icon--no" aria-hidden="true">
@@ -670,14 +673,14 @@
                 <path d="M6 6l12 12M18 6L6 18" />
               </svg>
             </span>
-            <p>عايز متابعين مشتراة أو أرقام وهمية.</p>
+            <p>You want bought followers or fake numbers.</p>
           </li>
         </ul>
       </div>
 
       <div class="section-cta cta-pair cta-pair--center" data-reveal>
-        <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-        <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
     </section>
 
@@ -688,11 +691,11 @@
       <div class="work-hero page-hero container">
         <div class="page-hero__grid">
           <div class="page-hero__head">
-            <span class="eyebrow" data-reveal>أعمالنا</span>
-            <h2 data-reveal>كباتن وصّلناهم للفيد.</h2>
+            <span class="eyebrow" data-reveal>Our work</span>
+            <h2 data-reveal>Coaches we've put on the feed.</h2>
           </div>
           <div class="page-hero__lead" data-reveal>
-            <p>ريلز وفيديوهات قصيرة رأسية كتبناها وصوّرناها وعملنا مونتاجها لكباتن — وعدد المشاهدات مكتوب على كل صورة.</p>
+            <p>Vertical reels and shorts we scripted, shot, and cut for coaches — each one's view count is right there on the thumbnail.</p>
           </div>
         </div>
       </div>
@@ -702,8 +705,8 @@
       </div>
 
       <div class="section-cta cta-pair cta-pair--center" data-reveal>
-        <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-        <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
     </section>
 
@@ -721,8 +724,8 @@
       <div class="section container feedback">
         <div class="section__head">
           <div>
-            <span class="eyebrow" data-reveal>رأي العملاء</span>
-            <h2 data-reveal>اسمعها من كباتننا.</h2>
+            <span class="eyebrow" data-reveal>Client feedback</span>
+            <h2 data-reveal>Hear it from our coaches.</h2>
           </div>
         </div>
 
@@ -732,35 +735,35 @@
             <!-- TODO: real testimonial -->
             <figure class="voicenote" data-voicenote data-media-key="voiceNote1" data-label="Mustafa Ashraf" data-reveal>
               <div class="voicenote__bubble">
-                <img class="voicenote__avatar" src="assets/images/clients/client-04.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="voicenote__avatar" src="../assets/images/clients/client-04.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.30"></i><i style="--h:.52"></i><i style="--h:.74"></i><i style="--h:.42"></i><i style="--h:.88"></i><i style="--h:.61"></i><i style="--h:.35"></i><i style="--h:.70"></i><i style="--h:.95"></i><i style="--h:.48"></i><i style="--h:.26"></i><i style="--h:.58"></i><i style="--h:.82"></i><i style="--h:.44"></i><i style="--h:.66"></i><i style="--h:.90"></i><i style="--h:.38"></i><i style="--h:.55"></i><i style="--h:.72"></i><i style="--h:.31"></i><i style="--h:.63"></i><i style="--h:.85"></i><i style="--h:.47"></i><i style="--h:.28"></i><i style="--h:.56"></i><i style="--h:.34"></i></span>
                 <audio preload="metadata" controls data-audio></audio>
               </div>
               <figcaption class="voicenote__meta">
                 <span class="voicenote__name">Mustafa Ashraf</span>
                 <span class="voicenote__handle">@mustafa_ashraf_26</span>
-                <p class="voicenote__quote">الشهادة قريبًا.</p>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="voicenote" data-voicenote data-media-key="voiceNote2" data-label="Mohamed Badr" data-reveal>
               <div class="voicenote__bubble">
-                <img class="voicenote__avatar" src="assets/images/clients/client-02.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="voicenote__avatar" src="../assets/images/clients/client-02.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.62"></i><i style="--h:.38"></i><i style="--h:.84"></i><i style="--h:.55"></i><i style="--h:.29"></i><i style="--h:.71"></i><i style="--h:.93"></i><i style="--h:.46"></i><i style="--h:.33"></i><i style="--h:.68"></i><i style="--h:.87"></i><i style="--h:.51"></i><i style="--h:.27"></i><i style="--h:.60"></i><i style="--h:.79"></i><i style="--h:.41"></i><i style="--h:.92"></i><i style="--h:.64"></i><i style="--h:.36"></i><i style="--h:.57"></i><i style="--h:.75"></i><i style="--h:.43"></i><i style="--h:.66"></i><i style="--h:.32"></i><i style="--h:.49"></i><i style="--h:.25"></i></span>
                 <audio preload="metadata" controls data-audio></audio>
               </div>
               <figcaption class="voicenote__meta">
                 <span class="voicenote__name">Mohamed Badr</span>
                 <span class="voicenote__handle">@coach.butcher</span>
-                <p class="voicenote__quote">الشهادة قريبًا.</p>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="voicenote" data-voicenote data-media-key="voiceNote3" data-label="Galal Mohamed" data-reveal>
               <div class="voicenote__bubble">
-                <img class="voicenote__avatar" src="assets/images/clients/client-16.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="voicenote__avatar" src="../assets/images/clients/client-16.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.45"></i><i style="--h:.72"></i><i style="--h:.31"></i><i style="--h:.89"></i><i style="--h:.58"></i><i style="--h:.40"></i><i style="--h:.66"></i><i style="--h:.27"></i><i style="--h:.81"></i><i style="--h:.53"></i><i style="--h:.94"></i><i style="--h:.37"></i><i style="--h:.62"></i><i style="--h:.48"></i><i style="--h:.76"></i><i style="--h:.34"></i><i style="--h:.59"></i><i style="--h:.86"></i><i style="--h:.42"></i><i style="--h:.69"></i><i style="--h:.28"></i><i style="--h:.54"></i><i style="--h:.78"></i><i style="--h:.39"></i><i style="--h:.61"></i><i style="--h:.30"></i></span>
                 <audio preload="metadata" controls data-audio></audio>
               </div>
@@ -770,35 +773,35 @@
                      says @galalmohamed99, the client roster says
                      @galalmohamed95. Left as-is in both places; not guessed. -->
                 <span class="voicenote__handle">@galalmohamed95</span>
-                <p class="voicenote__quote">الشهادة قريبًا.</p>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="voicenote" data-voicenote data-media-key="voiceNote4" data-label="Mohamed Abd El-Shafy" data-reveal>
               <div class="voicenote__bubble">
-                <img class="voicenote__avatar" src="assets/images/clients/client-09.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="voicenote__avatar" src="../assets/images/clients/client-09.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.36"></i><i style="--h:.64"></i><i style="--h:.91"></i><i style="--h:.47"></i><i style="--h:.25"></i><i style="--h:.73"></i><i style="--h:.56"></i><i style="--h:.83"></i><i style="--h:.32"></i><i style="--h:.60"></i><i style="--h:.44"></i><i style="--h:.88"></i><i style="--h:.51"></i><i style="--h:.29"></i><i style="--h:.70"></i><i style="--h:.96"></i><i style="--h:.40"></i><i style="--h:.67"></i><i style="--h:.35"></i><i style="--h:.58"></i><i style="--h:.80"></i><i style="--h:.46"></i><i style="--h:.26"></i><i style="--h:.63"></i><i style="--h:.42"></i><i style="--h:.33"></i></span>
                 <audio preload="metadata" controls data-audio></audio>
               </div>
               <figcaption class="voicenote__meta">
                 <span class="voicenote__name">Mohamed Abd El-Shafy</span>
                 <span class="voicenote__handle">@moh.abdelshafy</span>
-                <p class="voicenote__quote">الشهادة قريبًا.</p>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="voicenote" data-voicenote data-media-key="voiceNote5" data-label="Amr Moharram" data-reveal>
               <div class="voicenote__bubble">
-                <img class="voicenote__avatar" src="assets/images/clients/client-01.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="voicenote__avatar" src="../assets/images/clients/client-01.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.54"></i><i style="--h:.28"></i><i style="--h:.77"></i><i style="--h:.41"></i><i style="--h:.65"></i><i style="--h:.90"></i><i style="--h:.34"></i><i style="--h:.59"></i><i style="--h:.43"></i><i style="--h:.85"></i><i style="--h:.30"></i><i style="--h:.68"></i><i style="--h:.52"></i><i style="--h:.74"></i><i style="--h:.37"></i><i style="--h:.61"></i><i style="--h:.93"></i><i style="--h:.45"></i><i style="--h:.27"></i><i style="--h:.71"></i><i style="--h:.56"></i><i style="--h:.82"></i><i style="--h:.39"></i><i style="--h:.48"></i><i style="--h:.31"></i><i style="--h:.57"></i></span>
                 <audio preload="metadata" controls data-audio></audio>
               </div>
               <figcaption class="voicenote__meta">
                 <span class="voicenote__name">Amr Moharram</span>
                 <span class="voicenote__handle">@coach_amrmoharram</span>
-                <p class="voicenote__quote">الشهادة قريبًا.</p>
+                <p class="voicenote__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
           </div>
@@ -809,79 +812,79 @@
              strip is still a swipeable, scroll-snapping, keyboard-scrollable
              list, so nothing here depends on the script. -->
         <div class="carousel" data-carousel data-reveal>
-          <div class="carousel__viewport" data-carousel-viewport tabindex="0" role="group" aria-label="شهادات فيديو من كباتن">
+          <div class="carousel__viewport" data-carousel-viewport tabindex="0" role="group" aria-label="Video testimonials from coaches">
             <!-- TODO: real testimonial -->
             <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo1" data-label="شهادة فيديو من Mohanad Hesham">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo1" data-label="video testimonial from Mohanad Hesham">
                 <div class="vplayer__frame">
                   <video class="vplayer__video" preload="metadata" playsinline controls></video>
                 </div>
               </div>
               <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-03.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="carousel__avatar" src="../assets/images/clients/client-03.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="carousel__name">Mohanad Hesham</span>
                 <span class="carousel__handle">@mohanad_elmaghraby</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
+                <p class="carousel__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo2" data-label="شهادة فيديو من Kareem Mahmoud">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo2" data-label="video testimonial from Kareem Mahmoud">
                 <div class="vplayer__frame">
                   <video class="vplayer__video" preload="metadata" playsinline controls></video>
                 </div>
               </div>
               <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-11.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="carousel__avatar" src="../assets/images/clients/client-11.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="carousel__name">Kareem Mahmoud</span>
                 <span class="carousel__handle">@kariiim.mahmoud</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
+                <p class="carousel__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo3" data-label="شهادة فيديو من Omar Nasr">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo3" data-label="video testimonial from Omar Nasr">
                 <div class="vplayer__frame">
                   <video class="vplayer__video" preload="metadata" playsinline controls></video>
                 </div>
               </div>
               <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-18.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="carousel__avatar" src="../assets/images/clients/client-18.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="carousel__name">Omar Nasr</span>
                 <span class="carousel__handle">@omarnasrbaker</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
+                <p class="carousel__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo4" data-label="شهادة فيديو من Karim Maghraby">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo4" data-label="video testimonial from Karim Maghraby">
                 <div class="vplayer__frame">
                   <video class="vplayer__video" preload="metadata" playsinline controls></video>
                 </div>
               </div>
               <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-10.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="carousel__avatar" src="../assets/images/clients/client-10.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="carousel__name">Karim Maghraby</span>
                 <span class="carousel__handle">@karimmaghraby</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
+                <p class="carousel__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
 
             <!-- TODO: real testimonial -->
             <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo5" data-label="شهادة فيديو من Rohaim Moustafa">
+              <div class="vplayer" data-vplayer data-media-key="testimonialVideo5" data-label="video testimonial from Rohaim Moustafa">
                 <div class="vplayer__frame">
                   <video class="vplayer__video" preload="metadata" playsinline controls></video>
                 </div>
               </div>
               <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-07.webp" alt="" loading="lazy" width="256" height="256" />
+                <img class="carousel__avatar" src="../assets/images/clients/client-07.webp" alt="" loading="lazy" width="256" height="256" />
                 <span class="carousel__name">Rohaim Moustafa</span>
                 <span class="carousel__handle">@rohaim_moustafa</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
+                <p class="carousel__quote">Testimonial coming soon.</p>
               </figcaption>
             </figure>
           </div>
@@ -889,8 +892,8 @@
         </div>
 
         <div class="feedback__cta cta-pair cta-pair--center" data-reveal>
-          <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-          <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+          <a href="#contact" class="btn btn--primary">Book a call</a>
+          <p class="cta-note">Start investing in your business.</p>
         </div>
       </div>
     </section>
@@ -906,106 +909,106 @@
       <div class="section container clients">
         <div class="section__head">
           <div>
-            <span class="eyebrow" data-reveal>عملاؤنا</span>
-            <h2 data-reveal>حسابات بنشتغل عليها كل يوم.</h2>
+            <span class="eyebrow" data-reveal>Our clients</span>
+            <h2 data-reveal>Accounts we run day to day.</h2>
           </div>
-          <a href="#contact" class="btn btn--outline" data-reveal>كن واحد منهم</a>
+          <a href="#contact" class="btn btn--outline" data-reveal>Become one</a>
         </div>
         <p class="clients__lead" data-reveal>
-          حسابات التدريب اللي محتواها — السكريبت والتصوير والمونتاج — بيمرّ من عندنا
-          كل أسبوع. اسحب لتشوف القائمة كاملة.
+          The coaching accounts whose content — scripts, shoots, and edits — runs
+          through us every week. Scroll for the full roster.
         </p>
         <div class="clients-scroller" data-reveal>
           <div class="clients-grid">
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-04.webp" alt="Mustafa Ashraf" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-04.webp" alt="Mustafa Ashraf" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Mustafa Ashraf</figcaption>
               <span class="client-card__handle">@mustafa_ashraf_26</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-06.webp" alt="Mira Reda" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-06.webp" alt="Mira Reda" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Mira</figcaption>
               <span class="client-card__handle">@mirareda</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-02.webp" alt="Mohamed Badr" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-02.webp" alt="Mohamed Badr" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Mohamed Badr</figcaption>
               <span class="client-card__handle">@coach.butcher</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-16.webp" alt="Galal Mohamed" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-16.webp" alt="Galal Mohamed" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Galal Mohamed</figcaption>
               <!-- TODO: confirm correct handle — the Before/After card says
                    @galalmohamed99, this one says @galalmohamed95. -->
               <span class="client-card__handle">@galalmohamed95</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-08.webp" alt="Muhammed Saad" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-08.webp" alt="Muhammed Saad" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Muhammed Saad</figcaption>
               <span class="client-card__handle">@__memmes</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-03.webp" alt="Mohanad Hesham" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-03.webp" alt="Mohanad Hesham" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Mohanad Hesham</figcaption>
               <span class="client-card__handle">@mohanad_elmaghraby</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-01.webp" alt="Amr Moharram" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-01.webp" alt="Amr Moharram" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Amr Moharram</figcaption>
               <span class="client-card__handle">@coach_amrmoharram</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-09.webp" alt="Mohamed Abd El-Shafy" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-09.webp" alt="Mohamed Abd El-Shafy" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Mohamed Abd El-Shafy</figcaption>
               <span class="client-card__handle">@moh.abdelshafy</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-11.webp" alt="Kareem Mahmoud" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-11.webp" alt="Kareem Mahmoud" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Kareem Mahmoud</figcaption>
               <span class="client-card__handle">@kariiim.mahmoud</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-15.webp" alt="Gehad Fahmy" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-15.webp" alt="Gehad Fahmy" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Gehad Fahmy</figcaption>
               <span class="client-card__handle">@gehadd_fahmy</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-05.webp" alt="Katy" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-05.webp" alt="Katy" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Katy</figcaption>
               <span class="client-card__handle">@itskaty___</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-13.webp" alt="Noura Alaa" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-13.webp" alt="Noura Alaa" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Noura Alaa</figcaption>
               <span class="client-card__handle">@nouraalaa10</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-17.webp" alt="Sakr Pro Coaching" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-17.webp" alt="Sakr Pro Coaching" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Sakr Pro Coaching</figcaption>
               <span class="client-card__handle">@sakr_procoaching</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-18.webp" alt="Omar Nasr" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-18.webp" alt="Omar Nasr" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Omar Nasr</figcaption>
               <span class="client-card__handle">@omarnasrbaker</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-10.webp" alt="Karim Maghraby" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-10.webp" alt="Karim Maghraby" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Karim Maghraby</figcaption>
               <span class="client-card__handle">@karimmaghraby</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-14.webp" alt="Dr. Ziad Tharwat" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-14.webp" alt="Dr. Ziad Tharwat" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Dr. Ziad Tharwat</figcaption>
               <span class="client-card__handle">@dr_ziadtharwat</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-07.webp" alt="Rohaim Moustafa" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-07.webp" alt="Rohaim Moustafa" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Rohaim Moustafa</figcaption>
               <span class="client-card__handle">@rohaim_moustafa</span>
             </figure>
             <figure class="client-card" data-glow>
-              <img class="client-card__avatar" src="assets/images/clients/client-12.webp" alt="Mostafa Sharaf" loading="lazy" width="256" height="256" />
+              <img class="client-card__avatar" src="../assets/images/clients/client-12.webp" alt="Mostafa Sharaf" loading="lazy" width="256" height="256" />
               <figcaption class="client-card__name">Mostafa Sharaf</figcaption>
               <span class="client-card__handle">@c.mostafa_sharaf</span>
             </figure>
@@ -1014,8 +1017,8 @@
       </div>
 
       <div class="section-cta cta-pair cta-pair--center" data-reveal>
-        <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-        <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
     </section>
 
@@ -1026,15 +1029,15 @@
       <div class="about-hero page-hero container">
         <div class="page-hero__grid">
           <div class="page-hero__head">
-            <span class="eyebrow" data-reveal>من نحن</span>
-            <h2 data-reveal>إحنا طالعين من الجيم، مش من وكالة إعلانات.</h2>
+            <span class="eyebrow" data-reveal>About us</span>
+            <h2 data-reveal>We came up in the gym, not an ad agency.</h2>
           </div>
           <div class="page-hero__lead" data-reveal>
             <p>
-              ZH Personal Branding موجودة لنوع واحد من العملاء: كباتن اللياقة. قضينا سنين
-              في عالم اللياقة قبل ما نشيل كاميرا، فمش محتاجين حد يشرحلنا يعني إيه
-              progressive overload — إحنا أصلاً بنتكلم لغتك، وده باين في كل ريل نكتبه
-              ونصوّره ونعمل مونتاجه.
+              ZH Personal Branding exists for one kind of client: fitness coaches. We spent
+              years in the fitness world before picking up a camera, so we don't need
+              progressive overload explained — we already speak your language, and it shows
+              in every reel we script, shoot, and cut.
             </p>
           </div>
         </div>
@@ -1044,15 +1047,15 @@
         <div class="about-stats" data-reveal-group>
           <div class="about-stat" data-reveal>
             <span class="about-stat__value">5+</span>
-            <span class="about-stat__label">سنوات في عالم اللياقة</span>
+            <span class="about-stat__label">Years in the fitness world</span>
           </div>
           <div class="about-stat" data-reveal>
             <span class="about-stat__value">20+</span>
-            <span class="about-stat__label">كابتن صوّرناهم</span>
+            <span class="about-stat__label">Coaches we've filmed</span>
           </div>
           <div class="about-stat" data-reveal>
             <span class="about-stat__value">100%</span>
-            <span class="about-stat__label">تنفيذ كامل، من السكريبت للنشر</span>
+            <span class="about-stat__label">Done-for-you, start to post</span>
           </div>
         </div>
       </div>
@@ -1065,19 +1068,21 @@
             <span class="founder__monogram">ZH</span>
           </div>
           <div class="founder__body" data-reveal>
-            <span class="eyebrow">المؤسِّس</span>
-            <h2>سنين تحت البار، وبعدها ورا الكاميرا.</h2>
+            <span class="eyebrow">The founder</span>
+            <h2>Years under the bar, then behind the camera.</h2>
             <p>
-              قبل الاستوديو ده، قضيت سنين في عالم اللياقة — تدريب ومنافسات، وعِشت نفس
-              الجَري اللي عملاؤنا فيه دلوقتي. وشُفت نفس الحكاية بتتكرر: الكباتن اللي
-              بيكسبوا أونلاين مش أحسن مدربين، هما اللي بيظهروا بانتظام. وتقريبًا مفيش
-              فيهم حد عنده وقت يكتب ويصوّر ويعمل مونتاج فوق قائمة عملاء كاملة.
+              Before this studio, I spent years in the fitness world — training, competing,
+              and living the exact grind our clients are in now. I saw the same thing over
+              and over: the coaches who win online aren't the best trainers, they're the ones
+              who show up consistently. And almost none of them have time to script, shoot,
+              and edit on top of a full client roster.
             </p>
             <p>
-              فبنيت الاستوديو اللي كنت بتمنى يكون موجود — فريق بيتكلم لغة اللياقة أصلاً،
-              بياخد خط المحتوى كله من على دراعك، ويخلّيك تبان الخبير اللي أنت هو فعلاً.
+              So I built the studio I wished existed — a team that already speaks fitness,
+              takes the whole content pipeline off your plate, and makes you look like the
+              expert you already are.
             </p>
-            <p class="founder__sign">— زياد حازم، المؤسِّس</p>
+            <p class="founder__sign">— Ziad Hazem, Founder</p>
           </div>
         </div>
       </div>
@@ -1085,29 +1090,29 @@
       <div class="section container">
         <div class="section__head">
           <div>
-            <span class="eyebrow" data-reveal>إزاي بنشتغل</span>
-            <h2 data-reveal>ليه الكباتن بيثقوا فينا</h2>
+            <span class="eyebrow" data-reveal>How we work</span>
+            <h2 data-reveal>Why coaches trust us</h2>
           </div>
         </div>
         <div class="about-values" data-reveal-group>
           <div class="about-value" data-reveal data-glow>
-            <h3>بنتكلم لغة اللياقة</h3>
-            <p>محتواك بيطلع بصوت كابتن فاهم شغله — مش إعلان عام كتبه حد عمره ما درّب عميل.</p>
+            <h3>We speak fitness</h3>
+            <p>Your content sounds like a coach who knows their stuff — not a generic ad written by someone who's never trained a client.</p>
           </div>
           <div class="about-value" data-reveal data-glow>
-            <h3>تنفيذ كامل من عندنا</h3>
-            <p>السكريبت والتصوير والمونتاج — الحكاية كلها مرفوعة من على دراعك. أنت تحضر، تدرّب قدام الكاميرا، وتاخد ريلز جاهزة للنشر.</p>
+            <h3>Done-for-you</h3>
+            <p>Script, shoot, edit — the whole thing is off your plate. You show up, coach on camera, and get reels back ready to post.</p>
           </div>
           <div class="about-value" data-reveal data-glow>
-            <h3>مبني للفيد</h3>
-            <p>كل ريل معمول عشان يشتغل — هوكس توقّف السكرول وإيقاع مظبوط على طريقة الناس الحقيقية في مشاهدة الفيديوهات القصيرة.</p>
+            <h3>Built for the feed</h3>
+            <p>Every reel is made to perform — hooks that stop the scroll and pacing tuned for how people actually watch short-form.</p>
           </div>
         </div>
       </div>
 
       <div class="section-cta cta-pair cta-pair--center" data-reveal>
-        <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-        <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
     </section>
 
@@ -1121,48 +1126,48 @@
       <div class="section container faq">
         <div class="section__head">
           <div>
-            <span class="eyebrow" data-reveal>أسئلة شائعة</span>
-            <h2 data-reveal>الأسئلة الأكثر تكرارًا</h2>
+            <span class="eyebrow" data-reveal>FAQs</span>
+            <h2 data-reveal>Frequently asked questions</h2>
           </div>
         </div>
         <p class="faq__lead" data-reveal>
-          قبل ما تسأل — إزاي الشغل ماشي بالظبط، بإجابات مباشرة.
+          Before you ask — how it actually works, answered straight.
         </p>
         <div class="faq__list" data-reveal-group>
           <div class="faq__item" data-reveal>
-            <h3 class="faq__q">إيه اللي بيحصل بعد ما أحجز مكالمة؟</h3>
-            <p class="faq__a">بنعمل مكالمة قصيرة نتعرف فيها على تدريبك وجمهورك وأهدافك. ولو الشغل مناسب، بنخطّط أول شهر محتوى ونحدد يوم التصوير — غالبًا في نفس الأسبوع.</p>
+            <h3 class="faq__q">What happens after I book a call?</h3>
+            <p class="faq__a">We hop on a short call to learn your coaching, your audience, and your goals. If it's a fit, we plan your first month of content and book your shoot — usually within the same week.</p>
           </div>
           <div class="faq__item" data-reveal>
-            <h3 class="faq__q">هل لازم أسافر عشان أصوّر؟</h3>
-            <p class="faq__a">لأ. إحنا بنصوّر في جيمك. ولو أنت بره منطقتنا، بنعمل تصوير عن بعد ونوجّهك على المكالمة — وكتير من الكباتن بيصوّروا شهر كامل في جلسة واحدة.</p>
+            <h3 class="faq__q">Do I have to travel to film?</h3>
+            <p class="faq__a">No. We film on-location at your gym. If you're outside our area we run remote shoots and direct you over the call — many coaches capture a full month in one session.</p>
           </div>
           <div class="faq__item" data-reveal>
-            <h3 class="faq__q">كم ريل، وفي كم وقت؟</h3>
-            <p class="faq__a">12 أو 24 ريل جاهزة في الشهر، حسب الباكدج. وأول نسخ المونتاج بتوصل عادةً في خلال أيام من التصوير — بسَبْتايتل وجاهزة للنشر.</p>
+            <h3 class="faq__q">How many reels, and how fast?</h3>
+            <p class="faq__a">12 or 24 finished reels a month, depending on your package. First edits usually land within a few days of the shoot — captioned and ready to post.</p>
           </div>
           <div class="faq__item" data-reveal>
-            <h3 class="faq__q">لو عايز أعدّل في المونتاج؟</h3>
-            <p class="faq__a">كل ريل فيه تعديلات. بنظبّط القَطْع أو السَبْتايتل أو الإيقاع لحد ما يطلع حاجة تكون مرتاح تحطّ اسمك عليها.</p>
+            <h3 class="faq__q">What if I want changes to an edit?</h3>
+            <p class="faq__a">Every reel includes revisions. We tweak the cut, captions, or pacing until it's something you're happy to put your name on.</p>
           </div>
           <div class="faq__item" data-reveal>
-            <h3 class="faq__q">هل أنا مربوط بعقد طويل؟</h3>
-            <p class="faq__a">بنشتغل شهر بشهر. والخطة إن النتيجة هي اللي تخلّيك معانا — مش الورق.</p>
+            <h3 class="faq__q">Am I locked into a long contract?</h3>
+            <p class="faq__a">We work month to month. The plan is that the results keep you around — not the paperwork.</p>
           </div>
           <div class="faq__item" data-reveal>
-            <h3 class="faq__q">الاستثمار كام؟</h3>
-            <p class="faq__a">استثمارك بيتحدّد على أساس الباكدج وتفاصيل التصوير، فبنقوله لك في المكالمة بعد ما نعرف احتياجك. احجز مكالمة وإحنا نمشي معاك خطوة بخطوة.</p>
+            <h3 class="faq__q">How much is the investment?</h3>
+            <p class="faq__a">Your investment depends on your package and shoot logistics, so we quote it on the call once we know what you need. Book a call and we'll walk you through it.</p>
           </div>
           <div class="faq__item" data-reveal>
-            <h3 class="faq__q">هل بتنشروا الريلز بالنيابة عني؟</h3>
-            <p class="faq__a">إحنا بنتولّى السكريبت والتصوير والمونتاج، وبنسلّم كل ريل جاهز للنشر. وأنت اللي تنشره على حساباتك، فصفحتك تفضل ملكك بالكامل.</p>
+            <h3 class="faq__q">Do you post the reels for me?</h3>
+            <p class="faq__a">We handle the script, the shoot, and the edit, and deliver every reel ready to post. You post them to your own accounts, so your page stays fully yours.</p>
           </div>
         </div>
       </div>
 
       <div class="section-cta cta-pair cta-pair--center" data-reveal>
-        <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-        <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
     </section>
 
@@ -1174,41 +1179,41 @@
     <section id="investment" class="snap-section">
       <div class="section container packages">
         <div class="packages__head">
-          <span class="eyebrow eyebrow--lg" data-reveal>الاستثمار</span>
-          <h2 data-reveal>اختار استثمارك الشهري</h2>
+          <span class="eyebrow eyebrow--lg" data-reveal>Investment</span>
+          <h2 data-reveal>Choose your monthly investment</h2>
           <p class="packages-note text-muted" data-reveal>
-            الباكدجين الاتنين تنفيذ كامل من عندنا — السكريبت والتصوير والمونتاج كلهم داخلين.
-            السؤال الوحيد هو عايز تنشر قد إيه.
+            Both packages are fully done-for-you — scripting, shooting, and editing all included.
+            The only question is how much you want to post.
           </p>
         </div>
         <div class="pricing-grid" data-reveal-group>
           <div class="pricing-card" data-reveal data-glow>
-            <span class="pricing-card__label">البداية</span>
-            <div class="pricing-card__count">12<span>ريل</span></div>
-            <p class="text-muted">وجود ثابت ومنتظم — 3 ريلز في الأسبوع تبني زخم وتخلّيك موجود على الفيد.</p>
+            <span class="pricing-card__label">Starter</span>
+            <div class="pricing-card__count">12<span>reels</span></div>
+            <p class="text-muted">A steady, consistent presence — three reels a week to build momentum and stay on the feed.</p>
             <ul class="pricing-card__features">
-              <li>12 ريل تنفيذ كامل / شهر</li>
-              <li>كتابة سكريبت لكل ريل</li>
-              <li>جلسة تصوير داخلة</li>
-              <li>مونتاج وسَبْتايتل وجاهزة للنشر</li>
+              <li>12 done-for-you reels / month</li>
+              <li>Scripting for every reel</li>
+              <li>Filming session included</li>
+              <li>Editing, captions &amp; ready to post</li>
             </ul>
-            <a href="#contact" class="btn btn--outline">احجز مكالمة</a>
-            <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+            <a href="#contact" class="btn btn--outline">Book a call</a>
+            <p class="cta-note">Start investing in your business.</p>
           </div>
           <div class="pricing-card pricing-card--featured" data-reveal data-glow>
-            <span class="pricing-card__badge">الأفضل للنمو</span>
-            <span class="pricing-card__label">التوسّع</span>
-            <div class="pricing-card__count">24<span>ريل</span></div>
-            <p class="text-muted">ضِعف الإنتاج للكباتن الداخلين بكل قوتهم — كمية تكفي فعلاً تحرّك الخوارزمية.</p>
+            <span class="pricing-card__badge">Best for growth</span>
+            <span class="pricing-card__label">Scale</span>
+            <div class="pricing-card__count">24<span>reels</span></div>
+            <p class="text-muted">Double the output for coaches going all-in — enough volume to actually move the algorithm.</p>
             <ul class="pricing-card__features">
-              <li>24 ريل تنفيذ كامل / شهر</li>
-              <li>كتابة سكريبت لكل ريل</li>
-              <li>جلسات تصوير بأولوية</li>
-              <li>مونتاج وسَبْتايتل وجاهزة للنشر</li>
-              <li>تسليم أسرع</li>
+              <li>24 done-for-you reels / month</li>
+              <li>Scripting for every reel</li>
+              <li>Priority filming sessions</li>
+              <li>Editing, captions &amp; ready to post</li>
+              <li>Faster turnaround</li>
             </ul>
-            <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-            <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+            <a href="#contact" class="btn btn--primary">Book a call</a>
+            <p class="cta-note">Start investing in your business.</p>
           </div>
         </div>
       </div>
@@ -1221,11 +1226,11 @@
       <div class="contact-hero page-hero container">
         <div class="page-hero__grid">
           <div class="page-hero__head">
-            <span class="eyebrow" data-reveal>احجز مكالمة</span>
-            <h2 data-reveal>خلّينا نتولّى محتواك.</h2>
+            <span class="eyebrow" data-reveal>Book a call</span>
+            <h2 data-reveal>Let's get your content handled.</h2>
           </div>
           <div class="page-hero__lead" data-reveal>
-            <p>كلّمنا عن تدريبك وعن المكان اللي عايز توصله — عادةً بنرد في خلال يوم عمل واحد.</p>
+            <p>Tell us about your coaching and where you want to take it — we typically reply within one business day.</p>
           </div>
         </div>
       </div>
@@ -1239,79 +1244,79 @@
         -->
         <form class="contact-form" data-unwired novalidate data-reveal>
           <div class="form-field">
-            <label for="name">الاسم</label>
-            <input type="text" id="name" name="name" placeholder="اسمك" required />
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
           </div>
           <div class="form-field">
-            <label for="email">البريد الإلكتروني</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" dir="ltr" required />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
           </div>
           <div class="form-field">
-            <label for="handle">حساب إنستجرام أو تيك توك</label>
-            <input type="text" id="handle" name="handle" placeholder="@yourcoaching" dir="ltr" />
+            <label for="handle">Instagram / TikTok handle</label>
+            <input type="text" id="handle" name="handle" placeholder="@yourcoaching" />
           </div>
           <div class="form-field">
-            <label for="package">أي باكدج مناسبة؟</label>
+            <label for="package">Which package fits?</label>
             <select id="package" name="package">
-              <option value="" selected>لسه مش متأكد</option>
-              <option value="12-reels">12 ريل / شهر</option>
-              <option value="24-reels">24 ريل / شهر</option>
+              <option value="" selected>I'm not sure yet</option>
+              <option value="12-reels">12 Reels / month</option>
+              <option value="24-reels">24 Reels / month</option>
             </select>
           </div>
           <div class="form-field">
-            <label for="timeslot">الوقت المفضّل للمكالمة</label>
+            <label for="timeslot">Preferred time of day for the call</label>
             <select id="timeslot" name="timeslot">
-              <option value="" selected>أي وقت مناسب</option>
-              <option value="9-12">الصباح — من 9 لـ 12</option>
-              <option value="12-15">بعد الظهر — من 12 لـ 3</option>
-              <option value="15-18">العصر — من 3 لـ 6</option>
-              <option value="18-21">المسا — من 6 لـ 9</option>
+              <option value="" selected>Any time works</option>
+              <option value="9-12">Morning — 9am to 12pm</option>
+              <option value="12-15">Early afternoon — 12pm to 3pm</option>
+              <option value="15-18">Late afternoon — 3pm to 6pm</option>
+              <option value="18-21">Evening — 6pm to 9pm</option>
             </select>
           </div>
           <fieldset class="form-field form-field--group">
-            <legend>الأيام المفضّلة</legend>
-            <p class="form-hint text-muted">اختار أي يوم مناسب — وإحنا نحاول نحجز في واحد منهم.</p>
+            <legend>Preferred days</legend>
+            <p class="form-hint text-muted">Pick any that work — we'll aim for one of them.</p>
             <div class="checkbox-grid">
-              <label class="checkbox"><input type="checkbox" name="days" value="sat" /> السبت</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="sun" /> الأحد</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="mon" /> الاثنين</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="tue" /> الثلاثاء</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="wed" /> الأربعاء</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="thu" /> الخميس</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="fri" /> الجمعة</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="mon" /> Mon</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="tue" /> Tue</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="wed" /> Wed</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="thu" /> Thu</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="fri" /> Fri</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="sat" /> Sat</label>
+              <label class="checkbox"><input type="checkbox" name="days" value="sun" /> Sun</label>
             </div>
           </fieldset>
           <div class="form-field">
-            <label for="message">كلّمنا عن تدريبك</label>
-            <textarea id="message" name="message" placeholder="مين بتدرّب، بتنشر إيه دلوقتي، وعايز توصل لفين..." required></textarea>
+            <label for="message">Tell us about your coaching</label>
+            <textarea id="message" name="message" placeholder="Who you train, what you post now, and where you want to take it..." required></textarea>
           </div>
-          <button type="submit" class="btn btn--primary">احجز مكالمة</button>
-          <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+          <button type="submit" class="btn btn--primary">Book a call</button>
+          <p class="cta-note">Start investing in your business.</p>
           <p class="form-note text-muted">
-            لما تدوس "احجز مكالمة" هيفتح واتساب وبياناتك جاهزة للإرسال. مفيش واتساب؟
-            ابعت إيميل على <a href="mailto:hello@zhpersonalbranding.com" dir="ltr">hello@zhpersonalbranding.com</a>.
+            Pressing "Book a call" opens WhatsApp with your details ready to send. No WhatsApp?
+            Email <a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a>.
           </p>
         </form>
 
         <aside class="contact-info" data-reveal>
           <div class="contact-info__block contact-next">
-            <h3>اللي بيحصل بعد كده</h3>
+            <h3>What happens next</h3>
             <ol class="contact-steps">
-              <li><span aria-hidden="true">1</span> بنرد عليك في خلال يوم عمل واحد.</li>
-              <li><span aria-hidden="true">2</span> مكالمة سريعة نرسم فيها خط محتواك وأهدافك.</li>
-              <li><span aria-hidden="true">3</span> بنحدّد أول تصوير — غالبًا في نفس الأسبوع.</li>
+              <li><span aria-hidden="true">1</span> We reply within one business day.</li>
+              <li><span aria-hidden="true">2</span> A quick call to map out your content and goals.</li>
+              <li><span aria-hidden="true">3</span> We plan your first shoot — often the same week.</li>
             </ol>
           </div>
           <div class="contact-info__block">
-            <h3>البريد الإلكتروني</h3>
-            <p><a href="mailto:hello@zhpersonalbranding.com" dir="ltr">hello@zhpersonalbranding.com</a></p>
+            <h3>Email</h3>
+            <p><a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a></p>
           </div>
           <div class="contact-info__block">
-            <h3>الاستوديو</h3>
-            <p>القاهرة، مصر — متاحين لمشاريع عن بعد وتصوير في الموقع في أي مكان.</p>
+            <h3>Studio</h3>
+            <p>Cairo, Egypt — available for remote &amp; on-location projects worldwide.</p>
           </div>
           <div class="contact-info__block">
-            <h3>تابعنا</h3>
+            <h3>Follow</h3>
             <!-- TODO: add real Instagram URL -->
             <p><a href="#">Instagram</a></p>
           </div>
@@ -1323,20 +1328,20 @@
   <footer class="footer">
     <div class="footer__top">
       <div class="footer__cta">
-        <h2>خلّينا نبني براند تدريبك.</h2>
-        <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
-        <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
+        <h2>Let's build your coaching brand.</h2>
+        <a href="#contact" class="btn btn--primary">Book a call</a>
+        <p class="cta-note">Start investing in your business.</p>
       </div>
       <div class="footer__brand">
-        <span class="footer__brand-mark" aria-hidden="true" dir="ltr">ZH</span>
-        <span class="footer__brand-name" dir="ltr">ZH Personal Branding</span>
-        <span class="footer__brand-tag">بناء البراند الشخصي لكباتن اللياقة</span>
+        <span class="footer__brand-mark" aria-hidden="true">ZH</span>
+        <span class="footer__brand-name">ZH Personal Branding</span>
+        <span class="footer__brand-tag">Personal Branding for Fitness Coaches</span>
       </div>
       <div class="footer__columns">
         <div class="footer__column">
-          <h3>تواصل معنا</h3>
-          <a href="mailto:hello@zhpersonalbranding.com" dir="ltr">hello@zhpersonalbranding.com</a>
-          <p class="footer__location text-muted">القاهرة، مصر &mdash; عن بعد وفي الموقع</p>
+          <h3>Contact</h3>
+          <a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a>
+          <p class="footer__location text-muted">Cairo, Egypt &mdash; remote &amp; on-location</p>
           <div class="footer__socials">
             <!-- TODO: add real Instagram URL -->
             <a href="#" class="icon-interactive" aria-label="Instagram">
@@ -1353,35 +1358,35 @@
     <div class="footer__bottom">
       <!-- Static year is the fallback: main.js overwrites [data-current-year]
            with the real one, but with JS off the span rendered empty before. -->
-      <span>&copy; <span data-current-year>2026</span> ZH Personal Branding. جميع الحقوق محفوظة.</span>
-      <span>مصنوع باهتمام، إطار ورا إطار.</span>
+      <span>&copy; <span data-current-year>2026</span> ZH Personal Branding. All rights reserved.</span>
+      <span>Made with care, one frame at a time.</span>
     </div>
   </footer>
 
   <!-- Sticky mobile CTA (< 768px). Hidden by default in CSS and only ever
        revealed by stickyCta.js, so it can't strand a bar on a no-JS page. -->
   <div class="sticky-cta" data-sticky-cta>
-    <p class="cta-note sticky-cta__note">ابدأ تستثمر في بيزنسك</p>
-    <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
+    <p class="cta-note sticky-cta__note">Start investing in your business</p>
+    <a href="#contact" class="btn btn--primary">Book a call</a>
   </div>
 
   <!-- Must come first: the data files and every module read their strings
        from it, and it picks its dictionary off <html lang>. -->
-  <script src="assets/js/i18n.js?v=31"></script>
-  <script src="assets/js/data/projects.js?v=31"></script>
-  <script src="assets/js/media-config.js?v=31"></script>
-  <script src="assets/js/modules/projectGrid.js?v=31"></script>
-  <script src="assets/js/modules/navbar.js?v=31"></script>
-  <script src="assets/js/modules/navIndicator.js?v=31"></script>
-  <script src="assets/js/modules/sectionNav.js?v=31"></script>
-  <script src="assets/js/modules/scrollReveal.js?v=31"></script>
-  <script src="assets/js/modules/counter.js?v=31"></script>
-  <script src="assets/js/modules/journey.js?v=31"></script>
-  <script src="assets/js/modules/pointer.js?v=31"></script>
-  <script src="assets/js/modules/mediaPlayer.js?v=31"></script>
-  <script src="assets/js/modules/carousel.js?v=31"></script>
-  <script src="assets/js/modules/stickyCta.js?v=31"></script>
-  <script src="assets/js/modules/contactForm.js?v=31"></script>
-  <script src="assets/js/main.js?v=31"></script>
+  <script src="../assets/js/i18n.js?v=31"></script>
+  <script src="../assets/js/data/projects.js?v=31"></script>
+  <script src="../assets/js/media-config.js?v=31"></script>
+  <script src="../assets/js/modules/projectGrid.js?v=31"></script>
+  <script src="../assets/js/modules/navbar.js?v=31"></script>
+  <script src="../assets/js/modules/navIndicator.js?v=31"></script>
+  <script src="../assets/js/modules/sectionNav.js?v=31"></script>
+  <script src="../assets/js/modules/scrollReveal.js?v=31"></script>
+  <script src="../assets/js/modules/counter.js?v=31"></script>
+  <script src="../assets/js/modules/journey.js?v=31"></script>
+  <script src="../assets/js/modules/pointer.js?v=31"></script>
+  <script src="../assets/js/modules/mediaPlayer.js?v=31"></script>
+  <script src="../assets/js/modules/carousel.js?v=31"></script>
+  <script src="../assets/js/modules/stickyCta.js?v=31"></script>
+  <script src="../assets/js/modules/contactForm.js?v=31"></script>
+  <script src="../assets/js/main.js?v=31"></script>
 </body>
 </html>

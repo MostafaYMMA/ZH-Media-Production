@@ -27,6 +27,14 @@ window.ZH = window.ZH || {};
    raw field values.
    ========================================================================== */
 (function () {
+  /* User-facing strings come from assets/js/i18n.js, which picks its dictionary
+     off <html lang>, so the Arabic build's errors and WhatsApp message are
+     Arabic without a second copy of this module. Guarded so the form still
+     validates if that file is absent. */
+  function tr() {
+    return window.ZH.t ? window.ZH.t.apply(null, arguments) : arguments[0];
+  }
+
   var LIMITS = { name: 80, email: 254, handle: 30, message: 2000 };
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -44,15 +52,18 @@ window.ZH = window.ZH || {};
   var WHATSAPP_NUMBER = "201090842990";
 
   // Human labels for the coded <select> / checkbox values, used in the message.
-  var PACKAGE_LABELS = { "12-reels": "12 Reels / month", "24-reels": "24 Reels / month" };
-  var TIMESLOT_LABELS = {
-    "9-12": "Morning (9am-12pm)",
-    "12-15": "Early afternoon (12pm-3pm)",
-    "15-18": "Late afternoon (3pm-6pm)",
-    "18-21": "Evening (6pm-9pm)",
+  // Coded value -> string key, resolved through tr() at submit time so the
+  // studio reads the booking in the language the visitor filled it in.
+  var PACKAGE_KEYS = { "12-reels": "wa.package12", "24-reels": "wa.package24" };
+  var TIMESLOT_KEYS = {
+    "9-12": "wa.slot9",
+    "12-15": "wa.slot12",
+    "15-18": "wa.slot15",
+    "18-21": "wa.slot18",
   };
-  var DAY_LABELS = {
-    mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri", sat: "Sat", sun: "Sun",
+  var DAY_KEYS = {
+    mon: "wa.mon", tue: "wa.tue", wed: "wa.wed", thu: "wa.thu",
+    fri: "wa.fri", sat: "wa.sat", sun: "wa.sun",
   };
 
   // Control-char strippers, built from escape strings so this source stays pure
@@ -139,20 +150,20 @@ window.ZH = window.ZH || {};
       // Name — letters/spaces/./'/- only, no HTML.
       data.name = clean(fields.name.value, LIMITS.name, false);
       if (!data.name) {
-        showError(fields.name, "Please enter your name.");
+        showError(fields.name, tr("form.nameRequired"));
         firstBad = firstBad || fields.name;
       } else if (hasAngle(data.name) || !NAME_RE.test(data.name)) {
-        showError(fields.name, "Use letters, spaces, hyphens or apostrophes only.");
+        showError(fields.name, tr("form.nameInvalid"));
         firstBad = firstBad || fields.name;
       }
 
       // Email — normalised to lower case and format-checked.
       data.email = clean(fields.email.value, LIMITS.email, false).toLowerCase();
       if (!data.email) {
-        showError(fields.email, "Please enter your email.");
+        showError(fields.email, tr("form.emailRequired"));
         firstBad = firstBad || fields.email;
       } else if (!EMAIL_RE.test(data.email)) {
-        showError(fields.email, "That doesn't look like a valid email address.");
+        showError(fields.email, tr("form.emailInvalid"));
         firstBad = firstBad || fields.email;
       }
 
@@ -160,7 +171,7 @@ window.ZH = window.ZH || {};
       data.handle = clean(fields.handle.value, LIMITS.handle, false);
       if (data.handle) {
         if (!HANDLE_RE.test(data.handle)) {
-          showError(fields.handle, "Handles use only letters, numbers, dots and underscores.");
+          showError(fields.handle, tr("form.handleInvalid"));
           firstBad = firstBad || fields.handle;
         } else if (data.handle.charAt(0) !== "@") {
           data.handle = "@" + data.handle;
@@ -187,10 +198,10 @@ window.ZH = window.ZH || {};
       // Message — free text; keeps punctuation but no HTML tags / control chars.
       data.message = clean(fields.message.value, LIMITS.message, true);
       if (!data.message) {
-        showError(fields.message, "Tell us a little about your coaching.");
+        showError(fields.message, tr("form.messageRequired"));
         firstBad = firstBad || fields.message;
       } else if (hasAngle(data.message)) {
-        showError(fields.message, "Please remove any < or > characters.");
+        showError(fields.message, tr("form.messageAngle"));
         firstBad = firstBad || fields.message;
       }
 
@@ -202,19 +213,30 @@ window.ZH = window.ZH || {};
       // Valid + normalised. Build a plain-text summary and hand off to WhatsApp.
       // `data` is already trimmed / length-capped / control-stripped and angle
       // brackets are rejected, so it's safe to drop straight into the message.
-      var lines = ["New call booking", "", "Name: " + data.name, "Email: " + data.email];
-      if (data.handle) lines.push("Handle: " + data.handle);
-      lines.push("Package: " + (PACKAGE_LABELS[data.package] || "Not sure yet"));
-      lines.push("Preferred time: " + (TIMESLOT_LABELS[data.timeslot] || "Any time"));
+      var lines = [
+        tr("wa.title"),
+        "",
+        tr("wa.name") + ": " + data.name,
+        tr("wa.email") + ": " + data.email,
+      ];
+      if (data.handle) lines.push(tr("wa.handle") + ": " + data.handle);
       lines.push(
-        "Preferred days: " +
+        tr("wa.package") + ": " +
+        (PACKAGE_KEYS[data.package] ? tr(PACKAGE_KEYS[data.package]) : tr("wa.anyPackage"))
+      );
+      lines.push(
+        tr("wa.time") + ": " +
+        (TIMESLOT_KEYS[data.timeslot] ? tr(TIMESLOT_KEYS[data.timeslot]) : tr("wa.anyTime"))
+      );
+      lines.push(
+        tr("wa.days") + ": " +
         (data.days.length
           ? data.days
             .map(function (d) {
-              return DAY_LABELS[d];
+              return tr(DAY_KEYS[d]);
             })
             .join(", ")
-          : "Any day")
+          : tr("wa.anyDay"))
       );
       lines.push("", data.message);
 
@@ -225,14 +247,12 @@ window.ZH = window.ZH || {};
       var status = document.createElement("p");
       status.className = "form-status";
       status.setAttribute("role", "status");
-      status.append(
-        "Opening WhatsApp with your details… nothing happened? "
-      );
+      status.append(tr("form.opening"));
       var link = document.createElement("a");
       link.href = waUrl;
       link.target = "_blank";
       link.rel = "noopener";
-      link.textContent = "Tap here to send your booking.";
+      link.textContent = tr("form.openingLink");
       status.append(link);
       form.appendChild(status);
     });
