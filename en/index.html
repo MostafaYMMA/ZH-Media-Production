@@ -20,13 +20,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Cairo is here only for the "العربية" label on the language pill. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&family=Cairo:wght@700&display=swap" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=35" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=36" />
   <!-- All page stylesheets — every section now lives on this one document. -->
-  <link rel="stylesheet" href="../assets/css/pages/home.css?v=35" />
-  <link rel="stylesheet" href="../assets/css/pages/services.css?v=35" />
-  <link rel="stylesheet" href="../assets/css/pages/about.css?v=35" />
-  <link rel="stylesheet" href="../assets/css/pages/work.css?v=35" />
-  <link rel="stylesheet" href="../assets/css/pages/contact.css?v=35" />
+  <link rel="stylesheet" href="../assets/css/pages/home.css?v=36" />
+  <link rel="stylesheet" href="../assets/css/pages/services.css?v=36" />
+  <link rel="stylesheet" href="../assets/css/pages/about.css?v=36" />
+  <link rel="stylesheet" href="../assets/css/pages/work.css?v=36" />
+  <link rel="stylesheet" href="../assets/css/pages/contact.css?v=36" />
 </head>
 <body>
 
@@ -1040,35 +1040,37 @@
         <p class="faq__lead" data-reveal>
           Before you ask — how it actually works, answered straight.
         </p>
+        <!-- Native <details>: collapsed by default, opens on click / Enter /
+             Space with no script, and the <h3> keeps the heading outline. -->
         <div class="faq__list" data-reveal-group>
-          <div class="faq__item" data-reveal>
-            <h3 class="faq__q">What happens after I book a call?</h3>
+          <details class="faq__item" data-reveal>
+            <summary><h3 class="faq__q">What happens after I book a call?</h3></summary>
             <p class="faq__a">We hop on a short call to learn your coaching, your audience, and your goals. If it's a fit, we plan your first month of content and book your shoot — usually within the same week.</p>
-          </div>
-          <div class="faq__item" data-reveal>
-            <h3 class="faq__q">Do I have to travel to film?</h3>
+          </details>
+          <details class="faq__item" data-reveal>
+            <summary><h3 class="faq__q">Do I have to travel to film?</h3></summary>
             <p class="faq__a">No. We film on-location at your gym. If you're outside our area we run remote shoots and direct you over the call — many coaches capture a full month in one session.</p>
-          </div>
-          <div class="faq__item" data-reveal>
-            <h3 class="faq__q">How many reels, and how fast?</h3>
+          </details>
+          <details class="faq__item" data-reveal>
+            <summary><h3 class="faq__q">How many reels, and how fast?</h3></summary>
             <p class="faq__a">12 or 24 finished reels a month, depending on your package. First edits usually land within a few days of the shoot — captioned and ready to post.</p>
-          </div>
-          <div class="faq__item" data-reveal>
-            <h3 class="faq__q">What if I want changes to an edit?</h3>
+          </details>
+          <details class="faq__item" data-reveal>
+            <summary><h3 class="faq__q">What if I want changes to an edit?</h3></summary>
             <p class="faq__a">Every reel includes revisions. We tweak the cut, captions, or pacing until it's something you're happy to put your name on.</p>
-          </div>
-          <div class="faq__item" data-reveal>
-            <h3 class="faq__q">Am I locked into a long contract?</h3>
+          </details>
+          <details class="faq__item" data-reveal>
+            <summary><h3 class="faq__q">Am I locked into a long contract?</h3></summary>
             <p class="faq__a">We work month to month. The plan is that the results keep you around — not the paperwork.</p>
-          </div>
-          <div class="faq__item" data-reveal>
-            <h3 class="faq__q">How much is the investment?</h3>
+          </details>
+          <details class="faq__item" data-reveal>
+            <summary><h3 class="faq__q">How much is the investment?</h3></summary>
             <p class="faq__a">Your investment depends on your package and shoot logistics, so we quote it on the call once we know what you need. Book a call and we'll walk you through it.</p>
-          </div>
-          <div class="faq__item" data-reveal>
-            <h3 class="faq__q">Do you post the reels for me?</h3>
+          </details>
+          <details class="faq__item" data-reveal>
+            <summary><h3 class="faq__q">Do you post the reels for me?</h3></summary>
             <p class="faq__a">We handle the script, the shoot, and the edit, and deliver every reel ready to post. You post them to your own accounts, so your page stays fully yours.</p>
-          </div>
+          </details>
         </div>
       </div>
 
@@ -1347,20 +1349,20 @@
 
   <!-- Must come first: the data files and every module read their strings
        from it, and it picks its dictionary off <html lang>. -->
-  <script src="../assets/js/i18n.js?v=35"></script>
-  <script src="../assets/js/data/projects.js?v=35"></script>
-  <script src="../assets/js/media-config.js?v=35"></script>
-  <script src="../assets/js/modules/projectGrid.js?v=35"></script>
-  <script src="../assets/js/modules/navbar.js?v=35"></script>
-  <script src="../assets/js/modules/navIndicator.js?v=35"></script>
-  <script src="../assets/js/modules/sectionNav.js?v=35"></script>
-  <script src="../assets/js/modules/scrollReveal.js?v=35"></script>
-  <script src="../assets/js/modules/counter.js?v=35"></script>
-  <script src="../assets/js/modules/journey.js?v=35"></script>
-  <script src="../assets/js/modules/pointer.js?v=35"></script>
-  <script src="../assets/js/modules/mediaPlayer.js?v=35"></script>
-  <script src="../assets/js/modules/stickyCta.js?v=35"></script>
-  <script src="../assets/js/modules/contactForm.js?v=35"></script>
-  <script src="../assets/js/main.js?v=35"></script>
+  <script src="../assets/js/i18n.js?v=36"></script>
+  <script src="../assets/js/data/projects.js?v=36"></script>
+  <script src="../assets/js/media-config.js?v=36"></script>
+  <script src="../assets/js/modules/projectGrid.js?v=36"></script>
+  <script src="../assets/js/modules/navbar.js?v=36"></script>
+  <script src="../assets/js/modules/navIndicator.js?v=36"></script>
+  <script src="../assets/js/modules/sectionNav.js?v=36"></script>
+  <script src="../assets/js/modules/scrollReveal.js?v=36"></script>
+  <script src="../assets/js/modules/counter.js?v=36"></script>
+  <script src="../assets/js/modules/journey.js?v=36"></script>
+  <script src="../assets/js/modules/pointer.js?v=36"></script>
+  <script src="../assets/js/modules/mediaPlayer.js?v=36"></script>
+  <script src="../assets/js/modules/stickyCta.js?v=36"></script>
+  <script src="../assets/js/modules/contactForm.js?v=36"></script>
+  <script src="../assets/js/main.js?v=36"></script>
 </body>
 </html>

@@ -231,7 +231,7 @@ falls back to English. **Adding a runtime string means adding it to both diction
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
   CSS or JS** or a redeploy won't reach people — and **both** HTML documents, not just
-  the one you were looking at. Currently `v=35`.
+  the one you were looking at. Currently `v=36`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`. **Don't skip heading levels** — the aside/footer labels are
@@ -324,7 +324,7 @@ hero (headline now `<h2>`); the footer carries the one closing CTA.
   testimonials.
 - **`#services`** — balanced hero, a **sticky two-column pipeline** (heading left, Script →
   Shoot → Edit steps right — `.services-section__grid`), centered **12 / 24 Reels** package cards
-  (`.packages`), and a "How it actually works" **FAQ** covering timeline / travel / revisions /
+  (`.packages`), and a "How it actually works" **FAQ** (collapsed accordion — native `<details>`, volt chevron, one column) covering timeline / travel / revisions /
   contract / cost (no price figures — see house rules).
 - **`#about`** — balanced hero, stat band (5+ / 20+ / 100%), a **founder block** (`.founder` —
   placeholder monogram portrait + first-person story + signature), three "why coaches trust us"

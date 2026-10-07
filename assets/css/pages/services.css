@@ -10,31 +10,94 @@
   font-size: var(--fs-lead);
 }
 
+/* An accordion: every answer starts collapsed behind its question. One column
+   rather than the old two — in a grid, opening one item would stretch its row
+   and leave a hole beside it. */
 .faq__list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg) var(--space-xl);
+  max-width: 56rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .faq__item {
   border-top: 1px solid var(--color-border);
-  padding-top: var(--space-md);
+}
+
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Safari still draws its own disclosure triangle without this. */
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* The arrow: a chevron drawn from two borders, pointing down while closed and
+   flipping up when open. Pushed to the inline end, so it sits on the left in
+   the Arabic build with no extra rule. */
+.faq__item summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-inline-start: auto;
+  margin-block-end: 0.3rem;
+  border-right: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  transform: rotate(45deg);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.faq__item[open] summary::after {
+  margin-block-end: 0;
+  margin-block-start: 0.3rem;
+  transform: rotate(-135deg);
 }
 
 .faq__q {
   font-size: 1.25rem;
   text-transform: uppercase;
-  margin-bottom: var(--space-xs);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.faq__item summary:hover .faq__q,
+.faq__item[open] .faq__q {
+  color: var(--color-accent);
 }
 
 .faq__a {
+  max-width: 65ch;
+  padding-block-end: var(--space-md);
   color: var(--color-text-muted);
 }
 
-@media (max-width: 720px) {
-  .faq__list {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
+/* Slide the answer open where the browser can animate to `auto` height
+   (Chromium 131+). Elsewhere it simply appears — same content, no jank. */
+@supports (interpolate-size: allow-keywords) {
+  .faq__item {
+    interpolate-size: allow-keywords;
+  }
+
+  .faq__item::details-content {
+    height: 0;
+    overflow: hidden;
+    transition: height var(--duration-base) var(--ease-out),
+      content-visibility var(--duration-base) allow-discrete;
+  }
+
+  .faq__item[open]::details-content {
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__item::details-content,
+  .faq__item summary::after {
+    transition: none;
   }
 }
 
