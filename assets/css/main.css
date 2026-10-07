@@ -2,27 +2,27 @@
    <head>) whenever CSS changes — GitHub Pages caches assets for ~10 min and
    mobile browsers hold them far longer, so a version query is how a redeploy
    actually reaches people. */
-@import url("base/variables.css?v=34");
-@import url("base/reset.css?v=34");
-@import url("base/typography.css?v=34");
+@import url("base/variables.css?v=35");
+@import url("base/reset.css?v=35");
+@import url("base/typography.css?v=35");
 /* RTL/Arabic layer — scoped to html[dir="rtl"], inert on the English build. */
-@import url("base/rtl.css?v=34");
-@import url("components/navbar.css?v=34");
-@import url("components/footer.css?v=34");
-@import url("components/buttons.css?v=34");
-@import url("components/project-card.css?v=34");
-@import url("components/icon.css?v=34");
-@import url("components/testimonials.css?v=34");
-@import url("components/video-player.css?v=34");
-@import url("components/voicenote.css?v=34");
-@import url("components/feedback.css?v=34");
-@import url("components/transformations.css?v=34");
-@import url("components/duration-bar.css?v=34");
-@import url("components/fit-cards.css?v=34");
-@import url("components/journey.css?v=34");
-@import url("components/clients.css?v=34");
-@import url("components/section-scroll.css?v=34");
-@import url("components/sticky-cta.css?v=34");
+@import url("base/rtl.css?v=35");
+@import url("components/navbar.css?v=35");
+@import url("components/footer.css?v=35");
+@import url("components/buttons.css?v=35");
+@import url("components/project-card.css?v=35");
+@import url("components/icon.css?v=35");
+@import url("components/testimonials.css?v=35");
+@import url("components/video-player.css?v=35");
+@import url("components/voicenote.css?v=35");
+@import url("components/feedback.css?v=35");
+@import url("components/transformations.css?v=35");
+@import url("components/duration-bar.css?v=35");
+@import url("components/fit-cards.css?v=35");
+@import url("components/journey.css?v=35");
+@import url("components/clients.css?v=35");
+@import url("components/section-scroll.css?v=35");
+@import url("components/sticky-cta.css?v=35");
 
 .container {
   max-width: var(--max-width);
