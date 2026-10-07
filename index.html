@@ -17,13 +17,13 @@
        it); Anton and Barlow stay for the Latin islands — the logo, "ZH", the
        @handles and the email. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/main.css?v=32" />
+  <link rel="stylesheet" href="assets/css/main.css?v=33" />
   <!-- All page stylesheets — every section now lives on this one document. -->
-  <link rel="stylesheet" href="assets/css/pages/home.css?v=32" />
-  <link rel="stylesheet" href="assets/css/pages/services.css?v=32" />
-  <link rel="stylesheet" href="assets/css/pages/about.css?v=32" />
-  <link rel="stylesheet" href="assets/css/pages/work.css?v=32" />
-  <link rel="stylesheet" href="assets/css/pages/contact.css?v=32" />
+  <link rel="stylesheet" href="assets/css/pages/home.css?v=33" />
+  <link rel="stylesheet" href="assets/css/pages/services.css?v=33" />
+  <link rel="stylesheet" href="assets/css/pages/about.css?v=33" />
+  <link rel="stylesheet" href="assets/css/pages/work.css?v=33" />
+  <link rel="stylesheet" href="assets/css/pages/contact.css?v=33" />
 </head>
 <body>
 
@@ -696,17 +696,21 @@
       <div class="work-hero page-hero container">
         <div class="page-hero__grid">
           <div class="page-hero__head">
-            <span class="eyebrow" data-reveal>أعمالنا</span>
-            <h2 data-reveal>كباتن وصّلناهم للفيد.</h2>
+            <span class="eyebrow" data-reveal>قبل وبعد</span>
+            <h2 data-reveal>نفس الكابتن. أرقام تانية.</h2>
           </div>
           <div class="page-hero__lead" data-reveal>
-            <p>ريلز وفيديوهات قصيرة رأسية كتبناها وصوّرناها وعملنا مونتاجها لكباتن — وعدد المشاهدات مكتوب على كل صورة.</p>
+            <p>ريل للكابتن من قبل ما نبدأ، جنب ريل كتبناه وصوّرناه وعملنا مونتاجه له. أعلى عشر ريلز مشاهدةً عندنا — اسحب عشان تشوفهم كلهم.</p>
           </div>
         </div>
       </div>
 
       <div class="section container work-grid">
-        <div class="project-grid" data-project-grid="all" data-reveal-group></div>
+        <!-- Before / After pairs, built by projectGrid.js from data/projects.js.
+             Two rows, scrolls sideways; "before" stills are placeholders for now. -->
+        <div class="project-scroller" data-reveal>
+          <div class="project-grid" data-project-grid="all"></div>
+        </div>
       </div>
 
       <div class="section-cta cta-pair cta-pair--center" data-reveal>
@@ -722,8 +726,8 @@
          soon". That is deliberate: the photos, names and handles are real
          clients, so an invented quote attached to one of them could go live
          as a real endorsement by accident. The placeholder cannot.
-         Voice notes and videos are wired to media-config.js keys; until the
-         files land, each player renders its own "coming soon" state.
+         Voice notes are wired to media-config.js keys; until the files
+         land, each player renders its own "coming soon" state.
          ================================================================== -->
     <section id="feedback" class="snap-section">
       <div class="section container feedback">
@@ -795,106 +799,9 @@
                 <p class="voicenote__quote">الشهادة قريبًا.</p>
               </figcaption>
             </figure>
-
-            <!-- TODO: real testimonial -->
-            <figure class="voicenote" data-voicenote data-media-key="voiceNote5" data-label="Amr Moharram" data-reveal>
-              <div class="voicenote__bubble">
-                <img class="voicenote__avatar" src="assets/images/clients/client-01.webp" alt="" loading="lazy" width="256" height="256" />
-                <span class="voicenote__wave" data-wave aria-hidden="true"><i style="--h:.54"></i><i style="--h:.28"></i><i style="--h:.77"></i><i style="--h:.41"></i><i style="--h:.65"></i><i style="--h:.90"></i><i style="--h:.34"></i><i style="--h:.59"></i><i style="--h:.43"></i><i style="--h:.85"></i><i style="--h:.30"></i><i style="--h:.68"></i><i style="--h:.52"></i><i style="--h:.74"></i><i style="--h:.37"></i><i style="--h:.61"></i><i style="--h:.93"></i><i style="--h:.45"></i><i style="--h:.27"></i><i style="--h:.71"></i><i style="--h:.56"></i><i style="--h:.82"></i><i style="--h:.39"></i><i style="--h:.48"></i><i style="--h:.31"></i><i style="--h:.57"></i></span>
-                <audio preload="metadata" controls data-audio></audio>
-              </div>
-              <figcaption class="voicenote__meta">
-                <span class="voicenote__name">Amr Moharram</span>
-                <span class="voicenote__handle">@coach_amrmoharram</span>
-                <p class="voicenote__quote">الشهادة قريبًا.</p>
-              </figcaption>
-            </figure>
           </div>
         </div>
 
-        <!-- Video testimonials. Same player component as the hero sales video.
-             The nav row (arrows + dots) is built by carousel.js: without JS the
-             strip is still a swipeable, scroll-snapping, keyboard-scrollable
-             list, so nothing here depends on the script. -->
-        <div class="carousel" data-carousel data-reveal>
-          <div class="carousel__viewport" data-carousel-viewport tabindex="0" role="group" aria-label="شهادات فيديو من كباتن">
-            <!-- TODO: real testimonial -->
-            <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo1" data-label="شهادة فيديو من Mohanad Hesham">
-                <div class="vplayer__frame">
-                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
-                </div>
-              </div>
-              <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-03.webp" alt="" loading="lazy" width="256" height="256" />
-                <span class="carousel__name">Mohanad Hesham</span>
-                <span class="carousel__handle">@mohanad_elmaghraby</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
-              </figcaption>
-            </figure>
-
-            <!-- TODO: real testimonial -->
-            <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo2" data-label="شهادة فيديو من Kareem Mahmoud">
-                <div class="vplayer__frame">
-                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
-                </div>
-              </div>
-              <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-11.webp" alt="" loading="lazy" width="256" height="256" />
-                <span class="carousel__name">Kareem Mahmoud</span>
-                <span class="carousel__handle">@kariiim.mahmoud</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
-              </figcaption>
-            </figure>
-
-            <!-- TODO: real testimonial -->
-            <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo3" data-label="شهادة فيديو من Omar Nasr">
-                <div class="vplayer__frame">
-                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
-                </div>
-              </div>
-              <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-18.webp" alt="" loading="lazy" width="256" height="256" />
-                <span class="carousel__name">Omar Nasr</span>
-                <span class="carousel__handle">@omarnasrbaker</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
-              </figcaption>
-            </figure>
-
-            <!-- TODO: real testimonial -->
-            <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo4" data-label="شهادة فيديو من Karim Maghraby">
-                <div class="vplayer__frame">
-                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
-                </div>
-              </div>
-              <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-10.webp" alt="" loading="lazy" width="256" height="256" />
-                <span class="carousel__name">Karim Maghraby</span>
-                <span class="carousel__handle">@karimmaghraby</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
-              </figcaption>
-            </figure>
-
-            <!-- TODO: real testimonial -->
-            <figure class="carousel__slide">
-              <div class="vplayer" data-vplayer data-media-key="testimonialVideo5" data-label="شهادة فيديو من Rohaim Moustafa">
-                <div class="vplayer__frame">
-                  <video class="vplayer__video" preload="metadata" playsinline controls></video>
-                </div>
-              </div>
-              <figcaption class="carousel__meta">
-                <img class="carousel__avatar" src="assets/images/clients/client-07.webp" alt="" loading="lazy" width="256" height="256" />
-                <span class="carousel__name">Rohaim Moustafa</span>
-                <span class="carousel__handle">@rohaim_moustafa</span>
-                <p class="carousel__quote">الشهادة قريبًا.</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="carousel__nav" data-carousel-nav></div>
-        </div>
 
         <div class="feedback__cta cta-pair cta-pair--center" data-reveal>
           <a href="#contact" class="btn btn--primary">احجز مكالمة</a>
@@ -1380,21 +1287,20 @@
 
   <!-- Must come first: the data files and every module read their strings
        from it, and it picks its dictionary off <html lang>. -->
-  <script src="assets/js/i18n.js?v=32"></script>
-  <script src="assets/js/data/projects.js?v=32"></script>
-  <script src="assets/js/media-config.js?v=32"></script>
-  <script src="assets/js/modules/projectGrid.js?v=32"></script>
-  <script src="assets/js/modules/navbar.js?v=32"></script>
-  <script src="assets/js/modules/navIndicator.js?v=32"></script>
-  <script src="assets/js/modules/sectionNav.js?v=32"></script>
-  <script src="assets/js/modules/scrollReveal.js?v=32"></script>
-  <script src="assets/js/modules/counter.js?v=32"></script>
-  <script src="assets/js/modules/journey.js?v=32"></script>
-  <script src="assets/js/modules/pointer.js?v=32"></script>
-  <script src="assets/js/modules/mediaPlayer.js?v=32"></script>
-  <script src="assets/js/modules/carousel.js?v=32"></script>
-  <script src="assets/js/modules/stickyCta.js?v=32"></script>
-  <script src="assets/js/modules/contactForm.js?v=32"></script>
-  <script src="assets/js/main.js?v=32"></script>
+  <script src="assets/js/i18n.js?v=33"></script>
+  <script src="assets/js/data/projects.js?v=33"></script>
+  <script src="assets/js/media-config.js?v=33"></script>
+  <script src="assets/js/modules/projectGrid.js?v=33"></script>
+  <script src="assets/js/modules/navbar.js?v=33"></script>
+  <script src="assets/js/modules/navIndicator.js?v=33"></script>
+  <script src="assets/js/modules/sectionNav.js?v=33"></script>
+  <script src="assets/js/modules/scrollReveal.js?v=33"></script>
+  <script src="assets/js/modules/counter.js?v=33"></script>
+  <script src="assets/js/modules/journey.js?v=33"></script>
+  <script src="assets/js/modules/pointer.js?v=33"></script>
+  <script src="assets/js/modules/mediaPlayer.js?v=33"></script>
+  <script src="assets/js/modules/stickyCta.js?v=33"></script>
+  <script src="assets/js/modules/contactForm.js?v=33"></script>
+  <script src="assets/js/main.js?v=33"></script>
 </body>
 </html>

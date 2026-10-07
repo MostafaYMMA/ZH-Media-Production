@@ -174,7 +174,7 @@ problem — that one resolves against the container.
 ### Strings the JS builds
 
 Copy that lives in the markup is translated in the markup. The handful of labels the
-modules *create* — player buttons, carousel arrows, form validation, the WhatsApp booking
+modules *create* — player buttons, Before/After labels, form validation, the WhatsApp booking
 message, generated reel alt text — come from **`assets/js/i18n.js`**, which picks its
 dictionary off `<html lang>` and must be **loaded before every other script**. Call it as
 `window.ZH.t("player.play")`, with `{0}` / `{1}` slots; each module wraps it in a guarded
@@ -231,7 +231,7 @@ falls back to English. **Adding a runtime string means adding it to both diction
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
   CSS or JS** or a redeploy won't reach people — and **both** HTML documents, not just
-  the one you were looking at. Currently `v=32`.
+  the one you were looking at. Currently `v=33`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`. **Don't skip heading levels** — the aside/footer labels are
@@ -329,12 +329,12 @@ hero (headline now `<h2>`); the footer carries the one closing CTA.
 - **`#about`** — balanced hero, stat band (5+ / 20+ / 100%), a **founder block** (`.founder` —
   placeholder monogram portrait + first-person story + signature), three "why coaches trust us"
   value cards. (The old fictional team section was removed.)
-- **`#work`** — reels wall data-driven from `projects.js` (20 reels, `assets/images/reels/`,
-  view count baked into each). Order is a **deliberate style mix**: ~60% shot-in-the-gym pieces,
-  ~40% cut-out / graphic-overlay pieces, **no two cut-out reels adjacent** — so a first-time
-  visitor sees the studio does several kinds of video. Framed **vertical 9/14** short-form (grid
-  `auto-fill, minmax(200px, 1fr)`; 2-up under 460px). **No video playback** — framed stills only
-  (`projectGrid.js`).
+- **`#work`** — **Before / After by views** ("Same coach. Different numbers."). 10 pair cards
+  built by `projectGrid.js` from `projects.js`: "after" = our 10 highest-viewed reels (best first),
+  "before" = **placeholder frames** until the real stills arrive (`before: null` in the data; set
+  `before` + `beforeViews` to fill one). Figures row reuses the `.transformation__*` classes, with
+  the after count in volt. Layout is a **2-row horizontally scrolling band** (`.project-scroller` >
+  `.project-grid`, `grid-auto-flow: column`), same pattern as `#clients`. **No video playback**.
 - **`#clients`** — "Our clients" roster: a 2-row horizontally-scrolling band of profile cards
   (`.client-card` = circular avatar + name + `@handle`), `components/clients.css`. 18 real client
   cards (`client-01..18.webp`). To change: add/remove `<figure class="client-card">` blocks freely

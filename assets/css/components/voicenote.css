@@ -26,12 +26,6 @@
   .voicenotes {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  /* Five notes into two columns leaves one orphan; let it take the full row
-     rather than sit next to an empty cell. */
-  .voicenotes > :last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
 }
 
 /* --- the card ------------------------------------------------------------ */

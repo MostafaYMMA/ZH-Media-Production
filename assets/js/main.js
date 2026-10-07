@@ -25,13 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (window.ZH.initPointerFX) window.ZH.initPointerFX();
 
-  // Sales video, testimonial videos, and voice notes. Resolves each player's
+  // Sales video and voice notes. Resolves each player's
   // data-media-key against window.ZH.media (assets/js/media-config.js), then
   // replaces the native controls with the custom UI.
   if (window.ZH.initMediaPlayers) window.ZH.initMediaPlayers();
-
-  // Video-testimonial strip: adds the arrows and dots over the CSS scroll-snap.
-  if (window.ZH.initCarousels) window.ZH.initCarousels();
 
   // Fixed "Book a call" bar on phones, between the hero and the contact form.
   if (window.ZH.initStickyCta) window.ZH.initStickyCta();

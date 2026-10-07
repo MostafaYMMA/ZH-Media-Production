@@ -169,7 +169,6 @@ html[dir="rtl"] .transformation__to {
    surrounding Arabic punctuation to the wrong end of the line. */
 html[dir="rtl"] .client-card__handle,
 html[dir="rtl"] .voicenote__handle,
-html[dir="rtl"] .carousel__handle,
 html[dir="rtl"] .transformation__who span {
   direction: ltr;
   unicode-bidi: isolate;

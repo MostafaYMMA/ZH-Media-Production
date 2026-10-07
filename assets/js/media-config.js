@@ -36,44 +36,11 @@ window.ZH.media = {
     ready: false,
   },
 
-  /* Video testimonials — "Hear it from our coaches" carousel */
-  testimonialVideo1: {
-    src: "assets/media/testimonial-1.mp4",
-    poster: "assets/media/posters/testimonial-1.webp",
-    type: "video/mp4",
-    ready: false,
-  },
-  testimonialVideo2: {
-    src: "assets/media/testimonial-2.mp4",
-    poster: "assets/media/posters/testimonial-2.webp",
-    type: "video/mp4",
-    ready: false,
-  },
-  testimonialVideo3: {
-    src: "assets/media/testimonial-3.mp4",
-    poster: "assets/media/posters/testimonial-3.webp",
-    type: "video/mp4",
-    ready: false,
-  },
-  testimonialVideo4: {
-    src: "assets/media/testimonial-4.mp4",
-    poster: "assets/media/posters/testimonial-4.webp",
-    type: "video/mp4",
-    ready: false,
-  },
-  testimonialVideo5: {
-    src: "assets/media/testimonial-5.mp4",
-    poster: "assets/media/posters/testimonial-5.webp",
-    type: "video/mp4",
-    ready: false,
-  },
-
   /* Voice notes — WhatsApp-style audio testimonials */
   voiceNote1: { src: "assets/media/voice-note-1.m4a", type: "audio/mp4", ready: false },
   voiceNote2: { src: "assets/media/voice-note-2.m4a", type: "audio/mp4", ready: false },
   voiceNote3: { src: "assets/media/voice-note-3.m4a", type: "audio/mp4", ready: false },
   voiceNote4: { src: "assets/media/voice-note-4.m4a", type: "audio/mp4", ready: false },
-  voiceNote5: { src: "assets/media/voice-note-5.m4a", type: "audio/mp4", ready: false },
 };
 
 /* Every path above is written relative to the SITE ROOT, so this stays the one

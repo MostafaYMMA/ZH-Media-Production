@@ -1,29 +1,80 @@
-.project-grid {
-  display: grid;
-  /* Portrait reels stay phone-sized in a dense wall rather than ballooning to
-     full column width (a tall card at 400px+ wide is absurd). */
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-md);
+/* Work — Before / After pairs by views. Each card is two vertical reels side
+   by side (the coach's reel before us, then ours) over the same "dim → volt"
+   figures row the account transformations use (transformations.css supplies
+   .transformation__tag / __range / __from / __arrow / __to / __unit).
+
+   Layout: a fixed 2-row band that scrolls horizontally, same pattern as the
+   clients roster (clients.css) — cards flow top-to-bottom, then into the next
+   column, so the section never grows past two rows however many pairs land. */
+.project-scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* room for the scrollbar so it doesn't sit on the bottom row */
+  padding-bottom: var(--space-sm);
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
 }
 
-@media (max-width: 460px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
-  }
+.project-scroller::-webkit-scrollbar {
+  height: 8px;
+}
+
+.project-scroller::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+
+.project-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, auto);
+  /* Two phone-sized reels per card. Narrow enough that a desktop shows three
+     or four columns with the next one peeking in — the cue that it scrolls. */
+  grid-auto-columns: clamp(260px, 26vw, 340px);
+  gap: var(--space-md);
+  width: max-content;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface), var(--color-surface);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  scroll-snap-align: start;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.project-card:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-card__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  /* the 1px gap shows through as a hairline between the two reels */
+  background: var(--color-border);
 }
 
 /* Reels are vertical screenshots (video frame + baked-in view count). Frame the
    media to their real aspect so nothing — least of all the view count — is
-   cropped. No playback: we don't host the reels. */
+   cropped, and so the space is reserved before the lazy image loads. */
 .project-card__media {
   position: relative;
-  width: 100%;
   aspect-ratio: 9 / 14;
-  border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+}
+
+.project-card__media .transformation__tag {
+  z-index: 1;
 }
 
 .project-card__poster {
@@ -37,4 +88,42 @@
 
 .project-card__media:hover .project-card__poster {
   transform: scale(1.04);
+}
+
+/* Until the real "before" still lands. */
+.project-card__placeholder {
+  position: absolute;
+  inset: var(--space-xs);
+  display: grid;
+  place-items: center;
+  padding: var(--space-sm);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  font-family: var(--font-data);
+  font-size: var(--fs-small);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.project-card__meta {
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+}
+
+.project-card .transformation__range {
+  margin-block-start: 0;
+}
+
+.project-card .transformation__from,
+.project-card .transformation__to {
+  font-size: 1.7rem;
+}
+
+/* Views are the whole point of this card, so the "after" figure carries the
+   volt itself — the follower cards keep it white and give the volt to the
+   +delta, but there is no delta here until the before counts are in. */
+.project-card .transformation__to {
+  color: var(--color-accent);
 }

@@ -6,7 +6,7 @@ window.ZH = window.ZH || {};
    The site ships in two languages as two documents (Arabic at /, English at
    /en/) sharing one set of scripts. Copy that lives in the markup is
    translated in the markup; this file exists only for the handful of labels
-   the modules CREATE at runtime — player buttons, carousel arrows, form
+   the modules CREATE at runtime — player buttons, Before/After labels, form
    validation messages, generated alt text — which have no markup to live in.
 
    Language is read from <html lang>, so a page declares it once and every
@@ -39,15 +39,18 @@ window.ZH = window.ZH || {};
       "note.seek": "Seek voice note from {0}",
       "note.position": "{0} of {1}",
 
-      /* testimonial strip (carousel.js) */
-      "carousel.prev": "Previous testimonial",
-      "carousel.next": "Next testimonial",
-      "carousel.goTo": "Go to testimonial {0}",
-
-      /* work grid (projectGrid.js, data/projects.js) */
+      /* work — before / after pairs (projectGrid.js, data/projects.js) */
       "work.reelAlt": "Reel produced for a fitness coach",
       "work.reelAltViews":
         "A reel we scripted, shot, and edited for a fitness coach — {0} views",
+      "work.beforeAlt": "The coach's reel before working with us — {0} views",
+      "work.before": "Before",
+      "work.after": "After",
+      "work.views": "views",
+      "work.beforeSoon": "Before reel coming soon",
+      "work.beforeViewsSoon": "Before view count coming soon,",
+      "work.arrow": "→",
+      "work.reached": " reached ",
 
       /* booking form (contactForm.js) */
       "form.nameRequired": "Please enter your name.",
@@ -105,12 +108,18 @@ window.ZH = window.ZH || {};
       "note.seek": "تحديد موضع الرسالة الصوتية من {0}",
       "note.position": "{0} من {1}",
 
-      "carousel.prev": "الشهادة السابقة",
-      "carousel.next": "الشهادة التالية",
-      "carousel.goTo": "اذهب إلى الشهادة {0}",
-
       "work.reelAlt": "ريل من إنتاجنا لكابتن لياقة",
       "work.reelAltViews": "ريل كتبناه وصوّرناه وعملنا مونتاجه لكابتن لياقة — {0} مشاهدة",
+      "work.beforeAlt": "ريل الكابتن قبل ما يشتغل معانا — {0} مشاهدة",
+      "work.before": "قبل",
+      "work.after": "بعد",
+      "work.views": "مشاهدة",
+      "work.beforeSoon": "ريل «قبل» قريبًا",
+      "work.beforeViewsSoon": "مشاهدات «قبل» قريبًا،",
+      /* Left-pointing in RTL: it runs from the "before" figure to the "after"
+         one, same as the &larr; in the account transformations markup. */
+      "work.arrow": "←",
+      "work.reached": " وصل إلى ",
 
       "form.nameRequired": "اكتب اسمك من فضلك.",
       "form.nameInvalid": "استخدم حروفًا ومسافات وشرطات فقط.",
