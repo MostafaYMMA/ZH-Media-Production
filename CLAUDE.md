@@ -77,8 +77,8 @@ assets/
 
 ## Single-page architecture
 
-The site is **one document**. `index.html` holds every section — `#home`, `#work`,
-`#clients`, `#services`, `#about`, `#contact` (nav order) — each wrapped in
+The site is **one document**. `index.html` holds every section — `#home`, `#services`,
+`#work`, `#clients`, `#about`, `#contact` (nav order = page order) — each wrapped in
 `<section id="…" class="snap-section">` inside `<main>`, followed by the one shared `<footer>`. `about.html` / `services.html` /
 `work.html` / `contact.html` are now **redirect stubs** (`<meta http-equiv="refresh">` +
 `location.replace()` + `<link rel="canonical">`) that bounce to the matching `#hash` — keep
