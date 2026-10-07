@@ -10,16 +10,34 @@
   font-size: var(--fs-lead);
 }
 
-/* An accordion: every answer starts collapsed behind its question. One column
-   rather than the old two — in a grid, opening one item would stretch its row
-   and leave a hole beside it. */
+/* An accordion: every answer starts collapsed behind its question, two to a
+   row. align-items: start so opening one item grows only that item — its
+   neighbour keeps its own height instead of stretching to match. */
 .faq__list {
-  max-width: 56rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  column-gap: var(--space-xl);
+}
+
+/* A rule under every item, plus one over the first row, so each question sits
+   between two lines without doubling them up where rows meet. */
+.faq__item {
   border-bottom: 1px solid var(--color-border);
 }
 
-.faq__item {
+.faq__item:nth-child(-n + 2) {
   border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 720px) {
+  .faq__list {
+    grid-template-columns: 1fr;
+  }
+
+  .faq__item:nth-child(2) {
+    border-top: 0;
+  }
 }
 
 .faq__item summary {
