@@ -20,13 +20,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Cairo is here only for the "العربية" label on the language pill. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&family=Cairo:wght@700&display=swap" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=33" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=34" />
   <!-- All page stylesheets — every section now lives on this one document. -->
-  <link rel="stylesheet" href="../assets/css/pages/home.css?v=33" />
-  <link rel="stylesheet" href="../assets/css/pages/services.css?v=33" />
-  <link rel="stylesheet" href="../assets/css/pages/about.css?v=33" />
-  <link rel="stylesheet" href="../assets/css/pages/work.css?v=33" />
-  <link rel="stylesheet" href="../assets/css/pages/contact.css?v=33" />
+  <link rel="stylesheet" href="../assets/css/pages/home.css?v=34" />
+  <link rel="stylesheet" href="../assets/css/pages/services.css?v=34" />
+  <link rel="stylesheet" href="../assets/css/pages/about.css?v=34" />
+  <link rel="stylesheet" href="../assets/css/pages/work.css?v=34" />
+  <link rel="stylesheet" href="../assets/css/pages/contact.css?v=34" />
 </head>
 <body>
 
@@ -1150,58 +1150,124 @@
           endpoint later, POST the module's `data` object and drop data-unwired.
         -->
         <form class="contact-form" data-unwired novalidate data-reveal>
-          <div class="form-field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-field">
-            <label for="phone">Phone number</label>
-            <!-- type="tel" + inputmode bring up the phone keypad on mobile. -->
-            <input type="tel" id="phone" name="phone" placeholder="+20 10 1234 5678"
-                   inputmode="tel" autocomplete="tel" required />
-          </div>
-          <div class="form-field">
-            <label for="handle">Instagram / TikTok handle</label>
-            <input type="text" id="handle" name="handle" placeholder="@yourcoaching" />
-          </div>
-          <div class="form-field">
-            <label for="package">Which package fits?</label>
-            <select id="package" name="package">
-              <option value="" selected>I'm not sure yet</option>
-              <option value="12-reels">12 Reels / month</option>
-              <option value="24-reels">24 Reels / month</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="timeslot">Preferred time of day for the call</label>
-            <select id="timeslot" name="timeslot">
-              <option value="" selected>Any time works</option>
-              <option value="9-12">Morning — 9am to 12pm</option>
-              <option value="12-15">Early afternoon — 12pm to 3pm</option>
-              <option value="15-18">Late afternoon — 3pm to 6pm</option>
-              <option value="18-21">Evening — 6pm to 9pm</option>
-            </select>
-          </div>
-          <fieldset class="form-field form-field--group">
-            <legend>Preferred days</legend>
-            <p class="form-hint text-muted">Pick any that work — we'll aim for one of them.</p>
-            <div class="checkbox-grid">
-              <label class="checkbox"><input type="checkbox" name="days" value="mon" /> Mon</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="tue" /> Tue</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="wed" /> Wed</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="thu" /> Thu</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="fri" /> Fri</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="sat" /> Sat</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="sun" /> Sun</label>
+          <!-- Four steps. contactForm.js shows one at a time under a progress bar
+               with Back / Continue, and the last tap on an all-choice step moves
+               on by itself. Without JS the steps simply stack. -->
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">About you</legend>
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone number</label>
+              <!-- type="tel" + inputmode bring up the phone keypad on mobile. -->
+              <input type="tel" id="phone" name="phone" placeholder="+20 10 1234 5678"
+                     inputmode="tel" autocomplete="tel" required />
+            </div>
+            <div class="form-field">
+              <label for="handle">Instagram / TikTok handle</label>
+              <input type="text" id="handle" name="handle" placeholder="@yourcoaching" />
             </div>
           </fieldset>
-          <div class="form-field">
-            <label for="message">Tell us about your coaching</label>
-            <textarea id="message" name="message" placeholder="Who you train, what you post now, and where you want to take it..." required></textarea>
+
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">Your coaching</legend>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>What kind of coaching do you do?</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="coaching" value="online" /><span>Online</span></label>
+                <label class="choice"><input type="radio" name="coaching" value="in-person" /><span>In person</span></label>
+                <label class="choice"><input type="radio" name="coaching" value="both" /><span>Both</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>Roughly how much does your coaching bring in each month?</legend>
+              <div class="choice-grid choice-grid--stack">
+                <label class="choice"><input type="radio" name="revenue" value="5-10" /><span>5,000 – 10,000 EGP</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="10-20" /><span>10,000 – 20,000 EGP</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="20-30" /><span>20,000 – 30,000 EGP</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="30+" /><span>30,000+ EGP</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="private" /><span>I'd rather say on the call</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>When do you want to start?</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="start" value="now" /><span>Right away</span></label>
+                <label class="choice"><input type="radio" name="start" value="30-days" /><span>Within 30 days</span></label>
+                <label class="choice"><input type="radio" name="start" value="later" /><span>Next month or later</span></label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <!-- Budget bands sit around the real price without matching it, so the
+               form filters leads without publishing a figure (house rule: no
+               prices). The short labels give the lowest band a polite way out. -->
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">The plan</legend>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>Which package fits?</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="package" value="12-reels" /><span>12 Reels / month</span></label>
+                <label class="choice"><input type="radio" name="package" value="24-reels" /><span>24 Reels / month</span></label>
+                <label class="choice"><input type="radio" name="package" value="unsure" /><span>I'm not sure yet</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>What monthly budget feels right for your content?</legend>
+              <div class="choice-grid choice-grid--stack">
+                <label class="choice"><input type="radio" name="budget" value="under-5" /><span>Under 5,000 EGP<small>Just testing the waters</small></span></label>
+                <label class="choice"><input type="radio" name="budget" value="5-10" /><span>5,000 – 10,000 EGP<small>Ready to start properly</small></span></label>
+                <label class="choice"><input type="radio" name="budget" value="10-15" /><span>10,000 – 15,000 EGP<small>Serious about growing</small></span></label>
+                <label class="choice"><input type="radio" name="budget" value="15+" /><span>15,000+ EGP<small>Going all in</small></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>Is anyone else part of this decision?</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="decision" value="solo" /><span>Just me</span></label>
+                <label class="choice"><input type="radio" name="decision" value="partner" /><span>Me and a partner or manager</span></label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">The call</legend>
+            <fieldset class="form-field form-field--group">
+              <legend>Preferred time of day for the call</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="timeslot" value="" checked /><span>Any time works</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="9-12" /><span>Morning — 9am to 12pm</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="12-15" /><span>Early afternoon — 12pm to 3pm</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="15-18" /><span>Late afternoon — 3pm to 6pm</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="18-21" /><span>Evening — 6pm to 9pm</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group">
+              <legend>Preferred days</legend>
+              <p class="form-hint text-muted">Pick any that work — we'll aim for one of them.</p>
+              <div class="checkbox-grid">
+                <label class="checkbox"><input type="checkbox" name="days" value="mon" /> Mon</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="tue" /> Tue</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="wed" /> Wed</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="thu" /> Thu</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="fri" /> Fri</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="sat" /> Sat</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="sun" /> Sun</label>
+              </div>
+            </fieldset>
+            <div class="form-field">
+              <label for="message">Anything else we should know? <span class="form-optional">(optional)</span></label>
+              <textarea id="message" name="message" placeholder="Who you train, what you post now, and where you want to take it..."></textarea>
+            </div>
+          </fieldset>
+
+          <div class="form-nav" data-form-nav>
+            <button type="submit" class="btn btn--primary">Book a call</button>
           </div>
-          <button type="submit" class="btn btn--primary">Book a call</button>
-          <p class="cta-note">Start investing in your business.</p>
-          <p class="form-note text-muted">
+          <p class="cta-note" data-last-only>Start investing in your business.</p>
+          <p class="form-note text-muted" data-last-only>
             Pressing "Book a call" opens WhatsApp with your details ready to send. No WhatsApp?
             Email <a href="mailto:hello@zhpersonalbranding.com">hello@zhpersonalbranding.com</a>.
           </p>
@@ -1281,20 +1347,20 @@
 
   <!-- Must come first: the data files and every module read their strings
        from it, and it picks its dictionary off <html lang>. -->
-  <script src="../assets/js/i18n.js?v=33"></script>
-  <script src="../assets/js/data/projects.js?v=33"></script>
-  <script src="../assets/js/media-config.js?v=33"></script>
-  <script src="../assets/js/modules/projectGrid.js?v=33"></script>
-  <script src="../assets/js/modules/navbar.js?v=33"></script>
-  <script src="../assets/js/modules/navIndicator.js?v=33"></script>
-  <script src="../assets/js/modules/sectionNav.js?v=33"></script>
-  <script src="../assets/js/modules/scrollReveal.js?v=33"></script>
-  <script src="../assets/js/modules/counter.js?v=33"></script>
-  <script src="../assets/js/modules/journey.js?v=33"></script>
-  <script src="../assets/js/modules/pointer.js?v=33"></script>
-  <script src="../assets/js/modules/mediaPlayer.js?v=33"></script>
-  <script src="../assets/js/modules/stickyCta.js?v=33"></script>
-  <script src="../assets/js/modules/contactForm.js?v=33"></script>
-  <script src="../assets/js/main.js?v=33"></script>
+  <script src="../assets/js/i18n.js?v=34"></script>
+  <script src="../assets/js/data/projects.js?v=34"></script>
+  <script src="../assets/js/media-config.js?v=34"></script>
+  <script src="../assets/js/modules/projectGrid.js?v=34"></script>
+  <script src="../assets/js/modules/navbar.js?v=34"></script>
+  <script src="../assets/js/modules/navIndicator.js?v=34"></script>
+  <script src="../assets/js/modules/sectionNav.js?v=34"></script>
+  <script src="../assets/js/modules/scrollReveal.js?v=34"></script>
+  <script src="../assets/js/modules/counter.js?v=34"></script>
+  <script src="../assets/js/modules/journey.js?v=34"></script>
+  <script src="../assets/js/modules/pointer.js?v=34"></script>
+  <script src="../assets/js/modules/mediaPlayer.js?v=34"></script>
+  <script src="../assets/js/modules/stickyCta.js?v=34"></script>
+  <script src="../assets/js/modules/contactForm.js?v=34"></script>
+  <script src="../assets/js/main.js?v=34"></script>
 </body>
 </html>

@@ -231,7 +231,7 @@ falls back to English. **Adding a runtime string means adding it to both diction
   HTML `<head>`/footer **and** the `@import`s in `main.css`. GitHub Pages caches assets ~10 min
   and mobile browsers hold them much longer, so **bump every `?v=` in lockstep whenever you touch
   CSS or JS** or a redeploy won't reach people — and **both** HTML documents, not just
-  the one you were looking at. Currently `v=33`.
+  the one you were looking at. Currently `v=34`.
 - **Accessibility floor:** keep visible focus (a branded `:focus-visible` volt ring is wired in
   `reset.css`), honor `prefers-reduced-motion` (`reset.css` + animation modules), and keep
   decorative elements `aria-hidden`. **Don't skip heading levels** — the aside/footer labels are
@@ -339,10 +339,13 @@ hero (headline now `<h2>`); the footer carries the one closing CTA.
   (`.client-card` = circular avatar + name + `@handle`), `components/clients.css`. 18 real client
   cards (`client-01..18.webp`). To change: add/remove `<figure class="client-card">` blocks freely
   (the band just grows and scrolls), and drop a matching round avatar in `assets/images/clients/`.
-- **`#contact`** — balanced hero, booking form (**package `<select>`** 12 / 24 / not sure, with
-  the custom CSS arrow in `contact.css`) with **client-side validation + input hardening**
-  (`contactForm.js`, inline `.form-error` / `.form-status`), and a "What happens next" info card
-  in the right column.
+- **`#contact`** — balanced hero, a **4-step booking form** (About you → Your coaching → The plan →
+  The call) with a progress bar, Back / Continue, and **tappable radio "chips"** instead of
+  dropdowns; an all-choice step advances by itself on the last tap. Steps 2–3 carry the
+  **qualifying questions** (coaching type, monthly income in EGP, start date, package, content
+  budget, decision maker). Budget bands (<5k / 5–10k / 10–15k / 15k+ EGP) deliberately sit
+  *around* the real price without matching it — still no price figures on the site. Without JS
+  the steps just stack. Validation + hardening + WhatsApp handoff in `contactForm.js`.
 
 ## Known TODOs / placeholders
 

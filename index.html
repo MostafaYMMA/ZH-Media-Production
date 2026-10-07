@@ -17,13 +17,13 @@
        it); Anton and Barlow stay for the Latin islands — the logo, "ZH", the
        @handles and the email. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/main.css?v=33" />
+  <link rel="stylesheet" href="assets/css/main.css?v=34" />
   <!-- All page stylesheets — every section now lives on this one document. -->
-  <link rel="stylesheet" href="assets/css/pages/home.css?v=33" />
-  <link rel="stylesheet" href="assets/css/pages/services.css?v=33" />
-  <link rel="stylesheet" href="assets/css/pages/about.css?v=33" />
-  <link rel="stylesheet" href="assets/css/pages/work.css?v=33" />
-  <link rel="stylesheet" href="assets/css/pages/contact.css?v=33" />
+  <link rel="stylesheet" href="assets/css/pages/home.css?v=34" />
+  <link rel="stylesheet" href="assets/css/pages/services.css?v=34" />
+  <link rel="stylesheet" href="assets/css/pages/about.css?v=34" />
+  <link rel="stylesheet" href="assets/css/pages/work.css?v=34" />
+  <link rel="stylesheet" href="assets/css/pages/contact.css?v=34" />
 </head>
 <body>
 
@@ -1153,59 +1153,125 @@
           endpoint later, POST the module's `data` object and drop data-unwired.
         -->
         <form class="contact-form" data-unwired novalidate data-reveal>
-          <div class="form-field">
-            <label for="name">الاسم</label>
-            <input type="text" id="name" name="name" placeholder="اسمك" required />
-          </div>
-          <div class="form-field">
-            <label for="phone">رقم الموبايل</label>
-            <!-- type="tel" + inputmode bring up the phone keypad on mobile; dir="ltr"
-                 keeps a number typed with a leading + from being reordered. -->
-            <input type="tel" id="phone" name="phone" placeholder="+20 10 1234 5678"
-                   inputmode="tel" autocomplete="tel" dir="ltr" required />
-          </div>
-          <div class="form-field">
-            <label for="handle">حساب إنستجرام أو تيك توك</label>
-            <input type="text" id="handle" name="handle" placeholder="@yourcoaching" dir="ltr" />
-          </div>
-          <div class="form-field">
-            <label for="package">أي باكدج مناسبة؟</label>
-            <select id="package" name="package">
-              <option value="" selected>لسه مش متأكد</option>
-              <option value="12-reels">12 ريل / شهر</option>
-              <option value="24-reels">24 ريل / شهر</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="timeslot">الوقت المفضّل للمكالمة</label>
-            <select id="timeslot" name="timeslot">
-              <option value="" selected>أي وقت مناسب</option>
-              <option value="9-12">الصباح — من 9 لـ 12</option>
-              <option value="12-15">بعد الظهر — من 12 لـ 3</option>
-              <option value="15-18">العصر — من 3 لـ 6</option>
-              <option value="18-21">المسا — من 6 لـ 9</option>
-            </select>
-          </div>
-          <fieldset class="form-field form-field--group">
-            <legend>الأيام المفضّلة</legend>
-            <p class="form-hint text-muted">اختار أي يوم مناسب — وإحنا نحاول نحجز في واحد منهم.</p>
-            <div class="checkbox-grid">
-              <label class="checkbox"><input type="checkbox" name="days" value="sat" /> السبت</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="sun" /> الأحد</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="mon" /> الاثنين</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="tue" /> الثلاثاء</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="wed" /> الأربعاء</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="thu" /> الخميس</label>
-              <label class="checkbox"><input type="checkbox" name="days" value="fri" /> الجمعة</label>
+          <!-- Four steps. contactForm.js shows one at a time under a progress bar
+               with Back / Continue, and the last tap on an all-choice step moves
+               on by itself. Without JS the steps simply stack. -->
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">عنك</legend>
+            <div class="form-field">
+              <label for="name">الاسم</label>
+              <input type="text" id="name" name="name" placeholder="اسمك" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="phone">رقم الموبايل</label>
+              <!-- type="tel" + inputmode bring up the phone keypad on mobile; dir="ltr"
+                   keeps a number typed with a leading + from being reordered. -->
+              <input type="tel" id="phone" name="phone" placeholder="+20 10 1234 5678"
+                     inputmode="tel" autocomplete="tel" dir="ltr" required />
+            </div>
+            <div class="form-field">
+              <label for="handle">حساب إنستجرام أو تيك توك</label>
+              <input type="text" id="handle" name="handle" placeholder="@yourcoaching" dir="ltr" />
             </div>
           </fieldset>
-          <div class="form-field">
-            <label for="message">كلّمنا عن تدريبك</label>
-            <textarea id="message" name="message" placeholder="مين بتدرّب، بتنشر إيه دلوقتي، وعايز توصل لفين..." required></textarea>
+
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">تدريبك</legend>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>بتدرّب إزاي؟</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="coaching" value="online" /><span>أونلاين</span></label>
+                <label class="choice"><input type="radio" name="coaching" value="in-person" /><span>حضوري</span></label>
+                <label class="choice"><input type="radio" name="coaching" value="both" /><span>الاتنين</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>تدريبك بيجيبلك كام تقريبًا في الشهر؟</legend>
+              <div class="choice-grid choice-grid--stack">
+                <label class="choice"><input type="radio" name="revenue" value="5-10" /><span>من 5,000 لـ 10,000 جنيه</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="10-20" /><span>من 10,000 لـ 20,000 جنيه</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="20-30" /><span>من 20,000 لـ 30,000 جنيه</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="30+" /><span>أكتر من 30,000 جنيه</span></label>
+                <label class="choice"><input type="radio" name="revenue" value="private" /><span>أفضّل أقول في المكالمة</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>عايز تبدأ إمتى؟</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="start" value="now" /><span>فورًا</span></label>
+                <label class="choice"><input type="radio" name="start" value="30-days" /><span>خلال 30 يوم</span></label>
+                <label class="choice"><input type="radio" name="start" value="later" /><span>الشهر الجاي أو بعده</span></label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <!-- Budget bands sit around the real price without matching it, so the
+               form filters leads without publishing a figure (house rule: no
+               prices). The short labels give the lowest band a polite way out. -->
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">الخطة</legend>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>أي باكدج مناسبة؟</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="package" value="12-reels" /><span>12 ريل / شهر</span></label>
+                <label class="choice"><input type="radio" name="package" value="24-reels" /><span>24 ريل / شهر</span></label>
+                <label class="choice"><input type="radio" name="package" value="unsure" /><span>لسه مش متأكد</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>إيه الميزانية الشهرية اللي شايفها مناسبة للمحتوى بتاعك؟</legend>
+              <div class="choice-grid choice-grid--stack">
+                <label class="choice"><input type="radio" name="budget" value="under-5" /><span>أقل من 5,000 جنيه<small>بجرّب الأول</small></span></label>
+                <label class="choice"><input type="radio" name="budget" value="5-10" /><span>من 5,000 لـ 10,000 جنيه<small>جاهز أبدأ صح</small></span></label>
+                <label class="choice"><input type="radio" name="budget" value="10-15" /><span>من 10,000 لـ 15,000 جنيه<small>جادّ إني أكبر</small></span></label>
+                <label class="choice"><input type="radio" name="budget" value="15+" /><span>أكتر من 15,000 جنيه<small>داخل بكل قوتي</small></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group" data-required>
+              <legend>في حد تاني مشارك في القرار ده؟</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="decision" value="solo" /><span>أنا لوحدي</span></label>
+                <label class="choice"><input type="radio" name="decision" value="partner" /><span>أنا وشريك أو مدير</span></label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <fieldset class="form-step" data-step>
+            <legend class="form-step__title">المكالمة</legend>
+            <fieldset class="form-field form-field--group">
+              <legend>الوقت المفضّل للمكالمة</legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="timeslot" value="" checked /><span>أي وقت مناسب</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="9-12" /><span>الصباح — من 9 لـ 12</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="12-15" /><span>بعد الظهر — من 12 لـ 3</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="15-18" /><span>العصر — من 3 لـ 6</span></label>
+                <label class="choice"><input type="radio" name="timeslot" value="18-21" /><span>المسا — من 6 لـ 9</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field form-field--group">
+              <legend>الأيام المفضّلة</legend>
+              <p class="form-hint text-muted">اختار أي يوم مناسب — وإحنا نحاول نحجز في واحد منهم.</p>
+              <div class="checkbox-grid">
+                <label class="checkbox"><input type="checkbox" name="days" value="sat" /> السبت</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="sun" /> الأحد</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="mon" /> الاثنين</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="tue" /> الثلاثاء</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="wed" /> الأربعاء</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="thu" /> الخميس</label>
+                <label class="checkbox"><input type="checkbox" name="days" value="fri" /> الجمعة</label>
+              </div>
+            </fieldset>
+            <div class="form-field">
+              <label for="message">في حاجة تانية حابب نعرفها؟ <span class="form-optional">(اختياري)</span></label>
+              <textarea id="message" name="message" placeholder="مين بتدرّب، بتنشر إيه دلوقتي، وعايز توصل لفين..."></textarea>
+            </div>
+          </fieldset>
+
+          <div class="form-nav" data-form-nav>
+            <button type="submit" class="btn btn--primary">احجز مكالمة</button>
           </div>
-          <button type="submit" class="btn btn--primary">احجز مكالمة</button>
-          <p class="cta-note">ابدأ تستثمر في بيزنسك.</p>
-          <p class="form-note text-muted">
+          <p class="cta-note" data-last-only>ابدأ تستثمر في بيزنسك.</p>
+          <p class="form-note text-muted" data-last-only>
             لما تدوس "احجز مكالمة" هيفتح واتساب وبياناتك جاهزة للإرسال. مفيش واتساب؟
             ابعت إيميل على <a href="mailto:hello@zhpersonalbranding.com" dir="ltr">hello@zhpersonalbranding.com</a>.
           </p>
@@ -1287,20 +1353,20 @@
 
   <!-- Must come first: the data files and every module read their strings
        from it, and it picks its dictionary off <html lang>. -->
-  <script src="assets/js/i18n.js?v=33"></script>
-  <script src="assets/js/data/projects.js?v=33"></script>
-  <script src="assets/js/media-config.js?v=33"></script>
-  <script src="assets/js/modules/projectGrid.js?v=33"></script>
-  <script src="assets/js/modules/navbar.js?v=33"></script>
-  <script src="assets/js/modules/navIndicator.js?v=33"></script>
-  <script src="assets/js/modules/sectionNav.js?v=33"></script>
-  <script src="assets/js/modules/scrollReveal.js?v=33"></script>
-  <script src="assets/js/modules/counter.js?v=33"></script>
-  <script src="assets/js/modules/journey.js?v=33"></script>
-  <script src="assets/js/modules/pointer.js?v=33"></script>
-  <script src="assets/js/modules/mediaPlayer.js?v=33"></script>
-  <script src="assets/js/modules/stickyCta.js?v=33"></script>
-  <script src="assets/js/modules/contactForm.js?v=33"></script>
-  <script src="assets/js/main.js?v=33"></script>
+  <script src="assets/js/i18n.js?v=34"></script>
+  <script src="assets/js/data/projects.js?v=34"></script>
+  <script src="assets/js/media-config.js?v=34"></script>
+  <script src="assets/js/modules/projectGrid.js?v=34"></script>
+  <script src="assets/js/modules/navbar.js?v=34"></script>
+  <script src="assets/js/modules/navIndicator.js?v=34"></script>
+  <script src="assets/js/modules/sectionNav.js?v=34"></script>
+  <script src="assets/js/modules/scrollReveal.js?v=34"></script>
+  <script src="assets/js/modules/counter.js?v=34"></script>
+  <script src="assets/js/modules/journey.js?v=34"></script>
+  <script src="assets/js/modules/pointer.js?v=34"></script>
+  <script src="assets/js/modules/mediaPlayer.js?v=34"></script>
+  <script src="assets/js/modules/stickyCta.js?v=34"></script>
+  <script src="assets/js/modules/contactForm.js?v=34"></script>
+  <script src="assets/js/main.js?v=34"></script>
 </body>
 </html>
